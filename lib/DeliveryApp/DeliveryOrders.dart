@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/screens/cart/cart.dart';
 import 'package:khetipati/screens/home/home.dart';
-import 'package:khetipati/widgets/Bottomnav.dart';
+import 'package:khetipati/widgets/bottom_nav.dart';
 
 class DeliveryOrders extends StatefulWidget {
   const DeliveryOrders({Key? key}) : super(key: key);

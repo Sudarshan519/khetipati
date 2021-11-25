@@ -5,8 +5,8 @@ final boxKey = "boxKey";
 final box = GetStorage(boxKey);
 
 class AuthStorage {
-  static setUser(User user) => box.write("user", user);
-  static User? get currentUser => box.read("user");
+  static setUser(User user) => box.write("user", user.toJson());
+  static get currentUser => box.read("user") ?? User();
 
   static setToken(String token) => box.write("token", token);
   static String get token => box.read("token") ?? "";

@@ -6,15 +6,6 @@ import 'package:khetipati/DeliveryApp/MyEarnings.dart';
 import 'package:khetipati/DeliveryApp/deliveryEditProfile.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/screens/cart/cart.dart';
-import 'package:khetipati/screens/home/home.dart';
-import 'package:khetipati/screens/orders/orders.dart';
-import 'package:khetipati/screens/profile/Reviews.dart';
-import 'package:khetipati/screens/profile/ShippingAddress.dart';
-import 'package:khetipati/screens/profile/editprofile.dart';
-import 'package:khetipati/screens/profile/payment.dart';
-import 'package:khetipati/screens/profile/vouchers.dart';
-import 'package:khetipati/screens/profile/wishlist.dart';
-import 'package:khetipati/widgets/Bottomnav.dart';
 
 class Delivery extends StatefulWidget {
   const Delivery({Key? key}) : super(key: key);

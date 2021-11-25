@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/constant/controller.dart';
-import 'package:khetipati/screens/cart/cart.dart';
 import 'package:khetipati/screens/home/home.dart';
 import 'package:khetipati/screens/notifications/notifications.dart';
 import 'package:khetipati/screens/orders/orders.dart';

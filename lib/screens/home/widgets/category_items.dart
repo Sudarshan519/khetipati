@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/models/cagetories.dart';
+import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/screens/profile/profile.dart';
-import 'package:khetipati/widgets/Bottomnav.dart';
 import 'package:khetipati/widgets/items.dart';
 
-class CategotyItems extends StatefulWidget {
-  CategotyItems({Key? key, required this.category}) : super(key: key);
-  final Category category;
+class CategoryDetail extends StatefulWidget {
+  const CategoryDetail({Key? key, required this.index}) : super(key: key);
+  final int index;
   @override
-  _CategotyItemsState createState() => _CategotyItemsState();
+  _CategoryDetailState createState() => _CategoryDetailState();
 }
 
-class _CategotyItemsState extends State<CategotyItems> {
+class _CategoryDetailState extends State<CategoryDetail> {
+  final controller = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,9 +32,9 @@ class _CategotyItemsState extends State<CategotyItems> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(width: 30),
+                      const SizedBox(width: 30),
                       InkWell(
-                        child: Container(
+                        child: SizedBox(
                           height: 70,
                           width: 60,
                           //color: Colors.black,
@@ -46,13 +47,13 @@ class _CategotyItemsState extends State<CategotyItems> {
                           );
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Text(
                             "Hello",
                             style: TextStyle(
@@ -79,14 +80,13 @@ class _CategotyItemsState extends State<CategotyItems> {
                       color: Colors.green[900],
                     ),
                   ),
-                  //SizedBox(width: 10),
                 ],
               ),
             ),
             Container(
               width: MediaQuery.of(context).size.width,
               //  height: 1300,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: AppColors.mainGrey,
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(30),
@@ -96,8 +96,8 @@ class _CategotyItemsState extends State<CategotyItems> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20, left: 31),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 20, left: 31),
                     child: Text(
                       "Popular items",
                       style: TextStyle(
@@ -114,8 +114,13 @@ class _CategotyItemsState extends State<CategotyItems> {
                         Flexible(
                           child: Column(
                             children: [
-                              // Items(context, 'Tomatoes',
-                              //     'assets/images/items/melons.png'),
+                              Items(context, controller.products[0]),
+                              Items(context, controller.products[0]),
+                              Items(context, controller.products[0]),
+                              Items(context, controller.products[0]),
+                              Items(context, controller.products[0]),
+                              Items(context, controller.products[0]),
+                              Items(context, controller.products[0]),
                               // SizedBox(
                               //   height: 20,
                               // ),
@@ -140,6 +145,13 @@ class _CategotyItemsState extends State<CategotyItems> {
                         Flexible(
                           child: Column(
                             children: [
+                              Items(context, controller.products[0]),
+                              Items(context, controller.products[0]),
+                              Items(context, controller.products[0]),
+                              Items(context, controller.products[0]),
+                              Items(context, controller.products[0]),
+                              Items(context, controller.products[0]),
+                              Items(context, controller.products[0]),
                               // Items(context, 'Tomatoes',
                               //     'assets/images/items/melons.png'),
                               // SizedBox(

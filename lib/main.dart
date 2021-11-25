@@ -6,6 +6,8 @@ import 'package:khetipati/initialbinding.dart';
 import 'package:khetipati/splashscreen.dart';
 import 'package:khetipati/utils/storage/box_storage.dart';
 
+import 'constant/size_config.dart';
+
 void main() async {
   // await DBHelper.initDB();
   await BoxStorage.init();

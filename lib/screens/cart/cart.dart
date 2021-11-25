@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
+import 'package:khetipati/controllers/home_controller.dart';
+import 'package:khetipati/models/cart.dart';
 import 'package:khetipati/screens/cart/Checkout.dart';
-import 'package:khetipati/screens/home/category_items.dart';
-import 'package:khetipati/widgets/Bottomnav.dart';
+import 'package:khetipati/screens/home/widgets/category_items.dart';
+import 'package:khetipati/widgets/bottom_nav.dart';
 import 'package:khetipati/widgets/items.dart';
 
 class Cart extends StatefulWidget {
@@ -13,6 +16,7 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
+  final controller = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,6 +59,7 @@ class _CartState extends State<Cart> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    _buildCartItems(),
                     Padding(
                       padding: EdgeInsets.only(
                           right: MediaQuery.of(context).size.width * 0.05,
@@ -67,16 +72,17 @@ class _CartState extends State<Cart> {
                             borderRadius: BorderRadius.circular(10)),
                         child: Column(
                           children: [
-                            OrderItems(
-                              'assets/images/items/tomatoes.png',
-                              'Tomatoes',
-                            ),
-                            OrderItems(
-                                'assets/images/items/melons.png', 'Melons'),
-                            OrderItems(
-                              'assets/images/items/tomatoes.png',
-                              'Tomatoes',
-                            ),
+                            // OrderItems(
+                            //   'assets/images/items/tomatoes.png',
+                            //   'Tomatoes',
+                            // ),
+                            // Divider(),
+                            // OrderItems(
+                            //     'assets/images/items/melons.png', 'Melons'),
+                            // OrderItems(
+                            //   'assets/images/items/tomatoes.png',
+                            //   'Tomatoes',
+                            // ),
                             Divider(),
                             Container(
                               height: 73,
@@ -106,7 +112,7 @@ class _CartState extends State<Cart> {
                                                   fontSize: 15),
                                             ),
                                             Text(
-                                              'Rs. 1000',
+                                              controller.getTotalPrice(),
                                               style: TextStyle(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.bold,
@@ -336,8 +342,7 @@ class _CartState extends State<Cart> {
   }
 
   Widget OrderItems(
-    WishlistItemImg,
-    itemName,
+    CartModel item,
   ) {
     return Container(
       height: 130,
@@ -348,16 +353,22 @@ class _CartState extends State<Cart> {
         children: [
           Stack(
             children: [
-              Icon(
-                Icons.close_rounded,
-                size: 18,
-                color: Color.fromRGBO(0, 0, 0, 0.5),
+              InkWell(
+                onTap: () {
+                  print("working on remove");
+                  controller.removeFromCart(item);
+                },
+                child: Icon(
+                  Icons.close_rounded,
+                  size: 18,
+                  color: Color.fromRGBO(0, 0, 0, 0.5),
+                ),
               ),
               Container(
                 width: 130,
                 height: 88,
                 child: Image.asset(
-                  WishlistItemImg,
+                  'assets/images/items/tomatoes.png',
                   fit: BoxFit.contain,
                 ),
               ),
@@ -368,7 +379,7 @@ class _CartState extends State<Cart> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                itemName,
+                item.productName.toString(),
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
@@ -385,7 +396,7 @@ class _CartState extends State<Cart> {
                 height: 20,
               ),
               Text(
-                'Rs. 250',
+                item.price.toString(),
                 style: TextStyle(
                     fontSize: MediaQuery.of(context).size.width / 20,
                     fontWeight: FontWeight.w500,
@@ -408,7 +419,12 @@ class _CartState extends State<Cart> {
                   decoration: BoxDecoration(
                       border: Border.all(width: 1, color: AppColors.mainGrey),
                       borderRadius: BorderRadius.circular(4)),
-                  child: Icon(Icons.add),
+                  child: InkWell(
+                      onTap: () {
+                        print("add to cart");
+                        controller.addToCart(item);
+                      },
+                      child: const Icon(Icons.add)),
                 ),
               ),
               FittedBox(
@@ -421,8 +437,8 @@ class _CartState extends State<Cart> {
                         borderRadius: BorderRadius.circular(4)),
                     child: Center(
                         child: Text(
-                      '1',
-                      style: TextStyle(fontSize: 16),
+                      item.quantity.toString(),
+                      style: const TextStyle(fontSize: 16),
                     ))),
               ),
               FittedBox(
@@ -432,7 +448,12 @@ class _CartState extends State<Cart> {
                   decoration: BoxDecoration(
                       border: Border.all(width: 1, color: AppColors.mainGrey),
                       borderRadius: BorderRadius.circular(4)),
-                  child: Icon(Icons.remove),
+                  child: InkWell(
+                      onTap: () {
+                        print("remove");
+                        controller.removeFromCart(item);
+                      },
+                      child: const Icon(Icons.remove)),
                 ),
               ),
             ],
@@ -468,5 +489,140 @@ class _CartState extends State<Cart> {
         ),
       ),
     );
+  }
+
+  _buildCartItems() {
+    return Obx(() => Column(
+          children: List.generate(
+            controller.cart.length,
+            (index) => SizedBox(
+              height: 130,
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Stack(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          print("working on remove");
+                          controller.removeFromCart(controller.cart[index]);
+                        },
+                        child: const Icon(
+                          Icons.close_rounded,
+                          size: 18,
+                          color: Color.fromRGBO(0, 0, 0, 0.5),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 130,
+                        height: 88,
+                        child: Image.network(
+                          controller.cart[index].image.toString(),
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        controller.cart[index].productName.toString(),
+                        style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.textblack),
+                      ),
+                      const Text(
+                        '100 kcal',
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.textblack),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        controller.cart[index].price.toString(),
+                        style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width / 20,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.textGreen),
+                      ),
+                    ],
+                  ),
+                  // Flexible(
+                  //   child: SizedBox(
+                  //     width: 309,
+                  //   ),
+                  // ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FittedBox(
+                        child: Container(
+                          width: 42,
+                          height: 32,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1, color: AppColors.mainGrey),
+                              borderRadius: BorderRadius.circular(4)),
+                          child: InkWell(
+                              onTap: () {
+                                print("add to cart");
+                                controller.addToCart(controller.cart[index]);
+                              },
+                              child: const Icon(Icons.add)),
+                        ),
+                      ),
+                      FittedBox(
+                        child: Container(
+                            width: 42,
+                            height: 32,
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 1, color: AppColors.mainGreen),
+                                borderRadius: BorderRadius.circular(4)),
+                            child: Center(
+                                child: InkWell(
+                              onTap: () {
+                                print(controller.cart[index].quantity);
+                              },
+                              child: Obx(
+                                () => Text(
+                                  controller.cart[index].quantity.toString(),
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                              ),
+                            ))),
+                      ),
+                      FittedBox(
+                        child: Container(
+                          width: 42,
+                          height: 32,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1, color: AppColors.mainGrey),
+                              borderRadius: BorderRadius.circular(4)),
+                          child: InkWell(
+                              onTap: () {
+                                print("remove");
+                                controller
+                                    .removeFromCart(controller.cart[index]);
+                              },
+                              child: const Icon(Icons.remove)),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 }

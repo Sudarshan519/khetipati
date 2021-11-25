@@ -6,15 +6,17 @@ String? validatePassword({required String string}) {
     return "Password should be atleast 6 characters";
   } else if (string.length > 15) {
     return "Password should not be greater than 15 characters";
-  } else
+  } else {
     return null;
+  }
 }
 
 String? confirmPassword({required String password, required String cPassword}) {
   if (password == cPassword) {
     return null;
-  } else
+  } else {
     return "Passwords do not match.";
+  }
 }
 
 /// email validator

@@ -3,9 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
+import 'package:khetipati/models/user.dart';
 import 'package:khetipati/screens/LoginRegisterPage/login.dart';
 import 'package:khetipati/screens/cart/cart.dart';
-import 'package:khetipati/screens/home/home.dart';
 import 'package:khetipati/screens/orders/orders.dart';
 import 'package:khetipati/screens/profile/Reviews.dart';
 import 'package:khetipati/screens/profile/ShippingAddress.dart';
@@ -13,7 +13,8 @@ import 'package:khetipati/screens/profile/editprofile.dart';
 import 'package:khetipati/screens/profile/payment.dart';
 import 'package:khetipati/screens/profile/vouchers.dart';
 import 'package:khetipati/screens/profile/wishlist.dart';
-import 'package:khetipati/widgets/Bottomnav.dart';
+import 'package:khetipati/utils/storage/auth_storage.dart';
+import 'package:khetipati/widgets/bottom_nav.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -25,6 +26,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
+    User? user = User.fromJson(AuthStorage.currentUser);
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
       appBar: AppBar(
@@ -33,7 +35,7 @@ class _ProfileState extends State<Profile> {
         backgroundColor: AppColors.mainGreen,
         centerTitle: true,
         elevation: 0,
-        title: Text(
+        title: const Text(
           'Profile',
           style: TextStyle(
               fontSize: 22,
@@ -44,7 +46,7 @@ class _ProfileState extends State<Profile> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back_ios_rounded,
+            icon: const Icon(Icons.arrow_back_ios_rounded,
                 size: 20, color: AppColors.textGreen)),
       ),
       body: SingleChildScrollView(
@@ -70,7 +72,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Text(
-                    "Howard Wollowitz",
+                    user.firstname.toString(),
                     style: TextStyle(
                         fontSize: 23,
                         color: Colors.green[900],
@@ -255,7 +257,7 @@ class _ProfileState extends State<Profile> {
                                 ),
                               ),
                               Divider(),
-                              PersonalInfo('Name', 'Howard Wollowitz'),
+                              PersonalInfo('Name', user.firstname.toString()),
                               SizedBox(
                                 height: 20,
                               ),
@@ -263,11 +265,11 @@ class _ProfileState extends State<Profile> {
                               SizedBox(
                                 height: 20,
                               ),
-                              PersonalInfo('Phone No.', '98123115315'),
-                              SizedBox(
+                              PersonalInfo('Phone No.', user.phone.toString()),
+                              const SizedBox(
                                 height: 20,
                               ),
-                              PersonalInfo('Email', 'info@gmail.com'),
+                              PersonalInfo('Email', user.email.toString()),
                             ],
                           ),
                         ),
@@ -311,6 +313,7 @@ class _ProfileState extends State<Profile> {
                             Divider(),
                             InkWell(
                               onTap: () {
+                                AuthStorage.reset();
                                 Get.to(() => LoginPage());
                               },
                               child: Row(

@@ -3,7 +3,7 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/screens/cart/cart.dart';
 import 'package:khetipati/screens/profile/AddShippingAddress.dart';
 import 'package:khetipati/screens/profile/profile.dart';
-import 'package:khetipati/widgets/Bottomnav.dart';
+import 'package:khetipati/widgets/bottom_nav.dart';
 
 class ShippingAddress extends StatefulWidget {
   const ShippingAddress({Key? key}) : super(key: key);

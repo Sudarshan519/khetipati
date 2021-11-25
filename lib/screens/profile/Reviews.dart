@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/screens/profile/profile.dart';
-import 'package:khetipati/widgets/Bottomnav.dart';
+import 'package:khetipati/widgets/bottom_nav.dart';
 
 class Reviews extends StatefulWidget {
   const Reviews({Key? key}) : super(key: key);

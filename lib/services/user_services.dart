@@ -48,8 +48,7 @@ class UserRepo extends GetConnect {
   loginWithEmailandPassword() async {
     var body = {"email": "sudarshan@gmail.com", "password": "testing1234"};
 
-    final Response response =
-        await post("http://192.168.10.149:8000/userapi/login", body);
+    var response = await post("http://192.168.10.149:8000/userapi/login", body);
     var user = response.body;
     User currentuser = User.fromJson(user["user"]);
     var token = user["token"];

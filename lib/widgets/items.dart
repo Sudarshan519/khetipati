@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
+import 'package:khetipati/controllers/home_controller.dart';
+import 'package:khetipati/models/cart.dart';
 import 'package:khetipati/models/product.dart';
 import 'package:khetipati/screens/home/fruits.dart';
+import 'package:khetipati/utils/snackbar.dart';
 
 Widget Items(BuildContext context, Product item) {
+  final controller = Get.find<HomeController>();
   return Padding(
-    padding: const EdgeInsets.only(left: 6, right: 6),
+    padding: const EdgeInsets.all(10),
     child: InkWell(
       onTap: () {
         Navigator.push(
@@ -30,11 +35,11 @@ Widget Items(BuildContext context, Product item) {
                     child: InkWell(
                       child: Image.asset('assets/icons/heart.png'),
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text(
-                                  '1 Item added to Wishlist. Go to Wishlist.')),
-                        );
+                        // ScaffoldMessenger.of(context).showSnackBar(
+                        //   const SnackBar(
+                        //       content: Text(
+                        //           '1 Item added to Wishlist. Go to Wishlist.')),
+                        // );
                       },
                     )),
                 Padding(
@@ -88,7 +93,7 @@ Widget Items(BuildContext context, Product item) {
                               size: 15,
                             ),
                             Text(
-                              item.productRating.toString(),
+                              item.averagerating.toString(),
                               style: TextStyle(fontSize: 12),
                             )
                           ],
@@ -103,18 +108,27 @@ Widget Items(BuildContext context, Product item) {
                       children: [
                         Text(
                           'Rs. ${item.productPrice}',
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: AppColors.textGreen),
                         ),
                         InkWell(
                           onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text(
-                                      '1 Item added to Cart. Go to Cart.')),
-                            );
+                            controller.addToCart(CartModel(
+                              image: item.featureImage!.originalImage,
+                              price: item.productPrice.toString(),
+                              productName: item.title.toString(),
+                              quantity: 1.toString(),
+                            ));
+                            getSnackbar(
+                                bgColor: Colors.grey.shade700,
+                                message: "1 Item added to Cart. Go to Cart.");
+                            // ScaffoldMessenger.of(context).showSnackBar(
+                            //   const SnackBar(
+                            //       content: Text(
+                            //           '1 Item added to Cart. Go to Cart.')),
+                            // );
                           },
                           child: Container(
                             height: 30,

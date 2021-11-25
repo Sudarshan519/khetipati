@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/colors.dart';
+import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/product.dart';
 import 'package:khetipati/widgets/items.dart';
 import 'home.dart';
@@ -15,6 +17,7 @@ class Fruits extends StatefulWidget {
 }
 
 class _FruitsState extends State<Fruits> {
+  final homeController = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -29,7 +32,7 @@ class _FruitsState extends State<Fruits> {
           centerTitle: true,
           title: Text(
             widget.product.title!,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 22,
                 color: AppColors.textGreen,
                 fontWeight: FontWeight.w700),
@@ -206,7 +209,8 @@ class _FruitsState extends State<Fruits> {
                                         padding: const EdgeInsets.only(
                                             top: 25, left: 19, right: 19),
                                         child: Text(
-                                          'The fruit is very rich in vitamin and it lorem Ipsum dolor sit amet. Lorem Ipsum dolor sit amet. lorem dolor.Lorem Ipsum dolor sit amet. Lorem Ipsum dolor sit amet. lorem dolor.Lorem Ipsum dolor sit ame...Lorem Ipsum dolor sit amet. Lorem Ipsum dolor sit amet. \n\n* lorem dolor.Lorem Ipsum dolor sit amet. \n* Lorem Ipsum dolor sit amet. lorem dolor.\n* Lorem Ipsum dolor sit ame... ',
+                                          // 'The fruit is very rich in vitamin and it lorem Ipsum dolor sit amet. Lorem Ipsum dolor sit amet. lorem dolor.Lorem Ipsum dolor sit amet. Lorem Ipsum dolor sit amet. lorem dolor.Lorem Ipsum dolor sit ame...Lorem Ipsum dolor sit amet. Lorem Ipsum dolor sit amet. \n\n* lorem dolor.Lorem Ipsum dolor sit amet. \n* Lorem Ipsum dolor sit amet. lorem dolor.\n* Lorem Ipsum dolor sit ame... ',
+                                          widget.product.description.toString(),
                                           style: TextStyle(
                                               fontSize: 13,
                                               color: Colors.black,
@@ -265,12 +269,9 @@ class _FruitsState extends State<Fruits> {
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: [
-                            // Items(context, 'Cherry',
-                            //     'assets/images/items/grapes.png'),
-                            // Items(context, 'Tomatoes',
-                            //     'assets/images/items/melons.png'),
-                            // Items(context, 'Cherry',
-                            //     'assets/images/items/tomatoes.png')
+                            Items(context, homeController.products[0]),
+                            Items(context, homeController.products[1]),
+                            Items(context, homeController.products[2])
                           ],
                         ),
                       ),

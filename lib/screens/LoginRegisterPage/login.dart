@@ -97,7 +97,7 @@ class LoginPage extends StatelessWidget {
                         onPressed: () {
                           // Get.to(Home());
                           // if (_formKey.currentState!.validate()) {
-                          print("loggin in");
+                          // print("loggin in");
                           authController.loginWithEmail();
                           if (authController.authState.value ==
                               AuthState.Authenticated) {
@@ -105,7 +105,7 @@ class LoginPage extends StatelessWidget {
                             Get.to(Home());
                           } else {}
                           // }
-                          // if (formKey.currentState!.validate()) {
+                          // if (_formKey.currentState!.validate()) {
                           //   Navigator.push(
                           //     context,
                           //     MaterialPageRoute(builder: (context) => Home()),
@@ -200,11 +200,11 @@ class InputField extends StatelessWidget {
               borderSide:
                   BorderSide(width: 1, color: Color.fromRGBO(0, 0, 0, 0.1))),
           errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 1, color: AppColors.mainGreen),
+            borderSide: const BorderSide(width: 1, color: AppColors.mainGreen),
             borderRadius: BorderRadius.circular(5),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 1, color: AppColors.mainGreen),
+            borderSide: const BorderSide(width: 1, color: AppColors.mainGreen),
             borderRadius: BorderRadius.circular(5),
           )),
     );

@@ -4,14 +4,15 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/controllers/auth.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/cagetories.dart';
+import 'package:khetipati/models/user.dart';
 import 'package:khetipati/screens/cart/cart.dart';
-import 'package:khetipati/screens/home/category_items.dart';
 import 'package:khetipati/screens/home/offers.dart';
 import 'package:khetipati/screens/home/specialoffers.dart';
 import 'package:khetipati/screens/profile/profile.dart';
-import 'package:khetipati/services/product_services.dart';
-import 'package:khetipati/widgets/Bottomnav.dart';
+import 'package:khetipati/widgets/bottom_nav.dart';
 import 'package:khetipati/widgets/items.dart';
+
+import 'widgets/category_items.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -35,8 +36,6 @@ class _HomeState extends State<Home> {
             Padding(
               padding: const EdgeInsets.only(top: 0),
               child: Container(
-                //height: MediaQuery.of(context).size.height,
-                // height: 1506,
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                   color: AppColors.mainGrey,
@@ -148,7 +147,8 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     buildCategories(),
-                    buildPopularItem(), buildPopularItem(),
+                    buildPopularItem("Popular Items"),
+                    buildPopularItem("Recommended Items"),
                     // Column(
                     //   crossAxisAlignment: CrossAxisAlignment.start,
                     //   children: [
@@ -292,7 +292,7 @@ class _HomeState extends State<Home> {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Cart()),
+            MaterialPageRoute(builder: (context) => const Cart()),
           );
         },
         child: Padding(
@@ -305,7 +305,7 @@ class _HomeState extends State<Home> {
                 color: AppColors.mainGrey,
                 border: Border.all(width: 5, color: AppColors.mainGreen),
                 borderRadius: BorderRadius.circular(40)),
-            child: Icon(
+            child: const Icon(
               Icons.shopping_cart_outlined,
               color: Color.fromRGBO(0, 0, 0, 0.5),
               size: 30,
@@ -345,7 +345,7 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.009,
             ),
-            Text(
+            const Text(
               'Order',
               style: TextStyle(
                   color: Color.fromRGBO(0, 0, 0, 0.8),
@@ -364,7 +364,7 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.009,
             ),
-            Text(
+            const Text(
               'Notification',
               style: TextStyle(
                   color: Color.fromRGBO(0, 0, 0, 0.8),
@@ -383,7 +383,7 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.009,
             ),
-            Text(
+            const Text(
               'Profile',
               style: TextStyle(
                   color: Color.fromRGBO(0, 0, 0, 0.8),
@@ -502,7 +502,7 @@ class _HomeState extends State<Home> {
   //   );
   // }
 
-  Widget Categories(BuildContext context, Category category) {
+  Widget Categories(BuildContext context, Category category, int index) {
     return Padding(
       padding: const EdgeInsets.only(left: 12),
       child: InkWell(
@@ -510,7 +510,7 @@ class _HomeState extends State<Home> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => CategotyItems(category: category)),
+                builder: (context) => CategoryDetail(index: index)),
           );
         },
         child: Container(
@@ -523,32 +523,34 @@ class _HomeState extends State<Home> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 12, right: 10),
-                child: Container(
+                child: SizedBox(
                   height: 40,
                   width: 40,
                   // color: AppColors.mainGrey,
                   child: Image.network(category.logoUrl),
                 ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    category.title,
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        color: AppColors.textGreen),
-                  ),
-                  Text(
-                    category.description,
-                    style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.normal,
-                        color: AppColors.textblack),
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      category.title,
+                      style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.normal,
+                          color: AppColors.textGreen),
+                    ),
+                    Text(
+                      category.description,
+                      style: const TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.normal,
+                          color: AppColors.textblack),
+                    ),
+                  ],
+                ),
               )
             ],
           ),
@@ -671,13 +673,13 @@ class _HomeState extends State<Home> {
       children: [
         Padding(
           padding: EdgeInsets.only(
-            left: 31,
+            left: 18,
           ),
           child: InkWell(
             onTap: () {
               print(controller.categories.length);
             },
-            child: Text(
+            child: const Text(
               "Categories",
               style: TextStyle(
                   fontSize: 18,
@@ -702,7 +704,7 @@ class _HomeState extends State<Home> {
                       _,
                       int i,
                     ) {
-                      return Categories(context, controller.categories[i]);
+                      return Categories(context, controller.categories[i], i);
                     }
 
                     // Categories(
@@ -717,25 +719,29 @@ class _HomeState extends State<Home> {
     );
   }
 
-  buildPopularItem() {
+  buildPopularItem(
+    String title,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: const EdgeInsets.only(top: 20, left: 20),
+          padding: const EdgeInsets.only(
+            top: 20,
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: EdgeInsets.only(left: 31),
+                padding: const EdgeInsets.only(left: 18),
                 child: InkWell(
                   onTap: () {
-                    print(controller.fetchProduct());
-                    print(controller.products.length);
+                    // print(controller.fetchProduct());
+                    // print(controller.products.length);
                   },
                   child: Text(
-                    "Popular items",
-                    style: TextStyle(
+                    title,
+                    style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: AppColors.textGreen),
@@ -749,8 +755,8 @@ class _HomeState extends State<Home> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => CategotyItems(
-                                category: controller.categories[0],
+                          builder: (context) => const CategoryDetail(
+                                index: 0,
                               )),
                     );
                   },
@@ -767,15 +773,15 @@ class _HomeState extends State<Home> {
           ),
         ),
         Container(
-          margin: const EdgeInsets.symmetric(vertical: 20.0),
+          margin: const EdgeInsets.symmetric(vertical: 18.0),
           height: 250.0,
           child: Obx(
             () => controller.isloading.value
-                ? const CircularProgressIndicator()
+                ? Center(child: const CircularProgressIndicator())
                 : controller.products.isEmpty
                     ? const Center(child: Text("Empty"))
                     : ListView.builder(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
                         itemCount: controller.products.length,
                         itemBuilder: (_, int i) {
                           print(controller.products.length);
@@ -830,7 +836,7 @@ class _HomeState extends State<Home> {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "Howard",
+                    "Sudarshan", // user.firstname!.capitalizeFirst.toString(),
                     style: TextStyle(
                         fontSize: 22,
                         color: AppColors.textGreen,

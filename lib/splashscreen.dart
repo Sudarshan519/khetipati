@@ -5,6 +5,8 @@ import 'dart:async';
 
 import 'package:khetipati/screens/home/home.dart';
 
+import 'constant/size_config.dart';
+
 class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -22,6 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfigs().init(context);
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
       body: Container(

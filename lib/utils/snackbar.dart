@@ -15,7 +15,7 @@ void getSnackbar({String? message, Color? bgColor, IconData? leadingIcon}) =>
         shouldIconPulse: false,
         dismissDirection: SnackDismissDirection.HORIZONTAL,
         icon: Icon(
-          leadingIcon ?? Icons.info_outline,
+          leadingIcon, //?? Icons.info_outline,
           color: Colors.white,
         ),
         backgroundColor: bgColor ?? AppColors.mainGreen,

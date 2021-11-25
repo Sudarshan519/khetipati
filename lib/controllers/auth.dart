@@ -11,16 +11,17 @@ class AuthController extends GetxController {
   final email = TextEditingController();
   final password = TextEditingController();
   var authState = AuthState.UnAuthenticated.obs;
-  // var token = "".obs;
 
   loginWithEmail() async {
     authState.value = AuthState.Authenticating;
     AuthStorage.reset();
-    print(AuthStorage.token);
+
     List user = await userrepo.loginWithEmailandPassword();
 
-    if (user[0] != null) AuthStorage.setToken(user[1]);
-    {
+    if (user[0] != null) {
+      AuthStorage.setToken(user[1]);
+      print(user[0]);
+      AuthStorage.setUser(user[0]);
       authState.value = AuthState.Authenticated;
       Get.to(() => const Home());
     }

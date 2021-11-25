@@ -32,6 +32,7 @@ class ProductApi extends GetConnect {
       var categoriesdata = data["data"];
       if (status == "success") {
         print(categoriesdata);
+
         return categoriesdata;
       }
     } on PlatformException catch (e) {
@@ -40,18 +41,23 @@ class ProductApi extends GetConnect {
   }
 
   ///get product by category
-  getProductbyCategory(int id) async {
+  getCategorybyid(int id) async {
     String token = AuthStorage.token;
-    List<Category> categorieslist = [];
+    print(token);
+    List<Product> productlist = [];
     var headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     };
-    print(token);
-    Response response =
-        await get(categoryapi + "category/$id", headers: headers);
-    print(response.body);
+
+    var response = await get(categoryapi + "categorybyid/1", headers: headers);
+
+    var rawdata = response.body;
+    var data = rawdata["data"];
+    data.forEach((element) {
+      print(element);
+    });
   }
 
 // fetch product by id
@@ -61,6 +67,7 @@ class ProductApi extends GetConnect {
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     };
+
     final Response response = await get(base + "/user", headers: headers);
     print(response.body);
     var data = response.body;
@@ -77,26 +84,22 @@ class ProductApi extends GetConnect {
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     };
-    // var getxresponse = await get(
-    //     "http://192.168.10.149:8000/productapi/allproduct",
-    //     headers: headers);
-    // print(getxresponse.body);
+
     var response = await http.get(
         Uri.parse("http://192.168.10.149:8000/productapi/allproduct"),
         headers: headers);
-    // print(getxresponse.body);
+
     List<Product> productlist = [];
     var rawdata = jsonDecode(response.body);
     var data = rawdata["data"];
-    if (data != null) {
-      data.forEach((v) {
-        print(v);
-        print(Product.fromJson(v));
-        productlist.add(Product.fromJson(v));
-      });
-    }
+    // print(data);
+    // if (data != null) {
+    //   data.forEach((v) {
+    //     productlist.add(Product.fromJson(v));
+    //   });
+    // }
     print(productlist.length);
-    return productlist;
+    return data;
   }
 
   ///getproduct by slug

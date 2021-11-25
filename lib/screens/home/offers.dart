@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/screens/cart/cart.dart';
-import 'package:khetipati/widgets/Bottomnav.dart';
+import 'package:khetipati/widgets/bottom_nav.dart';
 import 'home.dart';
 
 class Offers extends StatefulWidget {
@@ -17,7 +17,6 @@ class _OffersState extends State<Offers> {
     return Scaffold(
       backgroundColor: Colors.lightGreen,
       appBar: AppBar(
-        // toolbarHeight: 86,
         automaticallyImplyLeading: false,
         backgroundColor: AppColors.mainGreen,
         elevation: 0,

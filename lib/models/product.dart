@@ -175,50 +175,50 @@ class ProductRating {
       };
 }
 
-///static categories
-// var categoriesdata = [
-//   {
-//     "id": 1,
-//     "title": "Vegetables",
-//     "slug": "vegetables",
-//     "category_icon": "<i class=\"fas fa-carrot\"></i>",
-//     "description": "<p>cauliflower</p>",
-//     "meta_title": null,
-//     "meta_description": null,
-//     "logo_url":
-//         "https://aalokimageupload.s3.ap-south-1.amazonaws.com/resize/upload/21/09/1632725988cauliflower-1644626_1920.jpg",
-//     "banner_url":
-//         "https://aalokimageupload.s3.ap-south-1.amazonaws.com/resize/upload/21/09/1632725974cauliflower-1644626_1920.jpg",
-//     "created_at": "2021-09-27T06:59:56.000000Z"
-//   },
-//   {
-//     "id": 2,
-//     "title": "Leafy green",
-//     "slug": "leafy-green",
-//     "category_icon": "<i class=\"fas fa-pepper-hot\"></i>",
-//     "description": "<p>this is pepper</p>",
-//     "meta_title": null,
-//     "meta_description": null,
-//     "logo_url":
-//         "https://aalokimageupload.s3.ap-south-1.amazonaws.com/resize/upload/21/09/1632726829bell-peppers-421087_1920.jpg",
-//     "banner_url":
-//         "https://aalokimageupload.s3.ap-south-1.amazonaws.com/resize/upload/21/09/1632726819bell-peppers-421087_1920.jpg",
-//     "created_at": "2021-09-27T07:13:57.000000Z"
-//   },
-//   {
-//     "id": 3,
-//     "title": "Tuber vegetables",
-//     "slug": "tuber-vegetables",
-//     "category_icon": null,
-//     "description": "<p>dsadsa</p>",
-//     "meta_title": "dsadas",
-//     "meta_description": "<p>dsadsadsa</p>",
-//     "logo_url":
-//         "https://aalokimageupload.s3.ap-south-1.amazonaws.com/resize/upload/21/09/1632815402240828795_258361855980157_4053599342857628347_n.png",
-//     "banner_url": null,
-//     "created_at": "2021-09-28T07:50:04.000000Z"
-//   }
-// ];
+//static categories
+var categoriesdata = [
+  {
+    "id": 1,
+    "title": "Vegetables",
+    "slug": "vegetables",
+    "category_icon": "<i class=\"fas fa-carrot\"></i>",
+    "description": "<p>cauliflower</p>",
+    "meta_title": null,
+    "meta_description": null,
+    "logo_url":
+        "https://aalokimageupload.s3.ap-south-1.amazonaws.com/resize/upload/21/09/1632725988cauliflower-1644626_1920.jpg",
+    "banner_url":
+        "https://aalokimageupload.s3.ap-south-1.amazonaws.com/resize/upload/21/09/1632725974cauliflower-1644626_1920.jpg",
+    "created_at": "2021-09-27T06:59:56.000000Z"
+  },
+  {
+    "id": 2,
+    "title": "Leafy green",
+    "slug": "leafy-green",
+    "category_icon": "<i class=\"fas fa-pepper-hot\"></i>",
+    "description": "<p>this is pepper</p>",
+    "meta_title": null,
+    "meta_description": null,
+    "logo_url":
+        "https://aalokimageupload.s3.ap-south-1.amazonaws.com/resize/upload/21/09/1632726829bell-peppers-421087_1920.jpg",
+    "banner_url":
+        "https://aalokimageupload.s3.ap-south-1.amazonaws.com/resize/upload/21/09/1632726819bell-peppers-421087_1920.jpg",
+    "created_at": "2021-09-27T07:13:57.000000Z"
+  },
+  {
+    "id": 3,
+    "title": "Tuber vegetables",
+    "slug": "tuber-vegetables",
+    "category_icon": null,
+    "description": "<p>dsadsa</p>",
+    "meta_title": "dsadas",
+    "meta_description": "<p>dsadsadsa</p>",
+    "logo_url":
+        "https://aalokimageupload.s3.ap-south-1.amazonaws.com/resize/upload/21/09/1632815402240828795_258361855980157_4053599342857628347_n.png",
+    "banner_url": null,
+    "created_at": "2021-09-28T07:50:04.000000Z"
+  }
+];
 var productdata = [
   {
     "id": 1,
