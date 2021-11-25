@@ -99,10 +99,10 @@ class HomeController extends GetxController {
   fetchProduct() async {
     products.value = [];
     isloading.value = true;
-    var productfromapi = await productrepo.getAllProducts();
+    // var productfromapi = await productrepo.getAllProducts();
 
-    print(productfromapi.toString());
-    for (var element in productfromapi) {
+    // print(productfromapi.toString());
+    for (var element in productdata) {
       products.add(Product.fromJson(element));
     }
     isloading.value = false;
@@ -131,5 +131,3 @@ class HomeController extends GetxController {
     // await productrepo.getCategorybyid(id);
   }
 }
-
-final homeController = HomeController();

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/controllers/auth.dart';
+import 'package:khetipati/controllers/cart_controller.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/cagetories.dart';
-import 'package:khetipati/models/user.dart';
 import 'package:khetipati/screens/cart/cart.dart';
+import 'package:khetipati/screens/cart/cart_screens.dart';
 import 'package:khetipati/screens/home/offers.dart';
 import 'package:khetipati/screens/home/specialoffers.dart';
 import 'package:khetipati/screens/profile/profile.dart';
@@ -24,7 +25,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final controller = Get.put(HomeController());
   final authController = Get.find<AuthController>();
-
+  final CartController cartController = Get.put(CartController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -292,7 +293,7 @@ class _HomeState extends State<Home> {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const Cart()),
+            MaterialPageRoute(builder: (context) => CartScreen()),
           );
         },
         child: Padding(

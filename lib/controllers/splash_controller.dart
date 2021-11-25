@@ -32,13 +32,16 @@ class SplashController extends GetxController {
     var token = AuthStorage.token;
     // print(token);
     Future.delayed(const Duration(seconds: 2), () {
-      if (token != "") {
-        Get.to(
-          () => const Home(),
-        );
-      } else {
-        Get.to(() => LoginPage());
-      }
+      Get.to(
+        () => const Home(),
+      );
+      // if (token != "") {
+      //   Get.to(
+      //     () => const Home(),
+      //   );
+      // } else {
+      //   Get.to(() => LoginPage());
+      // }
     });
   }
 }

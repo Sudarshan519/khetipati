@@ -6,12 +6,13 @@ import 'package:khetipati/screens/home/home.dart';
 import 'package:khetipati/services/user_services.dart';
 import 'package:khetipati/utils/storage/auth_storage.dart';
 
+import '../models/user.dart';
+
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
-  final email = TextEditingController();
-  final password = TextEditingController();
   var authState = AuthState.UnAuthenticated.obs;
-
+  var token = "".obs;
+  var user = User().obs;
   loginWithEmail() async {
     authState.value = AuthState.Authenticating;
     AuthStorage.reset();

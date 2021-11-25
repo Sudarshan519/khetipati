@@ -36,10 +36,10 @@ dependencies:
   get_storage: ^2.0.3
   http: ^0.13.4
 
-flutter_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/images/applogo.png"
+# flutter_icons:
+#   android: "launcher_icon"
+#   ios: true
+#   image_path: "assets/images/applogo.png"
 
 dev_dependencies:
   flutter_lints: ^1.0.0
