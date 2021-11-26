@@ -21,10 +21,10 @@ class AuthController extends GetxController {
 
     if (user[0] != null) {
       AuthStorage.setToken(user[1]);
-      print(user[0]);
+      // print(user[0]);
       AuthStorage.setUser(user[0]);
       authState.value = AuthState.Authenticated;
-      Get.to(() => const Home());
+      Get.to(() => Home());
     }
   }
 }

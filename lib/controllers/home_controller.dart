@@ -3,7 +3,6 @@ import 'package:khetipati/models/cagetories.dart';
 import 'package:khetipati/models/cart.dart';
 import 'package:khetipati/models/product.dart';
 import 'package:khetipati/models/user.dart';
-import 'package:khetipati/services/product_services.dart';
 import 'package:khetipati/utils/snackbar.dart';
 import 'package:khetipati/utils/storage/auth_storage.dart';
 
@@ -11,13 +10,13 @@ class HomeController extends GetxController {
   static HomeController instance = Get.find();
 
   ///index for tab
-  var index = 2.obs;
+  var index = 0.obs;
 
   get selectedIndex => index.value;
   var user = User().obs;
   var cart = <CartModel>[].obs;
   var categories = <Category>[].obs;
-  var products = <Product>[].obs;
+  var _products = <Product>[].obs;
   var isloading = false.obs;
 
   ///update tab index
@@ -31,7 +30,7 @@ class HomeController extends GetxController {
     cart.forEach((element) {
       total = total + double.parse(element.price!);
     });
-    print(total);
+
     return total.toString();
   }
 
@@ -83,7 +82,7 @@ class HomeController extends GetxController {
     categories.clear();
     isloading.value = true;
     try {
-      var categoriesdata = await productrepo.getAllCategories();
+      // var categoriesdata = await productrepo.getAllCategories();
       if (categoriesdata.isNotEmpty) {
         for (var element in categoriesdata) {
           categories.add(Category.fromJson(element));
@@ -97,16 +96,18 @@ class HomeController extends GetxController {
 
   ///fetch products
   fetchProduct() async {
-    products.value = [];
+    _products.value = [];
     isloading.value = true;
     // var productfromapi = await productrepo.getAllProducts();
 
     // print(productfromapi.toString());
     for (var element in productdata) {
-      products.add(Product.fromJson(element));
+      _products.add(Product.fromJson(element));
     }
     isloading.value = false;
   }
+
+  get products => _products;
 
   @override
   void onInit() {

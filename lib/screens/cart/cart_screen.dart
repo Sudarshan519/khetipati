@@ -23,29 +23,31 @@ class CartProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: SizedBox(
-          height: 600,
-          child: Obx(
-            () => ListView.separated(
-              itemCount: controller.products.length,
-              itemBuilder: (_, int index) {
-                return CartProductCard(
-                  controller: controller,
-                  product: controller.products.keys.toList()[index],
-                  index: index,
-                  quantity: controller.products.values.toList()[index],
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return Container(
-                  width: double.infinity,
-                  height: 1,
-                  margin: const EdgeInsets.all(20),
-                  color: Colors.grey,
-                );
-              },
-            ),
-          )),
+      child: Obx(
+        () => controller.products.isBlank
+            ? const Center(
+                child: Text("No cart items"),
+              )
+            : ListView.separated(
+                itemCount: controller.products.length,
+                itemBuilder: (_, int index) {
+                  return CartProductCard(
+                    controller: controller,
+                    product: controller.products.keys.toList()[index],
+                    index: index,
+                    quantity: controller.products.values.toList()[index],
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return Container(
+                    width: double.infinity,
+                    height: 1,
+                    margin: const EdgeInsets.all(20),
+                    color: Colors.grey,
+                  );
+                },
+              ),
+      ),
     );
   }
 }

@@ -7,7 +7,7 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/product.dart';
 import 'package:khetipati/widgets/items.dart';
-import 'home.dart';
+import '../home/home.dart';
 
 class Fruits extends StatefulWidget {
   const Fruits({Key? key, required this.product}) : super(key: key);
@@ -269,9 +269,9 @@ class _FruitsState extends State<Fruits> {
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: [
-                            Items(context, homeController.products[0]),
-                            Items(context, homeController.products[1]),
-                            Items(context, homeController.products[2])
+                            Items(homeController.products[0]),
+                            Items(homeController.products[1]),
+                            Items(homeController.products[2])
                           ],
                         ),
                       ),

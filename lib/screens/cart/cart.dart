@@ -3,10 +3,8 @@ import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/cart.dart';
-import 'package:khetipati/screens/cart/Checkout.dart';
-import 'package:khetipati/screens/home/widgets/category_items.dart';
-import 'package:khetipati/widgets/bottom_nav.dart';
-import 'package:khetipati/widgets/items.dart';
+import 'package:khetipati/screens/cart/Checkout.dart'; 
+import 'package:khetipati/widgets/bottom_nav.dart'; 
 
 class Cart extends StatefulWidget {
   const Cart({Key? key}) : super(key: key);

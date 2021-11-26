@@ -33,7 +33,7 @@ class SplashController extends GetxController {
     // print(token);
     Future.delayed(const Duration(seconds: 2), () {
       Get.to(
-        () => const Home(),
+        () => HomeScreen(),
       );
       // if (token != "") {
       //   Get.to(

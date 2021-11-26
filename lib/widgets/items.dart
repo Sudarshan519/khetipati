@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/controllers/cart_controller.dart'; 
-import 'package:khetipati/models/product.dart';
-import 'package:khetipati/screens/home/fruits.dart';
+import 'package:khetipati/controllers/cart_controller.dart';
+import 'package:khetipati/models/product.dart'; 
 import 'package:khetipati/utils/snackbar.dart';
 
-Widget Items(BuildContext context, Product item) {
+Widget Items(Product item) {
   final CartController controller = Get.find();
   return Padding(
     padding: const EdgeInsets.all(10),
     child: InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Fruits(product: item)),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => Fruits(product: item)),
+        // );
       },
       child: Container(
         width: 168,

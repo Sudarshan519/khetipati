@@ -2,9 +2,9 @@ import 'package:get/get.dart';
 import 'package:khetipati/models/product.dart';
 
 class CartController extends GetxController {
-//add a dict to store products in cart
+//for cart products
   final _products = {}.obs;
-
+//add product to cart
   void addProduct(Product product) {
     if (_products.containsKey(product)) {
       _products[product] += 1;
@@ -13,6 +13,7 @@ class CartController extends GetxController {
     }
   }
 
+//remove product from cat
   void removeProduct(Product product) {
     if (_products.containsKey(product) && _products[product] == 1) {
       _products.removeWhere((key, value) => key == product);
@@ -21,7 +22,19 @@ class CartController extends GetxController {
     }
   }
 
+//check product in cart
+  bool checkProductinCart(Product product) {
+    if (_products.containsKey(product)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  //get products
   get products => _products;
+
+  ///get total
   get total => _products.entries
       .map((e) => e.key.productPrice * e.value)
       .toList()

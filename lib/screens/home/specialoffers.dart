@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/screens/cart/cart.dart';
-import 'package:khetipati/screens/home/home.dart';
-import 'package:khetipati/widgets/bottom_nav.dart';
-import 'package:khetipati/widgets/items.dart';
 import 'package:khetipati/widgets/offersitems.dart';
 
-class SpecialOffers extends StatefulWidget {
+class SpecialOffers extends StatelessWidget {
   const SpecialOffers({Key? key}) : super(key: key);
 
-  @override
-  _SpecialOffersState createState() => _SpecialOffersState();
-}
+//   @override
+//   _SpecialOffersState createState() => _SpecialOffersState();
+// }
 
-class _SpecialOffersState extends State<SpecialOffers> {
-  @override
+// class _SpecialOffersState extends State<SpecialOffers> {
+//   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainGreen,

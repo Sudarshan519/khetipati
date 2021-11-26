@@ -35,7 +35,7 @@ class Product {
   FeatureImage? featureImage;
   String? description;
   String? shortDescription;
-  double? productPrice;
+  int? productPrice;
   int? discountPrice;
   int? stockQty;
   String? unitIn;
