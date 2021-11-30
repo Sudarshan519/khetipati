@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 
-import 'controllers/auth.dart';
 import 'controllers/splash_controller.dart';
 
 class InitialBinding implements Bindings {
@@ -10,7 +9,6 @@ class InitialBinding implements Bindings {
       SplashController(),
     );
 
-    Get.put(InternetConnectivityController(), permanent: true);
-    Get.put(AuthController(), permanent: true);
+    // Get.put(InternetConnectivityController(), permanent: true);
   }
 }

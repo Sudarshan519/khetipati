@@ -1,7 +1,13 @@
 class CartModel {
   String? productName;
-  String? price;
-  String? image;
+
+  String productId;
+  String price;
   String? quantity;
-  CartModel({this.productName, this.price, this.quantity, this.image});
+  CartModel({
+    this.productName,
+    required this.price,
+    this.quantity,
+    required this.productId,
+  });
 }

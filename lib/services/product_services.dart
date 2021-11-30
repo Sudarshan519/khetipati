@@ -1,8 +1,8 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:khetipati/models/cagetories.dart';
 import 'package:khetipati/models/product.dart';
 import 'package:khetipati/utils/snackbar.dart';
 import 'package:khetipati/utils/storage/auth_storage.dart';
@@ -16,8 +16,8 @@ class ProductApi extends GetConnect {
 
   ///getall categories
   getAllCategories() async {
-    String token = AuthStorage.token;
-    List<Category> categorieslist = [];
+    String token = AppStorage.token;
+
     var headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -26,12 +26,12 @@ class ProductApi extends GetConnect {
     try {
       var response = await http.get(Uri.parse(categoryapi + "allcategories"),
           headers: headers);
-      print(response.body);
+      // print(response.body);
       var data = jsonDecode(response.body);
       var status = data["status"];
       var categoriesdata = data["data"];
       if (status == "success") {
-        print(categoriesdata);
+        // print(categoriesdata);
 
         return categoriesdata;
       }
@@ -42,9 +42,9 @@ class ProductApi extends GetConnect {
 
   ///get product by category
   getCategorybyid(int id) async {
-    String token = AuthStorage.token;
+    String token = AppStorage.token;
     print(token);
-    List<Product> productlist = [];
+    // List<Product> productlist = [];
     var headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -55,9 +55,7 @@ class ProductApi extends GetConnect {
 
     var rawdata = response.body;
     var data = rawdata["data"];
-    data.forEach((element) {
-      print(element);
-    });
+    data.forEach((element) {});
   }
 
 // fetch product by id
@@ -78,7 +76,7 @@ class ProductApi extends GetConnect {
 
   //getAllProduct
   getAllProducts() async {
-    String token = AuthStorage.token;
+    String token = AppStorage.token;
     var headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -112,19 +110,151 @@ class ProductApi extends GetConnect {
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     };
-    final Response response =
-        await get(base + "/productbyslug/" + "product-2", headers: headers);
+    Response response =
+        await get(base + "/productbyslug/" + slug, headers: headers);
+    print(response.body);
+  }
+
+//get product by price
+  getProductByPrice() async {
+    String api = "";
+    String token = AppStorage.token;
+    var headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    };
+
+    Response response =
+        await get(base + "productapi/productbyprice", headers: headers);
     print(response.body);
   }
 
   ///filterProduct
-  filterProduct(String filterby) {}
+  filterProduct(String filterby) async {
+    String api = "";
+    String token = AppStorage.token;
+    var headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    };
+
+    Response response =
+        await get(base + "/productbyslug/" + "product-2", headers: headers);
+    print(response.body);
+  }
 
   ///submit Rating
-  submitRating(String rating) {}
+  submitRating(String rating) async {
+    String api = "";
+    String token = AppStorage.token;
+    var headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    };
+
+    var response =
+        await get(base + "/productbyslug/" + "product-2", headers: headers);
+    print(response.body);
+  }
 
   ///Order Submit
-  orderSubmit() {}
+  orderSubmit(String token) async {
+    var headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    };
+    var body = {
+      "total_amount": "500",
+      "shippingprice": "100",
+      "additionanote": "You are alloted first order",
+      "shipping_id": "1",
+      "orderstaus_id": "1",
+      "products": "[{product_id:1,price:500,quantity:2}]"
+    };
+
+    var response = await http.post(
+        Uri.parse("http://192.168.10.149:8000/orderapi/ordersubmit"),
+        body: body,
+        headers: headers);
+
+    print(response.body);
+  }
+
+  //get order
+  getOrderById(int id) async {
+    String id = "id";
+    String token = AppStorage.token;
+    var headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    };
+    var response =
+        await get(base + "orderapi/getorderbyid/1", headers: headers);
+    print(response.body);
+  }
+
+  //get order by code
+  getOrderByCode() async {
+    String code = "26573";
+    String token = AppStorage.token;
+    var headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    };
+    var response =
+        await get(base + "orderapi/getorderbycode/265732", headers: headers);
+    print(response.body);
+  }
+
+// get order by id
+  getOrderbyUserid() async {
+    String userid = "1";
+    String token = AppStorage.token;
+    var headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    };
+    var response =
+        await get(base + "orderapi/getorderbyuserid/1", headers: headers);
+    print(response.body);
+  }
+
+  // contact submit
+  contactSubmit(String name, String email, String phone, String subject,
+      String message, int seen) async {
+    String submitapi = base + "cmsapi/contactSubmit";
+    var body = {
+      "name": name,
+      "email": email,
+      "phone": phone,
+      "subject": subject,
+      "message": message,
+      "seen": seen
+    };
+    var response = await http.post(Uri.parse(submitapi), body: body);
+    print(response.body);
+    if (response.statusCode == 200) {
+      var result = jsonDecode(response.body);
+      if (result["status"] == "success" &&
+          result["message"] == "Successfully Created") {
+        getSnackbar(message: "Data submitted successfully");
+      } else {
+        getSnackbar(
+            bgColor: Colors.red.shade800, message: "Error posting data");
+      }
+    }
+    // response type {
+//   "status": "success",
+//   "message": "Successfully Created"
+// }
+  }
 }
 
 final productrepo = ProductApi();

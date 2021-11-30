@@ -114,13 +114,6 @@ class _CategoryDetailState extends State<CategoryDetail> {
                         Flexible(
                           child: Column(
                             children: [
-                              Items(context, controller.products[0]),
-                              Items(context, controller.products[0]),
-                              Items(context, controller.products[0]),
-                              Items(context, controller.products[0]),
-                              Items(context, controller.products[0]),
-                              Items(context, controller.products[0]),
-                              Items(context, controller.products[0]),
                               // SizedBox(
                               //   height: 20,
                               // ),
@@ -145,13 +138,6 @@ class _CategoryDetailState extends State<CategoryDetail> {
                         Flexible(
                           child: Column(
                             children: [
-                              Items(context, controller.products[0]),
-                              Items(context, controller.products[0]),
-                              Items(context, controller.products[0]),
-                              Items(context, controller.products[0]),
-                              Items(context, controller.products[0]),
-                              Items(context, controller.products[0]),
-                              Items(context, controller.products[0]),
                               // Items(context, 'Tomatoes',
                               //     'assets/images/items/melons.png'),
                               // SizedBox(

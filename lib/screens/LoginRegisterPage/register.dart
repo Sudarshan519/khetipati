@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:khetipati/constant/size_config.dart';
 import 'login.dart';
 import 'package:khetipati/constant/colors.dart';
 
-class RegisterPage extends StatefulWidget {
-  @override
-  _RegisterPageState createState() => _RegisterPageState();
-}
+class RegisterPage extends StatelessWidget {
+//   @override
+//   _RegisterPageState createState() => _RegisterPageState();
+// }
 
-class _RegisterPageState extends State<RegisterPage> {
+// class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -251,8 +252,8 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget StylishTextFormField(Labels, Icon textfieldicon) {
     return Padding(
       padding: EdgeInsets.only(
-          right: MediaQuery.of(context).size.width * 0.04,
-          left: MediaQuery.of(context).size.width * 0.04),
+          right: SizeConfigs.screenWidth * 0.04,
+          left: SizeConfigs.screenWidth * 0.04),
       child: TextFormField(
         decoration: InputDecoration(
             prefixIcon: textfieldicon,

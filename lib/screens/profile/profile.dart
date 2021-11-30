@@ -26,7 +26,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    User? user = User.fromJson(AuthStorage.currentUser);
+    // User? user = User.fromJson(AuthStorage.currentUser);
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
       appBar: AppBar(
@@ -72,7 +72,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   Text(
-                    user.firstname.toString(),
+                    "Sudarshan ",
                     style: TextStyle(
                         fontSize: 23,
                         color: Colors.green[900],
@@ -257,19 +257,19 @@ class _ProfileState extends State<Profile> {
                                 ),
                               ),
                               Divider(),
-                              PersonalInfo('Name', user.firstname.toString()),
+                              PersonalInfo('Name', "Sudarshan"),
                               SizedBox(
                                 height: 20,
                               ),
                               PersonalInfo('Adress', 'Sankhamul, Kathmandu'),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              PersonalInfo('Phone No.', user.phone.toString()),
                               const SizedBox(
                                 height: 20,
                               ),
-                              PersonalInfo('Email', user.email.toString()),
+                              PersonalInfo('Phone No.', "981284882"),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              PersonalInfo('Email', "sudarshan@gmail.com"),
                             ],
                           ),
                         ),
@@ -313,7 +313,7 @@ class _ProfileState extends State<Profile> {
                             Divider(),
                             InkWell(
                               onTap: () {
-                                AuthStorage.reset();
+                                AppStorage.reset();
                                 Get.to(() => LoginPage());
                               },
                               child: Row(

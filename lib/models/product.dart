@@ -45,30 +45,28 @@ class Product {
   String? metaDescription;
   String? barcode;
   double? discountPercent;
-  List<ProductImage>? productImages;
+  List<String>? productImages;
   List<ProductRating>? productRating;
   int? averagerating;
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         id: json["id"],
         title: json["title"],
-        slug: json["slug"],
+        slug: json["slug"] ?? "",
         featureImage: FeatureImage.fromJson(json["feature_image"]),
         description: json["description"],
         shortDescription: json["short_description"],
         productPrice: json["product_price"],
-        discountPrice:
-            json["discount_price"] == null ? null : json["discount_price"],
+        discountPrice: json["discount_price"] ?? 0,
         stockQty: json["stock_qty"],
-        unitIn: json["unit_in"] == null ? null : json["unit_in"],
+        unitIn: json["unit_in"] ?? 0,
         minimumOrder: json["minimum_order"],
         warningQty: json["warning_qty"],
         metaTitle: json["meta_title"],
         metaDescription: json["meta_description"],
         barcode: json["barcode"],
         discountPercent: json["discount_percent"].toDouble(),
-        productImages: List<ProductImage>.from(
-            json["product_images"].map((x) => ProductImage.fromJson(x))),
+        productImages: List<String>.from(json["product_images"].map((x) => x)),
         productRating: List<ProductRating>.from(
             json["product_rating"].map((x) => ProductRating.fromJson(x))),
         averagerating: json["averagerating"],
@@ -82,17 +80,16 @@ class Product {
         "description": description,
         "short_description": shortDescription,
         "product_price": productPrice,
-        "discount_price": discountPrice == null ? null : discountPrice,
+        "discount_price": discountPrice ?? 0,
         "stock_qty": stockQty,
-        "unit_in": unitIn == null ? null : unitIn,
+        "unit_in": unitIn ?? 0,
         "minimum_order": minimumOrder,
         "warning_qty": warningQty,
         "meta_title": metaTitle,
         "meta_description": metaDescription,
         "barcode": barcode,
         "discount_percent": discountPercent,
-        "product_images":
-            List<dynamic>.from(productImages!.map((x) => x.toJson())),
+        "product_images": List<String>.from(productImages!.map((x) => x)),
         "product_rating":
             List<dynamic>.from(productRating!.map((x) => x.toJson())),
         "averagerating": averagerating,
@@ -109,8 +106,8 @@ class FeatureImage {
   String? originalImage;
 
   factory FeatureImage.fromJson(Map<String, dynamic> json) => FeatureImage(
-        thumbnailImage: json["thumbnail_image"],
-        originalImage: json["original_image"],
+        thumbnailImage: json["thumbnail_image"] ?? "",
+        originalImage: json["original_image"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -119,29 +116,26 @@ class FeatureImage {
       };
 }
 
-class ProductImage {
-  ProductImage({
-    this.id,
-    this.resizePath,
-    this.originalPath,
-  });
+// ProductImages productImagesFromJson(String str) =>
+//     ProductImages.fromJson(json.decode(str));
 
-  int? id;
-  String? resizePath;
-  String? originalPath;
+// String productImagesToJson(ProductImages data) => json.encode(data.toJson());
 
-  factory ProductImage.fromJson(Map<String, dynamic> json) => ProductImage(
-        id: json["id"],
-        resizePath: json["resize_path"],
-        originalPath: json["original_path"],
-      );
+// class ProductImages {
+//   ProductImages({
+//     required this.productImages,
+//   });
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "resize_path": resizePath,
-        "original_path": originalPath,
-      };
-}
+//   List<String> productImages;
+
+//   factory ProductImages.fromJson(Map<String, dynamic> json) => ProductImages(
+//         productImages: List<String>.from(json["product_images"].map((x) => x)),
+//       );
+
+//   Map<String, dynamic> toJson() => {
+//         "product_images": List<dynamic>.from(productImages.map((x) => x)),
+//       };
+// }
 
 class ProductRating {
   ProductRating({

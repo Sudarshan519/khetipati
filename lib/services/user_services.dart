@@ -1,20 +1,10 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:khetipati/models/product.dart';
 import 'package:khetipati/models/user.dart';
+import 'package:khetipati/utils/snackbar.dart';
 import 'package:khetipati/utils/storage/auth_storage.dart';
-
-class UserToken {
-  String token = "";
-
-  // set setToken(value) => token = value;
-  get getToken => token;
-
-  setToken(body) {
-    token = body;
-  }
-}
+import 'package:http/http.dart' as http;
 
 class UserRepo extends GetConnect {
   static const base = "http://192.168.10.149:8000/userapi";
@@ -39,29 +29,30 @@ class UserRepo extends GetConnect {
       "password_confirm": "testing1234"
     };
     final Response response = await post(register, body);
-    // print(response.body);
+
     print(response.body);
-    // UserToken().setToken(response.body);
   }
 
   ///login
   loginWithEmailandPassword() async {
     var body = {"email": "sudarshan@gmail.com", "password": "testing1234"};
-
-    var response = await post("http://192.168.10.149:8000/userapi/login", body);
-    var user = response.body;
-    User currentuser = User.fromJson(user["user"]);
-    var token = user["token"];
-
-    return [
-      currentuser,
-      token,
-    ];
+    print("loggin in");
+    var response = await http.post(
+        Uri.parse("http://192.168.10.149:8000/userapi/login"),
+        body: body);
+    print(response.statusCode);
+    var result = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      return result;
+    } else {
+      getSnackbar(message: "error loggin in");
+      return null;
+    }
   }
 
   ///get user info
   getuserInfo() async {
-    var token = AuthStorage.token;
+    var token = AppStorage.token;
     var headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -71,8 +62,6 @@ class UserRepo extends GetConnect {
 
     if (response.body != null) {
       var userdata = response.body;
-      // User user = User.fromJson(userdata);
-      // return user;
     }
   }
 
