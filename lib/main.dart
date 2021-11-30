@@ -4,13 +4,10 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/initialbinding.dart';
 
 import 'package:khetipati/screens/splash/splashscreen.dart';
-import 'package:khetipati/utils/storage/box_storage.dart';
-
-import 'constant/size_config.dart';
 
 void main() async {
   // await DBHelper.initDB();
-  await BoxStorage.init();
+  // await BoxStorage.init();
   runApp(const MyApp());
 }
 
@@ -26,6 +23,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.green,
         ),
         initialBinding: InitialBinding(),
-        home: SplashScreen());
+        home: const SplashScreen());
   }
 }

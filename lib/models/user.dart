@@ -79,3 +79,17 @@ class FeatureImage {
         "original_image": originalImage,
       };
 }
+
+var userdata = {
+  "id": '2',
+  "firstname": "Sudarshan",
+  "lastname": "Shrestha",
+  "email": "sudarshan@gmail.com",
+  "status": "active",
+  "email_verified_at": DateTime.now().toIso8601String(),
+  "phone": "9863450107",
+  "image_id": "",
+  "created_at": DateTime.now().subtract(Duration(hours: 70)).toIso8601String(),
+  "updated_at": DateTime.now().subtract(Duration(days: 2)).toIso8601String(),
+  "feature_image": FeatureImage(thumbnailImage: "", originalImage: "").toJson()
+};

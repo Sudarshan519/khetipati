@@ -6,15 +6,12 @@ import 'package:khetipati/controllers/auth.dart';
 import 'package:khetipati/controllers/cart_controller.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/cagetories.dart';
-import 'package:khetipati/models/order.dart';
-import 'package:khetipati/screens/cart/cart.dart';
 import 'package:khetipati/screens/cart/cart_screen.dart';
 import 'package:khetipati/screens/home/offers.dart';
 import 'package:khetipati/screens/home/specialoffers.dart';
 import 'package:khetipati/screens/notifications/notifications.dart';
 import 'package:khetipati/screens/orders/orders.dart';
 import 'package:khetipati/screens/profile/profile.dart';
-import 'package:khetipati/widgets/bottom_nav.dart';
 import 'package:khetipati/widgets/items.dart';
 import 'package:khetipati/widgets/tabnavigation.dart';
 
@@ -22,13 +19,6 @@ import 'widgets/carousel.dart';
 import 'widgets/category_items.dart';
 
 class Home extends StatelessWidget {
-//   const Home({Key? key}) : super(key: key);
-
-//   @override
-//   _HomeState createState() => _HomeState();
-// }
-
-// class _HomeState extends State<Home> {
   final controller = Get.put(HomeController());
   final authController = Get.find<AuthController>();
   final CartController cartController = Get.put(CartController());

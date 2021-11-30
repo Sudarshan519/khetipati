@@ -54,7 +54,7 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Login',
                       style: TextStyle(
                           fontSize: 30,
@@ -95,22 +95,7 @@ class LoginPage extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Get.to(Home());
-                          // if (_formKey.currentState!.validate()) {
-                          // print("loggin in");
                           authController.loginWithEmail();
-                          if (authController.authState.value ==
-                              AuthState.Authenticated) {
-                            print("navigating to home");
-                            Get.to(Home());
-                          } else {}
-                          // }
-                          // if (_formKey.currentState!.validate()) {
-                          //   Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(builder: (context) => Home()),
-                          //   );
-                          // }
                         },
                         child: Obx(
                           () => authController.authState.value ==
@@ -157,7 +142,7 @@ class LoginPage extends StatelessWidget {
                                     builder: (context) => RegisterPage()),
                               );
                             },
-                            child: Text(
+                            child: const Text(
                               'Sign up',
                               style: TextStyle(
                                   fontSize: 12,

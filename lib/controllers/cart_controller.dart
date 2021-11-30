@@ -13,6 +13,13 @@ class CartController extends GetxController {
     }
   }
 
+//delete product from cart
+  void deleteProduct(Product product) {
+    if (_products.containsKey(product)) {
+      _products.removeWhere((key, value) => key == product);
+    }
+  }
+
 //remove product from cat
   void removeProduct(Product product) {
     if (_products.containsKey(product) && _products[product] == 1) {

@@ -313,7 +313,7 @@ class _ProfileState extends State<Profile> {
                             Divider(),
                             InkWell(
                               onTap: () {
-                                AuthStorage.reset();
+                                AppStorage.reset();
                                 Get.to(() => LoginPage());
                               },
                               child: Row(

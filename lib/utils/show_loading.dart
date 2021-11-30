@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 showLoadingWidget() {
   Get.defaultDialog(
       title: "Loading...",
-      content: CircularProgressIndicator(),
+      content: const CircularProgressIndicator(),
       barrierDismissible: false);
 }
 
