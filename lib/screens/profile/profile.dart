@@ -3,12 +3,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
+import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/models/user.dart';
 import 'package:khetipati/screens/LoginRegisterPage/login.dart';
 import 'package:khetipati/screens/cart/cart.dart';
 import 'package:khetipati/screens/orders/orders.dart';
 import 'package:khetipati/screens/profile/Reviews.dart';
-import 'package:khetipati/screens/profile/ShippingAddress.dart';
+import 'package:khetipati/screens/profile/shipping_address.dart';
 import 'package:khetipati/screens/profile/editprofile.dart';
 import 'package:khetipati/screens/profile/payment.dart';
 import 'package:khetipati/screens/profile/vouchers.dart';
@@ -58,55 +59,54 @@ class _ProfileState extends State<Profile> {
               color: AppColors.mainGreen,
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 33,
-                      bottom: 10,
-                    ),
-                    child: Container(
-                      child: Image.asset(
-                        'assets/images/profile.png',
-                        height: 135,
-                        width: 135,
-                      ),
+                  Container(
+                    margin: EdgeInsets.only(
+                        top: getHeight(33), bottom: getHeight(10)),
+                    child: Image.asset(
+                      'assets/images/profile.png',
+                      height: getHeight(135),
+                      width: getWidth(135),
                     ),
                   ),
                   Text(
                     "Sudarshan ",
                     style: TextStyle(
-                        fontSize: 23,
+                        fontSize: getFont(23),
                         color: Colors.green[900],
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
                     "Mangalbazar, Lalitpur",
                     style: TextStyle(
-                        fontSize: 14,
+                        fontSize: getFont(14),
                         color: Colors.green[900],
                         fontWeight: FontWeight.normal),
                   ),
                   SizedBox(
-                    height: 22,
+                    height: getHeight(22),
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        primary: Color.fromRGBO(255, 255, 255, 0.5),
-                        textStyle: const TextStyle(
-                            fontSize: 15, color: Color.fromRGBO(2, 95, 51, 1))),
+                        primary: const Color.fromRGBO(255, 255, 255, 0.5),
+                        textStyle: TextStyle(
+                            fontSize: getFont(15),
+                            color: const Color.fromRGBO(2, 95, 51, 1))),
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => EditProfile()),
+                        MaterialPageRoute(
+                            builder: (context) => const EditProfile()),
                       );
                     },
-                    child: const Text(
+                    child: Text(
                       'Edit',
                       style: TextStyle(
-                          fontSize: 15, color: Color.fromRGBO(2, 95, 51, 1)),
+                          fontSize: getFont(15),
+                          color: const Color.fromRGBO(2, 95, 51, 1)),
                     ),
                   ),
                   SizedBox(
-                    height: 16,
+                    height: getHeight(16),
                   )
                 ],
               ),
@@ -114,7 +114,7 @@ class _ProfileState extends State<Profile> {
             Container(
               width: MediaQuery.of(context).size.width,
               //height: 815,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: AppColors.mainGrey,
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(30),
@@ -122,228 +122,15 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(right: 20, left: 20),
+                padding:
+                    EdgeInsets.only(right: getWidth(20), left: getWidth(20)),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22),
-                      child: FittedBox(
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 239,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  InkWell(
-                                    mouseCursor: SystemMouseCursors.click,
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Wishlist()),
-                                      );
-                                    },
-                                    child: profileOptions('My Wishlist',
-                                        'assets/icons/heart.png'),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Orders()),
-                                      );
-                                    },
-                                    child: profileOptions(
-                                        'My Orders', 'assets/icons/order.png'),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Vouchers()),
-                                      );
-                                    },
-                                    child: profileOptions(
-                                        'Vouchers', 'assets/icons/voucher.png'),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Payment()),
-                                      );
-                                    },
-                                    child: profileOptions(
-                                        'Payment', 'assets/icons/payment.png'),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                ShippingAddress()),
-                                      );
-                                    },
-                                    child: profileOptions('Shipping\nAddress',
-                                        'assets/icons/shipping.png'),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Reviews()),
-                                      );
-                                    },
-                                    child: profileOptions('My Reviews',
-                                        'assets/icons/review.png'),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22),
-                      child: FittedBox(
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 271,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 18, bottom: 18),
-                                child: Text(
-                                  'Personal Information',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ),
-                              Divider(),
-                              PersonalInfo('Name', "Sudarshan"),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              PersonalInfo('Adress', 'Sankhamul, Kathmandu'),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              PersonalInfo('Phone No.', "981284882"),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              PersonalInfo('Email', "sudarshan@gmail.com"),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 111,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(30, 13, 18, 0),
-                                  child:
-                                      Image.asset('assets/icons/switchacc.png'),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 15),
-                                  child: Text(
-                                    'Switch to other account',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400,
-                                        color: AppColors.textblack),
-                                  ),
-                                )
-                              ],
-                            ),
-                            Divider(),
-                            InkWell(
-                              onTap: () {
-                                AuthStorage.reset();
-                                Get.to(() => LoginPage());
-                              },
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        30, 13, 18, 0),
-                                    child: Icon(
-                                      Icons.logout_outlined,
-                                      color: Color.fromRGBO(216, 47, 47, 1),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 15),
-                                    child: Text(
-                                      'Log Out',
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    profileMenuCard(),
+                    personalInfoCard(),
+                    logoutAndSwitchAccCard(),
                     SizedBox(
-                      height: 30,
+                      height: getHeight(30),
                     )
                   ],
                 ),
@@ -352,164 +139,279 @@ class _ProfileState extends State<Profile> {
           ],
         ),
       ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Cart()),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.only(top: 20.0),
-          child: Container(
-            // padding: EdgeInsets.only(top: 20),
-            width: 68,
-            height: 68,
-            decoration: BoxDecoration(
-                color: AppColors.mainGrey,
-                border: Border.all(width: 5, color: AppColors.mainGreen),
-                borderRadius: BorderRadius.circular(40)),
-            child: Icon(
-              Icons.shopping_cart_outlined,
-              color: Color.fromRGBO(0, 0, 0, 0.5),
-              size: 30,
-            ),
-          ),
-        ),
-      ),
-      bottomNavigationBar: BottomNav(
-        context,
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/icons/home.png',
-              color: AppColors.darkgrey,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
-            ),
-            Text(
-              'Home',
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.8),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400),
-            )
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/icons/navorder.png',
-              color: AppColors.darkgrey,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
-            ),
-            Text(
-              'Order',
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.8),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400),
-            )
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/icons/notification.png',
-              color: AppColors.darkgrey,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
-            ),
-            Text(
-              'Notification',
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.8),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400),
-            )
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/icons/userselected.png',
-              color: AppColors.mainGreen,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
-            ),
-            Image.asset('assets/icons/dot.png')
-            // Text(
-            //   'Profile',
-            //   style: TextStyle(
-            //       color: Color.fromRGBO(0, 0, 0, 0.8),
-            //       fontSize: 12,
-            //       fontWeight: FontWeight.w400),
-            // )
-          ],
-        ),
-      ),
     );
   }
 
-  Widget profileOptions(optionName, optionIcon) {
+  profileMenuCard() {
     return Container(
-      width: 152,
-      height: 57,
+      margin: EdgeInsets.only(top: getHeight(22)),
+      width: MediaQuery.of(context).size.width,
+      height: getHeight(239),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: Color.fromRGBO(191, 191, 191, 0.6)),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(optionIcon),
-          SizedBox(
-            width: 10,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              InkWell(
+                mouseCursor: SystemMouseCursors.click,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Wishlist()),
+                  );
+                },
+                child:
+                    profileOptionsMenu('My Wishlist', 'assets/icons/heart.png'),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Orders()),
+                  );
+                },
+                child:
+                    profileOptionsMenu('My Orders', 'assets/icons/order.png'),
+              ),
+            ],
           ),
-          Text(
-            optionName,
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Vouchers()),
+                  );
+                },
+                child:
+                    profileOptionsMenu('Vouchers', 'assets/icons/voucher.png'),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Payment()),
+                  );
+                },
+                child:
+                    profileOptionsMenu('Payment', 'assets/icons/payment.png'),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ShippingAddress()),
+                  );
+                },
+                child: profileOptionsMenu(
+                    'Shipping\nAddress', 'assets/icons/shipping.png'),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Reviews()),
+                  );
+                },
+                child:
+                    profileOptionsMenu('My Reviews', 'assets/icons/review.png'),
+              ),
+            ],
           )
         ],
       ),
     );
   }
 
-  Widget PersonalInfo(options, answers) {
+  personalInfoCard() {
+    return Container(
+      margin: EdgeInsets.only(top: getHeight(22)),
+      padding: EdgeInsets.only(top: getHeight(18)),
+      width: MediaQuery.of(context).size.width,
+      height: getHeight(271),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'Personal Information',
+            style:
+                TextStyle(fontSize: getFont(18), fontWeight: FontWeight.w400),
+          ),
+          SizedBox(
+            height: getHeight(10),
+          ),
+          const Divider(
+            color: Color.fromRGBO(186, 186, 186, 0.5),
+          ),
+          SizedBox(
+            height: getHeight(10),
+          ),
+          buildPersonalInfo('Name', "Sudarshan"),
+          SizedBox(
+            height: getHeight(29),
+          ),
+          buildPersonalInfo('Adress', 'Sankhamul, Kathmandu'),
+          SizedBox(
+            height: getHeight(29),
+          ),
+          buildPersonalInfo('Phone No.', "981284882"),
+          SizedBox(
+            height: getHeight(29),
+          ),
+          buildPersonalInfo('Email', "sudarshan@gmail.com"),
+        ],
+      ),
+    );
+  }
+
+  profileOptionsMenu(optionName, optionIcon) {
+    return Container(
+      width: getWidth(152),
+      height: getHeight(57),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: const Color.fromRGBO(191, 191, 191, 0.6)),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        // crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            optionIcon,
+            height: getHeight(25),
+            width: getWidth(25),
+          ),
+          SizedBox(
+            width: getWidth(10),
+          ),
+          Text(
+            optionName,
+            style:
+                TextStyle(fontSize: getFont(14), fontWeight: FontWeight.w400),
+          )
+        ],
+      ),
+    );
+  }
+
+  buildPersonalInfo(options, answers) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
+          flex: 2,
           child: Padding(
             padding: EdgeInsets.only(
-              left: MediaQuery.of(context).size.width * 0.090,
+              left: getWidth(26),
             ),
             child: Text(options,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
+                style: TextStyle(
+                    fontSize: getFont(16), fontWeight: FontWeight.w400)),
           ),
         ),
-        SizedBox(width: 30),
+        SizedBox(width: getWidth(30)),
         Expanded(
-          flex: 2,
+          flex: 3,
           child: Text(
             answers,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            style:
+                TextStyle(fontSize: getFont(16), fontWeight: FontWeight.w500),
           ),
         )
       ],
+    );
+  }
+
+  logoutAndSwitchAccCard() {
+    return Container(
+      margin: EdgeInsets.only(top: getHeight(22)),
+      width: MediaQuery.of(context).size.width,
+      height: getHeight(111),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: getWidth(20),
+              ),
+              Image.asset(
+                'assets/icons/switchacc.png',
+                height: getHeight(20),
+              ),
+              SizedBox(
+                width: getWidth(20),
+              ),
+              Text(
+                'Switch to other account',
+                style: TextStyle(
+                    fontSize: getFont(14),
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textblack),
+              )
+            ],
+          ),
+          SizedBox(height: getHeight(10)),
+          const Divider(),
+          SizedBox(height: getHeight(10)),
+          InkWell(
+            onTap: () {
+              AuthStorage.reset();
+              Get.to(() => LoginPage());
+            },
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: getWidth(20),
+                ),
+                Icon(
+                  Icons.logout_outlined,
+                  size: getWidth(20),
+                  color: const Color.fromRGBO(216, 47, 47, 1),
+                ),
+                SizedBox(
+                  width: getWidth(20),
+                ),
+                Text(
+                  'Log Out',
+                  style: TextStyle(
+                      fontSize: getFont(14), fontWeight: FontWeight.w400),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

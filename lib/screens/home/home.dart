@@ -6,19 +6,13 @@ import 'package:khetipati/controllers/auth.dart';
 import 'package:khetipati/controllers/cart_controller.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/cagetories.dart';
-import 'package:khetipati/models/order.dart';
-import 'package:khetipati/screens/cart/cart.dart';
 import 'package:khetipati/screens/cart/cart_screen.dart';
 import 'package:khetipati/screens/home/offers.dart';
 import 'package:khetipati/screens/home/specialoffers.dart';
-import 'package:khetipati/screens/notifications/notifications.dart';
-import 'package:khetipati/screens/orders/orders.dart';
-import 'package:khetipati/screens/profile/profile.dart';
-import 'package:khetipati/widgets/bottom_nav.dart';
-import 'package:khetipati/widgets/items.dart';
+
+import 'package:khetipati/widgets/product_card.dart';
 import 'package:khetipati/widgets/tabnavigation.dart';
 
-import 'widgets/carousel.dart';
 import 'widgets/category_items.dart';
 
 class Home extends StatelessWidget {
@@ -777,7 +771,7 @@ class Home extends StatelessWidget {
                         itemCount: controller.products.length,
                         itemBuilder: (_, int i) {
                           print(controller.products.length);
-                          return Items(controller.products[i]);
+                          return productCard(controller.products[i]);
                         },
                         scrollDirection: Axis.horizontal,
                       ),
@@ -853,263 +847,263 @@ class Home extends StatelessWidget {
   }
 }
 
-List<Widget> tabs = [
-  HomeTab(),
-  const Orders(),
-  const notifications(),
-  const Profile(),
-];
+// List<Widget> tabs = [
+//   HomeTab(),
+//   const Orders(),
+//   const notifications(),
+//   const Profile(),
+// ];
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
-  final controller = Get.put(HomeController());
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.mainGreen,
-      bottomNavigationBar: CustomNav(),
-      body: buildTab(),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: Container(
-        width: 68,
-        height: 68,
-        decoration: BoxDecoration(
-            color: AppColors.mainGrey,
-            border: Border.all(width: 5, color: AppColors.mainGreen),
-            borderRadius: BorderRadius.circular(40)),
-        child: const Icon(
-          Icons.shopping_cart_outlined,
-          color: Color.fromRGBO(0, 0, 0, 0.5),
-          size: 30,
-        ),
-      ),
-    );
-  }
+// class HomeScreen extends StatelessWidget {
+//   HomeScreen({Key? key}) : super(key: key);
+//   final controller = Get.put(HomeController());
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: AppColors.mainGreen,
+//       bottomNavigationBar: CustomNav(),
+//       body: buildTab(),
+//       floatingActionButtonLocation:
+//           FloatingActionButtonLocation.miniCenterDocked,
+//       floatingActionButton: Container(
+//         width: 68,
+//         height: 68,
+//         decoration: BoxDecoration(
+//             color: AppColors.mainGrey,
+//             border: Border.all(width: 5, color: AppColors.mainGreen),
+//             borderRadius: BorderRadius.circular(40)),
+//         child: const Icon(
+//           Icons.shopping_cart_outlined,
+//           color: Color.fromRGBO(0, 0, 0, 0.5),
+//           size: 30,
+//         ),
+//       ),
+//     );
+//   }
 
-  buildTab() {
-    return Obx(() => tabs[controller.selectedIndex]);
-  }
-}
+//   buildTab() {
+//     return Obx(() => tabs[controller.selectedIndex]);
+//   }
+// }
 
-class CustomNav extends StatelessWidget {
-  CustomNav({Key? key}) : super(key: key);
-  final HomeController controller = Get.find();
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        child: Obx(
-          () =>
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            NavItem(
-              ontap: () {
-                controller.updateIndex(0);
-              },
-              icon: const [
-                'assets/icons/home.png',
-                'assets/icons/homeselected.png'
-              ],
-              isSelected: controller.selectedIndex == 0 ? true : false,
-              label: 'Home',
-            ),
-            NavItem(
-              ontap: () {
-                controller.updateIndex(1);
-                print("tap");
-              },
-              icon: const [
-                'assets/icons/navorder.png',
-                'assets/icons/orderselected.png'
-              ],
-              isSelected: controller.selectedIndex == 1 ? true : false,
-              label: 'Order',
-            ),
-            SizedBox(width: getWidth(20)),
-            NavItem(
-              ontap: () {
-                controller.updateIndex(2);
-              },
-              icon: const [
-                'assets/icons/notification.png',
-                'assets/icons/notificationselected.png'
-              ],
-              isSelected: controller.selectedIndex == 2 ? true : false,
-              label: 'Notification',
-            ),
-            NavItem(
-              ontap: () {
-                controller.updateIndex(3);
-              },
-              icon: const [
-                'assets/icons/user.png',
-                'assets/icons/userselected.png'
-              ],
-              isSelected: controller.selectedIndex == 3 ? true : false,
-              label: 'Home',
-            ),
-          ]),
-        ),
-        height: getHeight(94),
-        width: double.infinity,
-        decoration: const BoxDecoration(
-            color: Color.fromRGBO(234, 238, 238, 1),
-            boxShadow: [BoxShadow(color: Colors.grey, spreadRadius: .5)]));
-  }
-}
+// class CustomNav extends StatelessWidget {
+//   CustomNav({Key? key}) : super(key: key);
+//   final HomeController controller = Get.find();
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//         child: Obx(
+//           () =>
+//               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+//             NavItem(
+//               ontap: () {
+//                 controller.updateIndex(0);
+//               },
+//               icon: const [
+//                 'assets/icons/home.png',
+//                 'assets/icons/homeselected.png'
+//               ],
+//               isSelected: controller.selectedIndex == 0 ? true : false,
+//               label: 'Home',
+//             ),
+//             NavItem(
+//               ontap: () {
+//                 controller.updateIndex(1);
+//                 print("tap");
+//               },
+//               icon: const [
+//                 'assets/icons/navorder.png',
+//                 'assets/icons/orderselected.png'
+//               ],
+//               isSelected: controller.selectedIndex == 1 ? true : false,
+//               label: 'Order',
+//             ),
+//             SizedBox(width: getWidth(20)),
+//             NavItem(
+//               ontap: () {
+//                 controller.updateIndex(2);
+//               },
+//               icon: const [
+//                 'assets/icons/notification.png',
+//                 'assets/icons/notificationselected.png'
+//               ],
+//               isSelected: controller.selectedIndex == 2 ? true : false,
+//               label: 'Notification',
+//             ),
+//             NavItem(
+//               ontap: () {
+//                 controller.updateIndex(3);
+//               },
+//               icon: const [
+//                 'assets/icons/user.png',
+//                 'assets/icons/userselected.png'
+//               ],
+//               isSelected: controller.selectedIndex == 3 ? true : false,
+//               label: 'Home',
+//             ),
+//           ]),
+//         ),
+//         height: getHeight(94),
+//         width: double.infinity,
+//         decoration: const BoxDecoration(
+//             color: Color.fromRGBO(234, 238, 238, 1),
+//             boxShadow: [BoxShadow(color: Colors.grey, spreadRadius: .5)]));
+//   }
+// }
 
-class NavItem extends StatelessWidget {
-  const NavItem(
-      {Key? key,
-      required this.isSelected,
-      required this.icon,
-      required this.label,
-      required this.ontap})
-      : super(key: key);
-  final Function ontap;
-  final bool isSelected;
-  final List<String> icon;
-  final String label;
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => ontap(),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            isSelected ? icon[1] : icon[0],
-            color: isSelected ? null : AppColors.darkgrey,
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.009,
-          ),
-          isSelected
-              ? Container(
-                  decoration: const BoxDecoration(
-                      shape: BoxShape.circle, color: AppColors.mainGreen),
-                  height: 8,
-                  width: 8)
-              : Text(
-                  label,
-                  style: const TextStyle(
-                      color: Color.fromRGBO(0, 0, 0, 0.8),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400),
-                )
-        ],
-      ),
-    );
-  }
-}
+// class NavItem extends StatelessWidget {
+//   const NavItem(
+//       {Key? key,
+//       required this.isSelected,
+//       required this.icon,
+//       required this.label,
+//       required this.ontap})
+//       : super(key: key);
+//   final Function ontap;
+//   final bool isSelected;
+//   final List<String> icon;
+//   final String label;
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onTap: () => ontap(),
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Image.asset(
+//             isSelected ? icon[1] : icon[0],
+//             color: isSelected ? null : AppColors.darkgrey,
+//           ),
+//           SizedBox(
+//             height: MediaQuery.of(context).size.height * 0.009,
+//           ),
+//           isSelected
+//               ? Container(
+//                   decoration: const BoxDecoration(
+//                       shape: BoxShape.circle, color: AppColors.mainGreen),
+//                   height: 8,
+//                   width: 8)
+//               : Text(
+//                   label,
+//                   style: const TextStyle(
+//                       color: Color.fromRGBO(0, 0, 0, 0.8),
+//                       fontSize: 12,
+//                       fontWeight: FontWeight.w400),
+//                 )
+//         ],
+//       ),
+//     );
+//   }
+// }
 
-class HomeTab extends StatelessWidget {
-  HomeTab({Key? key}) : super(key: key);
-  final HomeController controller = Get.find();
-  @override
-  Widget build(BuildContext context) {
-    return Column(children: [
-      buildProfileCard(),
-      Expanded(
-        child: Container(
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(234, 238, 238, 1),
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-            ),
-            child: SingleChildScrollView(
-              child: Column(children: [
-                const Carousel(),
-                buildCategoriesCard(),
-                buildPopularItemsCard(),
-              ]),
-            )),
-      ),
-    ]);
-  }
+// class HomeTab extends StatelessWidget {
+//   HomeTab({Key? key}) : super(key: key);
+//   final HomeController controller = Get.find();
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(children: [
+//       buildProfileCard(),
+//       Expanded(
+//         child: Container(
+//             decoration: const BoxDecoration(
+//               color: Color.fromRGBO(234, 238, 238, 1),
+//               borderRadius: BorderRadius.only(
+//                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+//             ),
+//             child: SingleChildScrollView(
+//               child: Column(children: [
+//                 const Carousel(),
+//                 buildCategoriesCard(),
+//                 buildPopularItemsCard(),
+//               ]),
+//             )),
+//       ),
+//     ]);
+//   }
 
-  buildProfileCard() {
-    return Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          // vertical: 10,
-        ),
-        height: SizeConfigs.screenHeight * 0.2,
-        // decoration: const BoxDecoration(
-        //   color: AppColors.mainGreen,
-        // ),
-        child: SafeArea(
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Image.asset(
-              'assets/images/pic.png',
-              height: 70,
-              width: 60,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  "Hello!",
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: AppColors.textGreen,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "Sudarshan", // user.firstname!.capitalizeFirst.toString(),
-                  style: TextStyle(
-                      fontSize: 22,
-                      color: AppColors.textGreen,
-                      fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-            const Spacer(),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.search,
-                size: 30,
-                color: Colors.green[900],
-              ),
-            ),
-          ]),
-        ));
-  }
+//   buildProfileCard() {
+//     return Container(
+//         padding: const EdgeInsets.symmetric(
+//           horizontal: 20,
+//           // vertical: 10,
+//         ),
+//         height: SizeConfigs.screenHeight * 0.2,
+//         // decoration: const BoxDecoration(
+//         //   color: AppColors.mainGreen,
+//         // ),
+//         child: SafeArea(
+//           child:
+//               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+//             Image.asset(
+//               'assets/images/pic.png',
+//               height: 70,
+//               width: 60,
+//             ),
+//             const SizedBox(
+//               width: 10,
+//             ),
+//             Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: const [
+//                 Text(
+//                   "Hello!",
+//                   style: TextStyle(
+//                       fontSize: 16,
+//                       color: AppColors.textGreen,
+//                       fontWeight: FontWeight.bold),
+//                 ),
+//                 Text(
+//                   "Sudarshan", // user.firstname!.capitalizeFirst.toString(),
+//                   style: TextStyle(
+//                       fontSize: 22,
+//                       color: AppColors.textGreen,
+//                       fontWeight: FontWeight.bold),
+//                 )
+//               ],
+//             ),
+//             const Spacer(),
+//             IconButton(
+//               onPressed: () {},
+//               icon: Icon(
+//                 Icons.search,
+//                 size: 30,
+//                 color: Colors.green[900],
+//               ),
+//             ),
+//           ]),
+//         ));
+//   }
 
-  buildCategoriesCard() {
-    return Obx(() => controller.products.isEmpty
-        ? Center(child: const Text("Empty"))
-        : Container(
-            height: getHeight(200),
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: controller.products.length,
-                itemBuilder: (_, int i) {
-                  return const Center(
-                    child: Text("Category Card Card"),
-                  );
-                }),
-          ));
-  }
+//   buildCategoriesCard() {
+//     return Obx(() => controller.products.isEmpty
+//         ? Center(child: const Text("Empty"))
+//         : Container(
+//             height: getHeight(200),
+//             child: ListView.builder(
+//                 scrollDirection: Axis.horizontal,
+//                 itemCount: controller.products.length,
+//                 itemBuilder: (_, int i) {
+//                   return const Center(
+//                     child: Text("Category Card Card"),
+//                   );
+//                 }),
+//           ));
+//   }
 
-  buildPopularItemsCard() {
-    return Obx(() => controller.products.isEmpty
-        ? const Center(child: Text("Empty"))
-        : Container(
-            height: getHeight(200),
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: controller.products.length,
-                itemBuilder: (_, int i) {
-                  return const Center(
-                    child: Text("Category Card Card"),
-                  );
-                }),
-          ));
-  }
-}
+//   buildPopularItemsCard() {
+//     return Obx(() => controller.products.isEmpty
+//         ? const Center(child: Text("Empty"))
+//         : Container(
+//             height: getHeight(200),
+//             child: ListView.builder(
+//                 scrollDirection: Axis.horizontal,
+//                 itemCount: controller.products.length,
+//                 itemBuilder: (_, int i) {
+//                   return const Center(
+//                     child: Text("Category Card Card"),
+//                   );
+//                 }),
+//           ));
+//   }
+// }

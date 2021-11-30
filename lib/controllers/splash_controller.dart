@@ -4,6 +4,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:khetipati/screens/LoginRegisterPage/login.dart';
 import 'package:khetipati/screens/home/home.dart';
+import 'package:khetipati/screens/home/tabs/home_tab.dart';
 import 'package:khetipati/utils/storage/auth_storage.dart';
 import 'package:khetipati/widgets/modal/internet_connectivity.dart';
 

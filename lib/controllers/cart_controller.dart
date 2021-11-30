@@ -22,6 +22,22 @@ class CartController extends GetxController {
     }
   }
 
+  void removeFromCart(Product product) {
+    // int index = cart.indexOf(product);
+    // // print(int.parse(cart[index].quantity!) > 1);
+    // if (int.parse(cart[index].quantity!) > 1) {
+    //   cart[index].quantity =
+    //       ((int.parse(cart[index].quantity!)) - 1).toString();
+    //   getSnackbar(message: "Item quantity ${cart[index].quantity!}");
+    // } else {
+    //   cart.remove(cart[index]);
+    //   getSnackbar(message: "Item removed");
+    // }
+    // cart.removeWhere((element) => product == element);
+    // print(cart.length);
+    _products.remove(product);
+  }
+
 //check product in cart
   bool checkProductinCart(Product product) {
     if (_products.containsKey(product)) {

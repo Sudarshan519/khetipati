@@ -6,17 +6,17 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/product.dart';
-import 'package:khetipati/widgets/items.dart';
+import 'package:khetipati/widgets/product_card.dart';
 import '../home/home.dart';
 
-class Fruits extends StatefulWidget {
-  const Fruits({Key? key, required this.product}) : super(key: key);
+class Details extends StatefulWidget {
+  const Details({Key? key, required this.product}) : super(key: key);
   final Product product;
   @override
-  _FruitsState createState() => _FruitsState();
+  _DetailsState createState() => _DetailsState();
 }
 
-class _FruitsState extends State<Fruits> {
+class _DetailsState extends State<Details> {
   final homeController = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
@@ -269,9 +269,9 @@ class _FruitsState extends State<Fruits> {
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: [
-                            Items(homeController.products[0]),
-                            Items(homeController.products[1]),
-                            Items(homeController.products[2])
+                            productCard(homeController.products[0]),
+                            productCard(homeController.products[1]),
+                            productCard(homeController.products[2])
                           ],
                         ),
                       ),

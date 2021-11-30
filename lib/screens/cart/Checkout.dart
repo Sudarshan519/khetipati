@@ -3,7 +3,6 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/screens/home/widgets/category_items.dart';
 import 'package:khetipati/screens/home/home.dart';
 import 'package:khetipati/widgets/bottom_nav.dart';
-import 'package:khetipati/widgets/items.dart';
 
 import 'cart.dart';
 

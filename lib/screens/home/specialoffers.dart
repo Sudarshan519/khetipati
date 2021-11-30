@@ -49,10 +49,10 @@ class SpecialOffers extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  OfferItems(context, 'assets/images/offers/offer1.png'),
-                  OfferItems(context, 'assets/images/offers/offer2.png'),
-                  OfferItems(context, 'assets/images/offers/offer1.png'),
-                  OfferItems(context, 'assets/images/offers/offer2.png'),
+                  // offerProductCard(),
+                  // offerProductCard(),
+                  // offerProductCard(context, 'assets/images/offers/offer1.png'),
+                  // offerProductCard(context, 'assets/images/offers/offer2.png'),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
