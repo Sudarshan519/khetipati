@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
+import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/cart/cart.dart';
 import 'package:khetipati/screens/profile/add_shipping_address.dart';
 import 'package:khetipati/screens/profile/profile.dart';
-import 'package:khetipati/widgets/bottom_nav.dart';
 
 class ShippingAddress extends StatefulWidget {
   const ShippingAddress({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
         title: Text(
           'Shipping Address',
           style: TextStyle(
-              fontSize: 22,
+              fontSize: getFont(22),
               color: AppColors.textGreen,
               fontWeight: FontWeight.w700),
         ),
@@ -34,17 +34,17 @@ class _ShippingAddressState extends State<ShippingAddress> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Profile()),
+                MaterialPageRoute(builder: (context) => const Profile()),
               );
             },
-            icon: Icon(Icons.arrow_back_ios_rounded,
+            icon: const Icon(Icons.arrow_back_ios_rounded,
                 size: 20, color: AppColors.textGreen)),
       ),
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
           //height: 815,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: AppColors.mainGrey,
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(30),
@@ -74,12 +74,12 @@ class _ShippingAddressState extends State<ShippingAddress> {
                         child: Text(
                           'Default Shipping Address',
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: getFont(16),
                               color: AppColors.textblack,
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      Address('Home'),
+                      address('Home'),
                       Padding(
                         padding: EdgeInsets.only(
                             bottom: 20,
@@ -88,14 +88,17 @@ class _ShippingAddressState extends State<ShippingAddress> {
                         child: Text(
                           'Work Addresses',
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: getFont(16),
                               color: AppColors.textblack,
                               fontWeight: FontWeight.w500),
                         ),
                       ),
                       //EditShipping('Work'),
-                      Address('Work'),
-                      Address("Work 2"),
+                      address('Work'),
+                      SizedBox(
+                        height: getHeight(12),
+                      ),
+                      address("Work 2"),
                       Padding(
                         padding: EdgeInsets.only(
                             bottom: 20,
@@ -104,15 +107,21 @@ class _ShippingAddressState extends State<ShippingAddress> {
                         child: Text(
                           'Other Addresses',
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: getFont(16),
                               color: AppColors.textblack,
                               fontWeight: FontWeight.w500),
                         ),
                       ),
                       //  EditShipping('Home'),
-                      Address('Home'),
-                      Address('Home'),
-                      Address('Home'),
+                      address('Home'),
+                      SizedBox(
+                        height: getHeight(12),
+                      ),
+                      address('Home'),
+                      SizedBox(
+                        height: getHeight(12),
+                      ),
+                      address('Home'),
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 34, top: 30, bottom: 30),
@@ -121,7 +130,8 @@ class _ShippingAddressState extends State<ShippingAddress> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => AddShippingAddress()),
+                                  builder: (context) =>
+                                      const AddShippingAddress()),
                             );
                           },
                           child: Row(
@@ -131,11 +141,11 @@ class _ShippingAddressState extends State<ShippingAddress> {
                                 width: 19,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: Color.fromRGBO(2, 95, 51, 0.2),
+                                  color: const Color.fromRGBO(2, 95, 51, 0.2),
                                 ),
                                 child: IconButton(
                                   padding: EdgeInsets.zero,
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.add,
                                     size: 18,
                                     color: AppColors.textGreen,
@@ -144,12 +154,12 @@ class _ShippingAddressState extends State<ShippingAddress> {
                                 ),
                               ),
                               SizedBox(
-                                width: 10,
+                                width: getWidth(10),
                               ),
                               Text(
                                 'Add New Address',
                                 style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: getWidth(16),
                                     color: AppColors.textGreen,
                                     fontWeight: FontWeight.w400),
                               )
@@ -162,7 +172,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: getHeight(30),
               )
             ],
           ),
@@ -171,110 +181,13 @@ class _ShippingAddressState extends State<ShippingAddress> {
     );
   }
 
-  // Widget EditShipping(ShippingAddress) {
-  //   return Container(
-  //     height: 115,
-  //     width: 378,
-  //     child: Stack(
-  //       children: [
-  //         // Positioned(
-  //         //     top: 17,
-  //         //     left: 32,
-  //         //     child: Text(
-  //         //       ShippingTitle,
-  //         //       style: TextStyle(
-  //         //           fontSize: 16,
-  //         //           color: AppColors.textblack,
-  //         //           fontWeight: FontWeight.w500),
-  //         //     )),
-  //         Positioned(
-  //             top: 52,
-  //             left: 32,
-  //             child: Icon(
-  //               Icons.home_outlined,
-  //               size: 20,
-  //               color: AppColors.mainGreen,
-  //             )),
-  //         Positioned(
-  //           top: 49,
-  //           left: 58,
-  //           right: 26,
-  //           child: Column(
-  //             crossAxisAlignment: CrossAxisAlignment.start,
-  //             children: [
-  //               Row(
-  //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                 crossAxisAlignment: CrossAxisAlignment.start,
-  //                 children: [
-  //                   Text(
-  //                     ShippingAddress,
-  //                     style: TextStyle(
-  //                         fontSize: 15,
-  //                         color: AppColors.textblack,
-  //                         fontWeight: FontWeight.w400),
-  //                   ),
-  //                   Container(
-  //                     width: 42,
-  //                     height: 22,
-  //                     decoration: BoxDecoration(
-  //                         borderRadius: BorderRadius.circular(4),
-  //                         color: Color.fromRGBO(135, 194, 65, 0.2)),
-  //                     child: Center(
-  //                       child: Text(
-  //                         'Edit',
-  //                         style: TextStyle(
-  //                             color: AppColors.textGreen,
-  //                             fontSize: 14,
-  //                             fontWeight: FontWeight.w400),
-  //                       ),
-  //                     ),
-  //                   )
-  //                 ],
-  //               ),
-  //               SizedBox(
-  //                 height: 8,
-  //               ),
-  //               Text(
-  //                 'Shankhaul Marga,\nKathmandu 44600',
-  //                 style: TextStyle(
-  //                     fontSize: 14,
-  //                     color: Color.fromRGBO(0, 0, 0, 0.5),
-  //                     fontWeight: FontWeight.w700),
-  //               )
-  //             ],
-  //           ),
-  //         ),
-  //         // Padding(
-  //         //   padding: const EdgeInsets.only(top: 46, left: 310, right: 26),
-  //         //   child: Container(
-  //         //     width: 42,
-  //         //     height: 22,
-  //         //     decoration: BoxDecoration(
-  //         //         borderRadius: BorderRadius.circular(4),
-  //         //         color: Color.fromRGBO(135, 194, 65, 0.2)),
-  //         //     child: Center(
-  //         //       child: Text(
-  //         //         'Edit',
-  //         //         style: TextStyle(
-  //         //             color: AppColors.textGreen,
-  //         //             fontSize: 14,
-  //         //             fontWeight: FontWeight.w400),
-  //         //       ),
-  //         //     ),
-  //         //   ),
-  //         // )
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  Widget Address(ShippingAddress) {
+  Widget address(shippingAddress) {
     return Padding(
       padding: EdgeInsets.only(
         left: MediaQuery.of(context).size.width * 0.05,
       ),
-      child: Container(
-        height: 80,
+      child: SizedBox(
+        //height: getHeight(80),
         width: MediaQuery.of(context).size.width,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -283,32 +196,32 @@ class _ShippingAddressState extends State<ShippingAddress> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(
+                const Icon(
                   Icons.home_outlined,
                   size: 20,
                   color: AppColors.mainGreen,
                 ),
                 SizedBox(
-                  width: 15,
+                  width: getWidth(15),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      ShippingAddress,
+                      shippingAddress,
                       style: TextStyle(
-                          fontSize: 15,
+                          fontSize: getFont(15),
                           color: AppColors.textblack,
                           fontWeight: FontWeight.w400),
                     ),
                     SizedBox(
-                      height: 8,
+                      height: getHeight(8),
                     ),
                     Text(
                       'Shankhaul Marga,\nKathmandu 44600',
                       style: TextStyle(
-                          fontSize: 14,
-                          color: Color.fromRGBO(0, 0, 0, 0.5),
+                          fontSize: getFont(14),
+                          color: const Color.fromRGBO(0, 0, 0, 0.5),
                           fontWeight: FontWeight.w700),
                     )
                   ],
@@ -324,13 +237,13 @@ class _ShippingAddressState extends State<ShippingAddress> {
                   height: 22,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
-                      color: Color.fromRGBO(135, 194, 65, 0.2)),
+                      color: const Color.fromRGBO(135, 194, 65, 0.2)),
                   child: Center(
                     child: Text(
                       'Edit',
                       style: TextStyle(
                           color: AppColors.textGreen,
-                          fontSize: 14,
+                          fontSize: getFont(14),
                           fontWeight: FontWeight.w400),
                     ),
                   ),

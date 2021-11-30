@@ -4,18 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
-import 'package:khetipati/models/user.dart';
 import 'package:khetipati/screens/LoginRegisterPage/login.dart';
-import 'package:khetipati/screens/cart/cart.dart';
 import 'package:khetipati/screens/orders/orders.dart';
-import 'package:khetipati/screens/profile/Reviews.dart';
+import 'package:khetipati/screens/profile/reviews.dart';
 import 'package:khetipati/screens/profile/shipping_address.dart';
 import 'package:khetipati/screens/profile/editprofile.dart';
 import 'package:khetipati/screens/profile/payment.dart';
 import 'package:khetipati/screens/profile/vouchers.dart';
 import 'package:khetipati/screens/profile/wishlist.dart';
 import 'package:khetipati/utils/storage/auth_storage.dart';
-import 'package:khetipati/widgets/bottom_nav.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -296,8 +293,11 @@ class _ProfileState extends State<Profile> {
       ),
       child: Row(
         // crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          SizedBox(
+            width: getWidth(15),
+          ),
           Image.asset(
             optionIcon,
             height: getHeight(25),

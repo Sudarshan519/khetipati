@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:khetipati/constant/size_config.dart';
+import 'package:khetipati/screens/home/tabs/home_tab.dart';
 import 'login.dart';
 import 'package:khetipati/constant/colors.dart';
 
@@ -189,7 +192,11 @@ class RegisterPage extends StatelessWidget {
                     height: MediaQuery.of(context).size.height * 0.07,
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(
+                          () => HomeScreen(),
+                        );
+                      },
                       child: Text(
                         'Submit',
                         style: TextStyle(

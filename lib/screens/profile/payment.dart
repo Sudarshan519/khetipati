@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
+import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/cart/cart.dart';
 import 'package:khetipati/screens/profile/AddCard.dart';
 import 'package:khetipati/screens/profile/profile.dart';
@@ -31,7 +32,7 @@ class _PaymentState extends State<Payment> {
         title: Text(
           'Payment',
           style: TextStyle(
-              fontSize: 22,
+              fontSize: getFont(22),
               color: AppColors.textGreen,
               fontWeight: FontWeight.w700),
         ),
@@ -42,14 +43,14 @@ class _PaymentState extends State<Payment> {
                 MaterialPageRoute(builder: (context) => Profile()),
               );
             },
-            icon: Icon(Icons.arrow_back_ios_rounded,
+            icon: const Icon(Icons.arrow_back_ios_rounded,
                 size: 20, color: AppColors.textGreen)),
       ),
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: 815,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: AppColors.mainGrey,
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(30),
@@ -61,55 +62,11 @@ class _PaymentState extends State<Payment> {
             children: [
               Creditcard(),
               SizedBox(
-                height: 20,
+                height: getHeight(20),
               ),
               PaymentOptions('Cash on Delivery'),
               PaymentOptions('FonePay'),
               PaymentOptions('Mobilebanking'),
-              // Padding(
-              //   padding: const EdgeInsets.only(right: 18, left: 18, bottom: 20),
-              //   child: Container(
-              //     width: 378,
-              //     height: 67,
-              //     decoration: BoxDecoration(
-              //         color: Colors.white,
-              //         borderRadius: BorderRadius.circular(10)),
-              //     child: Padding(
-              //       padding: const EdgeInsets.only(top: 17, left: 36),
-              //       child: Row(
-              //         children: [
-              //           Container(
-              //             height: 19,
-              //             width: 19,
-              //             decoration: BoxDecoration(
-              //               borderRadius: BorderRadius.circular(20),
-              //               color: Color.fromRGBO(2, 95, 51, 0.2),
-              //             ),
-              //             child: IconButton(
-              //               padding: EdgeInsets.zero,
-              //               icon: Icon(
-              //                 Icons.add,
-              //                 size: 18,
-              //                 color: AppColors.textGreen,
-              //               ),
-              //               onPressed: () {},
-              //             ),
-              //           ),
-              //           SizedBox(
-              //             width: 10,
-              //           ),
-              //           Text(
-              //             'Add New Payment Method',
-              //             style: TextStyle(
-              //                 fontSize: 16,
-              //                 color: AppColors.textGreen,
-              //                 fontWeight: FontWeight.w400),
-              //           )
-              //         ],
-              //       ),
-              //     ),
-              //   ),
-              // ),
               Padding(
                 padding: EdgeInsets.only(
                     right: MediaQuery.of(context).size.width * 0.04,

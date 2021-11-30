@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/screens/cart/cart.dart';
+import 'package:khetipati/constant/size_config.dart';
+
 import 'package:khetipati/screens/profile/shipping_address.dart';
-import 'package:khetipati/screens/profile/profile.dart';
-import 'package:khetipati/widgets/bottom_nav.dart';
+import 'package:khetipati/widgets/text_field.dart';
 
 class AddShippingAddress extends StatefulWidget {
   const AddShippingAddress({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class _AddShippingAddressState extends State<AddShippingAddress> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.mainGrey,
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         toolbarHeight: MediaQuery.of(context).size.height * 0.1,
         automaticallyImplyLeading: false,
@@ -43,198 +43,155 @@ class _AddShippingAddressState extends State<AddShippingAddress> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            children: [
-              Expanded(
-                  flex: 5,
-                  child: Container(
-                    color: AppColors.mainGrey,
-                    child: Image.asset(
-                      'assets/images/map.png',
-                      fit: BoxFit.fitHeight,
-                    ),
-                  )),
-              Expanded(
-                  flex: 5,
-                  child: SingleChildScrollView(
-                    child: Container(
-                      height: 500,
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(30),
-                              topLeft: Radius.circular(30))),
-                      child: Container(
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              height: 2,
-                              width: 58,
-                              color: Colors.grey[600],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            stylishTextFormField('Address'),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            stylishTextFormField(
-                                'Select or insert a label for this address'),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 10, left: 30, right: 30),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  labels('Work'),
-                                  labels('Home'),
-                                  labels('Hospital'),
-                                  labels('Education')
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 30, right: 30, top: 30),
-                              child: Container(
-                                height: 96,
-                                decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromRGBO(135, 194, 65, 0.5),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: Container(
-                                          height: 58,
-                                          width: 58,
-                                          child: Image.asset(
-                                            'assets/images/profile.png',
-                                            fit: BoxFit.contain,
-                                          )),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "Howard Wollowitz",
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.green[900],
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Text(
-                                          "9810101010",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.green[900],
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
-                                    ),
-                                    const Flexible(
-                                        child: SizedBox(
-                                      width: 80,
-                                    )),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: InkWell(
-                                        onTap: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) =>
-                                                _buildPopupDialog(context),
-                                          );
-                                        },
-                                        child: Container(
-                                          height: 35,
-                                          width: 35,
-                                          decoration: BoxDecoration(
-                                              color: const Color.fromRGBO(
-                                                  255, 255, 255, 0.5),
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          child: const Icon(
-                                            Icons.edit,
-                                            color: AppColors.textGreen,
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 30, right: 30),
-                              child: Row(
-                                children: [
-                                  const Checkbox(value: false, onChanged: null),
-                                  const Text('Make Default Address')
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 10, right: 30, left: 30),
-                              child: SizedBox(
-                                width: 378,
-                                height: 48,
-                                child: RaisedButton(
-                                  color: AppColors.mainGreen,
-                                  onPressed: () {},
-                                  child: const Text(
-                                    'Save Address',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ))
-            ],
+          height: getHeight(500),
+          child: Image.asset(
+            'assets/images/map.png',
+            fit: BoxFit.fitHeight,
           ),
         ),
       ),
-    );
-  }
-
-  Widget stylishTextFormField(Labels) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 30, right: 30),
-      child: TextFormField(
-        decoration: InputDecoration(
-            labelText: Labels,
-            //hintText: "Full Name",
-            enabledBorder: const OutlineInputBorder(
-              borderSide:
-                  BorderSide(width: 1, color: Color.fromRGBO(0, 0, 0, 0.1)),
-              // borderRadius: BorderRadius.circular(15),
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
+        //height: ,
+        decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30), topLeft: Radius.circular(30))),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(
+              height: 5,
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(width: 1, color: Colors.red),
-              borderRadius: BorderRadius.circular(0),
-            )),
+            Container(
+              height: 2,
+              width: 58,
+              color: Colors.grey[600],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const MyInputField(hint: 'address'),
+            const SizedBox(
+              height: 10,
+            ),
+            const MyInputField(
+                hint: 'Select or insert a label for this address'),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                labels('Work'),
+                labels('Home'),
+                labels('Hospital'),
+                labels('Education')
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              height: getHeight(96),
+              decoration: BoxDecoration(
+                color: const Color.fromRGBO(135, 194, 65, 0.5),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: SizedBox(
+                        height: getHeight(58),
+                        width: getWidth(58),
+                        child: Image.asset(
+                          'assets/images/profile.png',
+                          fit: BoxFit.contain,
+                        )),
+                  ),
+                  SizedBox(
+                    width: getWidth(10),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Howard Wollowitz",
+                        style: TextStyle(
+                            fontSize: getFont(16),
+                            color: Colors.green[900],
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        "9810101010",
+                        style: TextStyle(
+                            fontSize: getFont(14),
+                            color: Colors.green[900],
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    width: getWidth(80),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: InkWell(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) =>
+                              _buildPopupDialog(context),
+                        );
+                      },
+                      child: Container(
+                        height: getHeight(35),
+                        width: getWidth(35),
+                        decoration: BoxDecoration(
+                            color: const Color.fromRGBO(255, 255, 255, 0.5),
+                            borderRadius: BorderRadius.circular(20)),
+                        child: const Icon(
+                          Icons.edit,
+                          color: AppColors.textGreen,
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Row(
+              children: [
+                const Checkbox(value: false, onChanged: null),
+                Text(
+                  'Make Default Address',
+                  style: TextStyle(fontSize: getFont(15)),
+                )
+              ],
+            ),
+            SizedBox(
+              width: 378,
+              height: getHeight(48),
+              // ignore: deprecated_member_use
+              child: RaisedButton(
+                color: AppColors.mainGreen,
+                onPressed: () {},
+                child: Text(
+                  'Save Address',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: getFont(16),
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -281,11 +238,11 @@ class _AddShippingAddressState extends State<AddShippingAddress> {
           const SizedBox(
             height: 20,
           ),
-          stylishTextFormField('Full Name'),
+          const MyInputField(hint: 'Full Name'),
           const SizedBox(
             height: 15,
           ),
-          stylishTextFormField('Phone Number'),
+          const MyInputField(hint: 'Phone Number'),
           const SizedBox(
             height: 15,
           ),
@@ -298,12 +255,12 @@ class _AddShippingAddressState extends State<AddShippingAddress> {
               child: RaisedButton(
                 color: AppColors.mainGreen,
                 onPressed: () {},
-                child: const Center(
+                child: Center(
                   child: Text(
                     'Change',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 15,
+                        fontSize: getFont(15),
                         fontWeight: FontWeight.w500),
                   ),
                 ),

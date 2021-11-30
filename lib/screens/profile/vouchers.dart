@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/screens/cart/cart.dart';
-import 'package:khetipati/screens/profile/profile.dart';
-import 'package:khetipati/widgets/bottom_nav.dart';
+import 'package:khetipati/constant/size_config.dart';
 
 class Vouchers extends StatefulWidget {
   const Vouchers({Key? key}) : super(key: key);
@@ -25,7 +23,7 @@ class _VouchersState extends State<Vouchers> {
         title: Text(
           'Vouchers',
           style: TextStyle(
-              fontSize: 22,
+              fontSize: getFont(22),
               color: AppColors.textGreen,
               fontWeight: FontWeight.w700),
         ),
@@ -33,13 +31,13 @@ class _VouchersState extends State<Vouchers> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back_ios_rounded,
+            icon: const Icon(Icons.arrow_back_ios_rounded,
                 size: 20, color: AppColors.textGreen)),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         //height: 815,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: AppColors.mainGrey,
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(30),
@@ -61,127 +59,20 @@ class _VouchersState extends State<Vouchers> {
             child: ListView(
               //crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                VoucherItems('assets/images/offers/offer1.png'),
+                voucherItemCard('assets/images/offers/offer1.png'),
                 SizedBox(
-                  height: 7,
+                  height: getHeight(7),
                 ),
-                VoucherItems('assets/images/offers/offer2.png'),
+                voucherItemCard('assets/images/offers/offer2.png'),
                 SizedBox(
-                  height: 7,
+                  height: getHeight(7),
                 ),
-                VoucherItems('assets/images/offers/offer1.png'),
+                voucherItemCard('assets/images/offers/offer1.png'),
                 SizedBox(
-                  height: 7,
+                  height: getHeight(7),
                 ),
-                VoucherItems('assets/images/offers/offer2.png')
+                voucherItemCard('assets/images/offers/offer2.png')
               ],
-            ),
-          ),
-        ),
-      ),
-      bottomNavigationBar: BottomNav(
-        context,
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/icons/home.png',
-              color: AppColors.darkgrey,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
-            ),
-            Text(
-              'Home',
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.8),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400),
-            )
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/icons/navorder.png',
-              color: AppColors.darkgrey,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
-            ),
-            Text(
-              'Order',
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.8),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400),
-            )
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/icons/notification.png',
-              color: AppColors.darkgrey,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
-            ),
-            Text(
-              'Notification',
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.8),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400),
-            )
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/icons/userselected.png',
-              color: AppColors.mainGreen,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
-            ),
-            Image.asset('assets/icons/dot.png')
-            // Text(
-            //   'Profile',
-            //   style: TextStyle(
-            //       color: Color.fromRGBO(0, 0, 0, 0.8),
-            //       fontSize: 12,
-            //       fontWeight: FontWeight.w400),
-            // )
-          ],
-        ),
-      ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Cart()),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.only(top: 20.0),
-          child: Container(
-            // padding: EdgeInsets.only(top: 20),
-            width: 68,
-            height: 68,
-            decoration: BoxDecoration(
-                color: AppColors.mainGrey,
-                border: Border.all(width: 5, color: AppColors.mainGreen),
-                borderRadius: BorderRadius.circular(40)),
-            child: Icon(
-              Icons.shopping_cart_outlined,
-              color: Color.fromRGBO(0, 0, 0, 0.5),
-              size: 30,
             ),
           ),
         ),
@@ -189,14 +80,14 @@ class _VouchersState extends State<Vouchers> {
     );
   }
 
-  Widget VoucherItems(VoucherImg) {
+  Widget voucherItemCard(voucherImg) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Container(
-            width: 115,
+        SizedBox(
+            width: getWidth(115),
             child: Image.asset(
-              VoucherImg,
+              voucherImg,
               fit: BoxFit.contain,
             )),
         Column(
@@ -205,29 +96,29 @@ class _VouchersState extends State<Vouchers> {
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 10, bottom: 10),
-              child: Container(
+              child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.5,
                 child: Text(
                   'Use code voucher and  get 10% off on apples',
                   style: TextStyle(
                       color: AppColors.textblack,
-                      fontSize: 14,
+                      fontSize: getFont(14),
                       fontWeight: FontWeight.w800),
                 ),
               ),
             ),
             Container(
-              width: 61,
-              height: 31,
+              width: getWidth(61),
+              height: getHeight(31),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
-                  color: Color.fromRGBO(135, 194, 65, 0.2)),
+                  color: const Color.fromRGBO(135, 194, 65, 0.2)),
               child: Center(
                 child: Text(
                   'Apply',
                   style: TextStyle(
                       color: AppColors.textGreen,
-                      fontSize: 14,
+                      fontSize: getFont(14),
                       fontWeight: FontWeight.w400),
                 ),
               ),
