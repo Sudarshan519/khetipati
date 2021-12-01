@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final product = productFromJson(jsonString);
+
 import 'dart:convert';
 
 List<Product> productFromJson(String str) =>
@@ -8,46 +12,46 @@ String productToJson(List<Product> data) =>
 
 class Product {
   Product({
-    this.id,
-    this.title,
-    this.slug,
-    this.featureImage,
-    this.description,
-    this.shortDescription,
-    this.productPrice,
-    this.discountPrice,
-    this.stockQty,
-    this.unitIn,
-    this.minimumOrder,
-    this.warningQty,
-    this.metaTitle,
-    this.metaDescription,
-    this.barcode,
-    this.discountPercent,
-    this.productImages,
-    this.productRating,
-    this.averagerating,
+    required this.id,
+    required this.title,
+    required this.slug,
+    required this.featureImage,
+    required this.description,
+    required this.shortDescription,
+    required this.productPrice,
+    required this.discountPrice,
+    required this.stockQty,
+    required this.unitIn,
+    required this.minimumOrder,
+    required this.warningQty,
+    required this.metaTitle,
+    required this.metaDescription,
+    required this.barcode,
+    required this.discountPercent,
+    required this.productImages,
+    required this.productRating,
+    required this.averagerating,
   });
 
-  int? id;
-  String? title;
-  String? slug;
-  FeatureImage? featureImage;
-  String? description;
-  String? shortDescription;
-  int? productPrice;
-  int? discountPrice;
-  int? stockQty;
-  String? unitIn;
-  int? minimumOrder;
-  int? warningQty;
-  String? metaTitle;
-  String? metaDescription;
-  String? barcode;
-  double? discountPercent;
-  List<ProductImage>? productImages;
-  List<ProductRating>? productRating;
-  int? averagerating;
+  int id;
+  String title;
+  String slug;
+  FeatureImage featureImage;
+  String description;
+  String shortDescription;
+  int productPrice;
+  int discountPrice;
+  int stockQty;
+  String unitIn;
+  int minimumOrder;
+  int warningQty;
+  String metaTitle;
+  String metaDescription;
+  String barcode;
+  double discountPercent;
+  List<ProductImage> productImages;
+  List<ProductRating> productRating;
+  num averagerating;
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         id: json["id"],
@@ -57,10 +61,9 @@ class Product {
         description: json["description"],
         shortDescription: json["short_description"],
         productPrice: json["product_price"],
-        discountPrice:
-            json["discount_price"] == null ? null : json["discount_price"],
+        discountPrice: json["discount_price"] ?? 0,
         stockQty: json["stock_qty"],
-        unitIn: json["unit_in"] == null ? null : json["unit_in"],
+        unitIn: json["unit_in"] ?? "",
         minimumOrder: json["minimum_order"],
         warningQty: json["warning_qty"],
         metaTitle: json["meta_title"],
@@ -71,14 +74,14 @@ class Product {
             json["product_images"].map((x) => ProductImage.fromJson(x))),
         productRating: List<ProductRating>.from(
             json["product_rating"].map((x) => ProductRating.fromJson(x))),
-        averagerating: json["averagerating"],
+        averagerating: (json["averagerating"] ?? ""),
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "title": title,
         "slug": slug,
-        "feature_image": featureImage!.toJson(),
+        "feature_image": featureImage.toJson(),
         "description": description,
         "short_description": shortDescription,
         "product_price": productPrice,
@@ -92,21 +95,21 @@ class Product {
         "barcode": barcode,
         "discount_percent": discountPercent,
         "product_images":
-            List<dynamic>.from(productImages!.map((x) => x.toJson())),
+            List<dynamic>.from(productImages.map((x) => x.toJson())),
         "product_rating":
-            List<dynamic>.from(productRating!.map((x) => x.toJson())),
+            List<dynamic>.from(productRating.map((x) => x.toJson())),
         "averagerating": averagerating,
       };
 }
 
 class FeatureImage {
   FeatureImage({
-    this.thumbnailImage,
-    this.originalImage,
+    required this.thumbnailImage,
+    required this.originalImage,
   });
 
-  String? thumbnailImage;
-  String? originalImage;
+  String thumbnailImage;
+  String originalImage;
 
   factory FeatureImage.fromJson(Map<String, dynamic> json) => FeatureImage(
         thumbnailImage: json["thumbnail_image"],
@@ -121,14 +124,14 @@ class FeatureImage {
 
 class ProductImage {
   ProductImage({
-    this.id,
-    this.resizePath,
-    this.originalPath,
+    required this.id,
+    required this.resizePath,
+    required this.originalPath,
   });
 
-  int? id;
-  String? resizePath;
-  String? originalPath;
+  int id;
+  String resizePath;
+  String originalPath;
 
   factory ProductImage.fromJson(Map<String, dynamic> json) => ProductImage(
         id: json["id"],
@@ -145,18 +148,18 @@ class ProductImage {
 
 class ProductRating {
   ProductRating({
-    this.id,
-    this.userId,
-    this.productId,
-    this.rating,
-    this.comment,
+    required this.id,
+    required this.userId,
+    required this.productId,
+    required this.rating,
+    required this.comment,
   });
 
-  int? id;
-  int? userId;
-  int? productId;
-  int? rating;
-  String? comment;
+  int id;
+  int userId;
+  int productId;
+  int rating;
+  String comment;
 
   factory ProductRating.fromJson(Map<String, dynamic> json) => ProductRating(
         id: json["id"],

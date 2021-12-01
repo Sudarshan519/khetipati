@@ -23,19 +23,7 @@ class CartController extends GetxController {
   }
 
   void removeFromCart(Product product) {
-    // int index = cart.indexOf(product);
-    // // print(int.parse(cart[index].quantity!) > 1);
-    // if (int.parse(cart[index].quantity!) > 1) {
-    //   cart[index].quantity =
-    //       ((int.parse(cart[index].quantity!)) - 1).toString();
-    //   getSnackbar(message: "Item quantity ${cart[index].quantity!}");
-    // } else {
-    //   cart.remove(cart[index]);
-    //   getSnackbar(message: "Item removed");
-    // }
-    // cart.removeWhere((element) => product == element);
-    // print(cart.length);
-    _products.remove(product);
+    _products.removeWhere((key, value) => key == product);
   }
 
 //check product in cart
@@ -51,9 +39,11 @@ class CartController extends GetxController {
   get products => _products;
 
   ///get total
-  get total => _products.entries
-      .map((e) => e.key.productPrice * e.value)
-      .toList()
-      .reduce((value, element) => value + element)
-      .toStringAsFixed(2);
+  get total => _products.length > 0
+      ? _products.entries
+          .map((e) => e.key.productPrice * e.value)
+          .toList()
+          .reduce((value, element) => value + element)
+          .toStringAsFixed(2)
+      : 0;
 }

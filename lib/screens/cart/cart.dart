@@ -25,7 +25,7 @@ class _CartState extends State<Cart> {
         backgroundColor: AppColors.mainGreen,
         centerTitle: true,
         elevation: 0,
-        title: Text(
+        title: const Text(
           'Cart',
           style: TextStyle(
               fontSize: 22,
@@ -259,83 +259,83 @@ class _CartState extends State<Cart> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNav(
-        context,
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/icons/home.png', color: Colors.grey[700]),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
-            ),
-            // Image.asset('assets/icons/dot.png')
-            Text(
-              'Home',
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.8),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400),
-            )
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/icons/navorder.png',
-              color: Colors.grey[800],
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
-            ),
-            Text(
-              'Order',
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.8),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400),
-            )
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/icons/notification.png',
-              color: Colors.grey[800],
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
-            ),
-            Text(
-              'Notification',
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.8),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400),
-            )
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/icons/user.png',
-              color: Colors.grey[800],
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
-            ),
-            Text(
-              'Profile',
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.8),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400),
-            )
-          ],
-        ),
-      ),
+      // bottomNavigationBar: BottomNav(
+      //   context,
+      //   Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       Image.asset('assets/icons/home.png', color: Colors.grey[700]),
+      //       SizedBox(
+      //         height: MediaQuery.of(context).size.height * 0.009,
+      //       ),
+      //       // Image.asset('assets/icons/dot.png')
+      //       Text(
+      //         'Home',
+      //         style: TextStyle(
+      //             color: Color.fromRGBO(0, 0, 0, 0.8),
+      //             fontSize: 12,
+      //             fontWeight: FontWeight.w400),
+      //       )
+      //     ],
+      //   ),
+      //   Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       Image.asset(
+      //         'assets/icons/navorder.png',
+      //         color: Colors.grey[800],
+      //       ),
+      //       SizedBox(
+      //         height: MediaQuery.of(context).size.height * 0.009,
+      //       ),
+      //       Text(
+      //         'Order',
+      //         style: TextStyle(
+      //             color: Color.fromRGBO(0, 0, 0, 0.8),
+      //             fontSize: 12,
+      //             fontWeight: FontWeight.w400),
+      //       )
+      //     ],
+      //   ),
+      //   Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       Image.asset(
+      //         'assets/icons/notification.png',
+      //         color: Colors.grey[800],
+      //       ),
+      //       SizedBox(
+      //         height: MediaQuery.of(context).size.height * 0.009,
+      //       ),
+      //       Text(
+      //         'Notification',
+      //         style: TextStyle(
+      //             color: Color.fromRGBO(0, 0, 0, 0.8),
+      //             fontSize: 12,
+      //             fontWeight: FontWeight.w400),
+      //       )
+      //     ],
+      //   ),
+      //   Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       Image.asset(
+      //         'assets/icons/user.png',
+      //         color: Colors.grey[800],
+      //       ),
+      //       SizedBox(
+      //         height: MediaQuery.of(context).size.height * 0.009,
+      //       ),
+      //       Text(
+      //         'Profile',
+      //         style: TextStyle(
+      //             color: Color.fromRGBO(0, 0, 0, 0.8),
+      //             fontSize: 12,
+      //             fontWeight: FontWeight.w400),
+      //       )
+      //     ],
+      //   ),
+      // ),
     );
   }
 

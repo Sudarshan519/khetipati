@@ -91,113 +91,113 @@ class _PaymentState extends State<Payment> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNav(
-        context,
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/icons/home.png',
-              color: AppColors.darkgrey,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
-            ),
-            Text(
-              'Home',
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.8),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400),
-            )
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/icons/navorder.png',
-              color: AppColors.darkgrey,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
-            ),
-            Text(
-              'Order',
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.8),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400),
-            )
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/icons/notification.png',
-              color: AppColors.darkgrey,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
-            ),
-            Text(
-              'Notification',
-              style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.8),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400),
-            )
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/icons/userselected.png',
-              color: AppColors.mainGreen,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
-            ),
-            Image.asset('assets/icons/dot.png')
-            // Text(
-            //   'Profile',
-            //   style: TextStyle(
-            //       color: Color.fromRGBO(0, 0, 0, 0.8),
-            //       fontSize: 12,
-            //       fontWeight: FontWeight.w400),
-            // )
-          ],
-        ),
-      ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Cart()),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.only(top: 20.0),
-          child: Container(
-            // padding: EdgeInsets.only(top: 20),
-            width: 68,
-            height: 68,
-            decoration: BoxDecoration(
-                color: AppColors.mainGrey,
-                border: Border.all(width: 5, color: AppColors.mainGreen),
-                borderRadius: BorderRadius.circular(40)),
-            child: Icon(
-              Icons.shopping_cart_outlined,
-              color: Color.fromRGBO(0, 0, 0, 0.5),
-              size: 30,
-            ),
-          ),
-        ),
-      ),
+      // bottomNavigationBar: BottomNav(
+      //   context,
+      //   Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       Image.asset(
+      //         'assets/icons/home.png',
+      //         color: AppColors.darkgrey,
+      //       ),
+      //       SizedBox(
+      //         height: MediaQuery.of(context).size.height * 0.009,
+      //       ),
+      //       Text(
+      //         'Home',
+      //         style: TextStyle(
+      //             color: Color.fromRGBO(0, 0, 0, 0.8),
+      //             fontSize: 12,
+      //             fontWeight: FontWeight.w400),
+      //       )
+      //     ],
+      //   ),
+      //   Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       Image.asset(
+      //         'assets/icons/navorder.png',
+      //         color: AppColors.darkgrey,
+      //       ),
+      //       SizedBox(
+      //         height: MediaQuery.of(context).size.height * 0.009,
+      //       ),
+      //       Text(
+      //         'Order',
+      //         style: TextStyle(
+      //             color: Color.fromRGBO(0, 0, 0, 0.8),
+      //             fontSize: 12,
+      //             fontWeight: FontWeight.w400),
+      //       )
+      //     ],
+      //   ),
+      //   Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       Image.asset(
+      //         'assets/icons/notification.png',
+      //         color: AppColors.darkgrey,
+      //       ),
+      //       SizedBox(
+      //         height: MediaQuery.of(context).size.height * 0.009,
+      //       ),
+      //       Text(
+      //         'Notification',
+      //         style: TextStyle(
+      //             color: Color.fromRGBO(0, 0, 0, 0.8),
+      //             fontSize: 12,
+      //             fontWeight: FontWeight.w400),
+      //       )
+      //     ],
+      //   ),
+      //   Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       Image.asset(
+      //         'assets/icons/userselected.png',
+      //         color: AppColors.mainGreen,
+      //       ),
+      //       SizedBox(
+      //         height: MediaQuery.of(context).size.height * 0.009,
+      //       ),
+      //       Image.asset('assets/icons/dot.png')
+      //       // Text(
+      //       //   'Profile',
+      //       //   style: TextStyle(
+      //       //       color: Color.fromRGBO(0, 0, 0, 0.8),
+      //       //       fontSize: 12,
+      //       //       fontWeight: FontWeight.w400),
+      //       // )
+      //     ],
+      //   ),
+      // ),
+      // floatingActionButtonLocation:
+      //     FloatingActionButtonLocation.miniCenterDocked,
+      // floatingActionButton: InkWell(
+      //   onTap: () {
+      //     Navigator.push(
+      //       context,
+      //       MaterialPageRoute(builder: (context) => Cart()),
+      //     );
+      //   },
+      //   child: Padding(
+      //     padding: const EdgeInsets.only(top: 20.0),
+      //     child: Container(
+      //       // padding: EdgeInsets.only(top: 20),
+      //       width: 68,
+      //       height: 68,
+      //       decoration: BoxDecoration(
+      //           color: AppColors.mainGrey,
+      //           border: Border.all(width: 5, color: AppColors.mainGreen),
+      //           borderRadius: BorderRadius.circular(40)),
+      //       child: Icon(
+      //         Icons.shopping_cart_outlined,
+      //         color: Color.fromRGBO(0, 0, 0, 0.5),
+      //         size: 30,
+      //       ),
+      //     ),
+      //   ),
+      // ),
     );
   }
 

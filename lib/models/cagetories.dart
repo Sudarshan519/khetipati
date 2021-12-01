@@ -4,6 +4,36 @@
 
 import 'dart:convert';
 
+CategoryrResp categoryrRespFromJson(String str) =>
+    CategoryrResp.fromJson(json.decode(str));
+
+String categoryrRespToJson(CategoryrResp data) => json.encode(data.toJson());
+
+class CategoryrResp {
+  CategoryrResp({
+    required this.status,
+    required this.message,
+    required this.data,
+  });
+
+  String status;
+  String message;
+  List<Category> data;
+
+  factory CategoryrResp.fromJson(Map<String, dynamic> json) => CategoryrResp(
+        status: json["status"],
+        message: json["message"],
+        data:
+            List<Category>.from(json["data"].map((x) => Category.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "status": status,
+        "message": message,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+      };
+}
+
 Category categoryFromJson(String str) => Category.fromJson(json.decode(str));
 
 String categoryToJson(Category data) => json.encode(data.toJson());
@@ -31,7 +61,7 @@ class Category {
   dynamic metaDescription;
   String logoUrl;
   String bannerUrl;
-  DateTime createdAt;
+  String createdAt;
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
         id: json["id"],
@@ -43,7 +73,7 @@ class Category {
         metaDescription: json["meta_description"] ?? "",
         logoUrl: json["logo_url"] ?? "",
         bannerUrl: json["banner_url"] ?? "",
-        createdAt: DateTime.parse(json["created_at"] ?? ""),
+        createdAt: (json["created_at"] ?? ""),
       );
 
   Map<String, dynamic> toJson() => {
@@ -56,7 +86,7 @@ class Category {
         "meta_description": metaDescription,
         "logo_url": logoUrl,
         "banner_url": bannerUrl,
-        "created_at": createdAt.toIso8601String(),
+        "created_at": createdAt,
       };
 }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 
@@ -82,24 +83,52 @@ class _CarouselState extends State<Carousel> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "30% OFF",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.green[800]),
-                      ),
+                      RichText(
+                          text: TextSpan(
+                              style: GoogleFonts.roboto(
+                                  textStyle: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.green[800])),
+                              children: [
+                            TextSpan(
+                                text: "30% ",
+                                style: GoogleFonts.roboto(
+                                    textStyle: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.green[800]))),
+                            TextSpan(
+                              text: "off",
+                            )
+                          ])),
+                      // Text(
+                      //   "30% OFF",
+                      //   style: GoogleFonts.roboto(
+                      //       textStyle: TextStyle(
+                      //           fontSize: 15,
+                      //           fontWeight: FontWeight.w700,
+                      //           color: Colors.green[800])),
+                      // ),
                       Text(
                         "on all veggies",
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.green[800]),
+                        style: GoogleFonts.roboto(
+                            textStyle: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.green[800])),
                       ),
                       SizedBox(
                         height: getHeight(10),
                       ),
-                      Text('Grab all the offer \nbefore its gone')
+                      Text(
+                        'Grab all the offer \nbefore its gone',
+                        style: GoogleFonts.archivo(
+                            textStyle: TextStyle(
+                                fontSize: getFont(12),
+                                fontWeight: FontWeight.w400,
+                                color: Colors.grey.shade700)),
+                      )
                     ],
                   ),
                 ),

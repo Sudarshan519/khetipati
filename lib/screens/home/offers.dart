@@ -20,7 +20,7 @@ class _OffersState extends State<Offers> {
         backgroundColor: AppColors.mainGreen,
         elevation: 0,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Offers',
           style: TextStyle(
               fontSize: 22,
@@ -28,13 +28,8 @@ class _OffersState extends State<Offers> {
               fontWeight: FontWeight.w700),
         ),
         leading: IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Home()),
-              );
-            },
-            icon: Icon(Icons.arrow_back_ios_rounded,
+            onPressed: () {},
+            icon: const Icon(Icons.arrow_back_ios_rounded,
                 size: 20, color: AppColors.textGreen)),
       ),
       body: SingleChildScrollView(

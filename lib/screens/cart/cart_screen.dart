@@ -86,7 +86,7 @@ class CartScreen extends StatelessWidget {
                   ),
                   buildRecommendedItemsCard(),
                   SizedBox(
-                    width: getWidth(
+                    height: getWidth(
                       40,
                     ),
                   )
@@ -181,7 +181,7 @@ class CartProductCard extends StatelessWidget {
                 top: getHeight(-18),
                 child: IconButton(
                     onPressed: () {
-                      controller.removeFromCart(controller.products[index]);
+                      controller.removeFromCart(product);
                     },
                     icon: Icon(
                       Icons.close,
@@ -303,7 +303,6 @@ class CartTotal extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(10)),
         child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(

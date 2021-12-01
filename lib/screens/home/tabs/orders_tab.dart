@@ -14,6 +14,7 @@ class OrderTab extends StatelessWidget {
   OrderTab({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    controller.getOrder();
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -73,51 +74,48 @@ class OrderTab extends StatelessWidget {
           color: Colors.white, borderRadius: BorderRadius.circular(10)),
       child: Column(
         children: [
-          SizedBox(
-            width: double.infinity,
-            child: TabBar(
-              onTap: (i) {
-                print(i);
-              },
-              tabs: [
-                Tab(
-                  child: Text(
-                    'All orders',
-                    style: TextStyle(
-                        fontSize: getFont(14),
-                        color: Colors.green[900],
-                        fontWeight: FontWeight.w500),
-                  ),
+          TabBar(
+            onTap: (i) {
+              print(i);
+            },
+            tabs: [
+              Tab(
+                child: Text(
+                  'All orders',
+                  style: TextStyle(
+                      fontSize: getFont(14),
+                      color: Colors.green[900],
+                      fontWeight: FontWeight.w500),
                 ),
-                Tab(
-                  child: Text(
-                    'Delivered',
-                    style: TextStyle(
-                        fontSize: getFont(14),
-                        color: Colors.green[900],
-                        fontWeight: FontWeight.w500),
-                  ),
+              ),
+              Tab(
+                child: Text(
+                  'Delivered',
+                  style: TextStyle(
+                      fontSize: getFont(14),
+                      color: Colors.green[900],
+                      fontWeight: FontWeight.w500),
                 ),
-                Tab(
-                  child: Text(
-                    'Pending',
-                    style: TextStyle(
-                        fontSize: getFont(14),
-                        color: Colors.green[900],
-                        fontWeight: FontWeight.w500),
-                  ),
+              ),
+              Tab(
+                child: Text(
+                  'Pending',
+                  style: TextStyle(
+                      fontSize: getFont(14),
+                      color: Colors.green[900],
+                      fontWeight: FontWeight.w500),
                 ),
-                Tab(
-                  child: Text(
-                    'Process',
-                    style: TextStyle(
-                        fontSize: getFont(14),
-                        color: Colors.green[900],
-                        fontWeight: FontWeight.w500),
-                  ),
-                )
-              ],
-            ),
+              ),
+              Tab(
+                child: Text(
+                  'Process',
+                  style: TextStyle(
+                      fontSize: getFont(14),
+                      color: Colors.green[900],
+                      fontWeight: FontWeight.w500),
+                ),
+              )
+            ],
           ),
           Container(
               margin: EdgeInsets.zero,

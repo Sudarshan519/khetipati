@@ -12,7 +12,7 @@ import 'package:khetipati/screens/profile/editprofile.dart';
 import 'package:khetipati/screens/profile/payment.dart';
 import 'package:khetipati/screens/profile/vouchers.dart';
 import 'package:khetipati/screens/profile/wishlist.dart';
-import 'package:khetipati/utils/storage/auth_storage.dart';
+import 'package:khetipati/utils/storage/app_storage.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -171,7 +171,7 @@ class _ProfileState extends State<Profile> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Orders()),
+                    MaterialPageRoute(builder: (context) => OrderTab()),
                   );
                 },
                 child:
@@ -385,7 +385,7 @@ class _ProfileState extends State<Profile> {
           SizedBox(height: getHeight(10)),
           InkWell(
             onTap: () {
-              AuthStorage.reset();
+              AppStorage.reset();
               Get.to(() => LoginPage());
             },
             child: Row(

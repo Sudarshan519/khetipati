@@ -58,7 +58,7 @@ class CustomNav extends StatelessWidget {
                 'assets/icons/userselected.png'
               ],
               isSelected: controller.selectedIndex == 3 ? true : false,
-              label: 'Home',
+              label: 'Profile',
             ),
           ]),
         ),

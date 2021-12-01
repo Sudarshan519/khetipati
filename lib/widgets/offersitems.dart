@@ -7,78 +7,98 @@ Widget offerProductCard(Product item) {
   return Container(
     margin: EdgeInsets.only(
         left: getWidth(20), right: getWidth(20), bottom: getWidth(20)),
-    height: getHeight(100),
-    width: getWidth(356),
+    height: 100,
+    width: double.infinity,
     decoration: BoxDecoration(
         color: Colors.white, borderRadius: BorderRadius.circular(10)),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
-          height: getHeight(100),
-          width: getWidth(116),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
-            child: Image.network(
-              item.featureImage!.originalImage.toString(),
-              // fit: BoxFit.fill,
-              width: getWidth(116),
-              height: getHeight(100),
-              // fit: BoxFit.fill,
-            ),
-          ),
-        ),
+            height: 100,
+            width: getWidth(116),
+            child: Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      bottomLeft: Radius.circular(10)),
+                  child: Image.network(
+                    item.featureImage!.originalImage.toString(),
+                    // fit: BoxFit.fill,
+                    width: getWidth(116),
+                    height: 100,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                if (item.stockQty == 0)
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          bottomLeft: Radius.circular(10)),
+                      color: Colors.grey.shade800.withOpacity(.8),
+                    ),
+                    height: getHeight(100),
+                    width: getWidth(116),
+                    alignment: Alignment.center,
+                    child: const Text("Out of Stock",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w600)),
+                  )
+              ],
+            )),
         SizedBox(
           width: getWidth(8),
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              '10% off on apples',
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontSize: getFont(14)),
-            ),
-            Text(
-              '100 kcal',
-              style: TextStyle(
-                  fontWeight: FontWeight.normal, fontSize: getFont(10)),
-            ),
-            SizedBox(height: getHeight(10)),
-            Row(
-              children: [
-                Text(
-                  'Rs. 300',
-                  style: TextStyle(
-                    decoration: TextDecoration.lineThrough,
-                    fontSize: getFont(10),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  'Rs. 250',
-                  style: TextStyle(
-                      fontSize: getFont(15),
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.textGreen),
-                ),
-              ],
-            ),
-          ],
-        ),
-        // SizedBox(
-        //   width: getWidth(62),
-        // ),
-        const Spacer(),
         Padding(
-          padding: EdgeInsets.only(right: getWidth(18)),
+          padding: const EdgeInsets.symmetric(vertical: 12.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '10% off on apples',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, fontSize: getFont(14)),
+              ),
+              Text(
+                '100 kcal',
+                style: TextStyle(
+                    fontWeight: FontWeight.normal, fontSize: getFont(10)),
+              ),
+              SizedBox(height: getHeight(10)),
+              Row(
+                children: [
+                  Text(
+                    'Rs. 300',
+                    style: TextStyle(
+                      decoration: TextDecoration.lineThrough,
+                      fontSize: getFont(10),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Rs. 250',
+                    style: TextStyle(
+                        fontSize: getFont(15),
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.textGreen),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        const Spacer(),
+        Padding(
+          padding: EdgeInsets.only(
+              right: getWidth(12), left: 12, top: 12, bottom: 12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
@@ -92,9 +112,6 @@ Widget offerProductCard(Product item) {
                     style: TextStyle(fontSize: getFont(10)),
                   )
                 ],
-              ),
-              SizedBox(
-                height: getHeight(31),
               ),
               Container(
                 height: getHeight(30),

@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/product.dart';
+import 'package:khetipati/screens/home/tabs/home_tab.dart';
 import 'package:khetipati/widgets/product_card.dart';
-import '../home/home.dart';
 
-class Details extends StatefulWidget {
-  const Details({Key? key, required this.product}) : super(key: key);
+class DetailsScreen extends StatelessWidget {
+  DetailsScreen({Key? key, required this.product}) : super(key: key);
   final Product product;
-  @override
-  _DetailsState createState() => _DetailsState();
-}
 
-class _DetailsState extends State<Details> {
   final homeController = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
@@ -31,7 +24,7 @@ class _DetailsState extends State<Details> {
           elevation: 0,
           centerTitle: true,
           title: Text(
-            widget.product.title!,
+            product.title!,
             style: const TextStyle(
                 fontSize: 22,
                 color: AppColors.textGreen,
@@ -41,10 +34,10 @@ class _DetailsState extends State<Details> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Home()),
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
                 );
               },
-              icon: Icon(Icons.arrow_back_ios_rounded,
+              icon: const Icon(Icons.arrow_back_ios_rounded,
                   size: 20, color: AppColors.textGreen)),
         ),
         body: SingleChildScrollView(
@@ -81,7 +74,7 @@ class _DetailsState extends State<Details> {
                                   width: 282,
                                   // color: AppColors.mainGrey,
                                   child: Image.network(
-                                    widget.product.featureImage!.originalImage!,
+                                    product.featureImage!.originalImage!,
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -94,13 +87,13 @@ class _DetailsState extends State<Details> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      widget.product.title!,
+                                      product.title!,
                                       style: TextStyle(
                                           fontSize: 25,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
-                                      'Rs. ${widget.product.productPrice}/kg',
+                                      'Rs. ${product.productPrice}/kg',
                                       style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
@@ -210,8 +203,8 @@ class _DetailsState extends State<Details> {
                                             top: 25, left: 19, right: 19),
                                         child: Text(
                                           // 'The fruit is very rich in vitamin and it lorem Ipsum dolor sit amet. Lorem Ipsum dolor sit amet. lorem dolor.Lorem Ipsum dolor sit amet. Lorem Ipsum dolor sit amet. lorem dolor.Lorem Ipsum dolor sit ame...Lorem Ipsum dolor sit amet. Lorem Ipsum dolor sit amet. \n\n* lorem dolor.Lorem Ipsum dolor sit amet. \n* Lorem Ipsum dolor sit amet. lorem dolor.\n* Lorem Ipsum dolor sit ame... ',
-                                          widget.product.description.toString(),
-                                          style: TextStyle(
+                                          product.description.toString(),
+                                          style: const TextStyle(
                                               fontSize: 13,
                                               color: Colors.black,
                                               fontWeight: FontWeight.w400),
@@ -220,7 +213,7 @@ class _DetailsState extends State<Details> {
                                       ListView(
                                         children: [
                                           _Reviews(),
-                                          Divider(),
+                                          const Divider(),
                                           _Reviews()
                                         ],
                                       )
@@ -232,7 +225,7 @@ class _DetailsState extends State<Details> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Padding(
@@ -265,7 +258,7 @@ class _DetailsState extends State<Details> {
                       ),
                       Container(
                         margin: const EdgeInsets.symmetric(vertical: 20.0),
-                        height: 250.0,
+                        height: 191.0,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: [
@@ -294,7 +287,7 @@ class _DetailsState extends State<Details> {
                   padding: const EdgeInsets.only(left: 20),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Text(
                         'Total Amount',
                         style: TextStyle(

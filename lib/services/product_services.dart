@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:khetipati/models/cagetories.dart';
 import 'package:khetipati/models/product.dart';
 import 'package:khetipati/utils/snackbar.dart';
-import 'package:khetipati/utils/storage/auth_storage.dart';
 import 'package:http/http.dart' as http;
 
 class ProductApi extends GetConnect {
@@ -15,8 +14,7 @@ class ProductApi extends GetConnect {
   static const categoryapi = base + "categoryapi/";
 
   ///getall categories
-  getAllCategories() async {
-    String token = AuthStorage.token;
+  getAllCategories(String token) async {
     List<Category> categorieslist = [];
     var headers = {
       'Content-Type': 'application/json',
@@ -41,8 +39,7 @@ class ProductApi extends GetConnect {
   }
 
   ///get product by category
-  getCategorybyid(int id) async {
-    String token = AuthStorage.token;
+  getCategorybyid(int id, String token) async {
     print(token);
     List<Product> productlist = [];
     var headers = {
@@ -77,8 +74,7 @@ class ProductApi extends GetConnect {
   }
 
   //getAllProduct
-  getAllProducts() async {
-    String token = AuthStorage.token;
+  getAllProducts(String token) async {
     var headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

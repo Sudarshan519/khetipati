@@ -1,10 +1,7 @@
-import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:khetipati/screens/home/home.dart';
+import 'package:khetipati/screens/home/tabs/home_tab.dart';
 import 'package:khetipati/services/user_services.dart';
-import 'package:khetipati/utils/storage/auth_storage.dart';
+import 'package:khetipati/utils/snackbar.dart';
 
 import '../models/user.dart';
 
@@ -13,18 +10,19 @@ class AuthController extends GetxController {
   var authState = AuthState.UnAuthenticated.obs;
   var token = "".obs;
   var user = User().obs;
-  loginWithEmail() async {
+  loginWithEmail({required String email, required String password}) async {
     authState.value = AuthState.Authenticating;
-    AuthStorage.reset();
 
-    List user = await userrepo.loginWithEmailandPassword();
+    List user = await userrepo.loginWithEmailandPassword(email, password);
 
     if (user[0] != null) {
-      AuthStorage.setToken(user[1]);
-      // print(user[0]);
-      AuthStorage.setUser(user[0]);
+      token.value = user[1];
       authState.value = AuthState.Authenticated;
-      Get.to(() => Home());
+      print(token.value);
+      Get.to(() => HomeScreen());
+    } else {
+      getSnackbar(message: "Error signing in");
+      authState.value = AuthState.UnAuthenticated;
     }
   }
 }

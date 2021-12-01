@@ -27,7 +27,7 @@ class SplashScreen extends StatelessWidget {
       backgroundColor: AppColors.mainGreen,
       body: Container(
         alignment: Alignment.center,
-        child: Image.asset('assets/images/applogo.png',
+        child: Image.asset('assets/images/applogo1.png',
             width: MediaQuery.of(context).size.width / 1.5,
             fit: BoxFit.scaleDown),
       ),

@@ -1,6 +1,6 @@
 import 'package:get_storage/get_storage.dart';
 
-import 'auth_storage.dart';
+import 'app_storage.dart';
 
 class BoxStorage {
   static init() async {

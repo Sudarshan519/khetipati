@@ -1,9 +1,5 @@
-import 'dart:convert';
-
 import 'package:get/get.dart';
-import 'package:khetipati/models/product.dart';
 import 'package:khetipati/models/user.dart';
-import 'package:khetipati/utils/storage/auth_storage.dart';
 
 class UserToken {
   String token = "";
@@ -45,8 +41,8 @@ class UserRepo extends GetConnect {
   }
 
   ///login
-  loginWithEmailandPassword() async {
-    var body = {"email": "sudarshan@gmail.com", "password": "testing1234"};
+  loginWithEmailandPassword(String email, String password) async {
+    var body = {"email": email, "password": password};
 
     var response = await post("http://192.168.10.149:8000/userapi/login", body);
     var user = response.body;
@@ -60,8 +56,7 @@ class UserRepo extends GetConnect {
   }
 
   ///get user info
-  getuserInfo() async {
-    var token = AuthStorage.token;
+  getuserInfo(String token) async {
     var headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

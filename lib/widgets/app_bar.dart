@@ -17,9 +17,7 @@ buildAppBar(appbarTitle) {
           fontWeight: FontWeight.w700),
     ),
     leading: IconButton(
-        onPressed: () {
-          // Navigator.pop(context);
-        },
+        onPressed: () {},
         icon: Icon(Icons.arrow_back_ios_rounded,
             size: getFont(20), color: AppColors.textGreen)),
   );

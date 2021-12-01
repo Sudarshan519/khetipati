@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/constant/constant.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/cart_controller.dart';
 
@@ -19,8 +18,8 @@ import 'package:khetipati/widgets/product_card.dart';
 
 List<Widget> tabs = [
   HomeTab(),
-  const Orders(),
-  const notifications(),
+  OrderTab(),
+  NotificationsTab(),
   const Profile(),
 ];
 
@@ -30,6 +29,7 @@ class HomeScreen extends StatelessWidget {
   final cartController = Get.put(CartController());
   @override
   Widget build(BuildContext context) {
+    controller.getOrder();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.mainGreen,
@@ -37,7 +37,6 @@ class HomeScreen extends StatelessWidget {
       body: buildTab(),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
-      //floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       floatingActionButton: InkWell(
         onTap: () {
           Get.to(() => CartScreen());
@@ -70,7 +69,6 @@ class HomeTab extends StatelessWidget {
   final HomeController controller = Get.find();
   @override
   Widget build(BuildContext context) {
-    var item;
     return SingleChildScrollView(
       child: Column(children: [
         buildProfileCard(),
@@ -78,17 +76,26 @@ class HomeTab extends StatelessWidget {
             decoration: const BoxDecoration(
               color: Color.fromRGBO(234, 238, 238, 1),
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
             ),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               const Carousel(),
               buildTitleText('Categories'),
               buildCategoriesCard(),
+              SizedBox(
+                height: getHeight(22),
+              ),
               buildTitleText('Popular Items'),
               buildPopularItemsCard(),
+              SizedBox(
+                height: getHeight(22),
+              ),
               buildTitleText('Recommended Items'),
               buildPopularItemsCard(),
+              SizedBox(
+                height: getHeight(22),
+              ),
               buildTitleText('Special Offers'),
               buildSpecialOffers(),
               SizedBox(height: getHeight(40))
@@ -101,19 +108,15 @@ class HomeTab extends StatelessWidget {
     return Container(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
-          // vertical: 10,
         ),
         height: SizeConfigs.screenHeight * 0.2,
-        // decoration: const BoxDecoration(
-        //   color: AppColors.mainGreen,
-        // ),
         child: SafeArea(
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Image.asset(
               'assets/images/pic.png',
-              height: 70,
-              width: 60,
+              height: getHeight(69),
+              width: getWidth(61),
             ),
             const SizedBox(
               width: 10,
@@ -127,14 +130,14 @@ class HomeTab extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 16,
                       color: AppColors.textGreen,
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.w400),
                 ),
                 Text(
-                  "Sudarshan", // user.firstname!.capitalizeFirst.toString(),
+                  "Howard ",
                   style: TextStyle(
                       fontSize: 22,
                       color: AppColors.textGreen,
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.w700),
                 )
               ],
             ),
@@ -152,82 +155,96 @@ class HomeTab extends StatelessWidget {
   }
 
   buildCategoriesCard() {
-    return Obx(() => controller.categories.isEmpty
-        ? const Center(child: Text("Empty"))
-        : SizedBox(
-            height: getHeight(62),
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: controller.categories.length,
-                itemBuilder: (_, int i) {
-                  Category categories = controller.categories[i];
-                  return Container(
-                    height: getHeight(62),
-                    width: getWidth(149),
-                    margin: EdgeInsets.only(left: getWidth(20)),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: getWidth(12), right: getWidth(10)),
-                          child: SizedBox(
-                            height: getHeight(40),
-                            width: getWidth(40),
-                            // color: AppColors.mainGrey,
-                            child: Image.network(categories.logoUrl.toString()),
-                          ),
+    return Obx(() => !controller.isloading.value
+        ? const Center(
+            child: CircularProgressIndicator(
+            backgroundColor: AppColors.mainGreen,
+          ))
+        : controller.categories.isEmpty
+            ? SizedBox(
+                height: getHeight(62),
+                width: getWidth(149),
+                child: const Center(child: Text("Empty")))
+            : SizedBox(
+                height: getHeight(62),
+                child: ListView.builder(
+                    padding: EdgeInsets.only(left: getWidth(10)),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: controller.categories.length,
+                    itemBuilder: (_, int i) {
+                      Category categories = controller.categories[i];
+                      return Container(
+                        height: getHeight(62),
+                        width: getWidth(149),
+                        margin: EdgeInsets.only(left: getWidth(10)),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: getWidth(8), right: getWidth(8)),
+                              child: Image.network(
+                                categories.logoUrl.toString(),
+                                height: getHeight(62),
+                                width: getHeight(62),
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    categories.title.toString(),
+                                    style: TextStyle(
+                                        fontSize: getFont(15),
+                                        fontWeight: FontWeight.w400,
+                                        color: AppColors.textGreen),
+                                  ),
+                                  Text(
+                                    "120 items",
+                                    style: TextStyle(
+                                        fontSize: getFont(10),
+                                        fontWeight: FontWeight.normal,
+                                        color: AppColors.textblack),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
                         ),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                categories.title.toString(),
-                                style: TextStyle(
-                                    fontSize: getFont(15),
-                                    fontWeight: FontWeight.normal,
-                                    color: AppColors.textGreen),
-                              ),
-                              Text(
-                                "120 items",
-                                style: TextStyle(
-                                    fontSize: getFont(10),
-                                    fontWeight: FontWeight.normal,
-                                    color: AppColors.textblack),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-                }),
-          ));
+                      );
+                    }),
+              ));
   }
 
   buildPopularItemsCard() {
-    return Obx(() => controller.products.isEmpty
-        ? const Center(child: Text("Empty"))
-        : SizedBox(
-            height: getHeight(226),
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: controller.products.length,
-                itemBuilder: (_, int i) {
-                  return productCard(controller.products[i]);
-                }),
-          ));
+    return Obx(() => controller.isproductloading.value
+        ? const Center(
+            child: CircularProgressIndicator(
+            backgroundColor: AppColors.mainGreen,
+          ))
+        : controller.products.isEmpty
+            ? const Center(child: Text("Empty"))
+            : SizedBox(
+                height: 191,
+                child: ListView.builder(
+                    padding: const EdgeInsets.only(left: 8),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: controller.products.length,
+                    itemBuilder: (_, int i) {
+                      return productCard(controller.products[i]);
+                    }),
+              ));
   }
 
   buildTitleText(title) {
     return Padding(
       padding: EdgeInsets.only(
-          left: getWidth(20), top: getWidth(20), bottom: getWidth(20)),
+          left: getWidth(20), top: getWidth(18), bottom: getWidth(20)),
       child: Text(
         title,
         style: TextStyle(

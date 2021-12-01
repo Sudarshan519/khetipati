@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/controllers/auth.dart';
+import 'package:khetipati/controllers/auth_controller.dart';
 import 'package:khetipati/screens/home/home.dart';
 import 'package:khetipati/utils/validators.dart';
 import 'package:khetipati/widgets/clipper.dart';
 import 'register.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends GetView<AuthController> {
   LoginPage({Key? key}) : super(key: key);
   final password = TextEditingController();
   final email = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  final authController = Get.put(AuthController(), permanent: true);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +53,7 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Login',
                       style: TextStyle(
                           fontSize: 30,
@@ -63,14 +62,14 @@ class LoginPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     InputField(
-                      email: email,
+                      controller: email,
                       icon: Icons.email,
                       validator: (email) => validateEmail(string: email),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                     InputField(
                       icon: Icons.password,
-                      email: password,
+                      controller: password,
                       validator: (pass) => validatePassword(string: pass),
                     ),
                     Row(
@@ -95,25 +94,15 @@ class LoginPage extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Get.to(Home());
-                          // if (_formKey.currentState!.validate()) {
-                          // print("loggin in");
-                          authController.loginWithEmail();
-                          if (authController.authState.value ==
-                              AuthState.Authenticated) {
-                            print("navigating to home");
-                            Get.to(Home());
-                          } else {}
-                          // }
-                          // if (_formKey.currentState!.validate()) {
-                          //   Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(builder: (context) => Home()),
-                          //   );
-                          // }
+                          // if (_formKey.currentState!.validate())
+                          {
+                            controller.loginWithEmail(
+                                email: "admin@gmail.com",
+                                password: "testing1234");
+                          }
                         },
                         child: Obx(
-                          () => authController.authState.value ==
+                          () => controller.authState.value ==
                                   AuthState.Authenticating
                               ? const CircularProgressIndicator()
                               : const Text(
@@ -157,7 +146,7 @@ class LoginPage extends StatelessWidget {
                                     builder: (context) => RegisterPage()),
                               );
                             },
-                            child: Text(
+                            child: const Text(
                               'Sign up',
                               style: TextStyle(
                                   fontSize: 12,
@@ -181,17 +170,17 @@ class LoginPage extends StatelessWidget {
 class InputField extends StatelessWidget {
   const InputField({
     Key? key,
-    required this.email,
+    required this.controller,
     required this.validator,
     required this.icon,
   }) : super(key: key);
   final IconData icon;
-  final TextEditingController email;
+  final TextEditingController controller;
   final validator;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: email,
+      controller: controller,
       validator: validator,
       decoration: InputDecoration(
           prefixIcon: Icon(icon, size: 20),

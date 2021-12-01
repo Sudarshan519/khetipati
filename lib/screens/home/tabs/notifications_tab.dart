@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
+import 'package:khetipati/screens/cart/cart.dart';
+import 'package:khetipati/screens/home/home.dart';
 import 'package:khetipati/screens/notifications/widgets/notificationcard.dart';
 import 'package:khetipati/widgets/app_bar.dart';
+import 'package:khetipati/widgets/bottom_nav.dart';
 
-class NotificationsTab extends StatelessWidget {
+class notifications extends StatefulWidget {
+  const notifications({Key? key}) : super(key: key);
+
+  @override
+  _notificationsState createState() => _notificationsState();
+}
+
+class _notificationsState extends State<notifications> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.mainGreen,
-      child: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: AppColors.mainGreen,
+      appBar: buildAppBar('Notifications'),
+      body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-            buildAppBar('Notifications'),
             Container(
               width: MediaQuery.of(context).size.width,
               // height: 815,
