@@ -1,18 +1,16 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/LoginRegisterPage/login.dart';
 import 'package:khetipati/screens/orders/orders.dart';
-import 'package:khetipati/screens/profile/reviews.dart';
-import 'package:khetipati/screens/profile/shipping_address.dart';
 import 'package:khetipati/screens/profile/editprofile.dart';
 import 'package:khetipati/screens/profile/payment.dart';
+import 'package:khetipati/screens/profile/reviews.dart';
 import 'package:khetipati/screens/profile/vouchers.dart';
 import 'package:khetipati/screens/profile/wishlist.dart';
-import 'package:khetipati/utils/storage/app_storage.dart';
+
+import 'shipping_address.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -161,7 +159,7 @@ class _ProfileState extends State<Profile> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Wishlist()),
+                    MaterialPageRoute(builder: (context) => Wishlist()),
                   );
                 },
                 child:
@@ -171,7 +169,7 @@ class _ProfileState extends State<Profile> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => OrderTab()),
+                    MaterialPageRoute(builder: (context) => const Orders()),
                   );
                 },
                 child:
@@ -242,7 +240,7 @@ class _ProfileState extends State<Profile> {
       margin: EdgeInsets.only(top: getHeight(22)),
       padding: EdgeInsets.only(top: getHeight(18)),
       width: MediaQuery.of(context).size.width,
-      height: getHeight(271),
+      //height: getHeight(271),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -277,6 +275,9 @@ class _ProfileState extends State<Profile> {
             height: getHeight(29),
           ),
           buildPersonalInfo('Email', "sudarshan@gmail.com"),
+          SizedBox(
+            height: getHeight(20),
+          ),
         ],
       ),
     );
@@ -349,7 +350,7 @@ class _ProfileState extends State<Profile> {
     return Container(
       margin: EdgeInsets.only(top: getHeight(22)),
       width: MediaQuery.of(context).size.width,
-      height: getHeight(111),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -358,6 +359,7 @@ class _ProfileState extends State<Profile> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          SizedBox(height: getHeight(10)),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -366,7 +368,7 @@ class _ProfileState extends State<Profile> {
               ),
               Image.asset(
                 'assets/icons/switchacc.png',
-                height: getHeight(20),
+                height: 17,
               ),
               SizedBox(
                 width: getWidth(20),
@@ -385,7 +387,6 @@ class _ProfileState extends State<Profile> {
           SizedBox(height: getHeight(10)),
           InkWell(
             onTap: () {
-              AppStorage.reset();
               Get.to(() => LoginPage());
             },
             child: Row(
@@ -394,9 +395,9 @@ class _ProfileState extends State<Profile> {
                 SizedBox(
                   width: getWidth(20),
                 ),
-                Icon(
+                const Icon(
                   Icons.logout_outlined,
-                  size: getWidth(20),
+                  size: 20,
                   color: const Color.fromRGBO(216, 47, 47, 1),
                 ),
                 SizedBox(
@@ -410,6 +411,7 @@ class _ProfileState extends State<Profile> {
               ],
             ),
           ),
+          SizedBox(height: getHeight(10)),
         ],
       ),
     );

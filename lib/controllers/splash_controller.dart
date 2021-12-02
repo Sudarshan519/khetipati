@@ -3,6 +3,7 @@ import 'package:connectivity/connectivity.dart';
 
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:khetipati/screens/LoginRegisterPage/login.dart';
+import 'package:khetipati/screens/home/home.dart';
 import 'package:khetipati/widgets/modal/internet_connectivity.dart';
 
 class SplashController extends GetxController {
@@ -28,8 +29,8 @@ class SplashController extends GetxController {
 
   navigate() {
     Future.delayed(const Duration(seconds: 2), () {
-      Get.to(
-        () => LoginPage(),
+      Get.off(
+        () => HomeScreen(),
       );
       // if (token != "") {
       //   Get.to(

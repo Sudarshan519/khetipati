@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/product.dart';
-import 'package:khetipati/screens/home/tabs/home_tab.dart';
+import 'package:khetipati/screens/home/home.dart';
 import 'package:khetipati/widgets/product_card.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -24,7 +24,7 @@ class DetailsScreen extends StatelessWidget {
           elevation: 0,
           centerTitle: true,
           title: Text(
-            product.title!,
+            product.title,
             style: const TextStyle(
                 fontSize: 22,
                 color: AppColors.textGreen,
@@ -74,7 +74,7 @@ class DetailsScreen extends StatelessWidget {
                                   width: 282,
                                   // color: AppColors.mainGrey,
                                   child: Image.network(
-                                    product.featureImage!.originalImage!,
+                                    product.featureImage.originalImage,
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -87,14 +87,14 @@ class DetailsScreen extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      product.title!,
-                                      style: TextStyle(
+                                      product.title,
+                                      style: const TextStyle(
                                           fontSize: 25,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       'Rs. ${product.productPrice}/kg',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
                                           color: AppColors.textGreen),
@@ -130,13 +130,14 @@ class DetailsScreen extends StatelessWidget {
                                     ),
                                     Row(
                                       children: [
-                                        Icon(Icons.add),
+                                        const Icon(Icons.add),
                                         Container(
                                             height: 30,
                                             width: 30,
                                             color: Colors.grey[300],
-                                            child: Center(child: Text('1'))),
-                                        Icon(Icons.remove),
+                                            child:
+                                                const Center(child: Text('1'))),
+                                        const Icon(Icons.remove),
                                       ],
                                     ),
                                   ],

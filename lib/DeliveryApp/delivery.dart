@@ -5,7 +5,7 @@ import 'package:khetipati/DeliveryApp/DeliveryOrders.dart';
 import 'package:khetipati/DeliveryApp/MyEarnings.dart';
 import 'package:khetipati/DeliveryApp/deliveryEditProfile.dart';
 import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/screens/cart/cart.dart';
+import 'package:khetipati/screens/cart/cart_screen.dart';
 
 class Delivery extends StatefulWidget {
   const Delivery({Key? key}) : super(key: key);
@@ -334,7 +334,7 @@ class _DeliveryState extends State<Delivery> {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Cart()),
+            MaterialPageRoute(builder: (context) => CartScreen()),
           );
         },
         child: Padding(

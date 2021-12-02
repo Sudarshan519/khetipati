@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/screens/cart/cart.dart';
+import 'package:khetipati/screens/cart/cart_screen.dart';
 import 'home.dart';
 
 class Offers extends StatefulWidget {
@@ -35,41 +35,42 @@ class _OffersState extends State<Offers> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Container(
-            //   height: 100,
-            //   width: 414,
-            //   color: AppColors.mainGreen,
-            //   child: Row(
-            //     crossAxisAlignment: CrossAxisAlignment.center,
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Align(
-            //         alignment: Alignment.centerLeft,
-            //         child: IconButton(
-            //             onPressed: () {
-            //               Navigator.push(
-            //                 context,
-            //                 MaterialPageRoute(builder: (context) => Home()),
-            //               );
-            //             },
-            //             icon: Icon(
-            //               Icons.arrow_back_ios_new_outlined,
-            //               color: Colors.green[900],
-            //             )),
-            //       ),
-            //       Padding(
-            //         padding: const EdgeInsets.only(right: 225),
-            //         child: Text(
-            //           "Offers",
-            //           style: TextStyle(
-            //               fontSize: 20,
-            //               color: Colors.green[900],
-            //               fontWeight: FontWeight.bold),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
+            Container(
+              height: 100,
+              width: 414,
+              color: AppColors.mainGreen,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeScreen()),
+                          );
+                        },
+                        icon: Icon(
+                          Icons.arrow_back_ios_new_outlined,
+                          color: Colors.green[900],
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 225),
+                    child: Text(
+                      "Offers",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.green[900],
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Container(
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
@@ -103,13 +104,12 @@ class _OffersState extends State<Offers> {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Cart()),
+            MaterialPageRoute(builder: (context) => CartScreen()),
           );
         },
         child: Padding(
           padding: const EdgeInsets.only(top: 20.0),
           child: Container(
-            // padding: EdgeInsets.only(top: 20),
             width: 68,
             height: 68,
             decoration: BoxDecoration(
@@ -118,7 +118,7 @@ class _OffersState extends State<Offers> {
                 borderRadius: BorderRadius.circular(40)),
             child: Icon(
               Icons.shopping_cart_outlined,
-              color: Color.fromRGBO(0, 0, 0, 0.5),
+              color: const Color.fromRGBO(0, 0, 0, 0.5),
               size: 30,
             ),
           ),

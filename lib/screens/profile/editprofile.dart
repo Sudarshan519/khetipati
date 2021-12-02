@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
-import 'package:khetipati/screens/cart/cart.dart';
 import 'package:khetipati/screens/profile/profile.dart';
 import 'package:khetipati/widgets/text_field.dart';
 

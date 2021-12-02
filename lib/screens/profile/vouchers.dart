@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 
-class Vouchers extends StatefulWidget {
+class Vouchers extends StatelessWidget {
   const Vouchers({Key? key}) : super(key: key);
 
-  @override
-  _VouchersState createState() => _VouchersState();
-}
-
-class _VouchersState extends State<Vouchers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,7 +92,7 @@ class _VouchersState extends State<Vouchers> {
             Padding(
               padding: const EdgeInsets.only(right: 10, bottom: 10),
               child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.5,
+                width: SizeConfigs.screenWidth * 0.5,
                 child: Text(
                   'Use code voucher and  get 10% off on apples',
                   style: TextStyle(

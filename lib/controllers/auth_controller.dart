@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:khetipati/screens/home/tabs/home_tab.dart';
+import 'package:khetipati/screens/home/home.dart';
 import 'package:khetipati/services/user_services.dart';
 import 'package:khetipati/utils/snackbar.dart';
 

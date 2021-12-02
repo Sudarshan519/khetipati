@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:khetipati/constant/size_config.dart';
-import 'package:khetipati/screens/home/tabs/home_tab.dart';
+import 'package:khetipati/screens/home/home.dart';
 import 'login.dart';
 import 'package:khetipati/constant/colors.dart';
 
@@ -36,12 +36,12 @@ class RegisterPage extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => LoginPage()),
               );
             },
-            icon: Icon(Icons.arrow_back_ios_rounded,
+            icon: const Icon(Icons.arrow_back_ios_rounded,
                 size: 20, color: AppColors.textGreen)),
       ),
       body: SingleChildScrollView(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: AppColors.mainGrey,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30), topRight: Radius.circular(30)),

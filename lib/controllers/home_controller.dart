@@ -12,7 +12,7 @@ class HomeController extends GetxController {
   static HomeController instance = Get.find();
 
   ///index for tab
-  var index = 0.obs;
+  var index = 3.obs;
 
   get selectedIndex => index.value;
   var user = User().obs;
@@ -25,51 +25,6 @@ class HomeController extends GetxController {
   ///update tab index
   updateIndex(int i) {
     index.value = i;
-  }
-
-  ///gettotal price
-  getTotalPrice() {
-    double total = 0;
-    cart.forEach((element) {
-      total = total + double.parse(element.price!);
-    });
-
-    return total.toString();
-  }
-
-  ///cart
-  addToCart(CartModel product) {
-    if (cart.contains(product)) {
-      print(cart.indexOf(product));
-      int index = cart.indexOf(product);
-      cart[index].quantity =
-          ((int.parse(cart[index].quantity!)) + 1).toString();
-      getSnackbar(message: "Item quantity ${cart[index].quantity!}");
-    } else {
-      cart.add(product);
-    }
-    cart.add(product);
-    print(cart.toJson());
-  }
-
-  removeFromCart(CartModel product) {
-    // int index = cart.indexOf(product);
-    // // print(int.parse(cart[index].quantity!) > 1);
-    // if (int.parse(cart[index].quantity!) > 1) {
-    //   cart[index].quantity =
-    //       ((int.parse(cart[index].quantity!)) - 1).toString();
-    //   getSnackbar(message: "Item quantity ${cart[index].quantity!}");
-    // } else {
-    //   cart.remove(cart[index]);
-    //   getSnackbar(message: "Item removed");
-    // }
-    // cart.removeWhere((element) => product == element);
-    // print(cart.length);
-    cart.remove(product);
-  }
-
-  removeProduct(CartModel product) {
-    cart.removeWhere((element) => product == element);
   }
 
   ///get user info

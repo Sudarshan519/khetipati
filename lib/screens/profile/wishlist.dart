@@ -4,20 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
-import 'package:khetipati/screens/cart/cart.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/screens/profile/profile.dart';
-import 'package:khetipati/widgets/bottom_nav.dart';
 import 'package:khetipati/widgets/product_card.dart';
 
-class Wishlist extends StatefulWidget {
-  const Wishlist({Key? key}) : super(key: key);
+class Wishlist extends StatelessWidget {
+  Wishlist({Key? key}) : super(key: key);
 
-  @override
-  _WishlistState createState() => _WishlistState();
-}
-
-class _WishlistState extends State<Wishlist> {
   final controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
@@ -133,7 +126,7 @@ class _WishlistState extends State<Wishlist> {
         right: getWidth(30),
       ),
       height: getHeight(130),
-      width: MediaQuery.of(context).size.width,
+      width: SizeConfigs.screenWidth,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

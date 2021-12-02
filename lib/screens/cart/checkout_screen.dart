@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/screens/home/widgets/category_items.dart';
-import 'package:khetipati/screens/home/home.dart';
-import 'package:khetipati/widgets/bottom_nav.dart';
-
-import 'cart.dart';
 
 class Checkout extends StatefulWidget {
   const Checkout({Key? key}) : super(key: key);
@@ -24,7 +19,7 @@ class _CheckoutState extends State<Checkout> {
         backgroundColor: AppColors.mainGreen,
         centerTitle: true,
         elevation: 0,
-        title: Text(
+        title: const Text(
           'Checkout',
           style: TextStyle(
               fontSize: 22,
@@ -35,7 +30,7 @@ class _CheckoutState extends State<Checkout> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back_ios_rounded,
+            icon: const Icon(Icons.arrow_back_ios_rounded,
                 size: 20, color: AppColors.textGreen)),
       ),
       body: SingleChildScrollView(
@@ -178,33 +173,7 @@ class _CheckoutState extends State<Checkout> {
           ],
         ),
       ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Cart()),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.only(top: 20.0),
-          child: Container(
-            // padding: EdgeInsets.only(top: 20),
-            width: 68,
-            height: 68,
-            decoration: BoxDecoration(
-                color: AppColors.mainGrey,
-                border: Border.all(width: 5, color: AppColors.mainGreen),
-                borderRadius: BorderRadius.circular(40)),
-            child: Icon(
-              Icons.shopping_cart_outlined,
-              color: Color.fromRGBO(0, 0, 0, 0.5),
-              size: 30,
-            ),
-          ),
-        ),
-      ),
+
       // bottomNavigationBar: BottomNav(
       //   context,
       //   Column(
@@ -292,14 +261,14 @@ class _CheckoutState extends State<Checkout> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20, top: 18),
+        const Padding(
+          padding: EdgeInsets.only(left: 20, top: 18),
           child: Text(
             'Shipping Information',
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Padding(
@@ -518,7 +487,7 @@ class _CheckoutState extends State<Checkout> {
             children: [
               Row(
                 children: [
-                  Container(
+                  SizedBox(
                     width: 79,
                     height: 56,
                     child: Image.asset('assets/images/items/grapes.png'),

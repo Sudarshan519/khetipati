@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/DeliveryApp/Documents.dart';
 import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/screens/cart/cart.dart';
 import 'package:khetipati/screens/profile/profile.dart';
 
 class DeliveryEditProfile extends StatefulWidget {

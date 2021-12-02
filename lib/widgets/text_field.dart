@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khetipati/theme.dart';
+
+import '../theme.dart';
 
 class MyInputField extends StatelessWidget {
   final String hint;
@@ -38,13 +39,13 @@ class MyInputField extends StatelessWidget {
                   cursorColor:
                       Get.isDarkMode ? Colors.grey[100] : Colors.grey[700],
                   controller: controller,
-                  style: subtitleStyle,
+                  style: archivosubtitleStyle,
                   minLines: ismultiline! ? 2 : null,
                   maxLines: ismultiline! ? 6 : null,
                   // expands: true,
                   decoration: InputDecoration(
                     hintText: hint,
-                    hintStyle: subtitleStyle,
+                    hintStyle: archivosubtitleStyle,
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                           width: 0, color: context.theme.backgroundColor),

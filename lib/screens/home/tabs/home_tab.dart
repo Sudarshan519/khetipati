@@ -2,67 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
-import 'package:khetipati/controllers/cart_controller.dart';
-
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/cagetories.dart';
-import 'package:khetipati/screens/cart/cart_screen.dart';
 
 import 'package:khetipati/screens/home/widgets/carousel.dart';
-import 'package:khetipati/screens/home/widgets/navbar.dart';
-import 'package:khetipati/screens/notifications/notifications.dart';
-import 'package:khetipati/screens/orders/orders.dart';
-import 'package:khetipati/screens/profile/profile.dart';
+import 'package:khetipati/theme.dart';
 import 'package:khetipati/widgets/offersitems.dart';
 import 'package:khetipati/widgets/product_card.dart';
-
-List<Widget> tabs = [
-  HomeTab(),
-  OrderTab(),
-  NotificationsTab(),
-  const Profile(),
-];
-
-class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
-  final controller = Get.put(HomeController());
-  final cartController = Get.put(CartController());
-  @override
-  Widget build(BuildContext context) {
-    controller.getOrder();
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.mainGreen,
-      bottomNavigationBar: CustomNav(),
-      body: buildTab(),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: InkWell(
-        onTap: () {
-          Get.to(() => CartScreen());
-        },
-        child: Container(
-          margin: EdgeInsets.only(top: getHeight(20)),
-          width: 68,
-          height: 68,
-          decoration: BoxDecoration(
-              color: AppColors.mainGrey,
-              border: Border.all(width: 5, color: AppColors.mainGreen),
-              borderRadius: BorderRadius.circular(40)),
-          child: const Icon(
-            Icons.shopping_cart_outlined,
-            color: Color.fromRGBO(0, 0, 0, 0.5),
-            size: 30,
-          ),
-        ),
-      ),
-    );
-  }
-
-  buildTab() {
-    return Obx(() => tabs[controller.selectedIndex]);
-  }
-}
 
 class HomeTab extends StatelessWidget {
   HomeTab({Key? key}) : super(key: key);
@@ -164,7 +110,13 @@ class HomeTab extends StatelessWidget {
             ? SizedBox(
                 height: getHeight(62),
                 width: getWidth(149),
-                child: const Center(child: Text("Empty")))
+                child: Padding(
+                  padding: EdgeInsets.only(left: getWidth(20)),
+                  child: Text(
+                    "No data",
+                    style: archivosubtitleStyle,
+                  ),
+                ))
             : SizedBox(
                 height: getHeight(62),
                 child: ListView.builder(
@@ -228,7 +180,16 @@ class HomeTab extends StatelessWidget {
             backgroundColor: AppColors.mainGreen,
           ))
         : controller.products.isEmpty
-            ? const Center(child: Text("Empty"))
+            ? SizedBox(
+                height: 191,
+                child: Padding(
+                  padding: EdgeInsets.only(left: getWidth(20)),
+                  child: const Text(
+                    "No Data",
+                    style: TextStyle(
+                        color: Colors.grey, fontWeight: FontWeight.w400),
+                  ),
+                ))
             : SizedBox(
                 height: 191,
                 child: ListView.builder(
@@ -247,7 +208,7 @@ class HomeTab extends StatelessWidget {
           left: getWidth(20), top: getWidth(18), bottom: getWidth(20)),
       child: Text(
         title,
-        style: TextStyle(
+        style: robototitleStyle.copyWith(
             fontSize: getFont(18),
             fontWeight: FontWeight.bold,
             color: AppColors.textGreen),
@@ -258,7 +219,13 @@ class HomeTab extends StatelessWidget {
   buildSpecialOffers() {
     return Obx(
       () => controller.products.isEmpty
-          ? const Center(child: Text("Empty"))
+          ? Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Text(
+                "Empty",
+                style: archivosubtitleStyle,
+              ),
+            )
           : Column(
               children: List.generate(controller.products.length,
                   (i) => offerProductCard(controller.products[i]))),
