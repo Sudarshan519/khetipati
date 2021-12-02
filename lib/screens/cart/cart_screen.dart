@@ -6,8 +6,6 @@ import 'package:khetipati/controllers/cart_controller.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/product.dart';
 import 'package:khetipati/screens/cart/checkout_screen.dart';
-import 'package:khetipati/screens/home/widgets/navbar.dart';
-import 'package:khetipati/widgets/app_bar.dart';
 import 'package:khetipati/widgets/product_card.dart';
 
 class CartScreen extends StatelessWidget {

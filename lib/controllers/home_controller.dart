@@ -12,7 +12,7 @@ class HomeController extends GetxController {
   static HomeController instance = Get.find();
 
   ///index for tab
-  var index = 3.obs;
+  var index = 0.obs;
 
   get selectedIndex => index.value;
   var user = User().obs;
