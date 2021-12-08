@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
+import 'package:khetipati/constant/size_config.dart';
 
 class NavItem extends StatelessWidget {
   const NavItem(
@@ -24,11 +25,11 @@ class NavItem extends StatelessWidget {
             Image.asset(
               isSelected ? icon[1] : icon[0],
               color: isSelected ? null : AppColors.darkgrey,
-              width: 30,
-              height: 30,
+              width: getWidth(30),
+              height: getHeight(30),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.009,
+              height: getHeight(10),
             ),
             isSelected
                 ? Container(
@@ -38,9 +39,9 @@ class NavItem extends StatelessWidget {
                     width: 8)
                 : Text(
                     label,
-                    style: const TextStyle(
-                        color: Color.fromRGBO(0, 0, 0, 0.8),
-                        fontSize: 12,
+                    style: TextStyle(
+                        color: const Color.fromRGBO(0, 0, 0, 0.8),
+                        fontSize: getFont(12),
                         fontWeight: FontWeight.w400),
                   )
           ],

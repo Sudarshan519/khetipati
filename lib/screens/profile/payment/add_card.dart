@@ -111,7 +111,10 @@ class _AddCardState extends State<AddCard> {
                 ),
               ],
             ),
-            creditCard(),
+            Container(
+                width: getWidth(224),
+                child: Image.asset('assets/images/card.png')),
+            //  creditCard(),
             SizedBox(
               height: getHeight(40),
             ),

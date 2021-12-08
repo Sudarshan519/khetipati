@@ -152,12 +152,12 @@ class _ReviewsState extends State<Reviews> {
                 padding: const EdgeInsets.all(10),
                 width: MediaQuery.of(context).size.width * 0.75,
                 // height: 42,
-                child: const Text(
+                child: Text(
                   '“Shankhaul Marga, Kathmandu 44600 Lorem Ipsum dolor sit Shankhaul Marga, Kathmandu 44600 Lorem Ipsum dolor sit ”',
                   style: TextStyle(
-                    fontSize: 13,
+                    fontSize: getFont(13),
                     fontWeight: FontWeight.w400,
-                    color: Color.fromRGBO(0, 0, 0, 0.5),
+                    color: const Color.fromRGBO(0, 0, 0, 0.5),
                   ),
                 ),
               ),

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/LoginRegisterPage/login.dart';
+import 'package:khetipati/screens/home/tabs/orders_tab.dart';
 import 'package:khetipati/screens/orders/orders.dart';
 import 'package:khetipati/screens/profile/payment/payment.dart';
 import 'package:khetipati/screens/profile/reviews/reviews.dart';
@@ -170,7 +171,7 @@ class _ProfileState extends State<Profile> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Orders()),
+                    MaterialPageRoute(builder: (context) => const OrdersTab()),
                   );
                 },
                 child:
