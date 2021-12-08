@@ -5,12 +5,13 @@ import 'package:khetipati/screens/notifications/widgets/notificationcard.dart';
 import 'package:khetipati/widgets/app_bar.dart';
 
 class NotificationsTab extends StatelessWidget {
+  const NotificationsTab({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       color: AppColors.mainGreen,
       child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             buildAppBar(context, 'Notifications'),

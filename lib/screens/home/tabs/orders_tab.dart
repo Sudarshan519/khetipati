@@ -44,22 +44,7 @@ class _OrdersTabState extends State<OrdersTab> {
                 orderContainer(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                          left: getWidth(20),
-                          top: getWidth(20),
-                          bottom: getWidth(20)),
-                      child: Text(
-                        'Recommended Items',
-                        style: TextStyle(
-                            fontSize: getFont(18),
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.textGreen),
-                      ),
-                    ),
-                    recommendedItemsCard()
-                  ],
+                  children: [recommendedItemsCard()],
                 ),
                 SizedBox(
                   height: getHeight(40),
@@ -83,7 +68,7 @@ class _OrdersTabState extends State<OrdersTab> {
         children: [
           SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: getHeight(34),
+            // height: getHeight(40),
             child: TabBar(
               indicatorPadding: EdgeInsets.only(top: getHeight(10)),
               indicatorSize: TabBarIndicatorSize.label,
@@ -110,22 +95,14 @@ class _OrdersTabState extends State<OrdersTab> {
           ),
           Container(
             margin: EdgeInsets.zero,
-            height: 1000,
+            height: MediaQuery.of(context).size.height * .6,
             width: MediaQuery.of(context).size.width,
             child: TabBarView(
               children: [
-                ListView(
-                  children: [buildOrderItems()],
-                ),
-                ListView(
-                  children: [buildOrderItems()],
-                ),
-                ListView(
-                  children: [buildOrderItems()],
-                ),
-                ListView(
-                  children: [buildOrderItems()],
-                )
+                buildOrderItems(),
+                buildOrderItems(),
+                buildOrderItems(),
+                buildOrderItems()
               ],
             ),
           ),

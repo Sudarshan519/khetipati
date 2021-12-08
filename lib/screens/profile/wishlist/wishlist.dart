@@ -5,9 +5,9 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:get/get.dart';
-import 'package:khetipati/screens/profile/profile.dart';
 import 'package:khetipati/widgets/app_bar.dart';
 import 'package:khetipati/widgets/product_card.dart';
+import 'package:khetipati/widgets/recommended_items_card.dart';
 import 'package:khetipati/widgets/title_text.dart';
 
 class Wishlist extends StatefulWidget {
@@ -200,20 +200,6 @@ class _WishlistState extends State<Wishlist> {
         ],
       ),
     );
-  }
-
-  buildRecommendedItemsCard() {
-    return Obx(() => controller.products.isEmpty
-        ? const Center(child: Text("Empty"))
-        : SizedBox(
-            height: getHeight(226),
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: controller.products.length,
-                itemBuilder: (_, int i) {
-                  return productCard(controller.products[i]);
-                }),
-          ));
   }
 
   addToCartButton(BuildContext context) {

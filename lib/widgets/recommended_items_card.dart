@@ -55,7 +55,8 @@ recommendedItemsCard() {
 
 buildRecommendedItemsCard() {
   return Obx(() => controller.products.isEmpty
-      ? const Center(child: Text("Empty"))
+      ? SizedBox(
+          height: getHeight(226), child: const Center(child: Text("Empty")))
       : SizedBox(
           height: getHeight(226),
           child: ListView.builder(

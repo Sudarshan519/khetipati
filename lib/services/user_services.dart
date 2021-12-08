@@ -44,15 +44,20 @@ class UserRepo extends GetConnect {
   loginWithEmailandPassword(String email, String password) async {
     var body = {"email": email, "password": password};
 
-    var response = await post("http://192.168.10.149:8000/userapi/login", body);
-    var user = response.body;
-    User currentuser = User.fromJson(user["user"]);
-    var token = user["token"];
+    try {
+      var response =
+          await post("http://192.168.10.149:8000/userapi/login", body);
+      var user = response.body;
+      User currentuser = User.fromJson(user["user"]);
+      var token = user["token"];
 
-    return [
-      currentuser,
-      token,
-    ];
+      return [
+        currentuser,
+        token,
+      ];
+    } on Exception catch (e) {
+      // TODO
+    }
   }
 
   ///get user info
