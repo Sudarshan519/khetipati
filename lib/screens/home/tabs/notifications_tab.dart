@@ -4,19 +4,19 @@ import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/notifications/widgets/notificationcard.dart';
 import 'package:khetipati/widgets/app_bar.dart';
 
-class Notifications extends StatefulWidget {
-  const Notifications({Key? key}) : super(key: key);
+class NotificationsTab extends StatefulWidget {
+  const NotificationsTab({Key? key}) : super(key: key);
 
   @override
-  _NotificationsState createState() => _NotificationsState();
+  _NotificationsTabState createState() => _NotificationsTabState();
 }
 
-class _NotificationsState extends State<Notifications> {
+class _NotificationsTabState extends State<NotificationsTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
-      appBar: buildAppBar('Notifications'),
+      appBar: buildAppBar(context, 'Notifications'),
       body: SingleChildScrollView(
         child: Column(
           children: [

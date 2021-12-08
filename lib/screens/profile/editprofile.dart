@@ -94,7 +94,7 @@ class _EditProfileState extends State<EditProfile> {
       },
       child: Container(
         height: getHeight(45),
-        width: getWidth(352),
+        //  width: getWidth(352),
         decoration: BoxDecoration(
           border:
               Border.all(width: 1, color: const Color.fromRGBO(0, 0, 0, 0.1)),
@@ -175,7 +175,7 @@ class _EditProfileState extends State<EditProfile> {
             height: getHeight(30),
           ),
           ButtonTheme(
-            minWidth: 352,
+            minWidth: getWidth(352),
             height: getHeight(48),
             // ignore: deprecated_member_use
             child: RaisedButton(
@@ -200,77 +200,79 @@ void _settingModalBottomSheet(context) {
   showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
-        return Container(
-          margin: EdgeInsets.symmetric(
-              horizontal: getWidth(30), vertical: getWidth(30)),
-          child: Column(
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    'New Password must be different from current password.',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: getFont(16),
-                        fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(height: getHeight(15)),
-                  const MyInputField(hint: 'Current Password'),
-                  Text(
-                    'Forgot Password?',
-                    style: TextStyle(
-                        color: const Color.fromRGBO(0, 0, 0, 0.5),
-                        fontSize: getFont(12),
-                        fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                    height: getHeight(15),
-                  ),
-                  const MyInputField(hint: 'New Password'),
-                  Text(
-                    'Must be 8 characters long.',
-                    style: TextStyle(
-                        color: const Color.fromRGBO(0, 0, 0, 0.5),
-                        fontSize: getFont(12),
-                        fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                    height: getHeight(15),
-                  ),
-                  const MyInputField(hint: 'Confirm Password'),
-                  Text(
-                    'Must be 8 characters long.',
-                    style: TextStyle(
-                        color: const Color.fromRGBO(0, 0, 0, 0.5),
-                        fontSize: getFont(12),
-                        fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                    height: getHeight(20),
-                  ),
-                  ButtonTheme(
-                    minWidth: getWidth(200),
-                    height: getHeight(48),
-                    child: RaisedButton(
-                      color: AppColors.mainGreen,
-                      onPressed: () {},
-                      child: Center(
-                        child: Text(
-                          'Save Changes',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: getFont(15),
-                              fontWeight: FontWeight.w500),
+        return SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.symmetric(
+                horizontal: getWidth(30), vertical: getWidth(30)),
+            child: Column(
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'New Password must be different from current password.',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: getFont(16),
+                          fontWeight: FontWeight.w400),
+                    ),
+                    SizedBox(height: getHeight(15)),
+                    const MyInputField(hint: 'Current Password'),
+                    Text(
+                      'Forgot Password?',
+                      style: TextStyle(
+                          color: const Color.fromRGBO(0, 0, 0, 0.5),
+                          fontSize: getFont(12),
+                          fontWeight: FontWeight.w400),
+                    ),
+                    SizedBox(
+                      height: getHeight(15),
+                    ),
+                    const MyInputField(hint: 'New Password'),
+                    Text(
+                      'Must be 8 characters long.',
+                      style: TextStyle(
+                          color: const Color.fromRGBO(0, 0, 0, 0.5),
+                          fontSize: getFont(12),
+                          fontWeight: FontWeight.w400),
+                    ),
+                    SizedBox(
+                      height: getHeight(15),
+                    ),
+                    const MyInputField(hint: 'Confirm Password'),
+                    Text(
+                      'Must be 8 characters long.',
+                      style: TextStyle(
+                          color: const Color.fromRGBO(0, 0, 0, 0.5),
+                          fontSize: getFont(12),
+                          fontWeight: FontWeight.w400),
+                    ),
+                    SizedBox(
+                      height: getHeight(20),
+                    ),
+                    ButtonTheme(
+                      minWidth: getWidth(200),
+                      height: getHeight(48),
+                      child: RaisedButton(
+                        color: AppColors.mainGreen,
+                        onPressed: () {},
+                        child: Center(
+                          child: Text(
+                            'Save Changes',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: getFont(15),
+                                fontWeight: FontWeight.w500),
+                          ),
                         ),
                       ),
-                    ),
-                  )
-                ],
-              ),
-            ],
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         );
       });

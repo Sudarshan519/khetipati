@@ -13,7 +13,7 @@ class NotificationsTab extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-            buildAppBar('Notifications'),
+            buildAppBar(context, 'Notifications'),
             Container(
               width: MediaQuery.of(context).size.width,
               // height: 815,

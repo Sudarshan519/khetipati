@@ -6,39 +6,24 @@ import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/screens/profile/profile.dart';
+import 'package:khetipati/widgets/app_bar.dart';
 import 'package:khetipati/widgets/product_card.dart';
+import 'package:khetipati/widgets/title_text.dart';
 
-class Wishlist extends StatelessWidget {
-  Wishlist({Key? key}) : super(key: key);
+class Wishlist extends StatefulWidget {
+  const Wishlist({Key? key}) : super(key: key);
 
+  @override
+  _WishlistState createState() => _WishlistState();
+}
+
+class _WishlistState extends State<Wishlist> {
   final controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
-      appBar: AppBar(
-        toolbarHeight: MediaQuery.of(context).size.height * 0.1,
-        automaticallyImplyLeading: false,
-        backgroundColor: AppColors.mainGreen,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          'Wishlist',
-          style: TextStyle(
-              fontSize: getFont(22),
-              color: AppColors.textGreen,
-              fontWeight: FontWeight.w700),
-        ),
-        leading: IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Profile()),
-              );
-            },
-            icon: Icon(Icons.arrow_back_ios_rounded,
-                size: getFont(20), color: AppColors.textGreen)),
-      ),
+      appBar: buildAppBar(context, 'Wishlist'),
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -50,71 +35,66 @@ class Wishlist extends StatelessWidget {
               topLeft: Radius.circular(30),
             ),
           ),
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: getWidth(18)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: getHeight(19),
-                ),
-                Text(
-                  '3 items',
-                  style: TextStyle(
-                      fontSize: getFont(18),
-                      color: AppColors.textGreen,
-                      fontWeight: FontWeight.w700),
-                ),
-                SizedBox(
-                  height: getHeight(5),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  //  height: 475,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      wishlistItemCard(
-                          'assets/images/items/grapes.png', 'Cherry'),
-                      wishlistItemCard(
-                          'assets/images/items/melons.png', 'Water Melon'),
-                      wishlistItemCard(
-                          'assets/images/items/grapes.png', 'Cherry'),
-                      addToCartButton(context)
-                    ],
-                  ),
-                ),
-                Column(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: getHeight(19),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: getWidth(20)),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                          left: getWidth(20),
-                          top: getWidth(40),
-                          bottom: getWidth(20)),
-                      child: Text(
-                        'Recommended Items',
-                        style: TextStyle(
-                            fontSize: getFont(18),
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.textGreen),
-                      ),
+                    Text(
+                      '3 items',
+                      style: TextStyle(
+                          fontSize: getFont(18),
+                          color: AppColors.textGreen,
+                          fontWeight: FontWeight.w700),
                     ),
-                    buildRecommendedItemsCard(),
+                    SizedBox(
+                      height: getHeight(5),
+                    ),
+                    buildWishlistItems()
                   ],
                 ),
-                SizedBox(
-                  height: getWidth(
-                    40,
-                  ),
-                )
-              ],
-            ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  titleText(context),
+                  buildRecommendedItemsCard(),
+                ],
+              ),
+              SizedBox(
+                height: getWidth(
+                  40,
+                ),
+              )
+            ],
           ),
         ),
+      ),
+    );
+  }
+
+  buildWishlistItems() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+
+      //  height: 475,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        children: [
+          wishlistItemCard('assets/images/items/grapes.png', 'Cherry'),
+          wishlistItemCard('assets/images/items/melons.png', 'Water Melon'),
+          wishlistItemCard('assets/images/items/grapes.png', 'Cherry'),
+          addToCartButton(context)
+        ],
       ),
     );
   }
@@ -126,7 +106,7 @@ class Wishlist extends StatelessWidget {
         right: getWidth(30),
       ),
       height: getHeight(130),
-      width: SizeConfigs.screenWidth,
+      width: MediaQuery.of(context).size.width,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -181,12 +161,6 @@ class Wishlist extends StatelessWidget {
               ),
             ],
           ),
-
-          // Flexible(
-          //   child: SizedBox(
-          //     width: 309,
-          //   ),
-          // ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             //crossAxisAlignment: CrossAxisAlignment.end,

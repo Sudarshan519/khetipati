@@ -5,6 +5,7 @@ import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/cart_controller.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/screens/cart/cart_screen.dart';
+import 'package:khetipati/screens/home/tabs/orders_tab.dart';
 import 'package:khetipati/screens/home/widgets/navbar.dart';
 import 'package:khetipati/screens/notifications/notifications.dart';
 import 'package:khetipati/screens/orders/orders.dart';
@@ -14,7 +15,7 @@ import 'tabs/home_tab.dart';
 
 List<Widget> tabs = [
   HomeTab(),
-  const Orders(),
+  const OrdersTab(),
   NotificationsTab(),
   const Profile(),
 ];

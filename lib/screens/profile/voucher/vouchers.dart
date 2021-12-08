@@ -1,37 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
+import 'package:khetipati/widgets/app_bar.dart';
 
-class Vouchers extends StatelessWidget {
+class Vouchers extends StatefulWidget {
   const Vouchers({Key? key}) : super(key: key);
 
+  @override
+  _VouchersState createState() => _VouchersState();
+}
+
+class _VouchersState extends State<Vouchers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
-      appBar: AppBar(
-        toolbarHeight: MediaQuery.of(context).size.height * 0.1,
-        automaticallyImplyLeading: false,
-        backgroundColor: AppColors.mainGreen,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          'Vouchers',
-          style: TextStyle(
-              fontSize: getFont(22),
-              color: AppColors.textGreen,
-              fontWeight: FontWeight.w700),
-        ),
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.arrow_back_ios_rounded,
-                size: 20, color: AppColors.textGreen)),
-      ),
+      appBar: buildAppBar(context, 'Vouchers'),
       body: Container(
         width: MediaQuery.of(context).size.width,
-        //height: 815,
+        height: 815,
         decoration: const BoxDecoration(
           color: AppColors.mainGrey,
           borderRadius: BorderRadius.only(
@@ -39,19 +26,18 @@ class Vouchers extends StatelessWidget {
             topLeft: Radius.circular(30),
           ),
         ),
-        child: Padding(
-          padding: EdgeInsets.only(
-              top: 20,
-              right: MediaQuery.of(context).size.width * 0.04,
-              left: MediaQuery.of(context).size.width * 0.04),
+        child: SingleChildScrollView(
           child: Container(
+            margin: EdgeInsets.symmetric(
+                horizontal: getWidth(20), vertical: getHeight(20)),
+            padding: const EdgeInsets.all(10),
             width: double.infinity,
             // height: 475,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: ListView(
+            child: Column(
               //crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 voucherItemCard('assets/images/offers/offer1.png'),
@@ -77,30 +63,35 @@ class Vouchers extends StatelessWidget {
 
   Widget voucherItemCard(voucherImg) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MediaQuery.of(context).size.width > 500
+          ? MainAxisAlignment.center
+          : MainAxisAlignment.start,
       children: [
         SizedBox(
-            width: getWidth(115),
+            width: getWidth(100),
             child: Image.asset(
               voucherImg,
               fit: BoxFit.contain,
             )),
+        SizedBox(
+          width: getWidth(10),
+        ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10, bottom: 10),
-              child: SizedBox(
-                width: SizeConfigs.screenWidth * 0.5,
-                child: Text(
-                  'Use code voucher and  get 10% off on apples',
-                  style: TextStyle(
-                      color: AppColors.textblack,
-                      fontSize: getFont(14),
-                      fontWeight: FontWeight.w800),
-                ),
+            SizedBox(
+              width: getWidth(180),
+              child: Text(
+                'Use code voucher and  get 10% off on apples',
+                style: TextStyle(
+                    color: AppColors.textblack,
+                    fontSize: getFont(14),
+                    fontWeight: FontWeight.w800),
               ),
+            ),
+            const SizedBox(
+              height: 5,
             ),
             Container(
               width: getWidth(61),

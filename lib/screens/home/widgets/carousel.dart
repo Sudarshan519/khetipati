@@ -151,7 +151,7 @@ class _CarouselState extends State<Carousel> {
                         width: double.infinity,
                         margin: const EdgeInsets.only(left: 5),
                         decoration: const BoxDecoration(
-                            borderRadius: const BorderRadius.only(
+                            borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(70),
                                 bottomLeft: Radius.circular(60)),
                             image: DecorationImage(
@@ -159,32 +159,12 @@ class _CarouselState extends State<Carousel> {
                                   "assets/images/ad.png",
                                 ),
                                 fit: BoxFit.fill))),
-
-                    // Image.asset(
-                    //   'assets/images/ad.png',
-                    //   width: double.infinity,
-                    // ),
-                    // Padding(
-                    //   padding: EdgeInsets.only(left: getWidth(20)),
-                    //   child: ClipRRect(
-                    // borderRadius: const BorderRadius.only(
-                    //     topLeft: Radius.circular(70),
-                    //     bottomLeft: Radius.circular(60)),
-                    //       child: _banners[index]),
-                    // ),
                   ],
                 ),
               )
             ],
           ),
         ),
-
-        //  Container(
-        //       decoration:
-        //           BoxDecoration(borderRadius: BorderRadius.circular(30)),
-        //       padding: const EdgeInsets.all(20.0),
-        //       child: _banners[index],
-        //     )
       ),
     );
   }

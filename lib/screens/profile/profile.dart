@@ -1,16 +1,17 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/LoginRegisterPage/login.dart';
 import 'package:khetipati/screens/orders/orders.dart';
+import 'package:khetipati/screens/profile/payment/payment.dart';
+import 'package:khetipati/screens/profile/reviews/reviews.dart';
+import 'package:khetipati/screens/profile/shipping/shipping_address.dart';
 import 'package:khetipati/screens/profile/editprofile.dart';
-import 'package:khetipati/screens/profile/payment.dart';
-import 'package:khetipati/screens/profile/reviews.dart';
-import 'package:khetipati/screens/profile/vouchers.dart';
-import 'package:khetipati/screens/profile/wishlist.dart';
-
-import 'shipping_address.dart';
+import 'package:khetipati/screens/profile/voucher/vouchers.dart';
+import 'package:khetipati/screens/profile/wishlist/wishlist.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -159,7 +160,7 @@ class _ProfileState extends State<Profile> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Wishlist()),
+                    MaterialPageRoute(builder: (context) => const Wishlist()),
                   );
                 },
                 child:
@@ -350,7 +351,7 @@ class _ProfileState extends State<Profile> {
     return Container(
       margin: EdgeInsets.only(top: getHeight(22)),
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      // height: getHeight(111),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -398,7 +399,7 @@ class _ProfileState extends State<Profile> {
                 const Icon(
                   Icons.logout_outlined,
                   size: 20,
-                  color: const Color.fromRGBO(216, 47, 47, 1),
+                  color: Color.fromRGBO(216, 47, 47, 1),
                 ),
                 SizedBox(
                   width: getWidth(20),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
+import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/auth_controller.dart';
 import 'package:khetipati/screens/home/home.dart';
 import 'package:khetipati/utils/validators.dart';
@@ -90,7 +91,7 @@ class LoginPage extends GetView<AuthController> {
                       height: 20,
                     ),
                     SizedBox(
-                      // height: MediaQuery.of(context).size.height * 0.07,
+                      height: MediaQuery.of(context).size.height * 0.07,
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
                         onPressed: () {
@@ -103,12 +104,12 @@ class LoginPage extends GetView<AuthController> {
                         },
                         child: Obx(
                           () => controller.authState.value ==
-                                  AuthState.Authenticating
+                                  AuthState.Authenticated
                               ? const CircularProgressIndicator()
-                              : const Text(
+                              : Text(
                                   'Login',
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: getFont(20),
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),

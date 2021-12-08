@@ -3,10 +3,14 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/home/home.dart';
+import 'package:khetipati/screens/home/tabs/home_tab.dart';
+import 'package:khetipati/widgets/app_bar.dart';
 import 'login.dart';
 import 'package:khetipati/constant/colors.dart';
 
 class RegisterPage extends StatelessWidget {
+  const RegisterPage({Key? key}) : super(key: key);
+
 //   @override
 //   _RegisterPageState createState() => _RegisterPageState();
 // }
@@ -16,266 +20,224 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
-      appBar: AppBar(
-        toolbarHeight: MediaQuery.of(context).size.height * 0.1,
-        automaticallyImplyLeading: false,
-        backgroundColor: AppColors.mainGreen,
-        elevation: 0,
-        centerTitle: true,
-        title: const Text(
-          'Registration',
-          style: TextStyle(
-              fontSize: 22,
-              color: AppColors.textGreen,
-              fontWeight: FontWeight.w700),
-        ),
-        leading: IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
-              );
-            },
-            icon: const Icon(Icons.arrow_back_ios_rounded,
-                size: 20, color: AppColors.textGreen)),
-      ),
+      appBar: buildAppBar(context, 'Registration'),
       body: SingleChildScrollView(
         child: Container(
+          padding: const EdgeInsets.all(20),
           decoration: const BoxDecoration(
             color: AppColors.mainGrey,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30), topRight: Radius.circular(30)),
           ),
-          child: Padding(
-            padding: EdgeInsets.only(
-                right: MediaQuery.of(context).size.width * 0.04,
-                left: MediaQuery.of(context).size.width * 0.04),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 25,
+          child: Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Column(
+                  children: [
+                    Text(
+                      'Login Details',
+                      style: TextStyle(
+                          fontSize: getFont(20),
+                          color: AppColors.mainGreen,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    SizedBox(
+                      height: getHeight(20),
+                    ),
+                    inputTextFormField(
+                        'Enter your email or phone number ',
+                        const Icon(
+                          Icons.email_sharp,
+                          size: 20,
+                        )),
+                    SizedBox(
+                      height: getHeight(20),
+                    ),
+                    inputTextFormField(
+                        'Create new password',
+                        const Icon(
+                          Icons.vpn_key,
+                          size: 20,
+                        )),
+                    SizedBox(
+                      height: getHeight(20),
+                    ),
+                    inputTextFormField(
+                        'Confirm password',
+                        const Icon(
+                          Icons.vpn_key,
+                          size: 20,
+                        )),
+                    SizedBox(
+                      height: getHeight(20),
+                    ),
+                  ],
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
+              ),
+              SizedBox(
+                height: getHeight(30),
+              ),
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: getHeight(20),
+                    ),
+                    Text(
+                      'Profile Details',
+                      style: TextStyle(
+                          fontSize: getFont(20),
+                          color: AppColors.mainGreen,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    SizedBox(
+                      height: getHeight(20),
+                    ),
+                    inputTextFormField(
+                        'Username',
+                        const Icon(
+                          Icons.person,
+                          size: 20,
+                        )),
+                    SizedBox(
+                      height: getHeight(20),
+                    ),
+                    inputTextFormField(
+                        'Phone Number',
+                        const Icon(
+                          Icons.phone_in_talk_rounded,
+                          size: 20,
+                        )),
+                    SizedBox(
+                      height: getHeight(20),
+                    ),
+                    inputTextFormField(
+                        'City',
+                        const Icon(
+                          Icons.location_city,
+                          size: 20,
+                        )),
+                    SizedBox(
+                      height: getHeight(20),
+                    ),
+                    inputTextFormField(
+                        'District',
+                        const Icon(
+                          Icons.location_on,
+                          size: 20,
+                        )),
+                    SizedBox(
+                      height: getHeight(20),
+                    ),
+                    inputTextFormField(
+                        'State',
+                        const Icon(
+                          Icons.home,
+                          size: 20,
+                        )),
+                    SizedBox(
+                      height: getHeight(20),
+                    ),
+                    inputTextFormField(
+                        'Country',
+                        const Icon(
+                          Icons.location_city,
+                          size: 20,
+                        )),
+                    SizedBox(
+                      height: getHeight(20),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                height: getHeight(50),
+                width: MediaQuery.of(context).size.width,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Get.to(() => HomeScreen());
+                  },
+                  child: Text(
+                    'Submit',
+                    style: TextStyle(
+                      fontSize: getFont(20),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color.fromRGBO(135, 194, 65, 1)),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50.0),
                       ),
-                      Text(
-                        'Login Details',
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: AppColors.mainGreen,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      StylishTextFormField(
-                          'Enter your email or phone number ',
-                          Icon(
-                            Icons.email_sharp,
-                            size: 20,
-                          )),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      StylishTextFormField(
-                          'Create new password',
-                          Icon(
-                            Icons.vpn_key,
-                            size: 20,
-                          )),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      StylishTextFormField(
-                          'Confirm password',
-                          Icon(
-                            Icons.vpn_key,
-                            size: 20,
-                          )),
-                      SizedBox(
-                        height: 20,
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-                SizedBox(
-                  height: 30,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        'Profile Details',
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: AppColors.mainGreen,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      StylishTextFormField(
-                          'Username',
-                          Icon(
-                            Icons.person,
-                            size: 20,
-                          )),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      StylishTextFormField(
-                          'Phone Number',
-                          Icon(
-                            Icons.phone_in_talk_rounded,
-                            size: 20,
-                          )),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      StylishTextFormField(
-                          'City',
-                          Icon(
-                            Icons.location_city,
-                            size: 20,
-                          )),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      StylishTextFormField(
-                          'District',
-                          Icon(
-                            Icons.location_on,
-                            size: 20,
-                          )),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      StylishTextFormField(
-                          'State',
-                          Icon(
-                            Icons.home,
-                            size: 20,
-                          )),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      StylishTextFormField(
-                          'Country',
-                          Icon(
-                            Icons.location_city,
-                            size: 20,
-                          )),
-                      SizedBox(
-                        height: 20,
-                      ),
-                    ],
+              ),
+              SizedBox(
+                height: getHeight(20),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Already a member?',
+                    style: TextStyle(
+                        fontSize: getFont(12),
+                        fontWeight: FontWeight.w400,
+                        color: const Color.fromRGBO(0, 0, 0, 0.5)),
                   ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8, right: 8),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.07,
-                    width: MediaQuery.of(context).size.width,
-                    child: ElevatedButton(
+                  TextButton(
                       onPressed: () {
-                        Get.to(
-                          () => HomeScreen(),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
                         );
                       },
                       child: Text(
-                        'Submit',
+                        'Login',
                         style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            Color.fromRGBO(135, 194, 65, 1)),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Already a member?',
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Color.fromRGBO(0, 0, 0, 0.5)),
-                    ),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()),
-                          );
-                        },
-                        child: Text(
-                          'Login',
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.mainGreen,
-                              decoration: TextDecoration.underline),
-                        ))
-                  ],
-                )
-              ],
-            ),
+                            fontSize: getFont(12),
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.mainGreen,
+                            decoration: TextDecoration.underline),
+                      ))
+                ],
+              )
+            ],
           ),
         ),
       ),
     );
   }
 
-  Widget StylishTextFormField(Labels, Icon textfieldicon) {
-    return Padding(
-      padding: EdgeInsets.only(
-          right: SizeConfigs.screenWidth * 0.04,
-          left: SizeConfigs.screenWidth * 0.04),
-      child: TextFormField(
-        decoration: InputDecoration(
-            prefixIcon: textfieldicon,
-            labelText: Labels,
-            //hintText: "Full Name",
-            enabledBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(width: 1, color: Color.fromRGBO(0, 0, 0, 0.1)),
-              // borderRadius: BorderRadius.circular(15),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 2, color: AppColors.mainGreen),
-              borderRadius: BorderRadius.circular(5),
-            )),
-      ),
+  inputTextFormField(labels, Icon textfieldicon) {
+    return TextFormField(
+      decoration: InputDecoration(
+          prefixIcon: textfieldicon,
+          labelText: labels,
+          //hintText: "Full Name",
+          enabledBorder: const OutlineInputBorder(
+            borderSide:
+                BorderSide(width: 1, color: Color.fromRGBO(0, 0, 0, 0.1)),
+            // borderRadius: BorderRadius.circular(15),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(width: 2, color: AppColors.mainGreen),
+            borderRadius: BorderRadius.circular(5),
+          )),
     );
   }
 }

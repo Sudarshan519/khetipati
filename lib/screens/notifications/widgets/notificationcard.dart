@@ -6,7 +6,7 @@ Widget notificationCard() {
   return Container(
     margin: EdgeInsets.only(
         top: getHeight(13), left: getWidth(25), right: getWidth(25)),
-    padding: EdgeInsets.all(18),
+    padding: const EdgeInsets.all(18),
     // width: getWidth(356),
     // height: getHeight(142),
     decoration: BoxDecoration(
@@ -15,10 +15,10 @@ Widget notificationCard() {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CircleAvatar(
+        const CircleAvatar(
             radius: 12,
-            backgroundColor: const Color.fromRGBO(135, 194, 65, 0.5),
-            child: const Icon(
+            backgroundColor: Color.fromRGBO(135, 194, 65, 0.5),
+            child: Icon(
               Icons.notifications_none,
               color: AppColors.textGreen,
               size: 15,

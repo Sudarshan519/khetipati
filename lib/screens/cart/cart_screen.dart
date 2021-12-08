@@ -6,7 +6,9 @@ import 'package:khetipati/controllers/cart_controller.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/product.dart';
 import 'package:khetipati/screens/cart/checkout_screen.dart';
+import 'package:khetipati/widgets/app_bar.dart';
 import 'package:khetipati/widgets/product_card.dart';
+import 'package:khetipati/widgets/recommended_items_card.dart';
 
 class CartScreen extends StatelessWidget {
   CartScreen({Key? key}) : super(key: key);
@@ -17,26 +19,7 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: AppColors.mainGreen,
         // bottomNavigationBar: CustomNav(),
-        appBar: AppBar(
-          toolbarHeight: getHeight(80),
-          automaticallyImplyLeading: false,
-          backgroundColor: AppColors.mainGreen,
-          elevation: 0,
-          centerTitle: true,
-          title: Text(
-            'Cart',
-            style: TextStyle(
-                fontSize: getFont(22),
-                color: AppColors.textGreen,
-                fontWeight: FontWeight.w700),
-          ),
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back_ios_rounded,
-                  size: getFont(20), color: AppColors.textGreen)),
-        ),
+        appBar: buildAppBar(context, 'Cart'),
         body: Container(
           // padding: EdgeInsets.only(bottom: 40),
           width: double.infinity,
@@ -66,47 +49,10 @@ class CartScreen extends StatelessWidget {
                   CartTotal(),
                 ]),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: getWidth(20),
-                        top: getWidth(20),
-                        bottom: getWidth(20)),
-                    child: Text(
-                      'Recommended Items',
-                      style: TextStyle(
-                          fontSize: getFont(18),
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.textGreen),
-                    ),
-                  ),
-                  buildRecommendedItemsCard(),
-                  SizedBox(
-                    height: getWidth(
-                      40,
-                    ),
-                  )
-                ],
-              ),
+              recommendedItemsCard()
             ],
           ),
         ));
-  }
-
-  buildRecommendedItemsCard() {
-    return Obx(() => controller.products.isEmpty
-        ? const Center(child: Text("Empty"))
-        : SizedBox(
-            height: getHeight(226),
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: controller.products.length,
-                itemBuilder: (_, int i) {
-                  return productCard(controller.products[i]);
-                }),
-          ));
   }
 }
 
@@ -350,22 +296,6 @@ class CartTotal extends StatelessWidget {
           ],
         ),
       ),
-      // Container(
-      //   padding: const EdgeInsets.all(20),
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //     children: [
-      //       const Text(
-      //         "Total",
-      //         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      //       ),
-      //       Text(
-      //         "${controller.total}",
-      //         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      //       )
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

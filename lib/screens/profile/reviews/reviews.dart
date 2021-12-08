@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/profile/profile.dart';
+import 'package:khetipati/widgets/app_bar.dart';
+import 'package:khetipati/widgets/divider.dart';
 
 class Reviews extends StatefulWidget {
   const Reviews({Key? key}) : super(key: key);
@@ -15,33 +17,11 @@ class _ReviewsState extends State<Reviews> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
-      appBar: AppBar(
-        toolbarHeight: MediaQuery.of(context).size.height * 0.1,
-        automaticallyImplyLeading: false,
-        backgroundColor: AppColors.mainGreen,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          'My Reviews',
-          style: TextStyle(
-              fontSize: getFont(22),
-              color: AppColors.textGreen,
-              fontWeight: FontWeight.w700),
-        ),
-        leading: IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Profile()),
-              );
-            },
-            icon: Icon(Icons.arrow_back_ios_rounded,
-                size: getFont(20), color: AppColors.textGreen)),
-      ),
+      appBar: buildAppBar(context, 'My Reviews'),
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 815,
+          height: 800,
           decoration: const BoxDecoration(
             color: AppColors.mainGrey,
             borderRadius: BorderRadius.only(
@@ -55,8 +35,12 @@ class _ReviewsState extends State<Reviews> {
                 width: getWidth(378),
                 margin: EdgeInsets.only(
                     top: getHeight(20),
-                    right: MediaQuery.of(context).size.width * 0.05,
-                    left: MediaQuery.of(context).size.width * 0.05),
+                    right: getWidth(20),
+                    left: getWidth(20)),
+                padding: EdgeInsets.only(
+                    top: getHeight(20),
+                    right: getWidth(20),
+                    left: getWidth(20)),
                 // height: 626,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -65,30 +49,16 @@ class _ReviewsState extends State<Reviews> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Text(
-                        'Reviews (3)',
-                        style: TextStyle(
-                          fontSize: getFont(16),
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.04,
-                          right: MediaQuery.of(context).size.width * 0.04),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          reviewCard(),
-                          const Divider(),
-                          reviewCard(),
-                          const Divider(),
-                          reviewCard(),
-                        ],
-                      ),
+                    totalReviews(),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        reviewCard(),
+                        divider(),
+                        reviewCard(),
+                        divider(),
+                        reviewCard(),
+                      ],
                     )
                   ],
                 ),
@@ -101,38 +71,44 @@ class _ReviewsState extends State<Reviews> {
   }
 
   Widget reviewCard() {
-    return SizedBox(
+    return Container(
       width: MediaQuery.of(context).size.width,
-      height: getHeight(177),
+      //height: getHeight(177),
+      margin: EdgeInsets.symmetric(vertical: getHeight(13)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset(
-                'assets/images/items/melons.png',
-                height: getHeight(90),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: [
-                  Text(
-                    'Watermelon',
-                    style: TextStyle(
-                      fontSize: getFont(18),
-                      fontWeight: FontWeight.w500,
-                    ),
+                  Image.asset(
+                    'assets/images/items/melons.png',
+                    height: getHeight(90),
                   ),
-                  SizedBox(
-                    height: getHeight(10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Watermelon',
+                        style: TextStyle(
+                          fontSize: getFont(18),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(
+                        height: getHeight(10),
+                      ),
+                      Text(
+                        'Rs.250',
+                        style: TextStyle(
+                            fontSize: getFont(20),
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.textGreen),
+                      )
+                    ],
                   ),
-                  Text(
-                    'Rs.250',
-                    style: TextStyle(
-                        fontSize: getFont(20),
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.textGreen),
-                  )
                 ],
               ),
               Column(
@@ -188,6 +164,16 @@ class _ReviewsState extends State<Reviews> {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  totalReviews() {
+    return Text(
+      'Reviews (3)',
+      style: TextStyle(
+        fontSize: getFont(16),
+        fontWeight: FontWeight.w500,
       ),
     );
   }

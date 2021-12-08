@@ -4,8 +4,11 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/cagetories.dart';
+import 'package:khetipati/screens/home/offers.dart';
+import 'package:khetipati/screens/home/specialoffers.dart';
 
 import 'package:khetipati/screens/home/widgets/carousel.dart';
+import 'package:khetipati/screens/home/widgets/popular_items.dart';
 import 'package:khetipati/theme.dart';
 import 'package:khetipati/widgets/offersitems.dart';
 import 'package:khetipati/widgets/product_card.dart';
@@ -26,7 +29,12 @@ class HomeTab extends StatelessWidget {
             ),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Carousel(),
+              InkWell(
+                child: const Carousel(),
+                onTap: () {
+                  Get.to(const Offers());
+                },
+              ),
               buildTitleText('Categories'),
               buildCategoriesCard(),
               SizedBox(
@@ -37,12 +45,16 @@ class HomeTab extends StatelessWidget {
               SizedBox(
                 height: getHeight(22),
               ),
-              buildTitleText('Recommended Items'),
+              buildTitleText(
+                'Recommended Items',
+              ),
               buildPopularItemsCard(),
               SizedBox(
                 height: getHeight(22),
               ),
-              buildTitleText('Special Offers'),
+              buildTitleText(
+                'Special Offers',
+              ),
               buildSpecialOffers(),
               SizedBox(height: getHeight(40))
             ])),
@@ -112,9 +124,11 @@ class HomeTab extends StatelessWidget {
                 width: getWidth(149),
                 child: Padding(
                   padding: EdgeInsets.only(left: getWidth(20)),
-                  child: Text(
-                    "No data",
-                    style: archivosubtitleStyle,
+                  child: Center(
+                    child: Text(
+                      "No data",
+                      style: archivosubtitleStyle,
+                    ),
                   ),
                 ))
             : SizedBox(
@@ -184,10 +198,12 @@ class HomeTab extends StatelessWidget {
                 height: 191,
                 child: Padding(
                   padding: EdgeInsets.only(left: getWidth(20)),
-                  child: const Text(
-                    "No Data",
-                    style: TextStyle(
-                        color: Colors.grey, fontWeight: FontWeight.w400),
+                  child: const Center(
+                    child: Text(
+                      "No Data",
+                      style: TextStyle(
+                          color: Colors.grey, fontWeight: FontWeight.w400),
+                    ),
                   ),
                 ))
             : SizedBox(
@@ -205,13 +221,33 @@ class HomeTab extends StatelessWidget {
   buildTitleText(title) {
     return Padding(
       padding: EdgeInsets.only(
-          left: getWidth(20), top: getWidth(18), bottom: getWidth(20)),
-      child: Text(
-        title,
-        style: robototitleStyle.copyWith(
-            fontSize: getFont(18),
-            fontWeight: FontWeight.bold,
-            color: AppColors.textGreen),
+          left: getWidth(20),
+          right: getWidth(20),
+          top: getWidth(18),
+          bottom: getWidth(20)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: robototitleStyle.copyWith(
+                fontSize: getFont(18),
+                fontWeight: FontWeight.bold,
+                color: AppColors.textGreen),
+          ),
+          InkWell(
+            onTap: () {
+              Get.to(const SpecialOffers());
+            },
+            child: Text(
+              'See All',
+              style: archivotitleStyle.copyWith(
+                  fontSize: getFont(12),
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.textGreen),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -221,9 +257,11 @@ class HomeTab extends StatelessWidget {
       () => controller.products.isEmpty
           ? Padding(
               padding: const EdgeInsets.all(18.0),
-              child: Text(
-                "Empty",
-                style: archivosubtitleStyle,
+              child: Center(
+                child: Text(
+                  "Empty",
+                  style: archivosubtitleStyle,
+                ),
               ),
             )
           : Column(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 
-buildAppBar(appbarTitle) {
+buildAppBar(BuildContext context, appbarTitle) {
   return AppBar(
     toolbarHeight: getHeight(80),
     automaticallyImplyLeading: false,
@@ -17,7 +17,9 @@ buildAppBar(appbarTitle) {
           fontWeight: FontWeight.w700),
     ),
     leading: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
         icon: Icon(Icons.arrow_back_ios_rounded,
             size: getFont(20), color: AppColors.textGreen)),
   );

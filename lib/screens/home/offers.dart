@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:khetipati/constant/colors.dart';
+import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/cart/cart_screen.dart';
+import 'package:khetipati/widgets/app_bar.dart';
 import 'home.dart';
 
 class Offers extends StatefulWidget {
@@ -14,66 +17,14 @@ class _OffersState extends State<Offers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightGreen,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: AppColors.mainGreen,
-        elevation: 0,
-        centerTitle: true,
-        title: const Text(
-          'Offers',
-          style: TextStyle(
-              fontSize: 22,
-              color: AppColors.textGreen,
-              fontWeight: FontWeight.w700),
-        ),
-        leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.arrow_back_ios_rounded,
-                size: 20, color: AppColors.textGreen)),
-      ),
+      backgroundColor: AppColors.mainGreen,
+      appBar: buildAppBar(context, 'Offers'),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-              height: 100,
-              width: 414,
-              color: AppColors.mainGreen,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomeScreen()),
-                          );
-                        },
-                        icon: Icon(
-                          Icons.arrow_back_ios_new_outlined,
-                          color: Colors.green[900],
-                        )),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 225),
-                    child: Text(
-                      "Offers",
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.green[900],
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
                 width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColors.mainGrey,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(30),
@@ -82,15 +33,27 @@ class _OffersState extends State<Offers> {
                 ),
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    offers(),
-                    offers(),
-                    offers(),
-                    offers(),
-                    offers(),
-                    SizedBox(
+                    offersCard(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    offersCard(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    offersCard(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    offersCard(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    offersCard(),
+                    const SizedBox(
                       height: 20,
                     ),
                   ],
@@ -98,42 +61,17 @@ class _OffersState extends State<Offers> {
           ],
         ),
       ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => CartScreen()),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.only(top: 20.0),
-          child: Container(
-            width: 68,
-            height: 68,
-            decoration: BoxDecoration(
-                color: AppColors.mainGrey,
-                border: Border.all(width: 5, color: AppColors.mainGreen),
-                borderRadius: BorderRadius.circular(40)),
-            child: Icon(
-              Icons.shopping_cart_outlined,
-              color: const Color.fromRGBO(0, 0, 0, 0.5),
-              size: 30,
-            ),
-          ),
-        ),
-      ),
+
       //sssbottomNavigationBar: BottomNav(),
     );
   }
 
-  Widget offers() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
+  Widget offersCard() {
+    return SizedBox(
+      height: getHeight(145),
+      width: getWidth(355),
       child: Container(
-        height: 144,
-        width: 356,
+        margin: EdgeInsets.symmetric(horizontal: getWidth(30)),
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(10)),
         child: Row(
@@ -147,71 +85,89 @@ class _OffersState extends State<Offers> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "30% OFF",
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green[800]),
-                    ),
+                    RichText(
+                        text: TextSpan(
+                            style: GoogleFonts.roboto(
+                                textStyle: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.green[800])),
+                            children: [
+                          TextSpan(
+                              text: "30% ",
+                              style: GoogleFonts.roboto(
+                                  textStyle: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.green[800]))),
+                          TextSpan(
+                            text: "off",
+                          )
+                        ])),
+                    // Text(
+                    //   "30% OFF",
+                    //   style: GoogleFonts.roboto(
+                    //       textStyle: TextStyle(
+                    //           fontSize: 15,
+                    //           fontWeight: FontWeight.w700,
+                    //           color: Colors.green[800])),
+                    // ),
                     Text(
                       "on all veggies",
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green[800]),
+                      style: GoogleFonts.roboto(
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.green[800])),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: getHeight(10),
                     ),
-                    Text('Grab all the offer \nbefore its gone')
+                    Text(
+                      'Grab all the offer\nbefore its gone',
+                      style: GoogleFonts.archivo(
+                          textStyle: TextStyle(
+                              fontSize: getFont(12),
+                              fontWeight: FontWeight.w400,
+                              color: Colors.grey.shade700)),
+                    )
                   ],
                 ),
               ),
             ),
             Expanded(
-              flex: 6,
-              child: Container(
-                width: 193,
-                height: 144,
-                // decoration: BoxDecoration(
-                //   color: Colors.red,
-                //   borderRadius: BorderRadius.only(
-                //       topLeft: Radius.circular(70),
-                //       bottomLeft: Radius.circular(70)),
-                // ),
-                child: Stack(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          color: AppColors.mainGreen,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(70),
-                              bottomLeft: Radius.circular(65),
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10))),
-                    ),
-                    // Image.asset('assets/images/curve.png'),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: ClipRRect(
+              flex: 5,
+              child: Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    decoration: const BoxDecoration(
+                        color: AppColors.mainGreen,
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(70),
-                            bottomLeft: Radius.circular(60)),
-                        child: Image.asset(
-                          'assets/images/ad.png',
-                          fit: BoxFit.fill,
-                          height: 144,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                            bottomLeft: Radius.circular(65),
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10))),
+                  ),
+                  Container(
+                      width: double.infinity,
+                      margin: const EdgeInsets.only(left: 5),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(70),
+                              bottomLeft: Radius.circular(60)),
+                          image: DecorationImage(
+                              image: AssetImage(
+                                "assets/images/ad.png",
+                              ),
+                              fit: BoxFit.fill))),
+                ],
               ),
             )
           ],
         ),
       ),
     );
+    ;
   }
 }

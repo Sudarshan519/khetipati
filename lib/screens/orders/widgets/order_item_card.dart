@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
+import 'package:khetipati/models/product.dart';
 
-orderItemCard() {
+orderItemCard(Product item) {
   return Column(
     children: [
       SizedBox(height: getHeight(10)),
@@ -16,7 +17,7 @@ orderItemCard() {
               width: getWidth(139),
               height: getHeight(99),
               child: Image.network(
-                " item.featureImage.originalImage.toString()",
+                item.featureImage!.originalImage.toString(),
                 // fit: BoxFit.fill,
                 width: getWidth(139),
                 height: getHeight(99),
@@ -30,7 +31,7 @@ orderItemCard() {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "item.title",
+                  item.title!,
                   style: TextStyle(
                       fontSize: getFont(18),
                       fontWeight: FontWeight.w500,
@@ -49,7 +50,7 @@ orderItemCard() {
                         color: AppColors.textGreen),
                   ),
                   TextSpan(
-                    text: "item.productPrice.toString()",
+                    text: item.productPrice.toString(),
                     style: TextStyle(
                         fontSize: getFont(20),
                         fontWeight: FontWeight.w500,
