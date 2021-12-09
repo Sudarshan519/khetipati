@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:khetipati/constant/size_config.dart';
 
 // const Color bluishClr = Color(0xFF4E5AE8);
 // const Color yellowClr = Color(0xFFFF8746);
@@ -56,7 +57,7 @@ TextStyle get headingStyle {
 TextStyle get subtitleStyle {
   return GoogleFonts.roboto(
       textStyle: TextStyle(
-          fontSize: 14,
+          fontSize: getFont(14),
           fontWeight: FontWeight.w400,
           color: Get.isDarkMode ? Colors.grey[100] : Colors.grey[600]));
 }

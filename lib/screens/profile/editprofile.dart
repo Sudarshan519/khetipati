@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/widgets/text_field.dart';
+import 'package:khetipati/theme.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -26,10 +27,10 @@ class _EditProfileState extends State<EditProfile> {
         elevation: 0,
         title: Text(
           'Edit Profile',
-          style: TextStyle(
+          style: archivotitleStyle.copyWith(
               fontSize: getFont(22),
               color: AppColors.textGreen,
-              fontWeight: FontWeight.bold),
+              fontWeight: FontWeight.w700),
         ),
         leading: IconButton(
             onPressed: () {
@@ -58,10 +59,8 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                   Text(
                     "Change Profile Picture",
-                    style: TextStyle(
-                        fontSize: getFont(16),
-                        color: Colors.green[900],
-                        fontWeight: FontWeight.normal),
+                    style: archivotitleStyle.copyWith(
+                        fontSize: getFont(16), fontWeight: FontWeight.normal),
                   ),
                 ],
               ),
@@ -90,7 +89,7 @@ class _EditProfileState extends State<EditProfile> {
         _settingModalBottomSheet(context);
       },
       child: Container(
-        height: getHeight(45),
+        height: 45,
         //  width: getWidth(352),
         decoration: BoxDecoration(
           border:
@@ -104,7 +103,7 @@ class _EditProfileState extends State<EditProfile> {
               padding: EdgeInsets.only(left: getWidth(20)),
               child: Text(
                 'Change Password',
-                style: TextStyle(
+                style: robotosubtitleStyle.copyWith(
                     fontSize: getFont(18), fontWeight: FontWeight.w400),
               ),
             ),
@@ -129,7 +128,7 @@ class _EditProfileState extends State<EditProfile> {
           child: Column(
         children: [
           SizedBox(
-            height: getHeight(30),
+            height: getHeight(50),
           ),
           const MyInputField(
             hint: 'Full Name',
@@ -174,7 +173,6 @@ class _EditProfileState extends State<EditProfile> {
           ButtonTheme(
             minWidth: getWidth(352),
             height: getHeight(48),
-            // ignore: deprecated_member_use
             child: RaisedButton(
               color: AppColors.mainGreen,
               onPressed: () {},
@@ -195,6 +193,8 @@ class _EditProfileState extends State<EditProfile> {
 
 void _settingModalBottomSheet(context) {
   showModalBottomSheet(
+      isDismissible: true,
+      isScrollControlled: true,
       context: context,
       builder: (BuildContext bc) {
         return SingleChildScrollView(
@@ -202,15 +202,17 @@ void _settingModalBottomSheet(context) {
             margin: EdgeInsets.symmetric(
                 horizontal: getWidth(30), vertical: getWidth(30)),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
+                    SizedBox(height: getHeight(8)),
                     Text(
                       'New Password must be different from current password.',
-                      style: TextStyle(
+                      style: archivotitleStyle.copyWith(
                           color: Colors.black,
                           fontSize: getFont(16),
                           fontWeight: FontWeight.w400),
@@ -228,6 +230,7 @@ void _settingModalBottomSheet(context) {
                       height: getHeight(15),
                     ),
                     const MyInputField(hint: 'New Password'),
+                    SizedBox(height: getHeight(8)),
                     Text(
                       'Must be 8 characters long.',
                       style: TextStyle(

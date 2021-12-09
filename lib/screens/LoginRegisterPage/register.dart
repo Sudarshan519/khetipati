@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/home/home.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
+import 'package:khetipati/screens/widgets/app_button.dart';
 import 'login.dart';
 import 'package:khetipati/constant/colors.dart';
 
@@ -161,29 +163,13 @@ class RegisterPage extends StatelessWidget {
                 height: 30,
               ),
               SizedBox(
-                height: getHeight(50),
-                width: MediaQuery.of(context).size.width,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Get.to(() => HomeScreen());
-                  },
-                  child: Text(
-                    'Submit',
-                    style: TextStyle(
-                      fontSize: getFont(20),
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color.fromRGBO(135, 194, 65, 1)),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                    ),
-                  ),
-                ),
+                height: getFont(45),
+                width: getFont(352),
+                child: MyButton(
+                    onTap: () {
+                      Get.to(() => HomeScreen());
+                    },
+                    label: "Submit"),
               ),
               SizedBox(
                 height: getHeight(20),
@@ -223,20 +209,25 @@ class RegisterPage extends StatelessWidget {
   }
 
   inputTextFormField(labels, Icon textfieldicon) {
-    return TextFormField(
-      decoration: InputDecoration(
-          prefixIcon: textfieldicon,
-          labelText: labels,
-          //hintText: "Full Name",
-          enabledBorder: const OutlineInputBorder(
-            borderSide:
-                BorderSide(width: 1, color: Color.fromRGBO(0, 0, 0, 0.1)),
-            // borderRadius: BorderRadius.circular(15),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(width: 2, color: AppColors.mainGreen),
-            borderRadius: BorderRadius.circular(5),
-          )),
+    return Container(
+      height: getFont(45),
+      width: getFont(352),
+      child: TextFormField(
+        decoration: InputDecoration(
+            prefixIcon: textfieldicon,
+            labelText: labels,
+            //hintText: "Full Name",
+            enabledBorder: const OutlineInputBorder(
+              borderSide:
+                  BorderSide(width: 1, color: Color.fromRGBO(0, 0, 0, 0.1)),
+              // borderRadius: BorderRadius.circular(15),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide:
+                  const BorderSide(width: 2, color: AppColors.mainGreen),
+              borderRadius: BorderRadius.circular(5),
+            )),
+      ),
     );
   }
 }

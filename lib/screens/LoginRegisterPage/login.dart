@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/auth_controller.dart';
+import 'package:khetipati/screens/widgets/app_button.dart';
 import 'package:khetipati/screens/widgets/clipper.dart';
 import 'package:khetipati/utils/validators.dart';
 import '../../theme.dart';
@@ -69,12 +70,15 @@ class LoginPage extends GetView<AuthController> {
                     InputField(
                       controller: email,
                       icon: Icons.email,
+                      label: "Email",
                       validator: (email) => validateEmail(string: email),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                     InputField(
                       icon: Icons.password,
                       controller: password,
+                      label: "Password",
+                      obscureText: true,
                       validator: (pass) => validatePassword(string: pass),
                     ),
                     Row(
@@ -95,10 +99,10 @@ class LoginPage extends GetView<AuthController> {
                       height: 20,
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.07,
-                      width: MediaQuery.of(context).size.width,
-                      child: ElevatedButton(
-                        onPressed: () {
+                      height: getHeight(48),
+                      width: getFont(352),
+                      child: MyButton(
+                        onTap: () {
                           // if (_formKey.currentState!.validate())
                           {
                             controller.loginWithEmail(
@@ -106,28 +110,29 @@ class LoginPage extends GetView<AuthController> {
                                 password: "testing1234");
                           }
                         },
-                        child: Obx(
-                          () => controller.authState.value ==
-                                  AuthState.Authenticated
-                              ? const CircularProgressIndicator()
-                              : Text(
-                                  'Login',
-                                  style: TextStyle(
-                                    fontSize: getFont(20),
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                        ),
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              const Color.fromRGBO(135, 194, 65, 1)),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50.0),
-                            ),
-                          ),
-                        ),
+                        // child: Obx(
+                        //   () => controller.authState.value ==
+                        //           AuthState.Authenticated
+                        //       ? const CircularProgressIndicator()
+                        //       : Text(
+                        //           'Login',
+                        //           style: TextStyle(
+                        //             fontSize: getFont(20),
+                        //             fontWeight: FontWeight.w700,
+                        //           ),
+                        //         ),
+                        // ),
+                        // style: ButtonStyle(
+                        //   backgroundColor: MaterialStateProperty.all<Color>(
+                        //       const Color.fromRGBO(135, 194, 65, 1)),
+                        //   shape:
+                        //       MaterialStateProperty.all<RoundedRectangleBorder>(
+                        //     RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(50.0),
+                        //     ),
+                        //   ),
+                        // ),
+                        label: 'Login',
                       ),
                     ),
                     SizedBox(
@@ -173,35 +178,46 @@ class LoginPage extends GetView<AuthController> {
 }
 
 class InputField extends StatelessWidget {
-  const InputField({
-    Key? key,
-    required this.controller,
-    required this.validator,
-    required this.icon,
-  }) : super(key: key);
+  const InputField(
+      {Key? key,
+      required this.controller,
+      required this.validator,
+      required this.icon,
+      required this.label,
+      this.obscureText = false})
+      : super(key: key);
   final IconData icon;
   final TextEditingController controller;
   final validator;
+  final String label;
+  final bool obscureText;
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      validator: validator,
-      decoration: InputDecoration(
-          prefixIcon: Icon(icon, size: 20),
-          labelText: "Enter your email or phone number",
-          labelStyle: subtitleStyle,
-          enabledBorder: const OutlineInputBorder(
+    return SizedBox(
+      height: getFont(45),
+      width: getFont(352),
+      child: TextFormField(
+        controller: controller,
+        validator: validator,
+        obscureText: obscureText,
+        decoration: InputDecoration(
+            // prefixIcon: Icon(icon, size: 20),
+            labelText: label,
+            labelStyle: subtitleStyle,
+            enabledBorder: const OutlineInputBorder(
+                borderSide:
+                    BorderSide(width: 1, color: Color.fromRGBO(0, 0, 0, 0.1))),
+            errorBorder: OutlineInputBorder(
               borderSide:
-                  BorderSide(width: 1, color: Color.fromRGBO(0, 0, 0, 0.1))),
-          errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(width: 1, color: AppColors.mainGreen),
-            borderRadius: BorderRadius.circular(5),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(width: 1, color: AppColors.mainGreen),
-            borderRadius: BorderRadius.circular(5),
-          )),
+                  const BorderSide(width: 1, color: AppColors.mainGreen),
+              borderRadius: BorderRadius.circular(5),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide:
+                  const BorderSide(width: 1, color: AppColors.mainGreen),
+              borderRadius: BorderRadius.circular(5),
+            )),
+      ),
     );
   }
 }
