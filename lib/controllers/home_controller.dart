@@ -14,7 +14,7 @@ class HomeController extends GetxController {
 
   ///index for tab
   var index = 0.obs;
-
+  RxInt count = 1.obs;
   get selectedIndex => index.value;
   var user = User().obs;
   var cart = <CartModel>[].obs;
@@ -118,5 +118,15 @@ class HomeController extends GetxController {
     Order(
         totalAmount: 533, additionalnote: "additionalnote", products: products);
     AppServices().orderSubmit(authController.token.value);
+  }
+
+  void increment() {
+    count++;
+    update();
+  }
+
+  void decrement() {
+    count != 0 ? count-- : count;
+    update();
   }
 }

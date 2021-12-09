@@ -104,8 +104,8 @@ Widget productCard(Product item) {
                   children: [
                     RichText(
                         text: TextSpan(
-                            style:
-                                TextStyle(color: Color.fromRGBO(2, 95, 51, 1)),
+                            style: const TextStyle(
+                                color: Color.fromRGBO(2, 95, 51, 1)),
                             children: [
                           TextSpan(
                               text: "Rs. ",

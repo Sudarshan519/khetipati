@@ -79,3 +79,10 @@ class FeatureImage {
         "original_image": originalImage,
       };
 }
+
+User user = User(
+  id: 0,
+  firstname: "Ram Kumar",
+  lastname: "Shrestha",
+  email: "ram@gmail.com",
+);

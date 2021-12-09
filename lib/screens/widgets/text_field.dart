@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/size_config.dart';
 
-import '../theme.dart';
+import 'package:khetipati/theme.dart';
 
 class MyInputField extends StatelessWidget {
   final String hint;

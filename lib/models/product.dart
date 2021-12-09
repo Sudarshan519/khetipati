@@ -4,6 +4,9 @@
 
 import 'dart:convert';
 
+import 'package:khetipati/models/order.dart';
+import 'package:khetipati/screens/orders/orders.dart';
+
 List<Product> productFromJson(String str) =>
     List<Product>.from(json.decode(str).map((x) => Product.fromJson(x)));
 
@@ -536,4 +539,86 @@ var productdata = [
     ],
     "averagerating": 4
   }
+];
+
+var whitlist = [
+  {
+    "id": 9,
+    "title": "broccoli",
+    "slug": "broccoli",
+    "feature_image": {
+      "thumbnail_image":
+          "https://aalokimageupload.s3.ap-south-1.amazonaws.com/resize/upload/21/10/16331935872fe555c6ec110521379d4302073045e2.jpg",
+      "original_image":
+          "https://aalokimageupload.s3.ap-south-1.amazonaws.com/upload/21/10/16331935872fe555c6ec110521379d4302073045e2.jpg"
+    },
+    "description": "dsadasdasda",
+    "short_description": "dsadasdasdas",
+    "product_price": 160,
+    "discount_price": null,
+    "stock_qty": 200,
+    "unit_in": "KG",
+    "minimum_order": 2,
+    "warning_qty": 15,
+    "meta_title": "dsadsadsadsad",
+    "meta_description": "dsadsadasdas",
+    "barcode": "131365465",
+    "discount_percent": 0,
+    "product_images": [],
+    "product_rating": [
+      {
+        "id": 6,
+        "user_id": 6,
+        "product_id": 9,
+        "rating": 3,
+        "comment": "average"
+      },
+      {
+        "id": 7,
+        "user_id": 5,
+        "product_id": 9,
+        "rating": 3,
+        "comment": "average"
+      }
+    ],
+    "averagerating": 3
+  },
+  {
+    "id": 10,
+    "title": "garlic",
+    "slug": "garlic",
+    "feature_image": {
+      "thumbnail_image":
+          "https://aalokimageupload.s3.ap-south-1.amazonaws.com/resize/upload/21/10/163319364034a8e43bc21f4390471c704d2f21b833.jpg",
+      "original_image":
+          "https://aalokimageupload.s3.ap-south-1.amazonaws.com/upload/21/10/163319364034a8e43bc21f4390471c704d2f21b833.jpg"
+    },
+    "description": "dsadasdsadas",
+    "short_description": "dsadasdasdas",
+    "product_price": 150,
+    "discount_price": null,
+    "stock_qty": 300,
+    "unit_in": "KG",
+    "minimum_order": 2,
+    "warning_qty": 56,
+    "meta_title": "dsadsada",
+    "meta_description": "dsadsadasdas",
+    "barcode": "1316464",
+    "discount_percent": 0,
+    "product_images": [],
+    "product_rating": [
+      {
+        "id": 5,
+        "user_id": 6,
+        "product_id": 10,
+        "rating": 4,
+        "comment": "average"
+      }
+    ],
+    "averagerating": 4
+  }
+];
+
+var orders = [
+  Order(totalAmount: 400, additionalnote: "additionalnote", products: [])
 ];

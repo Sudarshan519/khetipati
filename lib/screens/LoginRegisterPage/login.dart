@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/auth_controller.dart';
-import 'package:khetipati/theme.dart';
+import 'package:khetipati/screens/widgets/clipper.dart';
 import 'package:khetipati/utils/validators.dart';
-import 'package:khetipati/widgets/clipper.dart';
+import '../../theme.dart';
 import 'register.dart';
 
 class LoginPage extends GetView<AuthController> {

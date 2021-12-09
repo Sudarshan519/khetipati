@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme.dart';
+import 'package:khetipati/theme.dart';
 
 class MyButton extends StatelessWidget {
   final String label;

@@ -3,7 +3,7 @@ import 'package:connectivity/connectivity.dart';
 
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:khetipati/screens/LoginRegisterPage/login.dart';
-import 'package:khetipati/widgets/modal/internet_connectivity.dart';
+import 'package:khetipati/screens/widgets/modal/internet_connectivity.dart';
 
 class SplashController extends GetxController {
   static SplashController instance = Get.find();

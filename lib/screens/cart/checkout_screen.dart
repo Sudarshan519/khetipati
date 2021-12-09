@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
+import 'package:khetipati/screens/widgets/app_bar.dart';
+import 'package:khetipati/screens/widgets/divider.dart';
 import 'package:khetipati/theme.dart';
-import 'package:khetipati/widgets/app_bar.dart';
-import 'package:khetipati/widgets/divider.dart';
 
 class Checkout extends StatefulWidget {
   const Checkout({Key? key}) : super(key: key);
@@ -148,11 +148,11 @@ class _CheckoutState extends State<Checkout> {
         SizedBox(
           height: getHeight(20),
         ),
-        buildShippingDetails(Icons.home, 'Phone', '98012432545'),
+        buildShippingDetails(Icons.phone, 'Phone', '98012432545'),
         SizedBox(
           height: getHeight(20),
         ),
-        buildShippingDetails(Icons.phone, 'Email', 'SSS@gmai.com'),
+        buildShippingDetails(Icons.email, 'Email', 'SSS@gmai.com'),
         SizedBox(
           height: getHeight(20),
         ),

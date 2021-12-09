@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
-import 'package:khetipati/screens/widgets/divider.dart';
-import 'package:khetipati/theme.dart';
+
+import '../../theme.dart';
 
 class Reviews extends StatefulWidget {
   const Reviews({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _ReviewsState extends State<Reviews> {
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height - 80,
+          padding: const EdgeInsets.only(bottom: 20),
           decoration: const BoxDecoration(
             color: AppColors.mainGrey,
             borderRadius: BorderRadius.only(
@@ -29,48 +29,57 @@ class _ReviewsState extends State<Reviews> {
               topLeft: Radius.circular(30),
             ),
           ),
-          child: Column(
-            children: [
-              Container(
-                width: getWidth(378),
-                margin: EdgeInsets.only(
-                    top: getHeight(20),
-                    right: getWidth(20),
-                    left: getWidth(20)),
-                padding: EdgeInsets.only(
-                    top: getHeight(20),
-                    right: getWidth(20),
-                    left: getWidth(20)),
-                // height: 626,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    totalReviews(),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        reviewCard(),
-                        divider(),
-                        reviewCard(),
-                        divider(),
-                        reviewCard(),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
+          child: buildReviewList(),
         ),
       ),
     );
   }
 
-  Widget reviewCard() {
+  totalReviews() {
+    return Text(
+      'Reviews (3)',
+      style: TextStyle(
+        fontSize: getFont(16),
+        fontWeight: FontWeight.w500,
+      ),
+    );
+  }
+
+  buildReviewList() {
+    return Container(
+      width: getWidth(378),
+
+      margin: EdgeInsets.only(
+          top: getHeight(20), right: getWidth(20), left: getWidth(20)),
+      padding: EdgeInsets.only(
+          top: getHeight(20), right: getWidth(20), left: getWidth(20)),
+      // height: 626,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          totalReviews(),
+          Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: List.generate(
+                  10,
+                  (index) => Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          border: index == 9
+                              ? null
+                              : const Border(
+                                  bottom: BorderSide(color: Colors.grey))),
+                      child: reviewTile())))
+        ],
+      ),
+    );
+  }
+
+  Widget reviewTile() {
     return Container(
       width: MediaQuery.of(context).size.width,
       //height: getHeight(177),
@@ -158,17 +167,6 @@ class _ReviewsState extends State<Reviews> {
             ),
           )
         ],
-      ),
-    );
-  }
-
-  totalReviews() {
-    return Text(
-      'Reviews (3)',
-      style: archivotitleStyle.copyWith(
-        fontSize: getFont(16),
-        color: Colors.black,
-        fontWeight: FontWeight.w500,
       ),
     );
   }

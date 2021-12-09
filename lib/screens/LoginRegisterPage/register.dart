@@ -3,8 +3,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/home/home.dart';
-import 'package:khetipati/screens/home/tabs/home_tab.dart';
-import 'package:khetipati/widgets/app_bar.dart';
+import 'package:khetipati/screens/widgets/app_bar.dart';
 import 'login.dart';
 import 'package:khetipati/constant/colors.dart';
 

@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/constant/constant.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
-import 'package:khetipati/models/product.dart';
 import 'package:khetipati/screens/orders/widgets/order_item_card.dart';
+import 'package:khetipati/screens/widgets/app_bar.dart';
+import 'package:khetipati/screens/widgets/recommended_items_card.dart';
 import 'package:khetipati/theme.dart';
-import 'package:khetipati/widgets/app_bar.dart';
-import 'package:khetipati/widgets/product_card.dart';
-import 'package:khetipati/widgets/recommended_items_card.dart';
 
 class OrdersTab extends StatefulWidget {
   const OrdersTab({Key? key}) : super(key: key);
@@ -66,6 +63,7 @@ class _OrdersTabState extends State<OrdersTab> {
           color: Colors.white, borderRadius: BorderRadius.circular(10)),
       child: Column(
         children: [
+          ///tabbar
           SizedBox(
             width: MediaQuery.of(context).size.width,
             // height: getHeight(40),

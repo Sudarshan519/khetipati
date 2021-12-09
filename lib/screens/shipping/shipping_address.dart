@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
-import 'package:khetipati/screens/profile/shipping/add_shipping_address.dart';
-import 'package:khetipati/widgets/app_bar.dart';
-import 'package:khetipati/widgets/divider.dart';
+import 'package:khetipati/screens/shipping/add_shipping_address.dart';
+import 'package:khetipati/screens/widgets/app_bar.dart';
+import 'package:khetipati/screens/widgets/divider.dart';
 
 class ShippingAddress extends StatefulWidget {
   const ShippingAddress({Key? key}) : super(key: key);

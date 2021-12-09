@@ -5,10 +5,9 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:get/get.dart';
-import 'package:khetipati/widgets/app_bar.dart';
-import 'package:khetipati/widgets/product_card.dart';
-import 'package:khetipati/widgets/recommended_items_card.dart';
-import 'package:khetipati/widgets/title_text.dart';
+import 'package:khetipati/screens/widgets/app_bar.dart';
+import 'package:khetipati/screens/widgets/recommended_items_card.dart';
+import 'package:khetipati/screens/widgets/title_text.dart';
 
 class Wishlist extends StatefulWidget {
   const Wishlist({Key? key}) : super(key: key);

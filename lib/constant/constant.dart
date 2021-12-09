@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:khetipati/constant/size_config.dart';
 
 const defaultmargin = 11.0;

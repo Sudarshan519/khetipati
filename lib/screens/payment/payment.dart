@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
-import 'package:khetipati/screens/profile/payment/add_card.dart';
-import 'package:khetipati/widgets/app_bar.dart';
+import 'package:khetipati/screens/payment/add_card.dart';
+import 'package:khetipati/screens/widgets/app_bar.dart';
 
 class Payment extends StatefulWidget {
   const Payment({Key? key}) : super(key: key);
