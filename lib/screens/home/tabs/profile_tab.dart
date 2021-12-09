@@ -5,13 +5,15 @@ import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/LoginRegisterPage/login.dart';
-import 'package:khetipati/screens/orders/orders.dart';
-import 'package:khetipati/screens/profile/payment/payment.dart';
-import 'package:khetipati/screens/profile/reviews/reviews.dart';
-import 'package:khetipati/screens/profile/shipping/shipping_address.dart';
+import 'package:khetipati/screens/home/tabs/orders_tab.dart';
+import 'package:khetipati/screens/payment/payment.dart';
+
 import 'package:khetipati/screens/profile/editprofile.dart';
-import 'package:khetipati/screens/profile/voucher/vouchers.dart';
-import 'package:khetipati/screens/profile/wishlist/wishlist.dart';
+
+import 'package:khetipati/screens/reviews/reviews.dart';
+import 'package:khetipati/screens/shipping/shipping_address.dart';
+import 'package:khetipati/screens/voucher/vouchers.dart';
+import 'package:khetipati/screens/wishlist/wishlist.dart';
 
 class ProfileTab extends StatefulWidget {
   const ProfileTab({Key? key}) : super(key: key);
@@ -170,7 +172,7 @@ class _ProfileTabState extends State<ProfileTab> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Orders()),
+                    MaterialPageRoute(builder: (context) => const OrdersTab()),
                   );
                 },
                 child:

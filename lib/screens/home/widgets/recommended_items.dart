@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/controllers/home_controller.dart';
+import 'package:khetipati/screens/home/tabs/profile_tab.dart';
 import 'package:khetipati/screens/profile/profile.dart';
 
 class RecommendedItemsPage extends StatefulWidget {
@@ -44,10 +45,7 @@ class _RecommendedItemsPageState extends State<RecommendedItemsPage> {
                           child: Image.asset('assets/images/pic.png'),
                         ),
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Profile()),
-                          );
+                          Get.to(const ProfileTab());
                         },
                       ),
                       const SizedBox(

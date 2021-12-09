@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
-import 'package:khetipati/widgets/app_bar.dart';
+import 'package:khetipati/screens/widgets/app_bar.dart';
 
 class Vouchers extends StatefulWidget {
   const Vouchers({Key? key}) : super(key: key);

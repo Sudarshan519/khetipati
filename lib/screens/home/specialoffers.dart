@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
-
-import 'package:khetipati/widgets/app_bar.dart';
-import 'package:khetipati/widgets/offersitems.dart';
-import 'package:khetipati/widgets/recommended_items_card.dart';
-import 'package:khetipati/widgets/title_text.dart';
+import 'package:khetipati/screens/widgets/app_bar.dart';
+import 'package:khetipati/screens/widgets/offersitems.dart';
+import 'package:khetipati/screens/widgets/recommended_items_card.dart';
 
 import '../../theme.dart';
 
@@ -59,12 +57,15 @@ class SpecialOffers extends StatelessWidget {
   buildSpecialOffers() {
     return Obx(
       () => controller.products.isEmpty
-          ? Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Center(
-                child: Text(
-                  "Empty",
-                  style: archivosubtitleStyle,
+          ? SizedBox(
+              height: 200,
+              child: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Center(
+                  child: Text(
+                    "Empty",
+                    style: archivosubtitleStyle,
+                  ),
                 ),
               ),
             )

@@ -5,11 +5,12 @@ import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/product.dart';
 import 'package:khetipati/screens/detail/widgets/details_carousel.dart';
-import 'package:khetipati/screens/home/home.dart';
+import 'package:khetipati/screens/widgets/app_bar.dart';
+import 'package:khetipati/screens/widgets/divider.dart';
+import 'package:khetipati/screens/widgets/product_card.dart';
+import 'package:khetipati/screens/widgets/recommended_items_card.dart';
+
 import 'package:khetipati/theme.dart';
-import 'package:khetipati/widgets/divider.dart';
-import 'package:khetipati/widgets/product_card.dart';
-import 'package:khetipati/widgets/recommended_items_card.dart';
 
 class DetailsScreen extends StatelessWidget {
   DetailsScreen({Key? key, required this.product}) : super(key: key);
@@ -24,25 +25,7 @@ class DetailsScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
           backgroundColor: AppColors.mainGreen,
-          appBar: AppBar(
-            toolbarHeight: MediaQuery.of(context).size.height * 0.1,
-            automaticallyImplyLeading: false,
-            backgroundColor: AppColors.mainGreen,
-            elevation: 0,
-            centerTitle: true,
-            title: Text(product.title,
-                style: robototitleStyle.copyWith(
-                    fontSize: getFont(22), fontWeight: FontWeight.w700)),
-            leading: IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
-                  );
-                },
-                icon: const Icon(Icons.arrow_back_ios_rounded,
-                    size: 20, color: AppColors.textGreen)),
-          ),
+          appBar: buildAppBar(context, product.title),
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -63,19 +46,6 @@ class DetailsScreen extends StatelessWidget {
                           height: 20,
                         ),
                         recommendedItemsCard()
-
-                        // Container(
-                        //   margin: const EdgeInsets.symmetric(vertical: 20.0),
-                        //   height: 191.0,
-                        //   child: ListView(
-                        //     scrollDirection: Axis.horizontal,
-                        //     children: [
-                        //       productCard(homeController.products[0]),
-                        //       productCard(homeController.products[1]),
-                        //       productCard(homeController.products[2])
-                        //     ],
-                        //   ),
-                        // ),
                       ],
                     ))
               ],
@@ -172,7 +142,7 @@ class DetailsScreen extends StatelessWidget {
         //mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Stack(children: [
-            const DetailsCarousel(),
+            DetailsCarousel(),
             Positioned(
               top: getHeight(15),
               //left: getWidth(8),
@@ -256,21 +226,29 @@ class DetailsScreen extends StatelessWidget {
                         Icons.add,
                         size: 20,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        homeController.increment();
+                        print(controller.count);
+                      },
                     ),
                   ),
                 ),
                 SizedBox(
                   width: getWidth(10),
                 ),
-                Container(
+                Obx(
+                  () => Container(
                     width: getWidth(42),
                     height: getHeight(32),
                     decoration: BoxDecoration(
                         border:
                             Border.all(width: 1, color: AppColors.mainGreen),
                         borderRadius: BorderRadius.circular(4)),
-                    child: const Center(child: Text(""))),
+                    child: Center(
+                      child: Text(homeController.count.toString()),
+                    ),
+                  ),
+                ),
                 SizedBox(
                   width: getWidth(10),
                 ),
@@ -289,7 +267,10 @@ class DetailsScreen extends StatelessWidget {
                         Icons.remove,
                         size: 20,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        homeController.decrement();
+                        print(controller.count);
+                      },
                     ),
                   ),
                 ),
@@ -317,16 +298,17 @@ class DetailsScreen extends StatelessWidget {
             // width: 378,
             height: 55,
             child: TabBar(
-              tabs: [
+              indicatorSize: TabBarIndicatorSize.label,
+              labelStyle: archivotitleStyle.copyWith(
+                  fontSize: getFont(18), fontWeight: FontWeight.w600),
+              labelColor: AppColors.textGreen,
+              unselectedLabelColor: Colors.black,
+              tabs: const [
                 Tab(
-                  child: Text('Details',
-                      style: archivotitleStyle.copyWith(
-                          fontSize: getFont(18), fontWeight: FontWeight.w600)),
+                  text: 'Details',
                 ),
                 Tab(
-                  child: Text('Reviews',
-                      style: archivotitleStyle.copyWith(
-                          fontSize: getFont(18), fontWeight: FontWeight.w600)),
+                  text: 'Reviews',
                 )
               ],
             ),

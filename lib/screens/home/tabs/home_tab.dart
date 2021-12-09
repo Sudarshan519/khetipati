@@ -8,9 +8,9 @@ import 'package:khetipati/screens/home/offers.dart';
 import 'package:khetipati/screens/home/specialoffers.dart';
 
 import 'package:khetipati/screens/home/widgets/carousel.dart';
+import 'package:khetipati/screens/widgets/offersitems.dart';
+import 'package:khetipati/screens/widgets/product_card.dart';
 import 'package:khetipati/theme.dart';
-import 'package:khetipati/widgets/offersitems.dart';
-import 'package:khetipati/widgets/product_card.dart';
 
 class HomeTab extends StatelessWidget {
   HomeTab({Key? key}) : super(key: key);

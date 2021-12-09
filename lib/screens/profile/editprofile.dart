@@ -1,10 +1,10 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
-import 'package:khetipati/screens/profile/profile.dart';
-import 'package:khetipati/widgets/text_field.dart';
+import 'package:khetipati/screens/widgets/text_field.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -33,10 +33,7 @@ class _EditProfileState extends State<EditProfile> {
         ),
         leading: IconButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Profile()),
-              );
+              Get.back();
             },
             icon: const Icon(Icons.arrow_back_ios_rounded,
                 size: 20, color: AppColors.textGreen)),

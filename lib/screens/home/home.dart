@@ -6,18 +6,17 @@ import 'package:khetipati/controllers/cart_controller.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/screens/cart/cart_screen.dart';
 import 'package:khetipati/screens/home/tabs/orders_tab.dart';
+import 'package:khetipati/screens/home/tabs/profile_tab.dart';
 import 'package:khetipati/screens/home/widgets/navbar.dart';
 import 'package:khetipati/screens/notifications/notifications.dart';
-import 'package:khetipati/screens/orders/orders.dart';
-import 'package:khetipati/screens/profile/profile.dart';
 
 import 'tabs/home_tab.dart';
 
 List<Widget> tabs = [
   HomeTab(),
   const OrdersTab(),
-  NotificationsTab(),
-  const Profile(),
+  const NotificationsTab(),
+  const ProfileTab(),
 ];
 
 class HomeScreen extends StatelessWidget {
@@ -40,8 +39,8 @@ class HomeScreen extends StatelessWidget {
         },
         child: Container(
           margin: EdgeInsets.only(top: getHeight(20)),
-          width: 68,
-          height: 68,
+          width: getHeight(68),
+          height: getHeight(68),
           decoration: BoxDecoration(
               color: AppColors.mainGrey,
               border: Border.all(width: 5, color: AppColors.mainGreen),

@@ -4,7 +4,7 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/screens/home/widgets/recommended_items.dart';
-import 'package:khetipati/widgets/product_card.dart';
+import 'package:khetipati/screens/widgets/product_card.dart';
 
 final controller = Get.put(HomeController());
 
