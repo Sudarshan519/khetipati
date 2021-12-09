@@ -4,15 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
+import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/screens/LoginRegisterPage/login.dart';
 import 'package:khetipati/screens/home/tabs/orders_tab.dart';
-import 'package:khetipati/screens/orders/orders.dart';
 import 'package:khetipati/screens/profile/payment/payment.dart';
 import 'package:khetipati/screens/profile/reviews/reviews.dart';
 import 'package:khetipati/screens/profile/shipping/shipping_address.dart';
 import 'package:khetipati/screens/profile/editprofile.dart';
 import 'package:khetipati/screens/profile/voucher/vouchers.dart';
 import 'package:khetipati/screens/profile/wishlist/wishlist.dart';
+
+import '../../theme.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -22,6 +24,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  final HomeController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     // User? user = User.fromJson(AuthStorage.currentUser);
@@ -42,7 +45,8 @@ class _ProfileState extends State<Profile> {
         ),
         leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              controller.updateIndex(0);
+              // Navigator.pop(context);
             },
             icon: const Icon(Icons.arrow_back_ios_rounded,
                 size: 20, color: AppColors.textGreen)),
@@ -123,6 +127,9 @@ class _ProfileState extends State<Profile> {
                     EdgeInsets.only(right: getWidth(20), left: getWidth(20)),
                 child: Column(
                   children: [
+                    SizedBox(
+                      height: 30,
+                    ),
                     profileMenuCard(),
                     personalInfoCard(),
                     logoutAndSwitchAccCard(),
@@ -139,7 +146,46 @@ class _ProfileState extends State<Profile> {
     );
   }
 
+  buildProfileMenuItem() {
+    return Container(
+      width: 140,
+      height: 57,
+      margin: const EdgeInsets.only(right: 10, bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 20),
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey.shade300),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10)),
+      child: Row(
+        children: [
+          Image.asset('assets/icons/heart.png'),
+          const SizedBox(
+            width: 10,
+          ),
+          Text("Whitlist", style: subtitleStyle)
+        ],
+      ),
+    );
+  }
+
   profileMenuCard() {
+    // return Container(
+    //   width: 353,
+    //   height: 239,
+    //   padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 20),
+    //   decoration: BoxDecoration(
+    //     color: Colors.white,
+    //     borderRadius: BorderRadius.circular(10),
+    //   ),
+    //   child: Wrap(
+    //     children: [
+    //       buildProfileMenuItem(),
+    //       buildProfileMenuItem(),
+    //       buildProfileMenuItem(),
+    //       buildProfileMenuItem(),
+    //     ],
+    //   ),
+    // );
     return Container(
       margin: EdgeInsets.only(top: getHeight(22)),
       width: MediaQuery.of(context).size.width,
@@ -287,8 +333,8 @@ class _ProfileState extends State<Profile> {
 
   profileOptionsMenu(optionName, optionIcon) {
     return Container(
-      width: getWidth(152),
-      height: getHeight(57),
+      width: getWidth(140),
+      height: getHeight(54),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: const Color.fromRGBO(191, 191, 191, 0.6)),
@@ -307,12 +353,12 @@ class _ProfileState extends State<Profile> {
             width: getWidth(25),
           ),
           SizedBox(
-            width: getWidth(10),
+            width: getWidth(6),
           ),
           Text(
             optionName,
-            style:
-                TextStyle(fontSize: getFont(14), fontWeight: FontWeight.w400),
+            style: subtitleStyle.copyWith(
+                fontSize: getFont(14), fontWeight: FontWeight.w400),
           )
         ],
       ),

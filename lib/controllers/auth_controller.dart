@@ -13,9 +13,9 @@ class AuthController extends GetxController {
   loginWithEmail({required String email, required String password}) async {
     authState.value = AuthState.Authenticating;
 
-    List user = await userrepo.loginWithEmailandPassword(email, password);
+    var user = await userrepo.loginWithEmailandPassword(email, password);
 
-    if (user[0] != null) {
+    if (user != null) {
       token.value = user[1];
       authState.value = AuthState.Authenticated;
       print(token.value);

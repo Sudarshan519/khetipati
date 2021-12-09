@@ -67,7 +67,7 @@ Widget productCard(Product item) {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          item.title!,
+                          item.title,
                           style: TextStyle(
                               fontSize: getFont(14),
                               color: AppColors.textblack),

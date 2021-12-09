@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
-import 'package:khetipati/screens/cart/cart_screen.dart';
 import 'package:khetipati/widgets/app_bar.dart';
-import 'home.dart';
 
 class Offers extends StatefulWidget {
   const Offers({Key? key}) : super(key: key);
@@ -67,10 +65,11 @@ class _OffersState extends State<Offers> {
   }
 
   Widget offersCard() {
-    return SizedBox(
-      height: getHeight(145),
-      width: getWidth(355),
+    return GestureDetector(
+      onTap: () {},
       child: Container(
+        height: getHeight(145),
+        width: getWidth(355),
         margin: EdgeInsets.symmetric(horizontal: getWidth(30)),
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(10)),
@@ -104,14 +103,6 @@ class _OffersState extends State<Offers> {
                             text: "off",
                           )
                         ])),
-                    // Text(
-                    //   "30% OFF",
-                    //   style: GoogleFonts.roboto(
-                    //       textStyle: TextStyle(
-                    //           fontSize: 15,
-                    //           fontWeight: FontWeight.w700,
-                    //           color: Colors.green[800])),
-                    // ),
                     Text(
                       "on all veggies",
                       style: GoogleFonts.roboto(

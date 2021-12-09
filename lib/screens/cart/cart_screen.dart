@@ -5,9 +5,7 @@ import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/cart_controller.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/product.dart';
-import 'package:khetipati/screens/cart/checkout_screen.dart';
 import 'package:khetipati/widgets/app_bar.dart';
-import 'package:khetipati/widgets/product_card.dart';
 import 'package:khetipati/widgets/recommended_items_card.dart';
 
 class CartScreen extends StatelessWidget {
@@ -58,7 +56,7 @@ class CartScreen extends StatelessWidget {
 
 class CartProducts extends StatelessWidget {
   final CartController controller = Get.find();
-
+  final homeController = Get.put(HomeController());
   CartProducts({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -237,6 +235,7 @@ class CartProductCard extends StatelessWidget {
 class CartTotal extends StatelessWidget {
   CartTotal({Key? key}) : super(key: key);
   final CartController controller = Get.find();
+  final homeController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -275,13 +274,9 @@ class CartTotal extends StatelessWidget {
             SizedBox(
               width: getHeight(150),
               height: getHeight(41),
-              // ignore: deprecated_member_use
               child: RaisedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Checkout()),
-                  );
+                  homeController.submitOrder(controller.products);
                 },
                 color: AppColors.mainGreen,
                 child: FittedBox(

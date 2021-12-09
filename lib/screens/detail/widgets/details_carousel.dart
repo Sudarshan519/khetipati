@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
+import 'package:khetipati/models/product.dart';
 
 class DetailsCarousel extends StatefulWidget {
-  const DetailsCarousel({Key? key}) : super(key: key);
-
+  const DetailsCarousel({Key? key, required this.product}) : super(key: key);
+  final Product product;
   @override
   _DetailsCarouselState createState() => _DetailsCarouselState();
 }
@@ -78,14 +78,17 @@ class _DetailsCarouselState extends State<DetailsCarousel> {
                 child: Stack(
                   children: [
                     Container(
-                        // width: getWidth(282),
-                        margin: const EdgeInsets.only(left: 5),
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage(
-                                  "assets/images/items/melons.png",
-                                ),
-                                fit: BoxFit.contain))),
+                      // width: getWidth(282),
+                      margin: const EdgeInsets.only(left: 5),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(
+                              widget.product.featureImage.originalImage,
+                            ),
+                            fit: BoxFit.contain),
+                      ),
+                      // child: Text(widget.product.featureImage.originalImage),
+                    ),
 
                     // Image.asset(
                     //   'assets/images/ad.png',

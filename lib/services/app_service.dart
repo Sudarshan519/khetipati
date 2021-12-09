@@ -64,6 +64,8 @@ class AppServices extends GetConnect {
         });
 
         return categorylist;
+      } else {
+        return categoriesdata;
       }
     } on PlatformException catch (e) {
       getSnackbar(message: e.message.toString());
@@ -91,7 +93,9 @@ class AppServices extends GetConnect {
           print(v);
           productlist.add(Product.fromJson(v));
         });
-      } else {}
+      } else {
+        return productdata;
+      }
       print(productlist.length);
       return productlist;
     } catch (e) {
@@ -111,6 +115,7 @@ class AppServices extends GetConnect {
         Uri.parse("http://192.168.10.149:8000/orderapi/getorderbyuserid/6"),
         headers: headers);
     var data = json.decode(response.body)['data'];
+    print(data);
     print(data['singleOrder']);
     // if (data.isNotEmpty) {
     //   data.forEach((v) {

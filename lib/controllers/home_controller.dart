@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:khetipati/controllers/auth_controller.dart';
 import 'package:khetipati/models/cagetories.dart';
 import 'package:khetipati/models/cart.dart';
+import 'package:khetipati/models/order.dart';
 import 'package:khetipati/models/product.dart';
 import 'package:khetipati/models/user.dart';
 import 'package:khetipati/services/app_service.dart';
@@ -113,7 +114,9 @@ class HomeController extends GetxController {
     // await productrepo.getCategorybyid(id);
   }
 
-  void submitOrder() {
+  void submitOrder(products) {
+    Order(
+        totalAmount: 533, additionalnote: "additionalnote", products: products);
     AppServices().orderSubmit(authController.token.value);
   }
 }

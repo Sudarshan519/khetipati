@@ -17,8 +17,8 @@ orderItemCard(Product item) {
               width: getWidth(139),
               height: getHeight(99),
               child: Image.network(
-                item.featureImage!.originalImage.toString(),
-                // fit: BoxFit.fill,
+                item.featureImage.originalImage.toString(),
+                fit: BoxFit.fill,
                 width: getWidth(139),
                 height: getHeight(99),
               ),

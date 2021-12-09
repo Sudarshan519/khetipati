@@ -172,7 +172,9 @@ class DetailsScreen extends StatelessWidget {
         //mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Stack(children: [
-            const DetailsCarousel(),
+            DetailsCarousel(
+              product: product,
+            ),
             Positioned(
               top: getHeight(15),
               //left: getWidth(8),
@@ -306,27 +308,41 @@ class DetailsScreen extends StatelessWidget {
 
   buildReviewsAndDetailsTab() {
     return Container(
-      // height: 266,
       margin: EdgeInsets.symmetric(horizontal: getWidth(19)),
-      // width: 378,
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(10)),
       child: Column(
         children: [
           SizedBox(
-            // width: 378,
             height: 55,
             child: TabBar(
               tabs: [
-                Tab(
-                  child: Text('Details',
-                      style: archivotitleStyle.copyWith(
-                          fontSize: getFont(18), fontWeight: FontWeight.w600)),
+                Container(
+                  width: 80,
+                  decoration: BoxDecoration(
+                    border: Border(
+                      right: BorderSide(
+                          color: Colors.grey,
+                          width: 0,
+                          style: BorderStyle.solid),
+                    ),
+                  ),
+                  child: Tab(
+                    child: Text('Details',
+                        style: archivotitleStyle.copyWith(
+                            fontSize: getFont(18),
+                            fontWeight: FontWeight.w600)),
+                  ),
                 ),
-                Tab(
-                  child: Text('Reviews',
-                      style: archivotitleStyle.copyWith(
-                          fontSize: getFont(18), fontWeight: FontWeight.w600)),
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(),
+                  child: Tab(
+                    child: Text('Reviews',
+                        style: archivotitleStyle.copyWith(
+                            fontSize: getFont(18),
+                            fontWeight: FontWeight.w600)),
+                  ),
                 )
               ],
             ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/initialbinding.dart';
-import 'package:khetipati/screens/home/home.dart';
 
 import 'package:khetipati/screens/splash/splashscreen.dart';
 import 'package:khetipati/utils/storage/box_storage.dart';

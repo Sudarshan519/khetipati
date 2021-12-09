@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
-import 'package:khetipati/screens/profile/profile.dart';
+import 'package:khetipati/theme.dart';
 import 'package:khetipati/widgets/app_bar.dart';
 import 'package:khetipati/widgets/divider.dart';
 
@@ -21,7 +21,7 @@ class _ReviewsState extends State<Reviews> {
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 800,
+          height: MediaQuery.of(context).size.height - 80,
           decoration: const BoxDecoration(
             color: AppColors.mainGrey,
             borderRadius: BorderRadius.only(
@@ -86,6 +86,7 @@ class _ReviewsState extends State<Reviews> {
                   Image.asset(
                     'assets/images/items/melons.png',
                     height: getHeight(90),
+                    width: 100,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -143,23 +144,16 @@ class _ReviewsState extends State<Reviews> {
           ),
           Container(
             //width: 334,
-            height: 65,
+            height: 65, padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
                 color: const Color.fromRGBO(237, 237, 237, 1),
                 borderRadius: BorderRadius.circular(10)),
-            child: Center(
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                width: MediaQuery.of(context).size.width * 0.75,
-                // height: 42,
-                child: Text(
-                  '“Shankhaul Marga, Kathmandu 44600 Lorem Ipsum dolor sit Shankhaul Marga, Kathmandu 44600 Lorem Ipsum dolor sit ”',
-                  style: TextStyle(
-                    fontSize: getFont(13),
-                    fontWeight: FontWeight.w400,
-                    color: const Color.fromRGBO(0, 0, 0, 0.5),
-                  ),
-                ),
+            child: Text(
+              '“Shankhaul Marga, Kathmandu 44600 Lorem Ipsum dolor sit Shankhaul Marga, Kathmandu 44600 Lorem Ipsum dolor sit ”',
+              style: archivosubtitleStyle.copyWith(
+                fontSize: getFont(13),
+                fontWeight: FontWeight.w400,
+                color: const Color.fromRGBO(0, 0, 0, 0.5),
               ),
             ),
           )
@@ -171,8 +165,9 @@ class _ReviewsState extends State<Reviews> {
   totalReviews() {
     return Text(
       'Reviews (3)',
-      style: TextStyle(
+      style: archivotitleStyle.copyWith(
         fontSize: getFont(16),
+        color: Colors.black,
         fontWeight: FontWeight.w500,
       ),
     );

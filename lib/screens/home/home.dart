@@ -8,7 +8,6 @@ import 'package:khetipati/screens/cart/cart_screen.dart';
 import 'package:khetipati/screens/home/tabs/orders_tab.dart';
 import 'package:khetipati/screens/home/widgets/navbar.dart';
 import 'package:khetipati/screens/notifications/notifications.dart';
-import 'package:khetipati/screens/orders/orders.dart';
 import 'package:khetipati/screens/profile/profile.dart';
 
 import 'tabs/home_tab.dart';
@@ -16,7 +15,7 @@ import 'tabs/home_tab.dart';
 List<Widget> tabs = [
   HomeTab(),
   const OrdersTab(),
-  NotificationsTab(),
+  const NotificationsTab(),
   const Profile(),
 ];
 
@@ -26,12 +25,19 @@ class HomeScreen extends StatelessWidget {
   final cartController = Get.put(CartController());
   @override
   Widget build(BuildContext context) {
-    controller.getOrder();
+    //testing
+    // controller.getOrder();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.mainGreen,
+
+      ////bottom navigation
       bottomNavigationBar: CustomNav(),
+
+      ///tab widgets
       body: buildTab(),
+
+      ///cart button
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
       floatingActionButton: InkWell(

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/auth_controller.dart';
-import 'package:khetipati/screens/home/home.dart';
+import 'package:khetipati/theme.dart';
 import 'package:khetipati/utils/validators.dart';
 import 'package:khetipati/widgets/clipper.dart';
 import 'register.dart';
@@ -20,6 +20,7 @@ class LoginPage extends GetView<AuthController> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            ///curve design and icon
             SizedBox(
               width: MediaQuery.of(context).size.width,
               height: 250,
@@ -54,6 +55,9 @@ class LoginPage extends GetView<AuthController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    SizedBox(
+                      height: 20,
+                    ),
                     const Text(
                       'Login',
                       style: TextStyle(
@@ -67,7 +71,7 @@ class LoginPage extends GetView<AuthController> {
                       icon: Icons.email,
                       validator: (email) => validateEmail(string: email),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                     InputField(
                       icon: Icons.password,
                       controller: password,
@@ -186,6 +190,7 @@ class InputField extends StatelessWidget {
       decoration: InputDecoration(
           prefixIcon: Icon(icon, size: 20),
           labelText: "Enter your email or phone number",
+          labelStyle: subtitleStyle,
           enabledBorder: const OutlineInputBorder(
               borderSide:
                   BorderSide(width: 1, color: Color.fromRGBO(0, 0, 0, 0.1))),
