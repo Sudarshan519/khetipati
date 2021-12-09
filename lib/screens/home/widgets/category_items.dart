@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/screens/home/tabs/profile_tab.dart';
-import 'package:khetipati/screens/profile/profile.dart';
 
 class CategoryDetail extends StatefulWidget {
   const CategoryDetail({Key? key, required this.index}) : super(key: key);

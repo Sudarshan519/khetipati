@@ -3,6 +3,8 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
 
+import '../../theme.dart';
+
 class Vouchers extends StatefulWidget {
   const Vouchers({Key? key}) : super(key: key);
 
@@ -40,19 +42,10 @@ class _VouchersState extends State<Vouchers> {
             child: Column(
               //crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                voucherItemCard('assets/images/offers/offer1.png'),
-                SizedBox(
-                  height: getHeight(7),
+                ...List.generate(
+                  5,
+                  (index) => voucherItemCard('assets/images/offers/offer1.png'),
                 ),
-                voucherItemCard('assets/images/offers/offer2.png'),
-                SizedBox(
-                  height: getHeight(7),
-                ),
-                voucherItemCard('assets/images/offers/offer1.png'),
-                SizedBox(
-                  height: getHeight(7),
-                ),
-                voucherItemCard('assets/images/offers/offer2.png')
               ],
             ),
           ),
@@ -84,10 +77,10 @@ class _VouchersState extends State<Vouchers> {
               width: getWidth(180),
               child: Text(
                 'Use code voucher and  get 10% off on apples',
-                style: TextStyle(
+                style: archivotitleStyle.copyWith(
                     color: AppColors.textblack,
                     fontSize: getFont(14),
-                    fontWeight: FontWeight.w800),
+                    fontWeight: FontWeight.w500),
               ),
             ),
             const SizedBox(
@@ -102,7 +95,7 @@ class _VouchersState extends State<Vouchers> {
               child: Center(
                 child: Text(
                   'Apply',
-                  style: TextStyle(
+                  style: archivotitleStyle.copyWith(
                       color: AppColors.textGreen,
                       fontSize: getFont(14),
                       fontWeight: FontWeight.w400),

@@ -5,6 +5,8 @@ import 'package:khetipati/screens/shipping/add_shipping_address.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
 import 'package:khetipati/screens/widgets/divider.dart';
 
+import '../../theme.dart';
+
 class ShippingAddress extends StatefulWidget {
   const ShippingAddress({Key? key}) : super(key: key);
 
@@ -47,7 +49,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
                   children: [
                     Text(
                       'Default Shipping Address',
-                      style: TextStyle(
+                      style: archivotitleStyle.copyWith(
                           fontSize: getFont(16),
                           color: AppColors.textblack,
                           fontWeight: FontWeight.w500),
@@ -139,10 +141,10 @@ class _ShippingAddressState extends State<ShippingAddress> {
                           ),
                           Text(
                             'Add New Address',
-                            style: TextStyle(
+                            style: archivotitleStyle.copyWith(
                                 fontSize: getWidth(16),
                                 color: AppColors.textGreen,
-                                fontWeight: FontWeight.w400),
+                                fontWeight: FontWeight.normal),
                           )
                         ],
                       ),
@@ -184,7 +186,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
                 children: [
                   Text(
                     shippingAddress,
-                    style: TextStyle(
+                    style: archivotitleStyle.copyWith(
                         fontSize: getFont(15),
                         color: AppColors.textblack,
                         fontWeight: FontWeight.w400),
@@ -194,7 +196,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
                   ),
                   Text(
                     'Shankhaul Marga,\nKathmandu 44600',
-                    style: TextStyle(
+                    style: archivotitleStyle.copyWith(
                         fontSize: getFont(14),
                         color: const Color.fromRGBO(0, 0, 0, 0.5),
                         fontWeight: FontWeight.w700),
@@ -212,7 +214,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
             child: Center(
               child: Text(
                 'Edit',
-                style: TextStyle(
+                style: archivotitleStyle.copyWith(
                     color: AppColors.textGreen,
                     fontSize: getFont(14),
                     fontWeight: FontWeight.w400),

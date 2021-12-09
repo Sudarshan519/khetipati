@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 
+import '../../../theme.dart';
+
 Widget notificationCard() {
   return Container(
     margin: EdgeInsets.only(
@@ -36,7 +38,7 @@ Widget notificationCard() {
               width: getWidth(240),
               child: Text(
                 '30% off on all Veggies with extra lorem ipum dolor sit.',
-                style: TextStyle(
+                style: robototitleStyle.copyWith(
                     color: AppColors.textGreen,
                     fontSize: getFont(14),
                     fontWeight: FontWeight.w700),
@@ -49,8 +51,10 @@ Widget notificationCard() {
               width: getWidth(240),
               child: Text(
                 'Grab the offer before its gone. Grab the offer before its gone. Grab the offer before its gone. Grab the offer before its gone.',
-                style: TextStyle(
-                    fontSize: getFont(12), fontWeight: FontWeight.w400),
+                style: archivotitleStyle.copyWith(
+                    color: AppColors.textblack,
+                    fontSize: getFont(12),
+                    fontWeight: FontWeight.w400),
               ),
             ),
             SizedBox(
@@ -60,7 +64,7 @@ Widget notificationCard() {
               width: getWidth(240),
               child: Text(
                 '10 minutes ago',
-                style: TextStyle(
+                style: archivotitleStyle.copyWith(
                     color: AppColors.textblack,
                     fontSize: getFont(11),
                     fontWeight: FontWeight.w400),

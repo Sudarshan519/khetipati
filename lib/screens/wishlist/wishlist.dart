@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
 import 'package:khetipati/screens/widgets/recommended_items_card.dart';
 import 'package:khetipati/screens/widgets/title_text.dart';
+import 'package:khetipati/theme.dart';
 
 class Wishlist extends StatefulWidget {
   const Wishlist({Key? key}) : super(key: key);
@@ -47,7 +48,7 @@ class _WishlistState extends State<Wishlist> {
                   children: [
                     Text(
                       '3 items',
-                      style: TextStyle(
+                      style: robototitleStyle.copyWith(
                           fontSize: getFont(18),
                           color: AppColors.textGreen,
                           fontWeight: FontWeight.w700),
@@ -89,9 +90,23 @@ class _WishlistState extends State<Wishlist> {
       ),
       child: Column(
         children: [
-          wishlistItemCard('assets/images/items/grapes.png', 'Cherry'),
-          wishlistItemCard('assets/images/items/melons.png', 'Water Melon'),
-          wishlistItemCard('assets/images/items/grapes.png', 'Cherry'),
+          ...List.generate(
+              3,
+              (index) => Container(
+                    margin: EdgeInsets.symmetric(horizontal: getWidth(7)),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        border: index == 9
+                            ? null
+                            : const Border(
+                                bottom: BorderSide(
+                                    width: 0.5, color: Colors.grey))),
+                    child: wishlistItemCard(
+                        'assets/images/items/grapes.png', 'Cherry'),
+                  )),
+          // wishlistItemCard('assets/images/items/grapes.png', 'Cherry'),
+          // wishlistItemCard('assets/images/items/melons.png', 'Water Melon'),
+          // wishlistItemCard('assets/images/items/grapes.png', 'Cherry'),
           addToCartButton(context)
         ],
       ),
@@ -101,8 +116,8 @@ class _WishlistState extends State<Wishlist> {
   wishlistItemCard(wishlistItemImg, itemName) {
     return Container(
       padding: EdgeInsets.only(
-        left: getWidth(10),
-        right: getWidth(30),
+        left: getWidth(5),
+        right: getWidth(25),
       ),
       height: getHeight(130),
       width: MediaQuery.of(context).size.width,
@@ -113,10 +128,13 @@ class _WishlistState extends State<Wishlist> {
             children: [
               Stack(
                 children: [
-                  Icon(
-                    Icons.close_rounded,
-                    size: getFont(18),
-                    color: const Color.fromRGBO(0, 0, 0, 0.5),
+                  IconButton(
+                    icon: Icon(
+                      Icons.close_rounded,
+                      size: getFont(18),
+                      color: const Color.fromRGBO(0, 0, 0, 0.5),
+                    ),
+                    onPressed: () {},
                   ),
                   SizedBox(
                     width: getWidth(140),
@@ -134,14 +152,14 @@ class _WishlistState extends State<Wishlist> {
                 children: [
                   Text(
                     itemName,
-                    style: TextStyle(
+                    style: archivotitleStyle.copyWith(
                         fontSize: getFont(18),
                         fontWeight: FontWeight.w500,
                         color: AppColors.textblack),
                   ),
                   Text(
                     '100 kcal',
-                    style: TextStyle(
+                    style: archivotitleStyle.copyWith(
                         fontSize: getFont(12),
                         fontWeight: FontWeight.w400,
                         color: AppColors.textblack),
@@ -151,7 +169,7 @@ class _WishlistState extends State<Wishlist> {
                   ),
                   Text(
                     'Rs. 250',
-                    style: TextStyle(
+                    style: robototitleStyle.copyWith(
                         fontSize: getFont(18),
                         fontWeight: FontWeight.w500,
                         color: AppColors.textGreen),

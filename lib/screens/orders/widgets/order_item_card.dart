@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/models/product.dart';
+import 'package:khetipati/theme.dart';
 
 orderItemCard(Product item) {
   return Column(
@@ -32,7 +33,7 @@ orderItemCard(Product item) {
               children: [
                 Text(
                   item.title!,
-                  style: TextStyle(
+                  style: archivotitleStyle.copyWith(
                       fontSize: getFont(18),
                       fontWeight: FontWeight.w500,
                       color: AppColors.textblack),
@@ -44,14 +45,14 @@ orderItemCard(Product item) {
                     text: TextSpan(children: [
                   TextSpan(
                     text: 'Rs.',
-                    style: TextStyle(
+                    style: robotosubtitleStyle.copyWith(
                         fontSize: getFont(15),
                         fontWeight: FontWeight.w500,
                         color: AppColors.textGreen),
                   ),
                   TextSpan(
                     text: item.productPrice.toString(),
-                    style: TextStyle(
+                    style: robotosubtitleStyle.copyWith(
                         fontSize: getFont(20),
                         fontWeight: FontWeight.w500,
                         color: AppColors.textGreen),
@@ -73,7 +74,7 @@ orderItemCard(Product item) {
                   FittedBox(
                     child: Text(
                       '23 hrs ago',
-                      style: TextStyle(
+                      style: archivotitleStyle.copyWith(
                         fontSize: getFont(12),
                         fontWeight: FontWeight.w400,
                         color: const Color.fromRGBO(0, 0, 0, 0.8),

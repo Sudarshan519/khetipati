@@ -45,15 +45,17 @@ class _CarouselState extends State<Carousel> {
       height: 6,
       width: currentPage == index ? 20 : 6,
       decoration: BoxDecoration(
-        color: currentPage == index ? AppColors.textGreen : Color(0xFFD8D8D8),
+        color: currentPage == index
+            ? AppColors.textGreen
+            : const Color(0xFFD8D8D8),
         borderRadius: BorderRadius.circular(3),
       ),
     );
   }
 
   buildSizedBox() {
-    return const SizedBox(
-      height: 18,
+    return SizedBox(
+      height: getHeight(18),
     );
   }
 
@@ -87,7 +89,7 @@ class _CarouselState extends State<Carousel> {
                           text: TextSpan(
                               style: GoogleFonts.roboto(
                                   textStyle: TextStyle(
-                                      fontSize: 22,
+                                      fontSize: getFont(22),
                                       fontWeight: FontWeight.w700,
                                       color: Colors.green[800])),
                               children: [
@@ -95,10 +97,10 @@ class _CarouselState extends State<Carousel> {
                                 text: "30% ",
                                 style: GoogleFonts.roboto(
                                     textStyle: TextStyle(
-                                        fontSize: 22,
+                                        fontSize: getFont(22),
                                         fontWeight: FontWeight.w700,
                                         color: Colors.green[800]))),
-                            TextSpan(
+                            const TextSpan(
                               text: "off",
                             )
                           ])),
@@ -114,7 +116,7 @@ class _CarouselState extends State<Carousel> {
                         "on all veggies",
                         style: GoogleFonts.roboto(
                             textStyle: TextStyle(
-                                fontSize: 15,
+                                fontSize: getFont(15),
                                 fontWeight: FontWeight.w700,
                                 color: Colors.green[800])),
                       ),

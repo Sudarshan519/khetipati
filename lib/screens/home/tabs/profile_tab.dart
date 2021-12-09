@@ -15,6 +15,8 @@ import 'package:khetipati/screens/shipping/shipping_address.dart';
 import 'package:khetipati/screens/voucher/vouchers.dart';
 import 'package:khetipati/screens/wishlist/wishlist.dart';
 
+import '../../../theme.dart';
+
 class ProfileTab extends StatefulWidget {
   const ProfileTab({Key? key}) : super(key: key);
 
@@ -68,14 +70,14 @@ class _ProfileTabState extends State<ProfileTab> {
                   ),
                   Text(
                     "Sudarshan ",
-                    style: TextStyle(
+                    style: robototitleStyle.copyWith(
                         fontSize: getFont(23),
                         color: Colors.green[900],
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
                     "Mangalbazar, Lalitpur",
-                    style: TextStyle(
+                    style: archivotitleStyle.copyWith(
                         fontSize: getFont(14),
                         color: Colors.green[900],
                         fontWeight: FontWeight.normal),
@@ -98,7 +100,7 @@ class _ProfileTabState extends State<ProfileTab> {
                     },
                     child: Text(
                       'Edit',
-                      style: TextStyle(
+                      style: archivotitleStyle.copyWith(
                           fontSize: getFont(15),
                           color: const Color.fromRGBO(2, 95, 51, 1)),
                     ),
@@ -253,8 +255,10 @@ class _ProfileTabState extends State<ProfileTab> {
         children: [
           Text(
             'Personal Information',
-            style:
-                TextStyle(fontSize: getFont(18), fontWeight: FontWeight.w400),
+            style: archivotitleStyle.copyWith(
+                color: Colors.black,
+                fontSize: getFont(18),
+                fontWeight: FontWeight.w400),
           ),
           SizedBox(
             height: getHeight(10),
@@ -332,8 +336,10 @@ class _ProfileTabState extends State<ProfileTab> {
               left: getWidth(26),
             ),
             child: Text(options,
-                style: TextStyle(
-                    fontSize: getFont(16), fontWeight: FontWeight.w400)),
+                style: archivotitleStyle.copyWith(
+                    color: Colors.black,
+                    fontSize: getFont(16),
+                    fontWeight: FontWeight.w400)),
           ),
         ),
         SizedBox(width: getWidth(30)),
@@ -341,8 +347,10 @@ class _ProfileTabState extends State<ProfileTab> {
           flex: 3,
           child: Text(
             answers,
-            style:
-                TextStyle(fontSize: getFont(16), fontWeight: FontWeight.w500),
+            style: archivotitleStyle.copyWith(
+                color: Colors.black,
+                fontSize: getFont(16),
+                fontWeight: FontWeight.w500),
           ),
         )
       ],
@@ -378,7 +386,7 @@ class _ProfileTabState extends State<ProfileTab> {
               ),
               Text(
                 'Switch to other account',
-                style: TextStyle(
+                style: archivotitleStyle.copyWith(
                     fontSize: getFont(14),
                     fontWeight: FontWeight.w400,
                     color: AppColors.textblack),
@@ -408,8 +416,10 @@ class _ProfileTabState extends State<ProfileTab> {
                 ),
                 Text(
                   'Log Out',
-                  style: TextStyle(
-                      fontSize: getFont(14), fontWeight: FontWeight.w400),
+                  style: archivotitleStyle.copyWith(
+                      color: AppColors.textblack,
+                      fontSize: getFont(14),
+                      fontWeight: FontWeight.w400),
                 )
               ],
             ),

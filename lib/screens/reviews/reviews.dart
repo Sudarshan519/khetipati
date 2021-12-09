@@ -38,10 +38,10 @@ class _ReviewsState extends State<Reviews> {
   totalReviews() {
     return Text(
       'Reviews (3)',
-      style: TextStyle(
-        fontSize: getFont(16),
-        fontWeight: FontWeight.w500,
-      ),
+      style: archivotitleStyle.copyWith(
+          fontSize: getFont(16),
+          fontWeight: FontWeight.w500,
+          color: Colors.black),
     );
   }
 
@@ -102,17 +102,17 @@ class _ReviewsState extends State<Reviews> {
                     children: [
                       Text(
                         'Watermelon',
-                        style: TextStyle(
-                          fontSize: getFont(18),
-                          fontWeight: FontWeight.w500,
-                        ),
+                        style: archivotitleStyle.copyWith(
+                            fontSize: getFont(18),
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black),
                       ),
                       SizedBox(
                         height: getHeight(10),
                       ),
                       Text(
                         'Rs.250',
-                        style: TextStyle(
+                        style: robototitleStyle.copyWith(
                             fontSize: getFont(20),
                             fontWeight: FontWeight.w500,
                             color: AppColors.textGreen),
@@ -132,7 +132,9 @@ class _ReviewsState extends State<Reviews> {
                       ),
                       Text(
                         '4.5',
-                        style: TextStyle(fontSize: getFont(12)),
+                        style: archivotitleStyle.copyWith(
+                            color: const Color.fromRGBO(0, 0, 0, 0.7),
+                            fontSize: getFont(12)),
                       )
                     ],
                   ),
@@ -141,7 +143,7 @@ class _ReviewsState extends State<Reviews> {
                   ),
                   Text(
                     '23 hrs ago',
-                    style: TextStyle(
+                    style: archivotitleStyle.copyWith(
                       fontSize: getFont(12),
                       fontWeight: FontWeight.w400,
                       color: const Color.fromRGBO(0, 0, 0, 0.8),

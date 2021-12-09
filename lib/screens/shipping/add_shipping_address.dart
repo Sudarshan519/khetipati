@@ -3,6 +3,7 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
 import 'package:khetipati/screens/widgets/text_field.dart';
+import 'package:khetipati/theme.dart';
 
 class AddShippingAddress extends StatefulWidget {
   const AddShippingAddress({Key? key}) : super(key: key);
@@ -128,14 +129,14 @@ class _AddShippingAddressState extends State<AddShippingAddress> {
             children: [
               Text(
                 "Howard Wollowitz",
-                style: TextStyle(
+                style: robototitleStyle.copyWith(
                     fontSize: getFont(16),
                     color: Colors.green[900],
                     fontWeight: FontWeight.bold),
               ),
               Text(
                 "9810101010",
-                style: TextStyle(
+                style: archivotitleStyle.copyWith(
                     fontSize: getFont(14),
                     color: Colors.green[900],
                     fontWeight: FontWeight.w400),
@@ -185,7 +186,8 @@ class _AddShippingAddressState extends State<AddShippingAddress> {
         const Checkbox(value: false, onChanged: null),
         Text(
           'Make Default Address',
-          style: TextStyle(fontSize: getFont(15)),
+          style: archivotitleStyle.copyWith(
+              fontSize: getFont(15), color: const Color.fromRGBO(0, 0, 0, 0.5)),
         )
       ],
     );
@@ -201,7 +203,7 @@ class _AddShippingAddressState extends State<AddShippingAddress> {
         onPressed: () {},
         child: Text(
           'Save Address',
-          style: TextStyle(
+          style: robototitleStyle.copyWith(
               color: Colors.white,
               fontSize: getFont(16),
               fontWeight: FontWeight.w500),
@@ -228,7 +230,7 @@ void _settingModalBottomSheet(context) {
                 children: <Widget>[
                   Text(
                     'Edit shipping information.',
-                    style: TextStyle(
+                    style: archivotitleStyle.copyWith(
                         color: Colors.black,
                         fontSize: getFont(18),
                         fontWeight: FontWeight.w500),
