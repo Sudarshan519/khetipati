@@ -5,7 +5,6 @@ import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/cart_controller.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/product.dart';
-import 'package:khetipati/screens/cart/checkout_screen.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
 import 'package:khetipati/screens/widgets/recommended_items_card.dart';
 
