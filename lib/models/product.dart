@@ -1,11 +1,6 @@
-// To parse this JSON data, do
-//
-//     final product = productFromJson(jsonString);
-
 import 'dart:convert';
 
 import 'package:khetipati/models/order.dart';
-import 'package:khetipati/screens/orders/orders.dart';
 
 List<Product> productFromJson(String str) =>
     List<Product>.from(json.decode(str).map((x) => Product.fromJson(x)));

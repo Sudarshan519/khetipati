@@ -62,11 +62,11 @@ class CustomNav extends StatelessWidget {
             ),
           ]),
         ),
-        height: getHeight(94),
+        height: getHeight(80),
         width: double.infinity,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.black),
-          color: Color.fromRGBO(234, 238, 238, 1),
+          border: Border.all(color: const Color.fromRGBO(204, 204, 204, 1)),
+          color: const Color.fromRGBO(234, 238, 238, 1),
           // boxShadow: [BoxShadow(color: Colors.grey, spreadRadius: .5)],
         ));
   }

@@ -14,6 +14,7 @@ import 'package:khetipati/screens/reviews/reviews.dart';
 import 'package:khetipati/screens/shipping/shipping_address.dart';
 import 'package:khetipati/screens/voucher/vouchers.dart';
 import 'package:khetipati/screens/wishlist/wishlist.dart';
+import 'package:khetipati/theme.dart';
 
 import '../../../theme.dart';
 
@@ -69,8 +70,8 @@ class _ProfileTabState extends State<ProfileTab> {
                     ),
                   ),
                   Text(
-                    "Sudarshan ",
-                    style: robototitleStyle.copyWith(
+                    "Howard Wollowitz  ",
+                    style: TextStyle(
                         fontSize: getFont(23),
                         color: Colors.green[900],
                         fontWeight: FontWeight.bold),
@@ -85,24 +86,26 @@ class _ProfileTabState extends State<ProfileTab> {
                   SizedBox(
                     height: getHeight(22),
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary: const Color.fromRGBO(255, 255, 255, 0.5),
-                        textStyle: TextStyle(
-                            fontSize: getFont(15),
-                            color: const Color.fromRGBO(2, 95, 51, 1))),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const EditProfile()),
-                      );
+
+                  ///edit button
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(EditProfile());
                     },
-                    child: Text(
-                      'Edit',
-                      style: archivotitleStyle.copyWith(
-                          fontSize: getFont(15),
-                          color: const Color.fromRGBO(2, 95, 51, 1)),
+                    child: Container(
+                      height: getHeight(30),
+                      width: getWidth(50),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        color: const Color.fromRGBO(255, 255, 255, 0.5),
+                      ),
+                      child: Text(
+                        'Edit',
+                        style: TextStyle(
+                            fontSize: getFont(14),
+                            color: const Color.fromRGBO(2, 95, 51, 1)),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -147,9 +150,10 @@ class _ProfileTabState extends State<ProfileTab> {
       margin: EdgeInsets.only(top: getHeight(22)),
       width: MediaQuery.of(context).size.width,
       height: getHeight(239),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -245,7 +249,6 @@ class _ProfileTabState extends State<ProfileTab> {
       margin: EdgeInsets.only(top: getHeight(22)),
       padding: EdgeInsets.only(top: getHeight(18)),
       width: MediaQuery.of(context).size.width,
-      //height: getHeight(271),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -292,12 +295,13 @@ class _ProfileTabState extends State<ProfileTab> {
 
   profileOptionsMenu(optionName, optionIcon) {
     return Container(
-      width: getWidth(152),
-      height: getHeight(57),
+      width: getWidth(140),
+      height: getHeight(50),
+      margin: const EdgeInsets.only(right: 10),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: const Color.fromRGBO(191, 191, 191, 0.6)),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(6),
       ),
       child: Row(
         // crossAxisAlignment: CrossAxisAlignment.start,
@@ -316,8 +320,10 @@ class _ProfileTabState extends State<ProfileTab> {
           ),
           Text(
             optionName,
-            style:
-                TextStyle(fontSize: getFont(14), fontWeight: FontWeight.w400),
+            style: archivotitleStyle.copyWith(
+                color: Colors.black,
+                fontSize: getFont(14),
+                fontWeight: FontWeight.w400),
           )
         ],
       ),
@@ -361,7 +367,7 @@ class _ProfileTabState extends State<ProfileTab> {
     return Container(
       margin: EdgeInsets.only(top: getHeight(22)),
       width: MediaQuery.of(context).size.width,
-      // height: getHeight(111),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),

@@ -62,18 +62,16 @@ class _ReviewsState extends State<Reviews> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           totalReviews(),
-          Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: List.generate(
-                  10,
-                  (index) => Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          border: index == 9
-                              ? null
-                              : const Border(
-                                  bottom: BorderSide(color: Colors.grey))),
-                      child: reviewTile())))
+          ...List.generate(
+              10,
+              (index) => Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      border: index == 9
+                          ? null
+                          : const Border(
+                              bottom: BorderSide(color: Colors.grey))),
+                  child: reviewTile()))
         ],
       ),
     );
