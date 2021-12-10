@@ -31,7 +31,7 @@ class CustomNav extends StatelessWidget {
                 print("tap");
               },
               icon: const [
-                'assets/icons/navorder.png',
+                'assets/icons/order.png',
                 'assets/icons/orderselected.png'
               ],
               isSelected: controller.selectedIndex == 1 ? true : false,

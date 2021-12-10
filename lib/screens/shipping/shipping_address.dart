@@ -3,6 +3,7 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/shipping/add_shipping_address.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
+import 'package:khetipati/screens/widgets/box_shadow.dart';
 import 'package:khetipati/screens/widgets/divider.dart';
 
 import '../../theme.dart';
@@ -43,6 +44,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
+                  boxShadow: [boxShadow()],
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

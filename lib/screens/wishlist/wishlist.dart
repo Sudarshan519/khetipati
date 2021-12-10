@@ -6,6 +6,7 @@ import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
+import 'package:khetipati/screens/widgets/box_shadow.dart';
 import 'package:khetipati/screens/widgets/recommended_items_card.dart';
 import 'package:khetipati/screens/widgets/title_text.dart';
 import 'package:khetipati/theme.dart';
@@ -85,6 +86,7 @@ class _WishlistState extends State<Wishlist> {
 
       //  height: 475,
       decoration: BoxDecoration(
+        boxShadow: [boxShadow()],
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),

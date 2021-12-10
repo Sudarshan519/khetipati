@@ -13,6 +13,7 @@ import 'package:khetipati/screens/profile/editprofile.dart';
 import 'package:khetipati/screens/reviews/reviews.dart';
 import 'package:khetipati/screens/shipping/shipping_address.dart';
 import 'package:khetipati/screens/voucher/vouchers.dart';
+import 'package:khetipati/screens/widgets/box_shadow.dart';
 import 'package:khetipati/screens/wishlist/wishlist.dart';
 import 'package:khetipati/theme.dart';
 
@@ -152,6 +153,7 @@ class _ProfileTabState extends State<ProfileTab> {
       height: getHeight(239),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
+        boxShadow: [boxShadow()],
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
       ),
@@ -181,8 +183,8 @@ class _ProfileTabState extends State<ProfileTab> {
                     MaterialPageRoute(builder: (context) => const OrdersTab()),
                   );
                 },
-                child:
-                    profileOptionsMenu('My Orders', 'assets/icons/order.png'),
+                child: profileOptionsMenu(
+                    'My Orders', 'assets/icons/myorders.png'),
               ),
             ],
           ),
@@ -250,6 +252,7 @@ class _ProfileTabState extends State<ProfileTab> {
       padding: EdgeInsets.only(top: getHeight(18)),
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
+        boxShadow: [boxShadow()],
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
@@ -366,17 +369,17 @@ class _ProfileTabState extends State<ProfileTab> {
   logoutAndSwitchAccCard() {
     return Container(
       margin: EdgeInsets.only(top: getHeight(22)),
+      padding: EdgeInsets.symmetric(vertical: getHeight(20)),
       width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: Colors.white,
+        boxShadow: [boxShadow()],
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: getHeight(10)),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -385,7 +388,7 @@ class _ProfileTabState extends State<ProfileTab> {
               ),
               Image.asset(
                 'assets/icons/switchacc.png',
-                height: 17,
+                height: 20,
               ),
               SizedBox(
                 width: getWidth(20),
@@ -412,10 +415,9 @@ class _ProfileTabState extends State<ProfileTab> {
                 SizedBox(
                   width: getWidth(20),
                 ),
-                const Icon(
-                  Icons.logout_outlined,
-                  size: 20,
-                  color: Color.fromRGBO(216, 47, 47, 1),
+                Image.asset(
+                  'assets/icons/logout.png',
+                  height: 20,
                 ),
                 SizedBox(
                   width: getWidth(20),
@@ -430,7 +432,6 @@ class _ProfileTabState extends State<ProfileTab> {
               ],
             ),
           ),
-          SizedBox(height: getHeight(10)),
         ],
       ),
     );

@@ -6,6 +6,7 @@ import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/home/home.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
 import 'package:khetipati/screens/widgets/app_button.dart';
+import 'package:khetipati/screens/widgets/box_shadow.dart';
 import 'login.dart';
 import 'package:khetipati/constant/colors.dart';
 
@@ -35,6 +36,7 @@ class RegisterPage extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
+                    boxShadow: [boxShadow()],
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10)),
                 child: Column(
@@ -85,6 +87,7 @@ class RegisterPage extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
+                    boxShadow: [boxShadow()],
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10)),
                 child: Column(

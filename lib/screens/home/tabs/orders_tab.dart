@@ -6,6 +6,7 @@ import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/screens/orders/widgets/order_item_card.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
+import 'package:khetipati/screens/widgets/box_shadow.dart';
 import 'package:khetipati/screens/widgets/recommended_items_card.dart';
 import 'package:khetipati/theme.dart';
 
@@ -60,7 +61,9 @@ class _OrdersTabState extends State<OrdersTab> {
       margin: EdgeInsets.fromLTRB(getWidth(20), getHeight(26), getWidth(20), 0),
       // height: 558,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(10)),
+          boxShadow: [boxShadow()],
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10)),
       child: Column(
         children: [
           ///tabbar

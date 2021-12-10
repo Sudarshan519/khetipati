@@ -45,19 +45,18 @@ class HomeScreen extends StatelessWidget {
           Get.to(() => CartScreen());
         },
         child: Container(
-          margin: EdgeInsets.only(top: getHeight(20)),
-          width: getHeight(68),
-          height: getHeight(68),
-          decoration: BoxDecoration(
-              color: AppColors.mainGrey,
-              border: Border.all(width: 5, color: AppColors.mainGreen),
-              borderRadius: BorderRadius.circular(40)),
-          child: const Icon(
-            Icons.shopping_cart_outlined,
-            color: Color.fromRGBO(0, 0, 0, 0.5),
-            size: 30,
-          ),
-        ),
+            margin: EdgeInsets.only(top: getHeight(20)),
+            padding: const EdgeInsets.all(10),
+            width: getHeight(68),
+            height: getHeight(68),
+            decoration: BoxDecoration(
+                color: AppColors.mainGrey,
+                border: Border.all(width: 5, color: AppColors.mainGreen),
+                borderRadius: BorderRadius.circular(40)),
+            child: Image.asset(
+              'assets/icons/cart.png',
+              height: getHeight(20),
+            )),
       ),
     );
   }

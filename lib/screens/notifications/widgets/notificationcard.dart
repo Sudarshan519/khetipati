@@ -18,12 +18,12 @@ Widget notificationCard() {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const CircleAvatar(
-            radius: 12,
+            radius: 15,
             backgroundColor: Color.fromRGBO(135, 194, 65, 0.5),
             child: Icon(
               Icons.notifications_none,
               color: AppColors.textGreen,
-              size: 15,
+              size: 18,
             )),
         SizedBox(
           width: getWidth(12),

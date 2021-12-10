@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
+import 'package:khetipati/screens/widgets/box_shadow.dart';
 
 import '../../theme.dart';
 
@@ -55,6 +56,7 @@ class _ReviewsState extends State<Reviews> {
           top: getHeight(20), right: getWidth(20), left: getWidth(20)),
       // height: 626,
       decoration: BoxDecoration(
+        boxShadow: [boxShadow()],
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
