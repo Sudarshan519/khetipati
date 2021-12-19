@@ -85,7 +85,7 @@ class _RecommendedItemsPageState extends State<RecommendedItemsPage> {
             ),
             Container(
               width: MediaQuery.of(context).size.width,
-              //  height: 1300,
+              height: 1300,
               decoration: const BoxDecoration(
                 color: AppColors.mainGrey,
                 borderRadius: BorderRadius.only(
