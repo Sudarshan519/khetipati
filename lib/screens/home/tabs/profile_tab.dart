@@ -91,11 +91,11 @@ class _ProfileTabState extends State<ProfileTab> {
                   ///edit button
                   GestureDetector(
                     onTap: () {
-                      Get.to(EditProfile());
+                      Get.to(const EditProfile());
                     },
                     child: Container(
-                      height: getHeight(30),
-                      width: getWidth(50),
+                      height: getHeight(22),
+                      width: getWidth(42),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),

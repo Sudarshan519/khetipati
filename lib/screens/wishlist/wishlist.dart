@@ -201,19 +201,26 @@ class _WishlistState extends State<Wishlist> {
                 height: getHeight(20),
               ),
               Container(
-                height: getHeight(30),
-                width: getWidth(40),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  border: Border.all(color: Colors.lightGreen),
-                  color: Colors.white,
-                ),
-                child: Icon(
-                  Icons.shopping_cart_outlined,
-                  size: getFont(20),
-                  color: const Color.fromRGBO(135, 194, 65, 0.8),
-                ),
-              ),
+                  height: getHeight(40),
+                  width: getWidth(42),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: getWidth(10),
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    border: Border.all(color: Colors.lightGreen),
+                    color: Colors.white,
+                  ),
+                  child: Image.asset(
+                    'assets/icons/cart.png',
+                    color: const Color.fromRGBO(135, 200, 65, 1),
+                  )
+                  // child: Icon(
+                  //   Icons.shopping_cart_outlined,
+                  //   size: getFont(20),
+                  //   color: const Color.fromRGBO(135, 194, 65, 0.8),
+                  // ),
+                  ),
             ],
           ),
         ],

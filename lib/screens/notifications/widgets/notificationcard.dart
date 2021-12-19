@@ -17,14 +17,20 @@ Widget notificationCard() {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const CircleAvatar(
-            radius: 15,
-            backgroundColor: Color.fromRGBO(135, 194, 65, 0.5),
-            child: Icon(
-              Icons.notifications_none,
-              color: AppColors.textGreen,
-              size: 18,
-            )),
+        CircleAvatar(
+          radius: 15,
+          backgroundColor: const Color.fromRGBO(135, 194, 65, 0.5),
+          child: Image.asset(
+            'assets/icons/notification.png',
+            color: AppColors.textGreen,
+            height: getHeight(22),
+          ),
+          // child: Icon(
+          //   Icons.notifications_none,
+          //   color: AppColors.textGreen,
+          //   size: 18,
+          // ),
+        ),
         SizedBox(
           width: getWidth(12),
         ),

@@ -110,13 +110,22 @@ class _ReviewsState extends State<Reviews> {
                       SizedBox(
                         height: getHeight(10),
                       ),
-                      Text(
-                        'Rs.250',
-                        style: robototitleStyle.copyWith(
-                            fontSize: getFont(20),
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.textGreen),
-                      )
+                      RichText(
+                          text: TextSpan(children: <TextSpan>[
+                        TextSpan(
+                          text: 'Rs.',
+                          style: robototitleStyle.copyWith(
+                              fontSize: getFont(15),
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.textGreen),
+                        ),
+                        TextSpan(
+                            text: '250',
+                            style: robototitleStyle.copyWith(
+                                fontSize: getFont(20),
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.textGreen))
+                      ]))
                     ],
                   ),
                 ],

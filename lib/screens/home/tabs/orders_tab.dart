@@ -59,65 +59,109 @@ class _OrdersTabState extends State<OrdersTab> {
     return Container(
       width: getWidth(378),
       margin: EdgeInsets.fromLTRB(getWidth(20), getHeight(26), getWidth(20), 0),
-      // height: 558,
       decoration: BoxDecoration(
           boxShadow: [boxShadow()],
           color: Colors.white,
           borderRadius: BorderRadius.circular(10)),
       child: Column(
         children: [
-          ///tabbar
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            // height: getHeight(40),
-            child: TabBar(
-              indicatorPadding: EdgeInsets.only(top: getHeight(10)),
-              indicatorSize: TabBarIndicatorSize.label,
-              isScrollable: false,
-              unselectedLabelColor: Colors.black,
-              labelColor: AppColors.textGreen,
-              labelStyle: archivotitleStyle.copyWith(fontSize: getFont(14)),
-              labelPadding: EdgeInsets.zero,
-              tabs: const [
-                Tab(
-                  text: 'All orders',
-                ),
-                Tab(
-                  text: 'Delivered',
-                ),
-                Tab(
-                  text: 'Pending',
-                ),
-                Tab(
-                  text: 'Process',
-                )
-              ],
-            ),
-          ),
           Container(
-            margin: EdgeInsets.zero,
-            height: MediaQuery.of(context).size.height * .6,
-            width: MediaQuery.of(context).size.width,
-            child: TabBarView(
-              children: [
-                buildOrderItems(),
-                buildOrderItems(),
-                buildOrderItems(),
-                buildOrderItems()
-              ],
-            ),
+            //  height: getHeight(34),
+            padding: EdgeInsets.symmetric(vertical: getHeight(12)),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  buildOrderStatus('All orders'),
+                  buildOrderStatus('Delivered'),
+                  buildOrderStatus('Pending'),
+                  buildOrderStatus('Process')
+                ]),
           ),
+          buildOrderItems()
         ],
       ),
     );
+    // return Container(
+    //   width: getWidth(378),
+    //   margin: EdgeInsets.fromLTRB(getWidth(20), getHeight(26), getWidth(20), 0),
+    //   // height: 558,
+    //   decoration: BoxDecoration(
+    //       boxShadow: [boxShadow()],
+    //       color: Colors.white,
+    //       borderRadius: BorderRadius.circular(10)),
+    //   child: Column(
+    //     children: [
+    //       ///tabbar
+    //       SizedBox(
+    //         width: MediaQuery.of(context).size.width,
+    //         // height: getHeight(40),
+    //         child: TabBar(
+    //           indicatorPadding: EdgeInsets.only(top: getHeight(10)),
+    //           indicatorSize: TabBarIndicatorSize.label,
+    //           isScrollable: false,
+    //           unselectedLabelColor: Colors.black,
+    //           labelColor: AppColors.textGreen,
+    //           labelStyle: archivotitleStyle.copyWith(fontSize: getFont(14)),
+    //           labelPadding: EdgeInsets.zero,
+    //           tabs: const [
+    //             Tab(
+    //               text: 'All orders',
+    //             ),
+    //             Tab(
+    //               text: 'Delivered',
+    //             ),
+    //             Tab(
+    //               text: 'Pending',
+    //             ),
+    //             Tab(
+    //               text: 'Process',
+    //             )
+    //           ],
+    //         ),
+    //       ),
+    //       Container(
+    //         margin: EdgeInsets.zero,
+    //         height: MediaQuery.of(context).size.height * .6,
+    //         width: MediaQuery.of(context).size.width,
+    //         child: TabBarView(
+    //           children: [
+    //             buildOrderItems(),
+    //             buildOrderItems(),
+    //             buildOrderItems(),
+    //             buildOrderItems()
+    //           ],
+    //         ),
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 
   buildOrderItems() {
     return Obx(() => controller.products.isEmpty
-        ? const Center(child: Text("Empty"))
+        ? Container(height: 400, child: const Center(child: Text("Empty")))
         : Column(
             children: List.generate(controller.products.length,
                 (i) => orderItemCard(controller.products[i])),
           ));
+  }
+
+  buildOrderStatus(title) {
+    return Column(
+      children: [
+        Text(
+          title,
+          style: archivotitleStyle.copyWith(fontSize: getFont(14)),
+        ),
+        const SizedBox(
+          height: 6,
+        ),
+        Container(
+          height: 1,
+          width: 70,
+          color: AppColors.textGreen,
+        )
+      ],
+    );
   }
 }

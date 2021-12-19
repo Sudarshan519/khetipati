@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
+import 'package:khetipati/screens/widgets/box_shadow.dart';
 
 class AddCard extends StatefulWidget {
   const AddCard({Key? key}) : super(key: key);
@@ -13,6 +14,13 @@ class AddCard extends StatefulWidget {
 
 class _AddCardState extends State<AddCard> {
   bool value = false;
+  bool dropdown = false;
+  void isDropdown() {
+    setState(() {
+      dropdown = !dropdown;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +48,7 @@ class _AddCardState extends State<AddCard> {
               Container(
                 // width: 378,
                 // height: 319,
+                padding: EdgeInsets.symmetric(vertical: getHeight(25)),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -64,7 +73,7 @@ class _AddCardState extends State<AddCard> {
                 ),
               ),
               SizedBox(
-                height: getHeight(17),
+                height: getHeight(30),
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width,
@@ -91,14 +100,18 @@ class _AddCardState extends State<AddCard> {
 
   Widget buildCreditcard() {
     return Container(
-        width: MediaQuery.of(context).size.width,
-        // height: 230,
-        decoration: BoxDecoration(
+      width: MediaQuery.of(context).size.width,
+      //height: 67,
+
+      padding: EdgeInsets.symmetric(
+          horizontal: getWidth(10), vertical: getHeight(10)),
+      decoration: BoxDecoration(
+          boxShadow: [boxShadow()],
           color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          children: [
+          borderRadius: BorderRadius.circular(10)),
+      child: Column(
+        children: [
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Row(
               children: [
                 Radio(value: value, groupValue: null, onChanged: null),
@@ -109,15 +122,44 @@ class _AddCardState extends State<AddCard> {
                 ),
               ],
             ),
-            SizedBox(
-                width: getWidth(224),
-                child: Image.asset('assets/images/card.png')),
-            //  creditCard(),
-            SizedBox(
-              height: getHeight(40),
-            ),
-          ],
-        ));
+            IconButton(
+                onPressed: () {
+                  isDropdown();
+                },
+                icon: const Icon(Icons.keyboard_arrow_down_outlined)),
+          ]),
+          dropdown == true ? Image.asset('assets/images/card.png') : Container()
+        ],
+      ),
+    );
+    //  Container(
+    //     width: MediaQuery.of(context).size.width,
+    //     // height: 230,
+    //     decoration: BoxDecoration(
+    //       color: Colors.white,
+    //       borderRadius: BorderRadius.circular(10),
+    //     ),
+    //     child: Column(
+    //       children: [
+    //         Row(
+    //           children: [
+    //             Radio(value: value, groupValue: null, onChanged: null),
+    //             Text(
+    //               'Credit/Debit Card',
+    //               style: TextStyle(
+    //                   fontSize: getFont(16), fontWeight: FontWeight.w500),
+    //             ),
+    //           ],
+    //         ),
+    //         SizedBox(
+    //             width: getWidth(224),
+    //             child: Image.asset('assets/images/card.png')),
+    //         //  creditCard(),
+    //         SizedBox(
+    //           height: getHeight(40),
+    //         ),
+    //       ],
+    //     ));
   }
 
   Widget carddetails(detailName) {

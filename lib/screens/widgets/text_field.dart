@@ -20,7 +20,7 @@ class MyInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: getFont(352),
+        width: getWidth(352),
         //margin: const EdgeInsets.only(top: 8),
         padding: const EdgeInsets.only(left: 14),
         height: ismultiline! ? 160 : 45,
@@ -52,7 +52,8 @@ class MyInputField extends StatelessWidget {
                 contentPadding: EdgeInsets.zero,
                 hintText: hint,
                 // label: Text('data'),
-                hintStyle: archivosubtitleStyle.copyWith(fontSize: getFont(14)),
+                hintStyle: archivosubtitleStyle.copyWith(
+                    fontSize: getFont(16), fontWeight: FontWeight.w400),
                 focusedBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(width: 0, color: Colors.transparent),
                 ),

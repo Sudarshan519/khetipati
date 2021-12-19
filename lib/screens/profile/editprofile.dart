@@ -67,9 +67,9 @@ class _EditProfileState extends State<EditProfile> {
             ),
             Container(
                 width: MediaQuery.of(context).size.width,
-                height: 815,
+                //height: 815,
                 decoration: const BoxDecoration(
-                  color: AppColors.mainGrey,
+                  color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(30),
                     topLeft: Radius.circular(30),
@@ -94,17 +94,17 @@ class _EditProfileState extends State<EditProfile> {
         decoration: BoxDecoration(
           border:
               Border.all(width: 1, color: const Color.fromRGBO(0, 0, 0, 0.1)),
-          color: AppColors.mainGrey,
+          color: Colors.white,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: EdgeInsets.only(left: getWidth(20)),
+              padding: EdgeInsets.only(left: getWidth(16)),
               child: Text(
                 'Change Password',
                 style: robotosubtitleStyle.copyWith(
-                    fontSize: getFont(18), fontWeight: FontWeight.w400),
+                    fontSize: getFont(16), fontWeight: FontWeight.w400),
               ),
             ),
             Padding(
@@ -184,7 +184,10 @@ class _EditProfileState extends State<EditProfile> {
                     fontWeight: FontWeight.w500),
               ),
             ),
-          )
+          ),
+          SizedBox(
+            height: getHeight(40),
+          ),
         ],
       )),
     );

@@ -272,7 +272,7 @@ class CartTotal extends StatelessWidget {
               width: getWidth(40),
             ),
             SizedBox(
-              width: getHeight(150),
+              width: getHeight(178),
               height: getHeight(41),
               child: RaisedButton(
                 onPressed: () {

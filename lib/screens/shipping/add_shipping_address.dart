@@ -16,18 +16,22 @@ class _AddShippingAddressState extends State<AddShippingAddress> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.transparent,
+      // backgroundColor: Colors.transparent,
       appBar: buildAppBar(context, 'Add Shipping Address'),
       body: SingleChildScrollView(
         child: buildMap(),
       ),
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
+        padding: EdgeInsets.symmetric(horizontal: getWidth(30)),
         //height: ,
         decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-                topRight: Radius.circular(30), topLeft: Radius.circular(30))),
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(30), topLeft: Radius.circular(30)),
+          boxShadow: [
+            BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
+          ],
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -152,13 +156,10 @@ class _AddShippingAddressState extends State<AddShippingAddress> {
               onTap: () {
                 _settingModalBottomSheet(context);
               },
-              child: Container(
-                height: getHeight(35),
-                width: getWidth(35),
-                decoration: BoxDecoration(
-                    color: const Color.fromRGBO(255, 255, 255, 0.5),
-                    borderRadius: BorderRadius.circular(20)),
-                child: const Icon(
+              child: const CircleAvatar(
+                radius: 20,
+                backgroundColor: Color.fromRGBO(255, 255, 255, 0.5),
+                child: Icon(
                   Icons.edit,
                   color: AppColors.textGreen,
                 ),
@@ -195,7 +196,7 @@ class _AddShippingAddressState extends State<AddShippingAddress> {
 
   buildSaveAddressButton() {
     return SizedBox(
-      width: 378,
+      width: double.infinity,
       height: getHeight(48),
       // ignore: deprecated_member_use
       child: RaisedButton(
