@@ -295,6 +295,7 @@ class _PaymentState extends State<Payment> {
       // ignore: deprecated_member_use
       child: RaisedButton(
         color: AppColors.mainGreen,
+        elevation: 5,
         onPressed: () {},
         child: Text(
           'Place the Order',

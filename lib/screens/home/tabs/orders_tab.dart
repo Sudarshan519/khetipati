@@ -139,7 +139,8 @@ class _OrdersTabState extends State<OrdersTab> {
 
   buildOrderItems() {
     return Obx(() => controller.products.isEmpty
-        ? Container(height: 400, child: const Center(child: Text("Empty")))
+        ? SizedBox(
+            height: getHeight(400), child: const Center(child: Text("Empty")))
         : Column(
             children: List.generate(controller.products.length,
                 (i) => orderItemCard(controller.products[i])),

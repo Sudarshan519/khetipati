@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/constant/constant.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/screens/orders/widgets/order_item_card.dart';

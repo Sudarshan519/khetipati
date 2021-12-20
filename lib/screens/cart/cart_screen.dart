@@ -5,6 +5,7 @@ import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/cart_controller.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/product.dart';
+import 'package:khetipati/screens/cart/checkout_screen.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
 import 'package:khetipati/screens/widgets/recommended_items_card.dart';
 
@@ -18,37 +19,39 @@ class CartScreen extends StatelessWidget {
         backgroundColor: AppColors.mainGreen,
         // bottomNavigationBar: CustomNav(),
         appBar: buildAppBar(context, 'Cart'),
-        body: Container(
-          // padding: EdgeInsets.only(bottom: 40),
-          width: double.infinity,
-          height: getHeight(900),
-          decoration: const BoxDecoration(
-            color: AppColors.mainGrey,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(30),
-              topLeft: Radius.circular(30),
-            ),
-          ),
-          child: ListView(
-            children: [
-              Container(
-                width: getWidth(378),
-                height: getHeight(500),
-                margin: EdgeInsets.only(
-                    top: getHeight(20),
-                    left: getWidth(20),
-                    right: getHeight(20),
-                    bottom: getHeight(40)),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(children: [
-                  CartProducts(),
-                  CartTotal(),
-                ]),
+        body: SingleChildScrollView(
+          child: Container(
+            // padding: EdgeInsets.only(bottom: 40),
+            width: double.infinity,
+            height: getHeight(900),
+            decoration: const BoxDecoration(
+              color: AppColors.mainGrey,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30),
+                topLeft: Radius.circular(30),
               ),
-              recommendedItemsCard()
-            ],
+            ),
+            child: Column(
+              children: [
+                Container(
+                  width: getWidth(378),
+                  height: getHeight(500),
+                  margin: EdgeInsets.only(
+                      top: getHeight(20),
+                      left: getWidth(20),
+                      right: getHeight(20),
+                      bottom: getHeight(40)),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Column(children: [
+                    CartProducts(),
+                    CartTotal(),
+                  ]),
+                ),
+                recommendedItemsCard()
+              ],
+            ),
           ),
         ));
   }
@@ -246,40 +249,41 @@ class CartTotal extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(10)),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
-              padding: EdgeInsets.only(left: getWidth(20)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Total Amount',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: getFont(15)),
-                  ),
-                  Text(
-                    "Rs.${controller.total}",
-                    style: TextStyle(
-                        fontSize: getFont(20),
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.textGreen),
-                  ),
-                ],
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Total Amount',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: getFont(15)),
+                ),
+                Text(
+                  "Rs.${controller.total}",
+                  style: TextStyle(
+                      fontSize: getFont(20),
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.textGreen),
+                ),
+              ],
             ),
-            SizedBox(
-              width: getWidth(40),
+            const SizedBox(
+              width: 20,
             ),
-            SizedBox(
-              width: getHeight(178),
-              height: getHeight(41),
-              child: RaisedButton(
-                onPressed: () {
-                  homeController.submitOrder(controller.products);
-                },
-                color: AppColors.mainGreen,
-                child: FittedBox(
+            GestureDetector(
+              onTap: () {
+                Get.to(Checkout());
+                // homeController.submitOrder(controller.products);
+              },
+              child: Container(
+                width: getWidth(178),
+                height: getHeight(41),
+                decoration: BoxDecoration(
+                    color: AppColors.mainGreen,
+                    borderRadius: BorderRadius.circular(4)),
+                child: Center(
                   child: Text(
                     'Proceed To Checkout',
                     style:
@@ -288,6 +292,24 @@ class CartTotal extends StatelessWidget {
                 ),
               ),
             ),
+            // SizedBox(
+            //   width: getWidth(178),
+            //   height: getHeight(41),
+            //   child: RaisedButton(
+            //     onPressed: () {
+            //       Get.to(Checkout());
+            //       // homeController.submitOrder(controller.products);
+            //     },
+            //     color: AppColors.mainGreen,
+            //     child: Center(
+            //       child: Text(
+            //         'Proceed To Checkout',
+            //         style:
+            //             TextStyle(color: Colors.white, fontSize: getFont(15)),
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

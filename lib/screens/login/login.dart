@@ -7,7 +7,7 @@ import 'package:khetipati/screens/widgets/app_button.dart';
 import 'package:khetipati/screens/widgets/clipper.dart';
 import 'package:khetipati/utils/validators.dart';
 import '../../theme.dart';
-import 'register.dart';
+import '../../register/register.dart';
 
 class LoginPage extends GetView<AuthController> {
   LoginPage({Key? key}) : super(key: key);

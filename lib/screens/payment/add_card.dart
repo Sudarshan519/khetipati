@@ -50,9 +50,9 @@ class _AddCardState extends State<AddCard> {
                 // height: 319,
                 padding: EdgeInsets.symmetric(vertical: getHeight(25)),
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [boxShadow()]),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

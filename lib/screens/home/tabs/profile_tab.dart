@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
-import 'package:khetipati/screens/LoginRegisterPage/login.dart';
 import 'package:khetipati/screens/home/tabs/orders_tab.dart';
+import 'package:khetipati/screens/login/login.dart';
 import 'package:khetipati/screens/payment/payment.dart';
 
 import 'package:khetipati/screens/profile/editprofile.dart';
