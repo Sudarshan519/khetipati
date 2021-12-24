@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
+import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/screens/home/tabs/profile_tab.dart';
 
@@ -96,71 +97,22 @@ class _PopularItemsState extends State<PopularItems> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 20, left: 31),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, left: 31),
                     child: Text(
                       "Popular items",
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: getFont(18),
                           fontWeight: FontWeight.bold,
                           color: AppColors.textGreen),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Flexible(
-                          child: Column(
-                            children: [
-                              // SizedBox(
-                              //   height: 20,
-                              // ),
-                              // Items(context, 'Tomatoes',
-                              //     'assets/images/items/melons.png'),
-                              // SizedBox(
-                              //   height: 20,
-                              // ),
-                              // Items(context, 'Tomatoes',
-                              //     'assets/images/items/melons.png'),
-                              // SizedBox(
-                              //   height: 20,
-                              // ),
-                              // Items(context, 'Tomatoes',
-                              //     'assets/images/items/melons.png'),
-                            ],
-                          ),
-                        ),
-                        // SizedBox(
-                        //   width: 5,
-                        // ),
-                        Flexible(
-                          child: Column(
-                            children: [
-                              // Items(context, 'Tomatoes',
-                              //     'assets/images/items/melons.png'),
-                              // SizedBox(
-                              //   height: 20,
-                              // ),
-                              // Items(context, 'Tomatoes',
-                              //     'assets/images/items/melons.png'),
-                              // SizedBox(
-                              //   height: 20,
-                              // ),
-                              // Items(context, 'Tomatoes',
-                              //     'assets/images/items/melons.png'),
-                              // SizedBox(
-                              //   height: 20,
-                              // ),
-                              // Items(context, 'Tomatoes',
-                              //     'assets/images/items/melons.png'),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                  // Wrap(
+                  //   children: [
+
+                  //   ],
+                  // ),
+
                   const SizedBox(
                     height: 30,
                   )

@@ -69,8 +69,9 @@ String? validateMinMaxLengthWithRegex(
     return "It must be between $minLegth and $maxLength characters";
   } else if (!validRegexExp(regex, string)) {
     return regexMessage;
-  } else
+  } else {
     return null;
+  }
 }
 
 /// validate regex for the string

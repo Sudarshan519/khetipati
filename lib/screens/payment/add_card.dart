@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
@@ -62,10 +61,30 @@ class _AddCardState extends State<AddCard> {
                     MergeSemantics(
                       child: ListTile(
                         title: const Text('Save this card'),
-                        leading: CupertinoSwitch(
-                          value: value,
-                          onChanged: (v) => setState(() => value = v),
+                        leading: Container(
+                          height: 23,
+                          width: 40,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1, color: AppColors.textGreen),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Switch(
+                              value: value,
+                              activeColor: AppColors.textGreen,
+                              activeTrackColor: Colors.transparent,
+                              trackColor:
+                                  MaterialStateProperty.all(Colors.transparent),
+                              onChanged: (value) {
+                                setState(() {
+                                  value = false;
+                                });
+                              }),
                         ),
+
+                        //  CupertinoSwitch(
+                        //   value: value,
+                        //   onChanged: (v) => setState(() => value = v),
+                        // ),
                         onTap: () {},
                       ),
                     ),
@@ -132,34 +151,6 @@ class _AddCardState extends State<AddCard> {
         ],
       ),
     );
-    //  Container(
-    //     width: MediaQuery.of(context).size.width,
-    //     // height: 230,
-    //     decoration: BoxDecoration(
-    //       color: Colors.white,
-    //       borderRadius: BorderRadius.circular(10),
-    //     ),
-    //     child: Column(
-    //       children: [
-    //         Row(
-    //           children: [
-    //             Radio(value: value, groupValue: null, onChanged: null),
-    //             Text(
-    //               'Credit/Debit Card',
-    //               style: TextStyle(
-    //                   fontSize: getFont(16), fontWeight: FontWeight.w500),
-    //             ),
-    //           ],
-    //         ),
-    //         SizedBox(
-    //             width: getWidth(224),
-    //             child: Image.asset('assets/images/card.png')),
-    //         //  creditCard(),
-    //         SizedBox(
-    //           height: getHeight(40),
-    //         ),
-    //       ],
-    //     ));
   }
 
   Widget carddetails(detailName) {

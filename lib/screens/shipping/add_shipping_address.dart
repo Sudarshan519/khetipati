@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
 import 'package:khetipati/screens/widgets/text_field.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 import 'package:khetipati/theme.dart';
 
 class AddShippingAddress extends StatefulWidget {
@@ -13,6 +17,18 @@ class AddShippingAddress extends StatefulWidget {
 }
 
 class _AddShippingAddressState extends State<AddShippingAddress> {
+  Completer<GoogleMapController> _controller = Completer();
+
+  static final CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
+    zoom: 14.4746,
+  );
+
+  static final CameraPosition _kLake = CameraPosition(
+      bearing: 192.8334901395799,
+      target: LatLng(37.43296265331129, -122.08832357078792),
+      tilt: 59.440717697143555,
+      zoom: 19.151926040649414);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -173,12 +189,20 @@ class _AddShippingAddressState extends State<AddShippingAddress> {
 
   buildMap() {
     return SizedBox(
-      height: getHeight(500),
-      child: Image.asset(
-        'assets/images/map.png',
-        fit: BoxFit.fitHeight,
-      ),
-    );
+        height: getHeight(500),
+        child: GoogleMap(
+          initialCameraPosition: _kGooglePlex,
+          mapType: MapType.hybrid,
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          },
+        )
+
+        // Image.asset(
+        //   'assets/images/map.png',
+        //   fit: BoxFit.fitHeight,
+        // ),
+        );
   }
 
   buildRadioButton() {

@@ -51,7 +51,7 @@ class HomeScreen extends StatelessWidget {
             height: getHeight(68),
             decoration: BoxDecoration(
                 color: AppColors.mainGrey,
-                border: Border.all(width: 5, color: AppColors.mainGreen),
+                border: Border.all(width: 3.5, color: AppColors.mainGreen),
                 borderRadius: BorderRadius.circular(40)),
             child: Image.asset(
               'assets/icons/cart.png',

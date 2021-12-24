@@ -57,7 +57,7 @@ class LoginPage extends GetView<AuthController> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 20,
+                      height: getHeight(20),
                     ),
                     const Text(
                       'Login',
@@ -153,7 +153,7 @@ class LoginPage extends GetView<AuthController> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => RegisterPage()),
+                                    builder: (context) => const RegisterPage()),
                               );
                             },
                             child: const Text(
@@ -188,6 +188,7 @@ class InputField extends StatelessWidget {
       : super(key: key);
   final IconData icon;
   final TextEditingController controller;
+  // ignore: prefer_typing_uninitialized_variables
   final validator;
   final String label;
   final bool obscureText;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
+import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/screens/home/tabs/profile_tab.dart';
 
@@ -85,7 +86,7 @@ class _RecommendedItemsPageState extends State<RecommendedItemsPage> {
             ),
             Container(
               width: MediaQuery.of(context).size.width,
-              height: 1300,
+              // height: 1300,
               decoration: const BoxDecoration(
                 color: AppColors.mainGrey,
                 borderRadius: BorderRadius.only(
@@ -93,78 +94,25 @@ class _RecommendedItemsPageState extends State<RecommendedItemsPage> {
                   topLeft: Radius.circular(30),
                 ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 20, left: 31),
-                    child: Text(
-                      "Recommended items for you",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.textGreen),
+              child: Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20, left: 31),
+                      child: Text(
+                        "Recommended items for you",
+                        style: TextStyle(
+                            fontSize: getFont(18),
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textGreen),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Flexible(
-                          child: Column(
-                            children: [
-                              // SizedBox(
-                              //   height: 20,
-                              // ),
-                              // Items(context, 'Tomatoes',
-                              //     'assets/images/items/melons.png'),
-                              // SizedBox(
-                              //   height: 20,
-                              // ),
-                              // Items(context, 'Tomatoes',
-                              //     'assets/images/items/melons.png'),
-                              // SizedBox(
-                              //   height: 20,
-                              // ),
-                              // Items(context, 'Tomatoes',
-                              //     'assets/images/items/melons.png'),
-                            ],
-                          ),
-                        ),
-                        // SizedBox(
-                        //   width: 5,
-                        // ),
-                        Flexible(
-                          child: Column(
-                            children: [
-                              // Items(context, 'Tomatoes',
-                              //     'assets/images/items/melons.png'),
-                              // SizedBox(
-                              //   height: 20,
-                              // ),
-                              // Items(context, 'Tomatoes',
-                              //     'assets/images/items/melons.png'),
-                              // SizedBox(
-                              //   height: 20,
-                              // ),
-                              // Items(context, 'Tomatoes',
-                              //     'assets/images/items/melons.png'),
-                              // SizedBox(
-                              //   height: 20,
-                              // ),
-                              // Items(context, 'Tomatoes',
-                              //     'assets/images/items/melons.png'),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  )
-                ],
+                    const SizedBox(
+                      height: 30,
+                    )
+                  ],
+                ),
               ),
             )
           ],

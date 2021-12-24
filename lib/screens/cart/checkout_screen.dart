@@ -32,7 +32,7 @@ class _CheckoutState extends State<Checkout> {
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 margin: EdgeInsets.symmetric(
-                    horizontal: getWidth(15), vertical: getHeight(20)),
+                    horizontal: getWidth(18), vertical: getHeight(20)),
                 padding: EdgeInsets.symmetric(
                     horizontal: getWidth(15), vertical: getHeight(20)),
                 //height: 953,
@@ -48,25 +48,7 @@ class _CheckoutState extends State<Checkout> {
                     SizedBox(
                       height: getHeight(15),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Items',
-                          style: TextStyle(
-                              fontSize: getFont(16),
-                              fontWeight: FontWeight.w500),
-                        ),
-                        SizedBox(
-                          height: getHeight(15),
-                        ),
-                        buildCheckoutItems(),
-                        SizedBox(
-                          height: getHeight(10),
-                        ),
-                        buildCheckoutItems()
-                      ],
-                    ),
+                    buildItems(),
                     SizedBox(
                       height: getHeight(20),
                     ),
@@ -82,46 +64,7 @@ class _CheckoutState extends State<Checkout> {
                     SizedBox(
                       height: getHeight(10),
                     ),
-                    Container(
-                      height: 94,
-                      //width: 414,
-                      color: Colors.white,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('Total Amount',
-                                    style: robototitleStyle.copyWith(
-                                        fontSize: getFont(15),
-                                        color: Colors.black)),
-                                Text('Rs. 1000',
-                                    style: robototitleStyle.copyWith(
-                                      fontSize: getFont(20),
-                                    )),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: getHeight(41),
-                            // ignore: deprecated_member_use
-                            child: RaisedButton(
-                              onPressed: () {},
-                              color: AppColors.mainGreen,
-                              child: Text(
-                                'Proceed To Pay',
-                                style: robototitleStyle.copyWith(
-                                    fontSize: getFont(16), color: Colors.white),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    buildTotalAmmont()
                   ],
                 ),
               ),
@@ -138,7 +81,10 @@ class _CheckoutState extends State<Checkout> {
       children: [
         Text(
           'Shipping Information',
-          style: TextStyle(fontSize: getFont(16), fontWeight: FontWeight.w500),
+          style: archivotitleStyle.copyWith(
+              color: Colors.black,
+              fontSize: getFont(16),
+              fontWeight: FontWeight.w500),
         ),
         SizedBox(
           height: getHeight(15),
@@ -162,60 +108,74 @@ class _CheckoutState extends State<Checkout> {
 
   Widget buildCheckoutItems() {
     return Container(
-      height: getHeight(83),
+      //height: getHeight(83),
+      padding: const EdgeInsets.all(10.0),
+      margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(4),
           border: Border.all(
-              width: 2, color: const Color.fromRGBO(193, 193, 193, 0.3))),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                SizedBox(
-                  width: getWidth(79),
-                  height: getHeight(56),
-                  child: Image.asset('assets/images/items/grapes.png'),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Cherry',
-                      style: TextStyle(
-                          fontSize: getFont(14), fontWeight: FontWeight.w500),
-                    ),
-                    Text(
-                      '10 kcal',
-                      style: TextStyle(
-                          fontSize: getFont(10), fontWeight: FontWeight.w400),
-                    ),
-                    Text(
-                      'Rs. 250',
-                      style: TextStyle(
-                          fontSize: getFont(15),
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.textGreen),
-                    )
-                  ],
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20, right: 10),
-              child: Text(
-                'Quantity: 1',
-                style: TextStyle(
-                    fontSize: getFont(12),
-                    fontWeight: FontWeight.normal,
-                    color: Colors.black),
+              width: 1, color: const Color.fromRGBO(193, 193, 193, 0.3))),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              SizedBox(
+                width: getWidth(79),
+                height: getHeight(56),
+                child: Image.asset('assets/images/items/grapes.png'),
               ),
-            )
-          ],
-        ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Cherry',
+                      style: archivotitleStyle.copyWith(
+                          fontSize: getFont(14),
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black)),
+                  Text(
+                    '10 kcal',
+                    style: archivotitleStyle.copyWith(
+                        fontSize: getFont(10),
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black),
+                  ),
+                  // SizedBox(
+                  //   height: getHeight(5),
+                  // ),
+                  RichText(
+                      text: TextSpan(children: [
+                    TextSpan(
+                        text: 'Rs.',
+                        style: robototitleStyle.copyWith(
+                            fontSize: getFont(15),
+                            fontWeight: FontWeight.w500)),
+                    TextSpan(
+                        text: '250',
+                        style: robototitleStyle.copyWith(
+                            fontSize: getFont(20), fontWeight: FontWeight.w500))
+                  ]))
+                  // Text(
+                  //   'Rs. 250',
+                  //   style: TextStyle(
+                  //       fontSize: getFont(15),
+                  //       fontWeight: FontWeight.bold,
+                  //       color: AppColors.textGreen),
+                  // )
+                ],
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20, right: 10),
+            child: Text('Quantity: 1',
+                style: archivotitleStyle.copyWith(
+                    fontSize: getFont(12),
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black)),
+          )
+        ],
       ),
     );
   }
@@ -226,7 +186,10 @@ class _CheckoutState extends State<Checkout> {
       children: [
         Text(
           'Order Summary',
-          style: TextStyle(fontSize: getFont(16), fontWeight: FontWeight.w500),
+          style: archivotitleStyle.copyWith(
+              fontSize: getFont(16),
+              color: Colors.black,
+              fontWeight: FontWeight.w500),
         ),
         SizedBox(
           height: getHeight(20),
@@ -236,13 +199,17 @@ class _CheckoutState extends State<Checkout> {
           children: [
             Text(
               'Subtotal',
-              style:
-                  TextStyle(fontSize: getFont(15), fontWeight: FontWeight.w400),
+              style: archivotitleStyle.copyWith(
+                  color: Colors.black,
+                  fontSize: getFont(15),
+                  fontWeight: FontWeight.w400),
             ),
             Text(
               'Rs. 500',
-              style:
-                  TextStyle(fontSize: getFont(15), fontWeight: FontWeight.w400),
+              style: archivotitleStyle.copyWith(
+                  color: Colors.black,
+                  fontSize: getFont(15),
+                  fontWeight: FontWeight.w400),
             )
           ],
         ),
@@ -254,24 +221,30 @@ class _CheckoutState extends State<Checkout> {
           children: [
             Text(
               'Delivery Fee',
-              style:
-                  TextStyle(fontSize: getFont(15), fontWeight: FontWeight.w400),
+              style: archivotitleStyle.copyWith(
+                  fontSize: getFont(15),
+                  color: Colors.black,
+                  fontWeight: FontWeight.w400),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
                   'Rs. 100',
-                  style: TextStyle(
-                      fontSize: getFont(15), fontWeight: FontWeight.w400),
+                  style: archivotitleStyle.copyWith(
+                      fontSize: getFont(15),
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400),
                 ),
                 SizedBox(
                   height: getHeight(15),
                 ),
                 Text(
                   'Total Rs. 100',
-                  style: TextStyle(
-                      fontSize: getFont(15), fontWeight: FontWeight.w400),
+                  style: archivotitleStyle.copyWith(
+                      fontSize: getFont(15),
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400),
                 ),
               ],
             )
@@ -285,18 +258,21 @@ class _CheckoutState extends State<Checkout> {
           children: [
             Text(
               'Offers',
-              style:
-                  TextStyle(fontSize: getFont(15), fontWeight: FontWeight.w400),
+              style: archivotitleStyle.copyWith(
+                  fontSize: getFont(15),
+                  color: Colors.black,
+                  fontWeight: FontWeight.w400),
             ),
             Container(
               height: getHeight(31),
+              padding: EdgeInsets.symmetric(horizontal: getWidth(3)),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
                   color: const Color.fromRGBO(135, 194, 65, 0.2)),
               child: Center(
                 child: Text(
                   'Promo Code Applied',
-                  style: TextStyle(
+                  style: archivotitleStyle.copyWith(
                       color: AppColors.textGreen,
                       fontSize: getFont(14),
                       fontWeight: FontWeight.w400),
@@ -331,8 +307,10 @@ class _CheckoutState extends State<Checkout> {
                 Text(
                   title,
                   //'Default Address',
-                  style: TextStyle(
-                      fontSize: getFont(16), fontWeight: FontWeight.w500),
+                  style: archivotitleStyle.copyWith(
+                      color: Colors.black,
+                      fontSize: getFont(15),
+                      fontWeight: FontWeight.w400),
                 ),
                 SizedBox(
                   height: getFont(8),
@@ -358,14 +336,93 @@ class _CheckoutState extends State<Checkout> {
           child: Center(
             child: Text(
               'Edit',
-              style: robototitleStyle.copyWith(
+              style: archivotitleStyle.copyWith(
                   color: AppColors.textGreen,
                   fontSize: getFont(14),
-                  fontWeight: FontWeight.normal),
+                  fontWeight: FontWeight.w400),
             ),
           ),
         ),
       ],
+    );
+  }
+
+  buildItems() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Items',
+          style: archivotitleStyle.copyWith(
+              color: Colors.black,
+              fontSize: getFont(16),
+              fontWeight: FontWeight.w500),
+        ),
+        SizedBox(
+          height: getHeight(15),
+        ),
+        ...List.generate(2, (index) => buildCheckoutItems()),
+        // buildCheckoutItems(),
+        // buildCheckoutItems()
+      ],
+    );
+  }
+
+  buildTotalAmmont() {
+    return Container(
+      height: 70,
+      //width: 414,
+      color: Colors.white,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Total Amount',
+                    style: robototitleStyle.copyWith(
+                        fontSize: getFont(15),
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black)),
+                RichText(
+                    text: TextSpan(children: [
+                  TextSpan(
+                      text: 'Rs.',
+                      style: robototitleStyle.copyWith(
+                          fontSize: getFont(15), fontWeight: FontWeight.w500)),
+                  TextSpan(
+                      text: '1000',
+                      style: robototitleStyle.copyWith(
+                          fontSize: getFont(20), fontWeight: FontWeight.w500))
+                ]))
+                // Text('Rs. 1000',
+                //     style: robototitleStyle.copyWith(
+                //       fontSize: getFont(20),
+                //     )),
+              ],
+            ),
+          ),
+          Container(
+            height: getHeight(41),
+            padding: EdgeInsets.symmetric(horizontal: getWidth(35)),
+            decoration: BoxDecoration(
+                color: AppColors.mainGreen,
+                borderRadius: BorderRadius.circular(4)),
+            child: Center(
+              child: Text(
+                'Proceed To Pay',
+                style: robototitleStyle.copyWith(
+                    fontWeight: FontWeight.w400,
+                    fontSize: getFont(16),
+                    color: Colors.white),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

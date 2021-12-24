@@ -208,12 +208,12 @@ class _WishlistState extends State<Wishlist> {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    border: Border.all(color: Colors.lightGreen),
+                    border: Border.all(width: .5, color: AppColors.mainGreen),
                     color: Colors.white,
                   ),
                   child: Image.asset(
-                    'assets/icons/cart.png',
-                    color: const Color.fromRGBO(135, 200, 65, 1),
+                    'assets/icons/cartsm.png',
+                    // color: const Color.fromRGBO(135, 200, 65, 1),
                   )
                   // child: Icon(
                   //   Icons.shopping_cart_outlined,

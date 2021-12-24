@@ -4,11 +4,14 @@ import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
+import 'package:khetipati/controllers/order_controller.dart';
 import 'package:khetipati/screens/orders/widgets/order_item_card.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
 import 'package:khetipati/screens/widgets/box_shadow.dart';
 import 'package:khetipati/screens/widgets/recommended_items_card.dart';
 import 'package:khetipati/theme.dart';
+
+List orderTabs = [];
 
 class OrdersTab extends StatefulWidget {
   const OrdersTab({Key? key}) : super(key: key);
@@ -19,6 +22,7 @@ class OrdersTab extends StatefulWidget {
 
 class _OrdersTabState extends State<OrdersTab> {
   final controller = Get.put(HomeController());
+  final ordercontroller = Get.put(OrderController());
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -40,10 +44,7 @@ class _OrdersTabState extends State<OrdersTab> {
             child: Column(
               children: [
                 orderContainer(),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [recommendedItemsCard()],
-                ),
+                recommendedItemsCard(),
                 SizedBox(
                   height: getHeight(40),
                 )
@@ -148,21 +149,29 @@ class _OrdersTabState extends State<OrdersTab> {
   }
 
   buildOrderStatus(title) {
-    return Column(
-      children: [
-        Text(
-          title,
-          style: archivotitleStyle.copyWith(fontSize: getFont(14)),
-        ),
-        const SizedBox(
-          height: 6,
-        ),
-        Container(
-          height: 1,
-          width: 70,
-          color: AppColors.textGreen,
-        )
-      ],
-    );
+    return Obx(() => InkWell(
+          onTap: () {
+            ordercontroller.isActive();
+            print(ordercontroller.active);
+          },
+          child: Column(
+            children: [
+              Text(
+                title,
+                style: archivotitleStyle.copyWith(fontSize: getFont(14)),
+              ),
+              const SizedBox(
+                height: 6,
+              ),
+              ordercontroller.active.isFalse
+                  ? Container(
+                      height: 1,
+                      width: 70,
+                      color: AppColors.textGreen,
+                    )
+                  : Container()
+            ],
+          ),
+        ));
   }
 }
