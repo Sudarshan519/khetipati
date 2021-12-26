@@ -5,7 +5,6 @@ import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/cart_controller.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/product.dart';
-import 'package:khetipati/screens/cart/checkout_screen.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
 import 'package:khetipati/screens/widgets/recommended_items_card.dart';
 
@@ -116,7 +115,7 @@ class CartProductCard extends StatelessWidget {
                 width: getWidth(139),
                 height: getHeight(99),
                 child: Image.network(
-                  product.featureImage!.originalImage.toString(),
+                  product.featureImage.originalImage.toString(),
                 ),
               ),
               Positioned(
@@ -273,7 +272,7 @@ class CartTotal extends StatelessWidget {
               width: getWidth(40),
             ),
             SizedBox(
-              width: getHeight(150),
+              // width: getHeight(150),
               height: getHeight(41),
               child: RaisedButton(
                 onPressed: () {

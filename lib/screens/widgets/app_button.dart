@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:khetipati/constant/colors.dart';
 
 import 'package:khetipati/theme.dart';
+
+import '../../theme.dart';
 
 class MyButton extends StatelessWidget {
   final String label;
@@ -23,8 +26,8 @@ class MyButton extends StatelessWidget {
             color: color ?? primaryClr,
           ),
           child: Text(label,
-              style:
-                  TextStyle(color: color != null ? primaryClr : Colors.white))),
+              style: TextStyle(
+                  color: color != null ? AppColors.mainGreen : Colors.white))),
     );
   }
 }

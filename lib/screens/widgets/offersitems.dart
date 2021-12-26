@@ -24,7 +24,7 @@ Widget offerProductCard(Product item) {
                       topLeft: Radius.circular(10),
                       bottomLeft: Radius.circular(10)),
                   child: Image.network(
-                    item.featureImage!.originalImage.toString(),
+                    item.featureImage.originalImage.toString(),
                     // fit: BoxFit.fill,
                     width: getWidth(116),
                     height: 100,

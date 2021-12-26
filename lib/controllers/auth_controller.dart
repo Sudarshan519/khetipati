@@ -12,13 +12,15 @@ class AuthController extends GetxController {
   var user = User().obs;
   loginWithEmail({required String email, required String password}) async {
     authState.value = AuthState.Authenticating;
-
+    getSnackbar(
+      message: "Logging in",
+    );
     var user = await userrepo.loginWithEmailandPassword(email, password);
 
     if (user != null) {
       token.value = user[1];
       authState.value = AuthState.Authenticated;
-      print(token.value);
+
       Get.to(() => HomeScreen());
     } else {
       getSnackbar(message: "Error signing in");

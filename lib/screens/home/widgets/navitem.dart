@@ -40,7 +40,7 @@ class NavItem extends StatelessWidget {
                 : Text(
                     label,
                     style: TextStyle(
-                        color: const Color.fromRGBO(0, 0, 0, 0.8),
+                        color: Colors.black54,
                         fontSize: getFont(12),
                         fontWeight: FontWeight.w400),
                   )

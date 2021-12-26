@@ -31,7 +31,7 @@ orderItemCard(Product item) {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  item.title!,
+                  item.title,
                   style: TextStyle(
                       fontSize: getFont(18),
                       fontWeight: FontWeight.w500,

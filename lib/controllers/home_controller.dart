@@ -62,7 +62,8 @@ class HomeController extends GetxController {
 
       if (list.isNotEmpty) {
         _products.addAll(list);
-      }
+      } else {}
+
       isproductloading.value = false;
     } catch (e) {
       getSnackbar(message: "Error on fetching data");
