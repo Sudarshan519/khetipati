@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
 import 'package:khetipati/models/product.dart';
+import 'package:khetipati/services/app_service.dart';
+
+import 'auth_controller.dart';
 
 class CartController extends GetxController {
 //for cart products
@@ -46,4 +49,16 @@ class CartController extends GetxController {
           .reduce((value, element) => value + element)
           .toStringAsFixed(2)
       : 0;
+  void submitOrder() {
+    var orderitems = [];
+    _products.entries.forEach((element) {
+      orderitems.add({
+        "product_id": element.key.id,
+        "price": element.key.productPrice,
+        "quantity": element.value
+      });
+    });
+    print(orderitems.toString());
+    AppServices().orderSubmit(authController.token.value, orderitems, total);
+  }
 }

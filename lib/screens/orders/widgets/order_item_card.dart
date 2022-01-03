@@ -14,10 +14,10 @@ orderItemCard(Product item) {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              width: getWidth(139),
+              width: getWidth(100),
               height: getHeight(99),
               child: Image.network(
-                item.featureImage!.originalImage.toString(),
+                item.featureImage.originalImage.toString(),
                 // fit: BoxFit.fill,
                 width: getWidth(139),
                 height: getHeight(99),
@@ -26,40 +26,41 @@ orderItemCard(Product item) {
             SizedBox(
               width: getWidth(3),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  item.title!,
-                  style: TextStyle(
-                      fontSize: getFont(18),
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.textblack),
-                ),
-                SizedBox(
-                  height: getHeight(5),
-                ),
-                RichText(
-                    text: TextSpan(children: [
-                  TextSpan(
-                    text: 'Rs.',
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    item.title,
                     style: TextStyle(
-                        fontSize: getFont(15),
+                        fontSize: getFont(18),
                         fontWeight: FontWeight.w500,
-                        color: AppColors.textGreen),
+                        color: AppColors.textblack),
                   ),
-                  TextSpan(
-                    text: item.productPrice.toString(),
-                    style: TextStyle(
-                        fontSize: getFont(20),
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.textGreen),
-                  )
-                ]))
-              ],
+                  SizedBox(
+                    height: getHeight(5),
+                  ),
+                  RichText(
+                      text: TextSpan(children: [
+                    TextSpan(
+                      text: 'Rs.',
+                      style: TextStyle(
+                          fontSize: getFont(15),
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.textGreen),
+                    ),
+                    TextSpan(
+                      text: item.productPrice.toString(),
+                      style: TextStyle(
+                          fontSize: getFont(20),
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.textGreen),
+                    )
+                  ]))
+                ],
+              ),
             ),
-            const Spacer(),
             Padding(
               padding: EdgeInsets.only(right: getWidth(10)),
               child: Column(

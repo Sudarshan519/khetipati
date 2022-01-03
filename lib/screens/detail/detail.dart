@@ -382,41 +382,48 @@ class DetailsScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Total Amount',
-                    style: archivotitleStyle.copyWith(
-                        fontWeight: FontWeight.w500,
-                        fontSize: getFont(15),
-                        color: Colors.black)),
-                RichText(
-                    text: TextSpan(children: [
-                  TextSpan(
-                      text: "Rs.",
-                      style: robototitleStyle.copyWith(
-                          fontSize: getFont(15), fontWeight: FontWeight.w500)),
-                  TextSpan(
-                      text: '${product.productPrice}',
-                      style: robototitleStyle.copyWith(
-                          fontSize: getFont(22), fontWeight: FontWeight.w500))
-                ])),
-              ],
+            Expanded(
+              flex: 2,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Total Amount',
+                      style: archivotitleStyle.copyWith(
+                          fontWeight: FontWeight.w500,
+                          fontSize: getFont(15),
+                          color: Colors.black)),
+                  RichText(
+                      text: TextSpan(children: [
+                    TextSpan(
+                        text: "Rs.",
+                        style: robototitleStyle.copyWith(
+                            fontSize: getFont(15),
+                            fontWeight: FontWeight.w500)),
+                    TextSpan(
+                        text: '${product.productPrice}',
+                        style: robototitleStyle.copyWith(
+                            fontSize: getFont(22), fontWeight: FontWeight.w500))
+                  ])),
+                ],
+              ),
             ),
-            SizedBox(width: getWidth(50)),
-            SizedBox(
-              //width: 150,
-              height: 50,
-              // ignore: deprecated_member_use
-              child: RaisedButton(
-                onPressed: () {},
-                color: AppColors.mainGreen,
-                child: Text('Add To Cart',
-                    style: robotosubtitleStyle.copyWith(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500)),
+            Spacer(flex: 1),
+            Expanded(
+              flex: 2,
+              child: SizedBox(
+                //width: 150,
+                height: 50,
+                // ignore: deprecated_member_use
+                child: RaisedButton(
+                  onPressed: () {},
+                  color: AppColors.mainGreen,
+                  child: Text('Add To Cart',
+                      style: robotosubtitleStyle.copyWith(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500)),
+                ),
               ),
             ),
           ],

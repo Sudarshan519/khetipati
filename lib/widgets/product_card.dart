@@ -67,7 +67,7 @@ Widget productCard(Product item) {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          item.title!,
+                          item.title,
                           style: TextStyle(
                               fontSize: getFont(14),
                               color: AppColors.textblack),
@@ -102,18 +102,20 @@ Widget productCard(Product item) {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    RichText(
-                        text: TextSpan(
-                            style:
-                                TextStyle(color: Color.fromRGBO(2, 95, 51, 1)),
-                            children: [
-                          TextSpan(
-                              text: "Rs. ",
-                              style: TextStyle(fontSize: getFont(12))),
-                          TextSpan(
-                              text: item.productPrice.toString(),
-                              style: TextStyle(fontSize: getFont(15)))
-                        ])),
+                    Expanded(
+                      child: RichText(
+                          text: TextSpan(
+                              style: TextStyle(
+                                  color: Color.fromRGBO(2, 95, 51, 1)),
+                              children: [
+                            TextSpan(
+                                text: "Rs. ",
+                                style: TextStyle(fontSize: getFont(12))),
+                            TextSpan(
+                                text: item.productPrice.toString(),
+                                style: TextStyle(fontSize: getFont(15)))
+                          ])),
+                    ),
                     InkWell(
                       onTap: () {
                         controller.addProduct(item);

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:get/get.dart';
 import 'package:khetipati/controllers/auth_controller.dart';
 import 'package:khetipati/models/cagetories.dart';
@@ -45,6 +47,10 @@ class HomeController extends GetxController {
           await AppServices().getAllCategories(authController.token.value);
       if (list.isNotEmpty) {
         categories.addAll(list);
+      } else {
+        categoriesdata.forEach((element) {
+          categories.add(Category.fromJson(element));
+        });
       }
     } catch (e) {
       print(e.toString());
@@ -59,8 +65,12 @@ class HomeController extends GetxController {
     try {
       var list = await AppServices().getAllProducts(authController.token.value);
 
-      if (list.isNotEmpty) {
+      if (list.isNotEmpty && list != null) {
         _products.addAll(list);
+      } else {
+        productdata.forEach((element) {
+          _products.add(Product.fromJson(element));
+        });
       }
       isproductloading.value = false;
     } catch (e) {
@@ -113,7 +123,7 @@ class HomeController extends GetxController {
     // await productrepo.getCategorybyid(id);
   }
 
-  void submitOrder() {
-    AppServices().orderSubmit(authController.token.value);
-  }
+  // void submitOrder() {
+  //   AppServices().orderSubmit(authController.token.value);
+  // }
 }

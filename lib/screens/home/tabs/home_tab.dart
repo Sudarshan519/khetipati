@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:khetipati/constant/api_endpoints.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
@@ -148,13 +149,16 @@ class HomeTab extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: getWidth(8), right: getWidth(8)),
-                              child: Image.network(
-                                categories.logoUrl.toString(),
-                                height: getHeight(62),
-                                width: getHeight(62),
+                            // Text(categories.logoUrl.toString()),
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    left: getWidth(8), right: getWidth(8)),
+                                child: Image.network(
+                                  categories.logoUrl.toString(),
+                                  height: getHeight(62),
+                                  width: getHeight(62),
+                                ),
                               ),
                             ),
                             Expanded(
@@ -208,7 +212,7 @@ class HomeTab extends StatelessWidget {
             : SizedBox(
                 height: 191,
                 child: ListView.builder(
-                    padding: const EdgeInsets.only(left: 8),
+                    padding: const EdgeInsets.only(left: 18),
                     scrollDirection: Axis.horizontal,
                     itemCount: controller.products.length,
                     itemBuilder: (_, int i) {

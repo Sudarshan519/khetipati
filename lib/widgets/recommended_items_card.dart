@@ -60,6 +60,7 @@ buildRecommendedItemsCard() {
       : SizedBox(
           height: getHeight(226),
           child: ListView.builder(
+              padding: const EdgeInsets.only(left: 18),
               scrollDirection: Axis.horizontal,
               itemCount: controller.products.length,
               itemBuilder: (_, int i) {

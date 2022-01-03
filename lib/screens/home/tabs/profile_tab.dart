@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
+import 'package:khetipati/controllers/auth_controller.dart';
 import 'package:khetipati/screens/LoginRegisterPage/login.dart';
 import 'package:khetipati/screens/orders/orders.dart';
 import 'package:khetipati/screens/profile/payment/payment.dart';
@@ -47,92 +48,94 @@ class _ProfileTabState extends State<ProfileTab> {
                 size: 20, color: AppColors.textGreen)),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              //height: 283,
-              width: MediaQuery.of(context).size.width,
-              color: AppColors.mainGreen,
-              child: Column(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(
-                        top: getHeight(33), bottom: getHeight(10)),
-                    child: Image.asset(
-                      'assets/images/profile.png',
-                      height: getHeight(135),
-                      width: getWidth(135),
-                    ),
-                  ),
-                  Text(
-                    "Sudarshan ",
-                    style: TextStyle(
-                        fontSize: getFont(23),
-                        color: Colors.green[900],
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "Mangalbazar, Lalitpur",
-                    style: TextStyle(
-                        fontSize: getFont(14),
-                        color: Colors.green[900],
-                        fontWeight: FontWeight.normal),
-                  ),
-                  SizedBox(
-                    height: getHeight(22),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary: const Color.fromRGBO(255, 255, 255, 0.5),
-                        textStyle: TextStyle(
-                            fontSize: getFont(15),
-                            color: const Color.fromRGBO(2, 95, 51, 1))),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const EditProfile()),
-                      );
-                    },
-                    child: Text(
-                      'Edit',
-                      style: TextStyle(
-                          fontSize: getFont(15),
-                          color: const Color.fromRGBO(2, 95, 51, 1)),
-                    ),
-                  ),
-                  SizedBox(
-                    height: getHeight(16),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              //height: 815,
-              decoration: const BoxDecoration(
-                color: AppColors.mainGrey,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(30),
-                  topLeft: Radius.circular(30),
-                ),
-              ),
-              child: Padding(
-                padding:
-                    EdgeInsets.only(right: getWidth(20), left: getWidth(20)),
+        child: Obx(
+          () => Column(
+            children: [
+              Container(
+                //height: 283,
+                width: MediaQuery.of(context).size.width,
+                color: AppColors.mainGreen,
                 child: Column(
                   children: [
-                    profileMenuCard(),
-                    personalInfoCard(),
-                    logoutAndSwitchAccCard(),
+                    Container(
+                      margin: EdgeInsets.only(
+                          top: getHeight(33), bottom: getHeight(10)),
+                      child: Image.asset(
+                        'assets/images/profile.png',
+                        height: getHeight(135),
+                        width: getWidth(135),
+                      ),
+                    ),
+                    Text(
+                      authController.user.value.firstname!,
+                      style: TextStyle(
+                          fontSize: getFont(23),
+                          color: Colors.green[900],
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      authController.user.value.email!,
+                      style: TextStyle(
+                          fontSize: getFont(14),
+                          color: Colors.green[900],
+                          fontWeight: FontWeight.normal),
+                    ),
                     SizedBox(
-                      height: getHeight(30),
+                      height: getHeight(22),
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: const Color.fromRGBO(255, 255, 255, 0.5),
+                          textStyle: TextStyle(
+                              fontSize: getFont(15),
+                              color: const Color.fromRGBO(2, 95, 51, 1))),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const EditProfile()),
+                        );
+                      },
+                      child: Text(
+                        'Edit',
+                        style: TextStyle(
+                            fontSize: getFont(15),
+                            color: const Color.fromRGBO(2, 95, 51, 1)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: getHeight(16),
                     )
                   ],
                 ),
               ),
-            )
-          ],
+              Container(
+                width: MediaQuery.of(context).size.width,
+                //height: 815,
+                decoration: const BoxDecoration(
+                  color: AppColors.mainGrey,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(30),
+                    topLeft: Radius.circular(30),
+                  ),
+                ),
+                child: Padding(
+                  padding:
+                      EdgeInsets.only(right: getWidth(20), left: getWidth(20)),
+                  child: Column(
+                    children: [
+                      profileMenuCard(),
+                      personalInfoCard(),
+                      logoutAndSwitchAccCard(),
+                      SizedBox(
+                        height: getHeight(30),
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

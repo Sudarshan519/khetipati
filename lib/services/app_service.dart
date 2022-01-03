@@ -7,29 +7,37 @@ import 'package:http/http.dart' as http;
 import 'package:khetipati/models/cagetories.dart';
 import 'package:khetipati/models/order.dart';
 import 'package:khetipati/models/product.dart';
+import 'package:khetipati/models/user.dart';
 import 'package:khetipati/utils/snackbar.dart';
 
 class AppServices extends GetConnect {
-  static const base = "http://192.168.10.149:8000/productapi/allproduct";
-  static const productapi = base + "productapi";
+  static const base = "http://192.168.10.67:8080/";
+  static const productapi = base + "productapi/";
 
-  static const categoryapi = base + "categoryapi";
+  static const categoryapi = base + "categoryapi/";
   static const userapi = base + "useapi/";
-  static const contactapi = base + "cms";
-  static const orderapi = base + "orderapi";
+  static const contactapi = base + "cms/";
+  static const orderapi = base + "orderapi/";
 
   ///login
-  Future loginWithEmailandPassword() async {
-    var body = {"email": "sudarshan@gmail.com", "password": "testing1234"};
+  Future loginWithEmailandPassword(String email, String password) async {
+    var body = {"email": "admin@gmail.com", "password": "testing1234"};
 
     try {
-      var response = await http.post(
-          Uri.parse("http://192.168.10.149:8000/userapi/login"),
-          body: body);
-
+      var response =
+          await http.post(Uri.parse(base + "userapi/login"), body: body);
+      // print(response.body);
       var result = jsonDecode(response.body);
+      var user = jsonDecode(response.body);
+      print(user);
       if (response.statusCode == 200) {
-        return result;
+        User currentuser = User.fromJson(user!["user"]);
+        var token = user["token"];
+
+        return [
+          currentuser,
+          token,
+        ];
       } else {
         getSnackbar(
             message: "Incorrect Username or Password", bgColor: Colors.red);
@@ -49,9 +57,8 @@ class AppServices extends GetConnect {
       'Authorization': 'Bearer $token',
     };
     try {
-      var response = await http.get(
-          Uri.parse("http://192.168.10.149:8000/categoryapi/allcategories"),
-          headers: headers);
+      var response = await http
+          .get(Uri.parse(base + "categoryapi/allcategories"), headers: headers);
 
       if (response.body.isNotEmpty) {
         var responsedata = json.decode(response.body);
@@ -79,11 +86,11 @@ class AppServices extends GetConnect {
       'Authorization': 'Bearer $token',
     };
     try {
-      var response = await http.get(
-          Uri.parse("http://192.168.10.149:8000/productapi/allproduct"),
+      var response = await http.get(Uri.parse(base + "productapi/allproduct"),
           headers: headers);
 
       var data = jsonDecode(response.body);
+      print(data);
       var products = data["data"];
       print(data);
       if (data.isNotEmpty) {
@@ -107,9 +114,8 @@ class AppServices extends GetConnect {
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     };
-    var response = await http.get(
-        Uri.parse("http://192.168.10.149:8000/orderapi/getorderbyuserid/6"),
-        headers: headers);
+    var response = await http
+        .get(Uri.parse(base + "orderapi/getorderbyuserid/6"), headers: headers);
     var data = json.decode(response.body)['data'];
     print(data['singleOrder']);
     // if (data.isNotEmpty) {
@@ -123,9 +129,7 @@ class AppServices extends GetConnect {
   }
 
   ///Order Submit
-  Future orderSubmit(
-    String token,
-  ) async {
+  Future orderSubmit(String token, List orderitems, String total) async {
     var headers = {
       'contentType': 'application/json',
       'Authorization': 'Bearer $token',
@@ -135,27 +139,25 @@ class AppServices extends GetConnect {
       {"product_id": "2", "price": "500", "quantity": "2"}
     ];
     var body = {
-      "total_amount": "2343",
+      "total_amount": total,
       "orderstatus_id": "1",
       "shipping_id": "1",
       "paymenttype_id": "1",
       "additionalnote": " You are alloted first order",
       "shippingprice": "111",
-      "products": json.encode(products)
+      "products": json.encode(orderitems)
     };
     // print(order);
 
-    var response = await http.post(
-        Uri.parse("http://192.168.10.149:8000/orderapi/ordersubmit"),
-        body: body,
-        headers: headers);
+    var response = await http.post(Uri.parse(base + "orderapi/ordersubmit"),
+        body: body, headers: headers);
     print(response.body);
   }
 
   // contact submit
   Future contactSubmit(String name, String email, String phone, String subject,
       String message, String seen) async {
-    String submitapi = "http://192.168.10.149:8000/cmsapi/contactSubmit";
+    String submitapi = base + "cmsapi/contactSubmit";
     var body = {
       "name": name,
       "email": email,
@@ -191,7 +193,7 @@ class AppServices extends GetConnect {
     };
     var response = await http.post(
         Uri.parse(
-          "http://192.168.10.149:8000/orderapi/ratingsubmit",
+          base + "orderapi/ratingsubmit",
         ),
         body: body,
         headers: headers);

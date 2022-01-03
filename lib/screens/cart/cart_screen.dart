@@ -7,7 +7,6 @@ import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/product.dart';
 import 'package:khetipati/screens/cart/checkout_screen.dart';
 import 'package:khetipati/widgets/app_bar.dart';
-import 'package:khetipati/widgets/product_card.dart';
 import 'package:khetipati/widgets/recommended_items_card.dart';
 
 class CartScreen extends StatelessWidget {
@@ -18,39 +17,43 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.mainGreen,
-        // bottomNavigationBar: CustomNav(),
         appBar: buildAppBar(context, 'Cart'),
-        body: Container(
-          // padding: EdgeInsets.only(bottom: 40),
-          width: double.infinity,
-          height: getHeight(900),
-          decoration: const BoxDecoration(
-            color: AppColors.mainGrey,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(30),
-              topLeft: Radius.circular(30),
-            ),
+        body: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(30),
+            topLeft: Radius.circular(30),
           ),
-          child: ListView(
-            children: [
-              Container(
-                width: getWidth(378),
-                height: getHeight(500),
-                margin: EdgeInsets.only(
-                    top: getHeight(20),
-                    left: getWidth(20),
-                    right: getHeight(20),
-                    bottom: getHeight(40)),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(children: [
-                  CartProducts(),
-                  CartTotal(),
-                ]),
+          child: Container(
+            width: double.infinity,
+            height: getHeight(900),
+            decoration: const BoxDecoration(
+              color: AppColors.mainGrey,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30),
+                topLeft: Radius.circular(30),
               ),
-              recommendedItemsCard()
-            ],
+            ),
+            child: ListView(
+              children: [
+                Container(
+                  width: getWidth(378),
+                  height: getHeight(500),
+                  margin: EdgeInsets.only(
+                      top: getHeight(20),
+                      left: getWidth(20),
+                      right: getHeight(20),
+                      bottom: getHeight(40)),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Column(children: [
+                    CartProducts(),
+                    CartTotal(),
+                  ]),
+                ),
+                recommendedItemsCard()
+              ],
+            ),
           ),
         ));
   }
@@ -109,7 +112,6 @@ class CartProductCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Row(
-        //     crossAxisAlignment: MainAxisAlignment.start,
         children: [
           Stack(
             children: [
@@ -117,7 +119,7 @@ class CartProductCard extends StatelessWidget {
                 width: getWidth(139),
                 height: getHeight(99),
                 child: Image.network(
-                  product.featureImage!.originalImage.toString(),
+                  product.featureImage.originalImage.toString(),
                 ),
               ),
               Positioned(
@@ -137,42 +139,44 @@ class CartProductCard extends StatelessWidget {
           SizedBox(
             width: getWidth(9),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                product.title.toString(),
-                style: TextStyle(
-                    fontSize: getFont(18),
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.textblack),
-              ),
-              Text(
-                '100 kcal',
-                style: TextStyle(
-                    fontSize: getFont(12), color: AppColors.textblack),
-              ),
-              SizedBox(
-                height: getHeight(18),
-              ),
-              RichText(
-                  text: TextSpan(children: [
-                TextSpan(
-                  text: 'Rs.',
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  product.title.toString(),
                   style: TextStyle(
-                      fontSize: getFont(15),
+                      fontSize: getFont(18),
                       fontWeight: FontWeight.w500,
-                      color: AppColors.textGreen),
+                      color: AppColors.textblack),
                 ),
-                TextSpan(
-                  text: product.productPrice.toString(),
+                Text(
+                  '100 kcal',
                   style: TextStyle(
-                      fontSize: getFont(20),
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.textGreen),
-                )
-              ]))
-            ],
+                      fontSize: getFont(12), color: AppColors.textblack),
+                ),
+                SizedBox(
+                  height: getHeight(18),
+                ),
+                RichText(
+                    text: TextSpan(children: [
+                  TextSpan(
+                    text: 'Rs.',
+                    style: TextStyle(
+                        fontSize: getFont(12),
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.textGreen),
+                  ),
+                  TextSpan(
+                    text: product.productPrice.toString(),
+                    style: TextStyle(
+                        fontSize: getFont(14),
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.textGreen),
+                  )
+                ]))
+              ],
+            ),
           ),
           const Spacer(),
           Column(children: [
@@ -249,24 +253,27 @@ class CartTotal extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
-              padding: EdgeInsets.only(left: getWidth(20)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Total Amount',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: getFont(15)),
-                  ),
-                  Text(
-                    "Rs.${controller.total}",
-                    style: TextStyle(
-                        fontSize: getFont(20),
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.textGreen),
-                  ),
-                ],
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(left: getWidth(20)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Total Amount',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: getFont(15)),
+                    ),
+                    Text(
+                      "Rs.${controller.total}",
+                      style: TextStyle(
+                          fontSize: getFont(16),
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.textGreen),
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(
@@ -278,6 +285,7 @@ class CartTotal extends StatelessWidget {
               // ignore: deprecated_member_use
               child: RaisedButton(
                 onPressed: () {
+                  // controller.submitOrder();
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Checkout()),

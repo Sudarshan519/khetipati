@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:khetipati/screens/home/home.dart';
+import 'package:khetipati/services/app_service.dart';
 import 'package:khetipati/services/user_services.dart';
 import 'package:khetipati/utils/snackbar.dart';
 
@@ -13,16 +14,22 @@ class AuthController extends GetxController {
   loginWithEmail({required String email, required String password}) async {
     authState.value = AuthState.Authenticating;
 
-    List user = await userrepo.loginWithEmailandPassword(email, password);
+    try {
+      List users =
+          await AppServices().loginWithEmailandPassword(email, password);
+      if (users[0] != null) {
+        print(user);
+        token.value = users[1];
+        user.value = users[0];
+        authState.value = AuthState.Authenticated;
 
-    if (user[0] != null) {
-      token.value = user[1];
-      authState.value = AuthState.Authenticated;
-      print(token.value);
-      Get.to(() => HomeScreen());
-    } else {
+        Get.to(() => HomeScreen());
+      } else {
+        getSnackbar(message: "Error signing in");
+        authState.value = AuthState.UnAuthenticated;
+      }
+    } catch (e) {
       getSnackbar(message: "Error signing in");
-      authState.value = AuthState.UnAuthenticated;
     }
   }
 }

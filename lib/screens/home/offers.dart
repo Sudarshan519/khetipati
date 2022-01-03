@@ -160,7 +160,7 @@ class _OffersState extends State<Offers> {
                               image: AssetImage(
                                 "assets/images/ad.png",
                               ),
-                              fit: BoxFit.fill))),
+                              fit: BoxFit.cover))),
                 ],
               ),
             )
