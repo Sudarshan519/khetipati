@@ -21,7 +21,7 @@ class _VouchersState extends State<Vouchers> {
       appBar: buildAppBar(context, 'Vouchers'),
       body: Container(
         width: MediaQuery.of(context).size.width,
-        height: 815,
+        height: double.infinity,
         decoration: const BoxDecoration(
           color: AppColors.mainGrey,
           borderRadius: BorderRadius.only(

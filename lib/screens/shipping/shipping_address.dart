@@ -21,144 +21,141 @@ class _ShippingAddressState extends State<ShippingAddress> {
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
       appBar: buildAppBar(context, 'Shipping Address'),
-      body: SingleChildScrollView(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 815,
-          decoration: const BoxDecoration(
-            color: AppColors.mainGrey,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(30),
-              topLeft: Radius.circular(30),
-            ),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        // height: double.infinity,
+        decoration: const BoxDecoration(
+          color: AppColors.mainGrey,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(30),
+            topLeft: Radius.circular(30),
           ),
-          child: Column(
-            children: [
-              Container(
-                // width: 378,
-                margin: EdgeInsets.symmetric(
-                    horizontal: getWidth(18), vertical: getHeight(26)),
-                padding: EdgeInsets.symmetric(
-                    horizontal: getWidth(25), vertical: getHeight(17)),
-                //  height: 650,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [boxShadow()],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Default Shipping Address',
-                      style: archivotitleStyle.copyWith(
-                          fontSize: getFont(16),
-                          color: AppColors.textblack,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    SizedBox(
-                      height: getHeight(12),
-                    ),
-
-                    buildAddress('Home'),
-                    SizedBox(
-                      height: getHeight(12),
-                    ),
-                    divider(),
-                    SizedBox(
-                      height: getHeight(12),
-                    ),
-                    Text(
-                      'Work Addresses',
-                      style: TextStyle(
-                          fontSize: getFont(16),
-                          color: AppColors.textblack,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    SizedBox(
-                      height: getHeight(12),
-                    ),
-                    //EditShipping('Work'),
-                    buildAddress('Work'),
-                    SizedBox(
-                      height: getHeight(12),
-                    ),
-                    buildAddress("Work 2"),
-                    SizedBox(
-                      height: getHeight(12),
-                    ),
-                    divider(),
-                    SizedBox(
-                      height: getHeight(12),
-                    ),
-                    Text(
-                      'Other Addresses',
-                      style: TextStyle(
-                          fontSize: getFont(16),
-                          color: AppColors.textblack,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    SizedBox(
-                      height: getHeight(12),
-                    ),
-                    //  EditShipping('Home'),
-                    buildAddress('Home'),
-                    SizedBox(
-                      height: getHeight(12),
-                    ),
-                    buildAddress('Home'),
-                    SizedBox(
-                      height: getHeight(12),
-                    ),
-                    buildAddress('Home'),
-                    SizedBox(
-                      height: getHeight(30),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AddShippingAddress()),
-                        );
-                      },
-                      child: Row(
-                        children: [
-                          CircleAvatar(
-                            backgroundColor:
-                                const Color.fromRGBO(2, 95, 51, 0.2),
-                            radius: 10,
-                            child: IconButton(
-                              padding: EdgeInsets.zero,
-                              icon: const Icon(
-                                Icons.add,
-                                size: 18,
-                                color: AppColors.textGreen,
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                          SizedBox(
-                            width: getWidth(10),
-                          ),
-                          Text(
-                            'Add New Address',
-                            style: archivotitleStyle.copyWith(
-                                fontSize: getWidth(16),
-                                color: AppColors.textGreen,
-                                fontWeight: FontWeight.normal),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+        ),
+        child: Column(
+          children: [
+            Container(
+              // width: 378,
+              margin: EdgeInsets.symmetric(
+                  horizontal: getWidth(18), vertical: getHeight(26)),
+              padding: EdgeInsets.symmetric(
+                  horizontal: getWidth(25), vertical: getHeight(17)),
+              //  height: 650,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [boxShadow()],
               ),
-              SizedBox(
-                height: getHeight(30),
-              )
-            ],
-          ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Default Shipping Address',
+                    style: archivotitleStyle.copyWith(
+                        fontSize: getFont(16),
+                        color: AppColors.textblack,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: getHeight(12),
+                  ),
+
+                  buildAddress('Home'),
+                  SizedBox(
+                    height: getHeight(12),
+                  ),
+                  divider(),
+                  SizedBox(
+                    height: getHeight(12),
+                  ),
+                  Text(
+                    'Work Addresses',
+                    style: TextStyle(
+                        fontSize: getFont(16),
+                        color: AppColors.textblack,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: getHeight(12),
+                  ),
+                  //EditShipping('Work'),
+                  buildAddress('Work'),
+                  SizedBox(
+                    height: getHeight(12),
+                  ),
+                  buildAddress("Work 2"),
+                  SizedBox(
+                    height: getHeight(12),
+                  ),
+                  divider(),
+                  SizedBox(
+                    height: getHeight(12),
+                  ),
+                  Text(
+                    'Other Addresses',
+                    style: TextStyle(
+                        fontSize: getFont(16),
+                        color: AppColors.textblack,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: getHeight(12),
+                  ),
+                  //  EditShipping('Home'),
+                  buildAddress('Home'),
+                  SizedBox(
+                    height: getHeight(12),
+                  ),
+                  buildAddress('Home'),
+                  SizedBox(
+                    height: getHeight(12),
+                  ),
+                  buildAddress('Home'),
+                  SizedBox(
+                    height: getHeight(30),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AddShippingAddress()),
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: const Color.fromRGBO(2, 95, 51, 0.2),
+                          radius: 10,
+                          child: IconButton(
+                            padding: EdgeInsets.zero,
+                            icon: const Icon(
+                              Icons.add,
+                              size: 18,
+                              color: AppColors.textGreen,
+                            ),
+                            onPressed: () {},
+                          ),
+                        ),
+                        SizedBox(
+                          width: getWidth(10),
+                        ),
+                        Text(
+                          'Add New Address',
+                          style: archivotitleStyle.copyWith(
+                              fontSize: getWidth(16),
+                              color: AppColors.textGreen,
+                              fontWeight: FontWeight.normal),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: getHeight(30),
+            )
+          ],
         ),
       ),
     );

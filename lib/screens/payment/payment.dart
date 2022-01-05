@@ -38,59 +38,62 @@ class _PaymentState extends State<Payment> {
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
       appBar: buildAppBar(context, 'Payment'),
-      body: SingleChildScrollView(
-        child: Expanded(
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: 800,
-            padding: EdgeInsets.symmetric(
-                horizontal: getWidth(18), vertical: getHeight(26)),
-            // height: 815,
-            decoration: const BoxDecoration(
-              color: AppColors.mainGrey,
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(30),
-                topLeft: Radius.circular(30),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.symmetric(
+            horizontal: getWidth(18), vertical: getHeight(4)),
+        height: double.maxFinite,
+        decoration: const BoxDecoration(
+          color: AppColors.mainGrey,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(30),
+            topLeft: Radius.circular(30),
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            //scrollDirection: Axis.vertical,
+            children: [
+              SizedBox(
+                height: getHeight(26),
               ),
-            ),
-            child: Column(
-              //scrollDirection: Axis.vertical,
-              children: [
-                buildCreditCard(),
-                SizedBox(
-                  height: getHeight(17),
-                ),
-                paymentOptions(
-                    'Cash on Delivery',
-                    dropdown == true
-                        ? Container(
-                            padding: EdgeInsets.only(bottom: getHeight(25)),
-                            width: getWidth(259),
-                            child: Text(
-                                'You can pay with cash to the delivery person once you receive your goods.',
-                                style: archivotitleStyle.copyWith(
-                                    color: Colors.black,
-                                    fontSize: getFont(14),
-                                    fontWeight: FontWeight.w400)))
-                        : Container()),
-                SizedBox(
-                  height: getHeight(17),
-                ),
-                paymentOptions('FonePay', Container()),
-                SizedBox(
-                  height: getHeight(17),
-                ),
-                paymentOptions('Mobilebanking', Container()),
-                SizedBox(
-                  height: getHeight(17),
-                ),
-                buildAddNewPayment(),
-                SizedBox(
-                  height: getHeight(17),
-                ),
-                buildPlacetheOrderButton()
-              ],
-            ),
+              buildCreditCard(),
+              SizedBox(
+                height: getHeight(17),
+              ),
+              paymentOptions(
+                  'Cash on Delivery',
+                  dropdown == true
+                      ? Container(
+                          padding: EdgeInsets.only(bottom: getHeight(25)),
+                          width: getWidth(259),
+                          child: Text(
+                              'You can pay with cash to the delivery person once you receive your goods.',
+                              style: archivotitleStyle.copyWith(
+                                  color: Colors.black,
+                                  fontSize: getFont(14),
+                                  fontWeight: FontWeight.w400)))
+                      : Container()),
+              SizedBox(
+                height: getHeight(17),
+              ),
+              paymentOptions('FonePay', Container()),
+              SizedBox(
+                height: getHeight(17),
+              ),
+              paymentOptions('Mobilebanking', Container()),
+              SizedBox(
+                height: getHeight(17),
+              ),
+              buildAddNewPayment(),
+              SizedBox(
+                height: getHeight(17),
+              ),
+              buildPlacetheOrderButton(),
+              SizedBox(
+                height: getHeight(26),
+              ),
+            ],
           ),
         ),
       ),

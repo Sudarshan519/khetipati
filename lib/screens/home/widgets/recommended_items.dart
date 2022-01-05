@@ -94,25 +94,23 @@ class _RecommendedItemsPageState extends State<RecommendedItemsPage> {
                   topLeft: Radius.circular(30),
                 ),
               ),
-              child: Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20, left: 31),
-                      child: Text(
-                        "Recommended items for you",
-                        style: TextStyle(
-                            fontSize: getFont(18),
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.textGreen),
-                      ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, left: 31),
+                    child: Text(
+                      "Recommended items for you",
+                      style: TextStyle(
+                          fontSize: getFont(18),
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.textGreen),
                     ),
-                    const SizedBox(
-                      height: 30,
-                    )
-                  ],
-                ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  )
+                ],
               ),
             )
           ],
