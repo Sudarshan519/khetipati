@@ -20,7 +20,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
-      appBar: buildAppBar(context, 'Shipping Address'),
+      appBar: buildAppBar('Shipping Address'),
       body: Container(
         width: MediaQuery.of(context).size.width,
         // height: double.infinity,

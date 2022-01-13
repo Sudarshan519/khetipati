@@ -82,8 +82,9 @@ class _DetailsCarouselState extends State<DetailsCarousel> {
                       margin: const EdgeInsets.only(left: 5),
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage(
-                              widget.product.featureImage.originalImage,
+                            image: NetworkImage(
+                              'http://192.168.10.67:8080' +
+                                  widget.product.featureImage.originalImage,
                             ),
                             fit: BoxFit.contain),
                       ),

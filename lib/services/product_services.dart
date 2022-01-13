@@ -8,7 +8,9 @@ import 'package:khetipati/utils/snackbar.dart';
 import 'package:http/http.dart' as http;
 
 class ProductApi extends GetConnect {
-  static const base = "http://192.168.10.149:8000/";
+  // static const base = "http://192.168.10.149:8000/";
+  static const base = "http://192.168.10.67:8080/";
+
   static const productapi = base + "productapi";
 
   static const categoryapi = base + "categoryapi/";
@@ -109,7 +111,7 @@ class ProductApi extends GetConnect {
       'Authorization': 'Bearer $token',
     };
     final Response response =
-        await get(base + "/productbyslug/" + "product-2", headers: headers);
+        await get(base + "/productbyslug/" + slug, headers: headers);
     print(response.body);
   }
 

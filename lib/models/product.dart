@@ -614,6 +614,6 @@ var whitlist = [
   }
 ];
 
-var orders = [
-  Order(totalAmount: 400, additionalnote: "additionalnote", products: [])
-];
+// var orders = [
+//   Order(totalAmount: 400, additionalnote: "additionalnote", products: [])
+// ];

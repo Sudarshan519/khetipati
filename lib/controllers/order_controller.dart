@@ -1,11 +1,18 @@
 import 'package:get/get.dart';
+import 'package:khetipati/controllers/auth_controller.dart';
+import 'package:khetipati/models/order.dart';
+import 'package:khetipati/models/user.dart';
+import 'package:khetipati/services/app_service.dart';
+import 'package:khetipati/utils/snackbar.dart';
 
 class OrderController extends GetxController {
   static OrderController instance = Get.find();
 
   RxBool active = false.obs;
-
+  var isLoading = true.obs;
   var index = 0.obs;
+  var orderlist = <OrderDetail>[].obs;
+  var order = Order().obs;
   get selectedIndex => index.value;
 
   @override
@@ -37,5 +44,35 @@ class OrderController extends GetxController {
     }
 
     update();
+  }
+
+  // getOrderByCode() async {
+  //   // orderlist.value = [];
+  //   // orderlist.clear();
+  //   try {
+  //     isLoading(true);
+  //     var list = await AppServices().getOrderbyCode(authController.token.value);
+
+  //     print(list);
+  //     order.value = list;
+  //   } finally {
+  //     // TODO
+  //     isLoading(false);
+  //   }
+  // }
+
+  getOrderByUserId() async {
+    try {
+      isLoading(true);
+      var list = await AppServices().getOrderbyUserid(
+          authController.user.value.id.toString(), authController.token.value);
+
+      // print('codeeeeeee' + authController.user.value.id.toString());
+      order.value = list;
+      print(list);
+    } finally {
+      // TODO
+      isLoading(false);
+    }
   }
 }

@@ -8,6 +8,7 @@ import 'package:khetipati/models/product.dart';
 import 'package:khetipati/screens/cart/checkout_screen.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
 import 'package:khetipati/screens/widgets/recommended_items_card.dart';
+import 'package:khetipati/utils/snackbar.dart';
 
 class CartScreen extends StatelessWidget {
   CartScreen({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: AppColors.mainGreen,
         // bottomNavigationBar: CustomNav(),
-        appBar: buildAppBar(context, 'Cart'),
+        appBar: buildAppBar('Cart'),
         body: SingleChildScrollView(
           child: Container(
             // padding: EdgeInsets.only(bottom: 40),
@@ -118,7 +119,8 @@ class CartProductCard extends StatelessWidget {
                 width: getWidth(139),
                 height: getHeight(99),
                 child: Image.network(
-                  product.featureImage!.originalImage.toString(),
+                  'http://192.168.10.67:8080' +
+                      product.featureImage.originalImage.toString(),
                 ),
               ),
               Positioned(
@@ -166,7 +168,7 @@ class CartProductCard extends StatelessWidget {
                       color: AppColors.textGreen),
                 ),
                 TextSpan(
-                  text: product.productPrice.toString(),
+                  text: ' ${product.productPrice}/${product.unitIn}',
                   style: TextStyle(
                       fontSize: getFont(20),
                       fontWeight: FontWeight.w500,
@@ -236,9 +238,12 @@ class CartProductCard extends StatelessWidget {
 }
 
 class CartTotal extends StatelessWidget {
-  CartTotal({Key? key}) : super(key: key);
+  CartTotal({
+    Key? key,
+  }) : super(key: key);
   final CartController controller = Get.find();
   final homeController = Get.put(HomeController());
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -274,7 +279,13 @@ class CartTotal extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.to(Checkout());
+                if (controller.products.isNotEmpty) {
+                  Get.to(() => Checkout());
+                } else {
+                  getSnackbar(message: 'Cart is Empty', bgColor: Colors.red);
+                }
+                // controller.submitOrder();
+                // print(controller.products);
                 // homeController.submitOrder(controller.products);
               },
               child: Container(
@@ -292,24 +303,6 @@ class CartTotal extends StatelessWidget {
                 ),
               ),
             ),
-            // SizedBox(
-            //   width: getWidth(178),
-            //   height: getHeight(41),
-            //   child: RaisedButton(
-            //     onPressed: () {
-            //       Get.to(Checkout());
-            //       // homeController.submitOrder(controller.products);
-            //     },
-            //     color: AppColors.mainGreen,
-            //     child: Center(
-            //       child: Text(
-            //         'Proceed To Checkout',
-            //         style:
-            //             TextStyle(color: Colors.white, fontSize: getFont(15)),
-            //       ),
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),

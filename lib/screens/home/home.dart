@@ -16,7 +16,7 @@ List<Widget> tabs = [
   HomeTab(),
   const OrdersTab(),
   const NotificationsTab(),
-  const ProfileTab(),
+  ProfileTab(),
 ];
 
 class HomeScreen extends StatelessWidget {

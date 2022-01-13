@@ -26,7 +26,7 @@ class User {
   String? status;
   DateTime? emailVerifiedAt;
   String? phone;
-  dynamic? imageId;
+  dynamic imageId;
   DateTime? createdAt;
   DateTime? updatedAt;
   FeatureImage? featureImage;
@@ -80,9 +80,9 @@ class FeatureImage {
       };
 }
 
-User user = User(
-  id: 0,
-  firstname: "Ram Kumar",
-  lastname: "Shrestha",
-  email: "ram@gmail.com",
-);
+// User user = User(
+//   id: 0,
+//   firstname: "Ram Kumar",
+//   lastname: "Shrestha",
+//   email: "ram@gmail.com",
+// );

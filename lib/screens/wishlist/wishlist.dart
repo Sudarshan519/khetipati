@@ -3,32 +3,32 @@
 import 'package:flutter/material.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
-import 'package:khetipati/controllers/home_controller.dart';
+import 'package:khetipati/controllers/cart_controller.dart';
 import 'package:get/get.dart';
+import 'package:khetipati/controllers/wishlist_controller.dart';
+import 'package:khetipati/models/product.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
 import 'package:khetipati/screens/widgets/box_shadow.dart';
 import 'package:khetipati/screens/widgets/recommended_items_card.dart';
 import 'package:khetipati/screens/widgets/title_text.dart';
 import 'package:khetipati/theme.dart';
 
-class Wishlist extends StatefulWidget {
-  const Wishlist({Key? key}) : super(key: key);
+class Wishlist extends StatelessWidget {
+  final WishlistController controller = Get.put(WishlistController());
+  final cartcontroller = Get.put(CartController());
+  final Product? product;
 
-  @override
-  _WishlistState createState() => _WishlistState();
-}
+  Wishlist({Key? key, this.product}) : super(key: key);
 
-class _WishlistState extends State<Wishlist> {
-  final controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
-      appBar: buildAppBar(context, 'Wishlist'),
+      appBar: buildAppBar('Wishlist'),
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          //height: 815,
+          height: 800,
           decoration: const BoxDecoration(
             color: AppColors.mainGrey,
             borderRadius: BorderRadius.only(
@@ -47,12 +47,14 @@ class _WishlistState extends State<Wishlist> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '3 items',
-                      style: robototitleStyle.copyWith(
-                          fontSize: getFont(18),
-                          color: AppColors.textGreen,
-                          fontWeight: FontWeight.w700),
+                    Obx(
+                      () => Text(
+                        '${controller.wishlistProducts.length} items',
+                        style: robototitleStyle.copyWith(
+                            fontSize: getFont(18),
+                            color: AppColors.textGreen,
+                            fontWeight: FontWeight.w700),
+                      ),
                     ),
                     SizedBox(
                       height: getHeight(5),
@@ -64,7 +66,7 @@ class _WishlistState extends State<Wishlist> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  titleText(context),
+                  titleText(),
                   buildRecommendedItemsCard(),
                 ],
               ),
@@ -82,7 +84,7 @@ class _WishlistState extends State<Wishlist> {
 
   buildWishlistItems() {
     return Container(
-      width: MediaQuery.of(context).size.width,
+      width: double.infinity,
 
       //  height: 475,
       decoration: BoxDecoration(
@@ -90,61 +92,84 @@ class _WishlistState extends State<Wishlist> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Column(
-        children: [
-          ...List.generate(
-              3,
-              (index) => Container(
-                    margin: EdgeInsets.symmetric(horizontal: getWidth(7)),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        border: index == 9
-                            ? null
-                            : const Border(
-                                bottom: BorderSide(
-                                    width: 0.5, color: Colors.grey))),
-                    child: wishlistItemCard(
-                        'assets/images/items/grapes.png', 'Cherry'),
-                  )),
-          // wishlistItemCard('assets/images/items/grapes.png', 'Cherry'),
-          // wishlistItemCard('assets/images/items/melons.png', 'Water Melon'),
-          // wishlistItemCard('assets/images/items/grapes.png', 'Cherry'),
-          addToCartButton(context)
-        ],
+      child: Obx(
+        () => controller.wishlistProducts.length == 0
+            ? const SizedBox(
+                height: 200,
+                child: Center(
+                  child: Text('Empty Wishlist'),
+                ),
+              )
+            : Column(
+                children: [
+                  ...List.generate(
+                      controller.wishlistProducts.length,
+                      (index) => Container(
+                            margin:
+                                EdgeInsets.symmetric(horizontal: getWidth(7)),
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                border: index == 9
+                                    ? null
+                                    : const Border(
+                                        bottom: BorderSide(
+                                            width: 0.5, color: Colors.grey))),
+                            child: wishlistItemCard(
+                                controller,
+                                controller.wishlistProducts.keys
+                                    .toList()[index],
+                                index),
+                          )),
+                  // wishlistItemCard('assets/images/items/grapes.png', 'Cherry'),
+                  // wishlistItemCard('assets/images/items/melons.png', 'Water Melon'),
+                  // wishlistItemCard('assets/images/items/grapes.png', 'Cherry'),
+                  addToCartButton()
+                ],
+              ),
       ),
     );
   }
 
-  wishlistItemCard(wishlistItemImg, itemName) {
+  wishlistItemCard(
+    // CartController controller,
+    WishlistController controller,
+    Product product,
+    int index,
+  ) {
     return Container(
       padding: EdgeInsets.only(
         left: getWidth(5),
         right: getWidth(25),
       ),
       height: getHeight(130),
-      width: MediaQuery.of(context).size.width,
+      width: double.infinity,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
               Stack(
                 children: [
+                  SizedBox(
+                    width: getWidth(140),
+                    height: getHeight(100),
+                    child: Image.network(
+                      'http://192.168.10.67:8080' +
+                          product.featureImage.originalImage.toString(),
+                      // fit: BoxFit.contain,
+                    ),
+                  ),
                   IconButton(
                     icon: Icon(
                       Icons.close_rounded,
                       size: getFont(18),
                       color: const Color.fromRGBO(0, 0, 0, 0.5),
                     ),
-                    onPressed: () {},
-                  ),
-                  SizedBox(
-                    width: getWidth(140),
-                    height: getHeight(100),
-                    child: Image.asset(
-                      wishlistItemImg,
-                      // fit: BoxFit.contain,
-                    ),
+                    onPressed: () {
+                      controller.removeFromWishlist(product);
+                      print('object');
+                    },
                   ),
                 ],
               ),
@@ -153,7 +178,7 @@ class _WishlistState extends State<Wishlist> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    itemName,
+                    product.title.toString(),
                     style: archivotitleStyle.copyWith(
                         fontSize: getFont(18),
                         fontWeight: FontWeight.w500,
@@ -170,7 +195,7 @@ class _WishlistState extends State<Wishlist> {
                     height: getHeight(18),
                   ),
                   Text(
-                    'Rs. 250',
+                    'Rs. ${product.productPrice}',
                     style: robototitleStyle.copyWith(
                         fontSize: getFont(18),
                         fontWeight: FontWeight.w500,
@@ -192,7 +217,7 @@ class _WishlistState extends State<Wishlist> {
                     size: getFont(15),
                   ),
                   Text(
-                    '4.5',
+                    '${product.averagerating}',
                     style: TextStyle(fontSize: getFont(10)),
                   )
                 ],
@@ -200,27 +225,25 @@ class _WishlistState extends State<Wishlist> {
               SizedBox(
                 height: getHeight(20),
               ),
-              Container(
-                  height: getHeight(40),
-                  width: getWidth(42),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: getWidth(10),
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    border: Border.all(width: .5, color: AppColors.mainGreen),
-                    color: Colors.white,
-                  ),
-                  child: Image.asset(
-                    'assets/icons/cartsm.png',
-                    // color: const Color.fromRGBO(135, 200, 65, 1),
-                  )
-                  // child: Icon(
-                  //   Icons.shopping_cart_outlined,
-                  //   size: getFont(20),
-                  //   color: const Color.fromRGBO(135, 194, 65, 0.8),
-                  // ),
-                  ),
+              InkWell(
+                onTap: () {
+                  cartcontroller.addProduct(product);
+                },
+                child: Container(
+                    height: getHeight(40),
+                    width: getWidth(42),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: getWidth(10),
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(width: .5, color: AppColors.mainGreen),
+                      color: Colors.white,
+                    ),
+                    child: Image.asset(
+                      'assets/icons/cartsm.png',
+                    )),
+              ),
             ],
           ),
         ],
@@ -228,7 +251,7 @@ class _WishlistState extends State<Wishlist> {
     );
   }
 
-  addToCartButton(BuildContext context) {
+  addToCartButton() {
     return Padding(
       padding: EdgeInsets.fromLTRB(
           getWidth(30), getHeight(30), getWidth(30), getHeight(30)),
@@ -236,7 +259,9 @@ class _WishlistState extends State<Wishlist> {
           width: getWidth(310),
           height: getHeight(41),
           child: RaisedButton(
-            onPressed: () {},
+            onPressed: () {
+              // controller.addProduct(product);
+            },
             color: AppColors.mainGreen,
             child: Text(
               "Add all to Cart",

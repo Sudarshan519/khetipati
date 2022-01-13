@@ -5,9 +5,9 @@ import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/cagetories.dart';
 import 'package:khetipati/screens/home/offers.dart';
-import 'package:khetipati/screens/home/specialoffers.dart';
 
 import 'package:khetipati/screens/home/widgets/carousel.dart';
+import 'package:khetipati/screens/home/widgets/recommended_items.dart';
 import 'package:khetipati/screens/widgets/offersitems.dart';
 import 'package:khetipati/screens/widgets/product_card.dart';
 import 'package:khetipati/theme.dart';
@@ -17,47 +17,52 @@ class HomeTab extends StatelessWidget {
   final HomeController controller = Get.find();
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(children: [
-        buildProfileCard(),
-        Container(
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(234, 238, 238, 1),
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-            ),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              InkWell(
-                child: const Carousel(),
-                onTap: () {
-                  Get.to(const Offers());
-                },
+    return RefreshIndicator(
+      onRefresh: () => controller.fetchAll(),
+      child: SingleChildScrollView(
+        child: Column(children: [
+          buildProfileCard(),
+          Container(
+              decoration: const BoxDecoration(
+                color: Color.fromRGBO(234, 238, 238, 1),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)),
               ),
-              buildTitleText('Categories'),
-              buildCategoriesCard(),
-              SizedBox(
-                height: getHeight(22),
-              ),
-              buildTitleText('Popular Items'),
-              buildPopularItemsCard(),
-              SizedBox(
-                height: getHeight(22),
-              ),
-              buildTitleText(
-                'Recommended Items',
-              ),
-              buildPopularItemsCard(),
-              SizedBox(
-                height: getHeight(22),
-              ),
-              buildTitleText(
-                'Special Offers',
-              ),
-              buildSpecialOffers(),
-              SizedBox(height: getHeight(40))
-            ])),
-      ]),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    InkWell(
+                      child: const Carousel(),
+                      onTap: () {
+                        Get.to(const Offers());
+                      },
+                    ),
+                    buildTitleText('Categories'),
+                    buildCategoriesCard(),
+                    SizedBox(
+                      height: getHeight(22),
+                    ),
+                    buildTitleText('Popular Items'),
+                    buildPopularItemsCard(),
+                    SizedBox(
+                      height: getHeight(22),
+                    ),
+                    buildTitleText(
+                      'Recommended Items',
+                    ),
+                    buildPopularItemsCard(),
+                    SizedBox(
+                      height: getHeight(22),
+                    ),
+                    buildTitleText(
+                      'Special Offers',
+                    ),
+                    buildSpecialOffers(),
+                    SizedBox(height: getHeight(40))
+                  ])),
+        ]),
+      ),
     );
   }
 
@@ -152,7 +157,8 @@ class HomeTab extends StatelessWidget {
                               padding: EdgeInsets.only(
                                   left: getWidth(8), right: getWidth(8)),
                               child: Image.network(
-                                categories.logoUrl.toString(),
+                                "http://192.168.10.67:8080" +
+                                    categories.logoUrl.toString(),
                                 height: getHeight(62),
                                 width: getHeight(62),
                               ),
@@ -236,7 +242,7 @@ class HomeTab extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.to(const SpecialOffers());
+              Get.to(const RecommendedItemsPage());
             },
             child: Text(
               'See All',

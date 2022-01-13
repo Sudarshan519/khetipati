@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:khetipati/constant/colors.dart';
-import 'package:khetipati/constant/size_config.dart';
+
 import 'package:khetipati/screens/widgets/ad_banner.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
 
@@ -17,7 +17,7 @@ class _OffersState extends State<Offers> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
-      appBar: buildAppBar(context, 'Offers'),
+      appBar: buildAppBar('Offers'),
       body: SingleChildScrollView(
         child: Column(
           children: [

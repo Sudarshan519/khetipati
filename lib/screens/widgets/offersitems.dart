@@ -24,7 +24,8 @@ Widget offerProductCard(Product item) {
                       topLeft: Radius.circular(10),
                       bottomLeft: Radius.circular(10)),
                   child: Image.network(
-                    item.featureImage!.originalImage.toString(),
+                    'http://192.168.10.67:8080' +
+                        item.featureImage.originalImage.toString(),
                     // fit: BoxFit.fill,
                     width: getWidth(116),
                     height: 100,

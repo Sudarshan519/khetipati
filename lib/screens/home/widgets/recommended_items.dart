@@ -4,6 +4,7 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/screens/home/tabs/profile_tab.dart';
+import 'package:khetipati/screens/widgets/product_card.dart';
 
 class RecommendedItemsPage extends StatefulWidget {
   const RecommendedItemsPage({
@@ -45,7 +46,7 @@ class _RecommendedItemsPageState extends State<RecommendedItemsPage> {
                           child: Image.asset('assets/images/pic.png'),
                         ),
                         onTap: () {
-                          Get.to(const ProfileTab());
+                          Get.to(ProfileTab());
                         },
                       ),
                       const SizedBox(
@@ -86,7 +87,7 @@ class _RecommendedItemsPageState extends State<RecommendedItemsPage> {
             ),
             Container(
               width: MediaQuery.of(context).size.width,
-              // height: 1300,
+              height: 1300,
               decoration: const BoxDecoration(
                 color: AppColors.mainGrey,
                 borderRadius: BorderRadius.only(
@@ -106,6 +107,19 @@ class _RecommendedItemsPageState extends State<RecommendedItemsPage> {
                           fontWeight: FontWeight.bold,
                           color: AppColors.textGreen),
                     ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: 191,
+                    child: ListView.builder(
+                        padding: const EdgeInsets.only(left: 8),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: controller.products.length,
+                        itemBuilder: (_, int i) {
+                          return productCard(controller.products[i]);
+                        }),
                   ),
                   const SizedBox(
                     height: 30,

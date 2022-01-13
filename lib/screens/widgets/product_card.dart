@@ -4,12 +4,14 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/constant.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/cart_controller.dart';
+import 'package:khetipati/controllers/wishlist_controller.dart';
 import 'package:khetipati/models/product.dart';
 import 'package:khetipati/screens/detail/detail.dart';
 import 'package:khetipati/utils/snackbar.dart';
 
 Widget productCard(Product item) {
   final CartController controller = Get.find();
+  final WishlistController wishlistcontroller = Get.put(WishlistController());
   return InkWell(
     onTap: () {
       Get.to(() => DetailsScreen(product: item));
@@ -30,9 +32,10 @@ Widget productCard(Product item) {
                     topRight: Radius.circular(10)),
                 child: Center(
                   child: Image.network(
-                    item.featureImage.originalImage.toString(),
+                    "http://192.168.10.67:8080" +
+                        item.featureImage.thumbnailImage,
                     width: getWidth(141),
-                    fit: BoxFit.fill,
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),
@@ -49,7 +52,9 @@ Widget productCard(Product item) {
                       size: getFont(15),
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    wishlistcontroller.addToWishlist(item);
+                  },
                 ),
               ),
             ]),

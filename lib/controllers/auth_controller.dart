@@ -1,3 +1,6 @@
+// ignore_for_file: constant_identifier_names
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/screens/home/home.dart';
 import 'package:khetipati/services/user_services.dart';
@@ -10,6 +13,16 @@ class AuthController extends GetxController {
   var authState = AuthState.UnAuthenticated.obs;
   var token = "".obs;
   var user = User().obs;
+  final password = TextEditingController();
+  final email = TextEditingController();
+  var isloading = true.obs;
+
+  void onInit() {
+    email.text = "admin@gmail.com";
+    password.text = "testing1234";
+    super.onInit();
+  }
+
   loginWithEmail({required String email, required String password}) async {
     authState.value = AuthState.Authenticating;
 
@@ -24,6 +37,23 @@ class AuthController extends GetxController {
       getSnackbar(message: "Error signing in");
       authState.value = AuthState.UnAuthenticated;
     }
+  }
+
+  getuserdata() async {
+    try {
+      isloading(true);
+      var data = await userrepo.getuserInfo(authController.token.value);
+
+      if (data != null) {
+        user.value = data;
+        print(user);
+      }
+    } finally {
+      // TODO
+      isloading(false);
+    }
+    // print(user.value);
+    // userInfo.value = userFromJson(data);
   }
 }
 

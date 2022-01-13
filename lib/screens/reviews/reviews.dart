@@ -18,7 +18,7 @@ class _ReviewsState extends State<Reviews> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
-      appBar: buildAppBar(context, 'My Reviews'),
+      appBar: buildAppBar('My Reviews'),
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,

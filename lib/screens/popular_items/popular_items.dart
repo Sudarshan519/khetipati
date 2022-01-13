@@ -4,20 +4,14 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/screens/home/tabs/profile_tab.dart';
+import 'package:khetipati/screens/widgets/product_card.dart';
 
-class PopularItems extends StatefulWidget {
-  const PopularItems({
-    Key? key,
-    //  required this.index
-  }) : super(key: key);
-
-  /// final int index;
-  @override
-  _PopularItemsState createState() => _PopularItemsState();
-}
-
-class _PopularItemsState extends State<PopularItems> {
+class PopularItems extends StatelessWidget {
   final controller = Get.find<HomeController>();
+
+  PopularItems({
+    Key? key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +39,7 @@ class _PopularItemsState extends State<PopularItems> {
                           child: Image.asset('assets/images/pic.png'),
                         ),
                         onTap: () {
-                          Get.to(const ProfileTab());
+                          Get.to(ProfileTab());
                         },
                       ),
                       const SizedBox(
@@ -86,7 +80,7 @@ class _PopularItemsState extends State<PopularItems> {
             ),
             Container(
               width: MediaQuery.of(context).size.width,
-              //  height: 1300,
+              height: 800,
               decoration: const BoxDecoration(
                 color: AppColors.mainGrey,
                 borderRadius: BorderRadius.only(
@@ -94,29 +88,30 @@ class _PopularItemsState extends State<PopularItems> {
                   topLeft: Radius.circular(30),
                 ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20, left: 31),
-                    child: Text(
-                      "Popular items",
-                      style: TextStyle(
-                          fontSize: getFont(18),
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.textGreen),
+              child: Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20, left: 31),
+                      child: Text(
+                        "Popular items",
+                        style: TextStyle(
+                            fontSize: getFont(18),
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textGreen),
+                      ),
                     ),
-                  ),
-                  // Wrap(
-                  //   children: [
-
-                  //   ],
-                  // ),
-
-                  const SizedBox(
-                    height: 30,
-                  )
-                ],
+                    Wrap(
+                      children: [
+                        buildRecommendedItemsCard(),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    )
+                  ],
+                ),
               ),
             )
           ],
@@ -124,5 +119,20 @@ class _PopularItemsState extends State<PopularItems> {
       ),
       // bottomNavigationBar: BottomNav(),
     );
+  }
+
+  buildRecommendedItemsCard() {
+    return Obx(() => controller.products.isEmpty
+        ? SizedBox(
+            height: getHeight(226), child: const Center(child: Text("Empty")))
+        : SizedBox(
+            height: getHeight(226),
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: controller.products.length,
+                itemBuilder: (_, int i) {
+                  return productCard(controller.products[i]);
+                }),
+          ));
   }
 }

@@ -6,7 +6,6 @@ import 'package:khetipati/screens/widgets/modal/internet_connectivity.dart';
 
 class SplashController extends GetxController {
   static SplashController instance = Get.find();
-  @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();

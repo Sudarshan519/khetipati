@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
-import 'package:khetipati/screens/home/widgets/popular_items.dart';
+import 'package:khetipati/screens/popular_items/popular_items.dart';
 
-titleText(BuildContext context) {
+titleText() {
   return Padding(
     padding: EdgeInsets.only(
         right: getWidth(20),
@@ -23,10 +24,7 @@ titleText(BuildContext context) {
         ),
         InkWell(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const PopularItems()),
-            );
+            Get.to(PopularItems());
           },
           child: Text(
             'See All',

@@ -14,7 +14,7 @@ class NotificationsTab extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            buildAppBar(context, 'Notifications'),
+            buildAppBar('Notifications'),
             Container(
               width: MediaQuery.of(context).size.width,
               // height: 815,

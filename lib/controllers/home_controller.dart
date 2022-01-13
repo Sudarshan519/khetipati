@@ -1,8 +1,10 @@
+import 'package:flutter/widgets.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:khetipati/controllers/auth_controller.dart';
 import 'package:khetipati/models/cagetories.dart';
 import 'package:khetipati/models/cart.dart';
-import 'package:khetipati/models/order.dart';
 import 'package:khetipati/models/product.dart';
 import 'package:khetipati/models/user.dart';
 import 'package:khetipati/services/app_service.dart';
@@ -14,7 +16,7 @@ class HomeController extends GetxController {
 
   ///index for tab
   var index = 0.obs;
-  RxInt count = 1.obs;
+  RxInt count = 0.obs;
   get selectedIndex => index.value;
   var user = User().obs;
   var cart = <CartModel>[].obs;
@@ -22,6 +24,10 @@ class HomeController extends GetxController {
   final _products = <Product>[].obs;
   var isloading = false.obs;
   var isproductloading = false.obs;
+
+  TextEditingController address = TextEditingController();
+  TextEditingController phone = TextEditingController();
+  TextEditingController fullname = TextEditingController();
 
   ///update tab index
   updateIndex(int i) {
@@ -96,6 +102,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     fetchAll();
+
     super.onInit();
   }
 
@@ -114,11 +121,11 @@ class HomeController extends GetxController {
     // await productrepo.getCategorybyid(id);
   }
 
-  void submitOrder(products) {
-    Order(
-        totalAmount: 533, additionalnote: "additionalnote", products: products);
-    AppServices().orderSubmit(authController.token.value);
-  }
+  // void submitOrder(products) {
+  //   Order(
+  //       totalAmount: 533, additionalnote: "additionalnote", products: products);
+  //   AppServices().orderSubmit(authController.token.value);
+  // }
 
   void increment() {
     count++;
@@ -126,7 +133,28 @@ class HomeController extends GetxController {
   }
 
   void decrement() {
-    count != 0 ? count-- : count;
+    count--;
     update();
   }
+
+  submitShippinhAddress() async {
+    await AppServices()
+        .shippingAddressSubmit(authController.token.value, address.text);
+  }
+
+  mapTapped(LatLng location) async {
+    final coordinates = Coordinates(location.latitude, location.longitude);
+    var data = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    var first = data.first;
+    print(
+        '${first.subLocality},${first.locality}, ${first.adminArea},${first.countryName}');
+    address.text =
+        "${first.subLocality},${first.locality}, ${first.adminArea},${first.countryName}";
+    return first;
+  }
+
+  // selectedLocation() async {
+  //   await mapTapped;
+  //   // address.text = selectedLocation();
+  // }
 }

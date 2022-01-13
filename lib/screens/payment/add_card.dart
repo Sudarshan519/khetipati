@@ -24,7 +24,7 @@ class _AddCardState extends State<AddCard> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
-      appBar: buildAppBar(context, 'Payment'),
+      appBar: buildAppBar('Payment'),
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,

@@ -1,23 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
+import 'package:khetipati/controllers/cart_controller.dart';
+import 'package:khetipati/models/product.dart';
+import 'package:khetipati/screens/payment/payment.dart';
+import 'package:khetipati/screens/shipping/add_shipping_address.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
 import 'package:khetipati/screens/widgets/divider.dart';
 import 'package:khetipati/theme.dart';
 
-class Checkout extends StatefulWidget {
-  const Checkout({Key? key}) : super(key: key);
+class Checkout extends StatelessWidget {
+  CartController controller = Get.put(CartController());
 
-  @override
-  _CheckoutState createState() => _CheckoutState();
-}
+  Checkout({Key? key}) : super(key: key);
+  // final Product product;
+  // final int quantity;
+  // final int index;
 
-class _CheckoutState extends State<Checkout> {
+  // Checkout(
+  //     {Key? key,
+  //     required this.product,
+  //     required this.quantity,
+  //     required this.index})
+  //     : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
-      appBar: buildAppBar(context, 'Checkout'),
+      appBar: buildAppBar('Checkout'),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -56,7 +67,7 @@ class _CheckoutState extends State<Checkout> {
                     SizedBox(
                       height: getHeight(15),
                     ),
-                    buildOrderSummary(),
+                    BuildOrderSummary(),
                     SizedBox(
                       height: getHeight(15),
                     ),
@@ -106,185 +117,6 @@ class _CheckoutState extends State<Checkout> {
     );
   }
 
-  Widget buildCheckoutItems() {
-    return Container(
-      //height: getHeight(83),
-      padding: const EdgeInsets.all(10.0),
-      margin: const EdgeInsets.only(bottom: 10),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4),
-          border: Border.all(
-              width: 1, color: const Color.fromRGBO(193, 193, 193, 0.3))),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              SizedBox(
-                width: getWidth(79),
-                height: getHeight(56),
-                child: Image.asset('assets/images/items/grapes.png'),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Cherry',
-                      style: archivotitleStyle.copyWith(
-                          fontSize: getFont(14),
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black)),
-                  Text(
-                    '10 kcal',
-                    style: archivotitleStyle.copyWith(
-                        fontSize: getFont(10),
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black),
-                  ),
-                  // SizedBox(
-                  //   height: getHeight(5),
-                  // ),
-                  RichText(
-                      text: TextSpan(children: [
-                    TextSpan(
-                        text: 'Rs.',
-                        style: robototitleStyle.copyWith(
-                            fontSize: getFont(15),
-                            fontWeight: FontWeight.w500)),
-                    TextSpan(
-                        text: '250',
-                        style: robototitleStyle.copyWith(
-                            fontSize: getFont(20), fontWeight: FontWeight.w500))
-                  ]))
-                  // Text(
-                  //   'Rs. 250',
-                  //   style: TextStyle(
-                  //       fontSize: getFont(15),
-                  //       fontWeight: FontWeight.bold,
-                  //       color: AppColors.textGreen),
-                  // )
-                ],
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20, right: 10),
-            child: Text('Quantity: 1',
-                style: archivotitleStyle.copyWith(
-                    fontSize: getFont(12),
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black)),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget buildOrderSummary() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Order Summary',
-          style: archivotitleStyle.copyWith(
-              fontSize: getFont(16),
-              color: Colors.black,
-              fontWeight: FontWeight.w500),
-        ),
-        SizedBox(
-          height: getHeight(20),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Subtotal',
-              style: archivotitleStyle.copyWith(
-                  color: Colors.black,
-                  fontSize: getFont(15),
-                  fontWeight: FontWeight.w400),
-            ),
-            Text(
-              'Rs. 500',
-              style: archivotitleStyle.copyWith(
-                  color: Colors.black,
-                  fontSize: getFont(15),
-                  fontWeight: FontWeight.w400),
-            )
-          ],
-        ),
-        SizedBox(
-          height: getHeight(15),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Delivery Fee',
-              style: archivotitleStyle.copyWith(
-                  fontSize: getFont(15),
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  'Rs. 100',
-                  style: archivotitleStyle.copyWith(
-                      fontSize: getFont(15),
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400),
-                ),
-                SizedBox(
-                  height: getHeight(15),
-                ),
-                Text(
-                  'Total Rs. 100',
-                  style: archivotitleStyle.copyWith(
-                      fontSize: getFont(15),
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400),
-                ),
-              ],
-            )
-          ],
-        ),
-        SizedBox(
-          height: getHeight(15),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Offers',
-              style: archivotitleStyle.copyWith(
-                  fontSize: getFont(15),
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400),
-            ),
-            Container(
-              height: getHeight(31),
-              padding: EdgeInsets.symmetric(horizontal: getWidth(3)),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  color: const Color.fromRGBO(135, 194, 65, 0.2)),
-              child: Center(
-                child: Text(
-                  'Promo Code Applied',
-                  style: archivotitleStyle.copyWith(
-                      color: AppColors.textGreen,
-                      fontSize: getFont(14),
-                      fontWeight: FontWeight.w400),
-                ),
-              ),
-            ),
-          ],
-        )
-      ],
-    );
-  }
-
   buildShippingDetails(IconData icon, title, subtitle) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -327,19 +159,24 @@ class _CheckoutState extends State<Checkout> {
             ),
           ],
         ),
-        Container(
-          width: getWidth(42),
-          height: getHeight(22),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4),
-              color: const Color.fromRGBO(135, 194, 65, 0.2)),
-          child: Center(
-            child: Text(
-              'Edit',
-              style: archivotitleStyle.copyWith(
-                  color: AppColors.textGreen,
-                  fontSize: getFont(14),
-                  fontWeight: FontWeight.w400),
+        GestureDetector(
+          onTap: () {
+            Get.to(() => AddShippingAddress());
+          },
+          child: Container(
+            width: getWidth(42),
+            height: getHeight(22),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                color: const Color.fromRGBO(135, 194, 65, 0.2)),
+            child: Center(
+              child: Text(
+                'Edit',
+                style: archivotitleStyle.copyWith(
+                    color: AppColors.textGreen,
+                    fontSize: getFont(14),
+                    fontWeight: FontWeight.w400),
+              ),
             ),
           ),
         ),
@@ -358,10 +195,29 @@ class _CheckoutState extends State<Checkout> {
               fontSize: getFont(16),
               fontWeight: FontWeight.w500),
         ),
-        SizedBox(
-          height: getHeight(15),
-        ),
-        ...List.generate(2, (index) => buildCheckoutItems()),
+        SizedBox(height: getHeight(15)),
+
+        controller.products.isNotEmpty
+            ? Column(
+                children: [
+                  ...List.generate(
+                      controller.products.length,
+                      (index) => BuildCheckoutItems(
+                            controller: controller,
+                            index: index,
+                            product: controller.products.keys.toList()[index],
+                            quantity:
+                                controller.products.values.toList()[index],
+                          )),
+                ],
+              )
+            : const SizedBox(
+                height: 100,
+                child: Center(
+                  child: Text('Empty'),
+                ),
+              )
+
         // buildCheckoutItems(),
         // buildCheckoutItems()
       ],
@@ -394,7 +250,7 @@ class _CheckoutState extends State<Checkout> {
                       style: robototitleStyle.copyWith(
                           fontSize: getFont(15), fontWeight: FontWeight.w500)),
                   TextSpan(
-                      text: '1000',
+                      text: controller.total.toString(),
                       style: robototitleStyle.copyWith(
                           fontSize: getFont(20), fontWeight: FontWeight.w500))
                 ]))
@@ -405,24 +261,231 @@ class _CheckoutState extends State<Checkout> {
               ],
             ),
           ),
-          Container(
-            height: getHeight(41),
-            padding: EdgeInsets.symmetric(horizontal: getWidth(35)),
-            decoration: BoxDecoration(
-                color: AppColors.mainGreen,
-                borderRadius: BorderRadius.circular(4)),
-            child: Center(
-              child: Text(
-                'Proceed To Pay',
-                style: robototitleStyle.copyWith(
-                    fontWeight: FontWeight.w400,
-                    fontSize: getFont(16),
-                    color: Colors.white),
+          InkWell(
+            onTap: () {
+              // Get.to(() => Payment());
+              controller.submitOrder();
+            },
+            child: Container(
+              height: getHeight(41),
+              padding: EdgeInsets.symmetric(horizontal: getWidth(35)),
+              decoration: BoxDecoration(
+                  color: AppColors.mainGreen,
+                  borderRadius: BorderRadius.circular(4)),
+              child: Center(
+                child: Text(
+                  'Proceed To Pay',
+                  style: robototitleStyle.copyWith(
+                      fontWeight: FontWeight.w200,
+                      fontSize: getFont(16),
+                      color: Colors.white),
+                ),
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class BuildCheckoutItems extends StatelessWidget {
+  const BuildCheckoutItems(
+      {Key? key,
+      required this.controller,
+      required this.product,
+      required this.quantity,
+      required this.index})
+      : super(key: key);
+
+  final CartController controller;
+  final Product product;
+  final int quantity;
+  final int index;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      //height: getHeight(83),
+      padding: const EdgeInsets.all(10.0),
+      margin: const EdgeInsets.only(bottom: 10),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(
+              width: 1, color: const Color.fromRGBO(193, 193, 193, 0.3))),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              SizedBox(
+                  width: getWidth(79),
+                  height: getHeight(56),
+                  child: Image.network('http://192.168.10.67:8080' +
+                      product.featureImage.originalImage)),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(product.title,
+                      style: archivotitleStyle.copyWith(
+                          fontSize: getFont(14),
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black)),
+                  Text(
+                    '10 kcal',
+                    style: archivotitleStyle.copyWith(
+                        fontSize: getFont(10),
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black),
+                  ),
+                  // SizedBox(
+                  //   height: getHeight(5),
+                  // ),
+                  RichText(
+                      text: TextSpan(children: [
+                    TextSpan(
+                        text: 'Rs.',
+                        style: robototitleStyle.copyWith(
+                            fontSize: getFont(15),
+                            fontWeight: FontWeight.w500)),
+                    TextSpan(
+                        text: controller.total,
+                        style: robototitleStyle.copyWith(
+                            fontSize: getFont(20), fontWeight: FontWeight.w500))
+                  ]))
+                  // Text(
+                  //   'Rs. 250',
+                  //   style: TextStyle(
+                  //       fontSize: getFont(15),
+                  //       fontWeight: FontWeight.bold,
+                  //       color: AppColors.textGreen),
+                  // )
+                ],
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20, right: 10),
+            child: Text('Quantity: $quantity',
+                style: archivotitleStyle.copyWith(
+                    fontSize: getFont(12),
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black)),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class BuildOrderSummary extends StatelessWidget {
+  BuildOrderSummary({Key? key}) : super(key: key);
+  CartController controller = Get.put(CartController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Order Summary',
+          style: archivotitleStyle.copyWith(
+              fontSize: getFont(16),
+              color: Colors.black,
+              fontWeight: FontWeight.w500),
+        ),
+        SizedBox(
+          height: getHeight(20),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Subtotal',
+              style: archivotitleStyle.copyWith(
+                  color: Colors.black,
+                  fontSize: getFont(15),
+                  fontWeight: FontWeight.w400),
+            ),
+            Text(
+              'Rs. ${controller.total}',
+              style: archivotitleStyle.copyWith(
+                  color: Colors.black,
+                  fontSize: getFont(15),
+                  fontWeight: FontWeight.w400),
+            )
+          ],
+        ),
+        SizedBox(
+          height: getHeight(15),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Delivery Fee',
+              style: archivotitleStyle.copyWith(
+                  fontSize: getFont(15),
+                  color: Colors.black,
+                  fontWeight: FontWeight.w400),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  'Rs. 100',
+                  style: archivotitleStyle.copyWith(
+                      fontSize: getFont(15),
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400),
+                ),
+                SizedBox(
+                  height: getHeight(15),
+                ),
+                Text(
+                  'Total Rs. ${controller.total}',
+                  style: archivotitleStyle.copyWith(
+                      fontSize: getFont(15),
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            )
+          ],
+        ),
+        SizedBox(
+          height: getHeight(15),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Offers',
+              style: archivotitleStyle.copyWith(
+                  fontSize: getFont(15),
+                  color: Colors.black,
+                  fontWeight: FontWeight.w400),
+            ),
+            Container(
+              height: getHeight(31),
+              padding: EdgeInsets.symmetric(horizontal: getWidth(3)),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  color: const Color.fromRGBO(135, 194, 65, 0.2)),
+              child: Center(
+                child: Text(
+                  'Promo Code Applied',
+                  style: archivotitleStyle.copyWith(
+                      color: AppColors.textGreen,
+                      fontSize: getFont(14),
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+            ),
+          ],
+        )
+      ],
     );
   }
 }

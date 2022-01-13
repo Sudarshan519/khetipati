@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
+import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
+import 'package:khetipati/screens/widgets/recommended_items_card.dart';
 import 'package:khetipati/screens/widgets/text_field.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import 'package:khetipati/theme.dart';
 
 class AddShippingAddress extends StatefulWidget {
@@ -17,23 +19,20 @@ class AddShippingAddress extends StatefulWidget {
 }
 
 class _AddShippingAddressState extends State<AddShippingAddress> {
-  Completer<GoogleMapController> _controller = Completer();
+  final Completer<GoogleMapController> _controller = Completer();
+  final HomeController controller = Get.put(HomeController());
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
+  // ignore: prefer_const_constructors
+  static final LatLng _kMapCenter = LatLng(27.696528, 85.331170);
 
-  static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+  static final CameraPosition _kInitialPosition =
+      CameraPosition(target: _kMapCenter, zoom: 11.0, tilt: 0, bearing: 0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colors.transparent,
-      appBar: buildAppBar(context, 'Add Shipping Address'),
+      appBar: buildAppBar('Add Shipping Address'),
       body: SingleChildScrollView(
         child: buildMap(),
       ),
@@ -62,7 +61,7 @@ class _AddShippingAddressState extends State<AddShippingAddress> {
             const SizedBox(
               height: 10,
             ),
-            const MyInputField(hint: 'address'),
+            MyInputField(hint: 'address', controller: controller.address),
             const SizedBox(
               height: 10,
             ),
@@ -188,21 +187,13 @@ class _AddShippingAddressState extends State<AddShippingAddress> {
   }
 
   buildMap() {
-    return SizedBox(
-        height: getHeight(500),
+    return Container(
+        // color: Colors.amber,
+        height: 800,
         child: GoogleMap(
-          initialCameraPosition: _kGooglePlex,
-          mapType: MapType.hybrid,
-          onMapCreated: (GoogleMapController controller) {
-            _controller.complete(controller);
-          },
-        )
-
-        // Image.asset(
-        //   'assets/images/map.png',
-        //   fit: BoxFit.fitHeight,
-        // ),
-        );
+          initialCameraPosition: _kInitialPosition,
+          onTap: controller.mapTapped,
+        ));
   }
 
   buildRadioButton() {
@@ -225,7 +216,9 @@ class _AddShippingAddressState extends State<AddShippingAddress> {
       // ignore: deprecated_member_use
       child: RaisedButton(
         color: AppColors.mainGreen,
-        onPressed: () {},
+        onPressed: () {
+          controller.submitShippinhAddress();
+        },
         child: Text(
           'Save Address',
           style: robototitleStyle.copyWith(
@@ -261,11 +254,17 @@ void _settingModalBottomSheet(context) {
                         fontWeight: FontWeight.w500),
                   ),
                   SizedBox(height: getHeight(15)),
-                  const MyInputField(hint: 'Full Name'),
+                  MyInputField(
+                    hint: 'Full Name',
+                    controller: controller.fullname,
+                  ),
                   SizedBox(
                     height: getHeight(15),
                   ),
-                  const MyInputField(hint: 'Phone Number'),
+                  MyInputField(
+                    hint: 'Phone Number',
+                    controller: controller.phone,
+                  ),
                   SizedBox(
                     height: getHeight(30),
                   ),
@@ -275,7 +274,10 @@ void _settingModalBottomSheet(context) {
                     // ignore: deprecated_member_use
                     child: RaisedButton(
                       color: AppColors.mainGreen,
-                      onPressed: () {},
+                      onPressed: () {
+                        // controller.submitShippinhAddress();
+                        Get.back();
+                      },
                       child: Center(
                         child: Text(
                           'Change',

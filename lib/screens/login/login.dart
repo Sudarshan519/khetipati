@@ -3,17 +3,18 @@ import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/auth_controller.dart';
+import 'package:khetipati/screens/forget_password/forget_password.dart';
+import 'package:khetipati/screens/register/register.dart';
 import 'package:khetipati/screens/widgets/app_button.dart';
 import 'package:khetipati/screens/widgets/clipper.dart';
 import 'package:khetipati/utils/validators.dart';
 import '../../theme.dart';
-import '../../register/register.dart';
 
 class LoginPage extends GetView<AuthController> {
   LoginPage({Key? key}) : super(key: key);
-  final password = TextEditingController();
-  final email = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +69,7 @@ class LoginPage extends GetView<AuthController> {
                     ),
                     const SizedBox(height: 20),
                     InputField(
-                      controller: email,
+                      controller: controller.email,
                       icon: Icons.email,
                       label: "Email",
                       validator: (email) => validateEmail(string: email),
@@ -76,7 +77,7 @@ class LoginPage extends GetView<AuthController> {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                     InputField(
                       icon: Icons.password,
-                      controller: password,
+                      controller: controller.password,
                       label: "Password",
                       obscureText: true,
                       validator: (pass) => validatePassword(string: pass),
@@ -85,7 +86,9 @@ class LoginPage extends GetView<AuthController> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.to(() => ForgetPassword());
+                            },
                             child: const Text(
                               'Forgot Password?',
                               style: TextStyle(
@@ -106,8 +109,8 @@ class LoginPage extends GetView<AuthController> {
                           // if (_formKey.currentState!.validate())
                           {
                             controller.loginWithEmail(
-                                email: "admin@gmail.com",
-                                password: "testing1234");
+                                email: controller.email.text,
+                                password: controller.password.text);
                           }
                         },
                         // child: Obx(
@@ -150,11 +153,7 @@ class LoginPage extends GetView<AuthController> {
                         ),
                         TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const RegisterPage()),
-                              );
+                              Get.to(() => RegisterPage());
                             },
                             child: const Text(
                               'Sign up',

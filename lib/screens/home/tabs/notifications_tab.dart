@@ -16,7 +16,7 @@ class _NotificationsTabState extends State<NotificationsTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
-      appBar: buildAppBar(context, 'Notifications'),
+      appBar: buildAppBar('Notifications'),
       body: SingleChildScrollView(
         child: Column(
           children: [

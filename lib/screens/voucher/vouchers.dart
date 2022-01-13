@@ -18,7 +18,7 @@ class _VouchersState extends State<Vouchers> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainGreen,
-      appBar: buildAppBar(context, 'Vouchers'),
+      appBar: buildAppBar('Vouchers'),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: double.infinity,

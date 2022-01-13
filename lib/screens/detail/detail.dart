@@ -2,21 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
+import 'package:khetipati/controllers/cart_controller.dart';
 import 'package:khetipati/controllers/home_controller.dart';
+import 'package:khetipati/controllers/wishlist_controller.dart';
 import 'package:khetipati/models/product.dart';
+import 'package:khetipati/screens/cart/cart_screen.dart';
 import 'package:khetipati/screens/detail/widgets/details_carousel.dart';
 import 'package:khetipati/screens/widgets/app_bar.dart';
 import 'package:khetipati/screens/widgets/divider.dart';
 import 'package:khetipati/screens/widgets/product_card.dart';
 import 'package:khetipati/screens/widgets/recommended_items_card.dart';
-
 import 'package:khetipati/theme.dart';
+import 'package:khetipati/utils/snackbar.dart';
 
 class DetailsScreen extends StatelessWidget {
   DetailsScreen({Key? key, required this.product}) : super(key: key);
   final Product product;
 
   final homeController = Get.find<HomeController>();
+  final cartController = Get.put(CartController());
+  final wishlistcontroller = Get.put(WishlistController());
   final controller = Get.put(HomeController());
 
   @override
@@ -25,7 +30,7 @@ class DetailsScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
           backgroundColor: AppColors.mainGreen,
-          appBar: buildAppBar(context, product.title),
+          appBar: buildAppBar(product.title),
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -150,15 +155,17 @@ class DetailsScreen extends StatelessWidget {
               //left: getWidth(8),
               child: InkWell(
                 child: CircleAvatar(
-                  radius: 18,
+                  radius: 16,
                   backgroundColor: AppColors.mainGreen,
                   child: Icon(
                     Icons.favorite,
                     color: Colors.white,
-                    size: getFont(20),
+                    size: getFont(18),
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  wishlistcontroller.addToWishlist(product);
+                },
               ),
             ),
           ]),
@@ -229,6 +236,7 @@ class DetailsScreen extends StatelessWidget {
                         size: 20,
                       ),
                       onPressed: () {
+                        cartController.addProduct(product);
                         homeController.increment();
                         print(controller.count);
                       },
@@ -247,7 +255,9 @@ class DetailsScreen extends StatelessWidget {
                             Border.all(width: 1, color: AppColors.mainGreen),
                         borderRadius: BorderRadius.circular(4)),
                     child: Center(
-                      child: Text(homeController.count.toString()),
+                      child: Text(homeController.count.toString()
+                          // cartController.products.length
+                          ),
                     ),
                   ),
                 ),
@@ -270,6 +280,7 @@ class DetailsScreen extends StatelessWidget {
                         size: 20,
                       ),
                       onPressed: () {
+                        cartController.removeProduct(product);
                         homeController.decrement();
                         print(controller.count);
                       },
@@ -353,56 +364,62 @@ class DetailsScreen extends StatelessWidget {
   }
 
   buildTotalAmt() {
-    return Container(
-      height: getHeight(94),
-      // width: MediaQuery.of(context).size.width,
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Column(
+    return Obx(() => Container(
+          height: getHeight(94),
+          // width: MediaQuery.of(context).size.width,
+          color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('Total Amount',
-                    style: archivotitleStyle.copyWith(
-                        fontWeight: FontWeight.w500,
-                        fontSize: getFont(15),
-                        color: Colors.black)),
-                RichText(
-                    text: TextSpan(children: [
-                  TextSpan(
-                      text: "Rs.",
-                      style: robototitleStyle.copyWith(
-                          fontSize: getFont(15), fontWeight: FontWeight.w500)),
-                  TextSpan(
-                      text: '${product.productPrice}',
-                      style: robototitleStyle.copyWith(
-                          fontSize: getFont(22), fontWeight: FontWeight.w500))
-                ])),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Total Amount',
+                        style: archivotitleStyle.copyWith(
+                            fontWeight: FontWeight.w500,
+                            fontSize: getFont(15),
+                            color: Colors.black)),
+                    RichText(
+                        text: TextSpan(children: [
+                      TextSpan(
+                          text: "Rs.",
+                          style: robototitleStyle.copyWith(
+                              fontSize: getFont(15),
+                              fontWeight: FontWeight.w500)),
+                      TextSpan(
+                          text: '${cartController.total}',
+                          style: robototitleStyle.copyWith(
+                              fontSize: getFont(22),
+                              fontWeight: FontWeight.w500))
+                    ])),
+                  ],
+                ),
+                SizedBox(width: getWidth(50)),
+                SizedBox(
+                  //width: 150,
+                  height: 50,
+                  // ignore: deprecated_member_use
+                  child: RaisedButton(
+                    onPressed: () {
+                      cartController.addProduct(product);
+                      Get.to(() => CartScreen());
+                      getSnackbar(message: 'product added to cart');
+                    },
+                    color: AppColors.mainGreen,
+                    child: Text('Add To Cart',
+                        style: robotosubtitleStyle.copyWith(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500)),
+                  ),
+                ),
               ],
             ),
-            SizedBox(width: getWidth(50)),
-            SizedBox(
-              //width: 150,
-              height: 50,
-              // ignore: deprecated_member_use
-              child: RaisedButton(
-                onPressed: () {},
-                color: AppColors.mainGreen,
-                child: Text('Add To Cart',
-                    style: robotosubtitleStyle.copyWith(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500)),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }

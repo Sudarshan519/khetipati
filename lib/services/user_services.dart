@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:khetipati/models/user.dart';
 
@@ -13,7 +15,9 @@ class UserToken {
 }
 
 class UserRepo extends GetConnect {
-  static const base = "http://192.168.10.149:8000/userapi";
+  // static const base = "http://192.168.10.149:8000/userapi";
+  static const base = "http://192.168.10.67:8080/userapi";
+
   static const login = base + "/login/";
   static const register = base + "/register";
   static const recoverypassword = base + "/recoveryPassword";
@@ -35,6 +39,9 @@ class UserRepo extends GetConnect {
       "password_confirm": "testing1234"
     };
     final Response response = await post(register, body);
+
+    ///get user info
+
     // print(response.body);
     print(response.body);
     // UserToken().setToken(response.body);
@@ -46,7 +53,7 @@ class UserRepo extends GetConnect {
 
     try {
       var response =
-          await post("http://192.168.10.149:8000/userapi/login", body);
+          await post("http://192.168.10.67:8080/userapi/login", body);
       var user = response.body;
       if (user != null) {
         User currentuser = User.fromJson(user["user"]);
@@ -69,12 +76,11 @@ class UserRepo extends GetConnect {
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     };
-    final Response response = await get(base + "/user", headers: headers);
+    final response = await get(base + "/user", headers: headers);
 
     if (response.body != null) {
-      var userdata = response.body;
-      // User user = User.fromJson(userdata);
-      // return user;
+      // print(response.body['user']);
+      return User.fromJson(response.body['user']);
     }
   }
 
@@ -83,7 +89,7 @@ class UserRepo extends GetConnect {
     String email = "s@gmail.com";
     var body = {"email": email};
     final Response response = await post(recoverypassword, body);
-    print(response.body);
+    // print(response.body);
   }
 
   ///reset password
