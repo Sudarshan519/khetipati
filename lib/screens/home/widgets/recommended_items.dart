@@ -112,15 +112,27 @@ class _RecommendedItemsPageState extends State<RecommendedItemsPage> {
                     height: 20,
                   ),
                   SizedBox(
-                    height: 191,
-                    child: ListView.builder(
-                        padding: const EdgeInsets.only(left: 8),
-                        scrollDirection: Axis.horizontal,
+                      height: 500,
+                      child: GridView.builder(
+                        shrinkWrap: false,
                         itemCount: controller.products.length,
-                        itemBuilder: (_, int i) {
-                          return productCard(controller.products[i]);
-                        }),
-                  ),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                childAspectRatio: 1 / 1.2,
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 5,
+                                mainAxisSpacing: 10),
+                        itemBuilder: (_, int i) =>
+                            productCard(controller.products[i]),
+                      )
+                      // ListView.builder(
+                      //     padding: const EdgeInsets.only(left: 8),
+                      //     scrollDirection: Axis.horizontal,
+                      //     itemCount: controller.products.length,
+                      //     itemBuilder: (_, int i) {
+                      //       return productCard(controller.products[i]);
+                      //     }),
+                      ),
                   const SizedBox(
                     height: 30,
                   )

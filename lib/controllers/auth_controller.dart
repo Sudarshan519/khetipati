@@ -18,7 +18,7 @@ class AuthController extends GetxController {
   var isloading = true.obs;
 
   void onInit() {
-    email.text = "admin@gmail.com";
+    email.text = "jyodeshshakya@gmail.com";
     password.text = "testing1234";
     super.onInit();
   }

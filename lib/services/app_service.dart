@@ -153,9 +153,9 @@ class AppServices extends GetConnect {
       'Authorization': 'Bearer $token',
     };
     var response = await get(
-        "http://192.168.10.67:8080/orderapi/getorderbyuserid/${id}}",
+        "http://192.168.10.67:8080/orderapi/getorderbyuserid/$id",
         headers: headers);
-    var data = Order.fromJson(response.body);
+    // var data = Order.fromJson(response.body);
 
     // if (data.isNotEmpty) {
     //   data.forEach((v) {
@@ -164,8 +164,11 @@ class AppServices extends GetConnect {
     //   });
     //   print(orderlist.length);
     // } else {}
-    print(response.body['data']);
-    return data;
+    // print(response.body["data"]["singleOrder"]["orderDetails"]);
+    return response.body;
+    // var data = OrderDetail.fromJson(response.body["data"]["singleOrder"]);
+    // print(data);
+    // return data;
   }
 
   getOrderbyCode(String token) async {

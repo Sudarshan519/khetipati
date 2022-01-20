@@ -7,25 +7,20 @@ import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/controllers/order_controller.dart';
-import 'package:khetipati/models/product.dart';
-import 'package:khetipati/screens/orders/widgets/order_item_card.dart';
+
 import 'package:khetipati/screens/widgets/app_bar.dart';
 import 'package:khetipati/screens/widgets/box_shadow.dart';
 import 'package:khetipati/screens/widgets/recommended_items_card.dart';
 import 'package:khetipati/theme.dart';
 
 List orderTabs = ["All orders", "Delivered", "Pending", "Process"];
+final ordercontroller = Get.put(OrderController());
 
-class OrdersTab extends StatefulWidget {
-  const OrdersTab({Key? key}) : super(key: key);
-
-  @override
-  _OrdersTabState createState() => _OrdersTabState();
-}
-
-class _OrdersTabState extends State<OrdersTab> {
+class OrdersTab extends StatelessWidget {
   final controller = Get.put(HomeController());
   final ordercontroller = Get.put(OrderController());
+
+  OrdersTab({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -50,7 +45,7 @@ class _OrdersTabState extends State<OrdersTab> {
               child: Column(
                 children: [
                   InkWell(
-                      child: Text('data'),
+                      child: Text('tdata'),
                       onTap: () => ordercontroller.getOrderByUserId()),
                   orderContainer(),
                   recommendedItemsCard(),
@@ -79,7 +74,7 @@ class _OrdersTabState extends State<OrdersTab> {
         children: [
           ///tabbar
           SizedBox(
-            width: MediaQuery.of(context).size.width,
+            width: double.infinity,
             // height: getHeight(40),
             child: TabBar(
               indicatorPadding: EdgeInsets.only(top: getHeight(10)),
@@ -107,8 +102,8 @@ class _OrdersTabState extends State<OrdersTab> {
           ),
           Container(
             margin: EdgeInsets.zero,
-            height: MediaQuery.of(context).size.height * .6,
-            width: MediaQuery.of(context).size.width,
+            height: 600,
+            width: double.infinity,
             child: TabBarView(
               children: [
                 BuildOrderItems(),
@@ -131,55 +126,6 @@ class _OrdersTabState extends State<OrdersTab> {
       ),
     );
   }
-
-  // buildOrderItems() {
-  //   // Product product;
-  //   var details = ordercontroller.order.value.data?.singleOrder?.orderDetails;
-  //   return Obx(() => controller.products.isEmpty
-  //       // ordercontroller.order.value == null
-  //       ? const Center(child: Text("Empty"))
-  //       : Column(
-  //           children: List.generate(
-  //               1,
-  //               (index) => OrderItemCard(
-  //                   product: controller.products.keys.toList()[index],
-  //                   controller: controller,
-  //                   index: index)
-
-  //               //  orderItemCard(
-  //               //     '${details![0].product?.featureImage?.originalImage}',
-  //               //     '${details![0].product?.title}',
-  //               //     '${details![0].product?.productPrice}')
-  //               ),
-  //         ));
-  // }
-
-  buildOrderStatus(title) {
-    return Obx(() => InkWell(
-          onTap: () {
-            ordercontroller.isActive();
-            print(ordercontroller.active);
-          },
-          child: Column(
-            children: [
-              Text(
-                title,
-                style: archivotitleStyle.copyWith(fontSize: getFont(14)),
-              ),
-              const SizedBox(
-                height: 6,
-              ),
-              ordercontroller.active.isFalse
-                  ? Container(
-                      height: 1,
-                      width: 70,
-                      color: AppColors.textGreen,
-                    )
-                  : Container()
-            ],
-          ),
-        ));
-  }
 }
 
 class BuildOrderItems extends StatelessWidget {
@@ -189,32 +135,39 @@ class BuildOrderItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var product = ordercontroller.order.value.data?.singleOrder;
-    return Obx(() =>
-        // controller.products.isEmpty
-        ordercontroller.order.value == null
-            ? const Center(child: Text("Empty"))
-            : Column(
-                children: List.generate(
-                    1,
-                    (i) =>
-                        //  OrderItemCard(
-                        //     product: controller.products.keys.toList()[index],
-                        //     controller: controller,
-                        //     index: index)
+    return Column(children: [
+      Obx(() => ordercontroller.isLoading.value
+          ? const SizedBox(child: Center(child: CircularProgressIndicator()))
+          : product?.orderDetails == null
+              ? const Center(child: Text('Empty'))
+              : Column(
+                  children: List.generate(
+                      product!.orderDetails!.length,
+                      (i) => OrderItemCard(
+                            image:
+                                "${product.orderDetails![i].product?.featureImage?.originalImage}",
+                            title: "${product.orderDetails![i].product?.title}",
+                            price:
+                                "${product.orderDetails![i].product?.productPrice}",
+                          )),
+                )),
+      // Obx(() => ordercontroller.isLoading.value
+      //     ? const SizedBox(child: Center(child: CircularProgressIndicator()))
+      //     : SizedBox(
+      //         height: 600,
+      //         child: ListView.builder(
 
-                        //  OrderItemCard(
-
-                        //     '${details![0].product?.featureImage?.originalImage}',
-                        //     '${details![0].product?.title}',
-                        //     '${details![0].product?.productPrice}')
-                        OrderItemCard(
-                          image:
-                              "${product?.orderDetails?[i].product?.featureImage?.originalImage}",
-                          title: "${product?.orderDetails?[i].product?.title}",
-                          price:
-                              "${product?.orderDetails?[i].product?.productPrice}",
-                        )),
-              ));
+      //             itemCount: ordercontroller
+      //                 .order.value.data?.singleOrder?.orderDetails?.length,
+      //             itemBuilder: (_, i) => OrderItemCard(
+      //                   image:
+      //                       "${product?.orderDetails?[i].product?.featureImage?.originalImage}",
+      //                   title: "${product?.orderDetails?[i].product?.title}",
+      //                   price:
+      //                       "${product?.orderDetails?[i].product?.productPrice}",
+      //                 )),
+      //       ))
+    ]);
   }
 }
 
@@ -241,8 +194,7 @@ class OrderItemCard extends StatelessWidget {
                 width: getWidth(139),
                 height: getHeight(99),
                 child: Image.network(
-                  // "http://192.168.10.67:8080" +
-                  image,
+                  "http://192.168.10.67:8080" + image,
                   fit: BoxFit.contain,
                   width: getWidth(139),
                   height: getHeight(99),
@@ -327,6 +279,8 @@ class OrderItemCard extends StatelessWidget {
 }
 
 Widget labels() {
+  var orderstatus =
+      ordercontroller.order.value.data?.singleOrder?.orderstatusId;
   return Container(
     margin: EdgeInsets.only(left: getWidth(20), right: getWidth(10)),
     //width: 50,
@@ -336,7 +290,13 @@ Widget labels() {
         color: const Color.fromRGBO(135, 194, 65, 0.2)),
     child: Center(
       child: Text(
-        'Processing',
+        orderstatus == 1
+            ? 'Pending'
+            : orderstatus == 8
+                ? 'Delivered'
+                : orderstatus == 4
+                    ? 'processing'
+                    : '',
         style: TextStyle(
             color: AppColors.textGreen,
             fontSize: getFont(14),

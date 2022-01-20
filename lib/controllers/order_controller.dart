@@ -1,24 +1,23 @@
 import 'package:get/get.dart';
 import 'package:khetipati/controllers/auth_controller.dart';
+import 'package:khetipati/controllers/profile_controller.dart';
 import 'package:khetipati/models/order.dart';
-import 'package:khetipati/models/user.dart';
 import 'package:khetipati/services/app_service.dart';
-import 'package:khetipati/utils/snackbar.dart';
 
 class OrderController extends GetxController {
   static OrderController instance = Get.find();
+  final profilecontroller = Get.put(ProfileController());
 
-  RxBool active = false.obs;
-  var isLoading = true.obs;
+  var isLoading = false.obs;
   var index = 0.obs;
-  var orderlist = <OrderDetail>[].obs;
   var order = Order().obs;
+  var orderlist = <OrderDetail>[].obs;
   get selectedIndex => index.value;
 
   @override
   void onInit() {
     // called immediately after the widget is allocated memory
-
+    getOrderByUserId();
     super.onInit();
   }
 
@@ -36,43 +35,28 @@ class OrderController extends GetxController {
     super.onClose();
   }
 
-  void isActive() {
-    if (active.isFalse) {
-      active = true.obs;
-    } else {
-      active = false.obs;
-    }
+  getOrderByUserId() async {
+    isLoading(true);
+    var list = await AppServices().getOrderbyUserid(
+        profilecontroller.user.value.id.toString(), authController.token.value);
 
-    update();
+    // print('codeeeeeee' + profilecontroller.user.value.id.toString());
+    if (list != null) {
+      isLoading(false);
+      order.value = Order.fromJson(list);
+      print(list);
+    }
   }
 
-  // getOrderByCode() async {
-  //   // orderlist.value = [];
-  //   // orderlist.clear();
-  //   try {
-  //     isLoading(true);
-  //     var list = await AppServices().getOrderbyCode(authController.token.value);
+  // getOrderDetailByUserId() async {
+  //   isLoading(true);
+  //   var list = await AppServices().getOrderbyUserid(
+  //       profilecontroller.user.value.id.toString(), authController.token.value);
 
-  //     print(list);
-  //     order.value = list;
-  //   } finally {
-  //     // TODO
+  //   if (list != null) {
   //     isLoading(false);
+  //     orderlist.value = list;
+  //     print(orderlist.value);
   //   }
   // }
-
-  getOrderByUserId() async {
-    try {
-      isLoading(true);
-      var list = await AppServices().getOrderbyUserid(
-          authController.user.value.id.toString(), authController.token.value);
-
-      // print('codeeeeeee' + authController.user.value.id.toString());
-      order.value = list;
-      print(list);
-    } finally {
-      // TODO
-      isLoading(false);
-    }
-  }
 }

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
-import 'package:khetipati/controllers/auth_controller.dart';
-import 'package:khetipati/controllers/home_controller.dart';
+import 'package:khetipati/controllers/profile_controller.dart';
 import 'package:khetipati/screens/home/tabs/orders_tab.dart';
 import 'package:khetipati/screens/login/login.dart';
 import 'package:khetipati/screens/payment/payment.dart';
@@ -19,17 +18,10 @@ import 'package:khetipati/theme.dart';
 
 import '../../../theme.dart';
 
-class ProfileTab extends StatefulWidget {
-  const ProfileTab({Key? key}) : super(key: key);
+class ProfileTab extends StatelessWidget {
+  final ProfileController controller = Get.put(ProfileController());
 
-  @override
-  State<ProfileTab> createState() => _ProfileTabState();
-}
-
-class _ProfileTabState extends State<ProfileTab> {
-  AuthController authcontroller = Get.put(AuthController());
-
-  HomeController controller = Get.put(HomeController());
+  ProfileTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +51,7 @@ class _ProfileTabState extends State<ProfileTab> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Obx(() => profilePic()),
+            profilePic(),
             Container(
               width: MediaQuery.of(context).size.width,
               //height: 815,
@@ -92,69 +84,71 @@ class _ProfileTabState extends State<ProfileTab> {
   }
 
   profilePic() {
-    return Container(
-      //height: 283,
-      width: MediaQuery.of(context).size.width,
-      color: AppColors.mainGreen,
-      child: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: getHeight(33), bottom: getHeight(10)),
-            child: authcontroller.user.value.featureImage?.originalImage == null
-                ? Image.asset(
-                    'assets/images/profile.png',
-                    height: getHeight(135),
-                    width: getWidth(135),
-                  )
-                : Image.network(
-                    "${authcontroller.user.value.featureImage?.originalImage}"),
-          ),
-
-          Text(
-            "${authcontroller.user.value.firstname} ${authcontroller.user.value.lastname}",
-            style: TextStyle(
-                fontSize: getFont(23),
-                color: Colors.green[900],
-                fontWeight: FontWeight.bold),
-          ),
-          Text(
-            "Mangalbazar, Lalitpur",
-            style: archivotitleStyle.copyWith(
-                fontSize: getFont(14),
-                color: Colors.green[900],
-                fontWeight: FontWeight.normal),
-          ),
-          SizedBox(
-            height: getHeight(22),
-          ),
-
-          ///edit button
-          GestureDetector(
-            onTap: () {
-              Get.to(const EditProfile());
-            },
-            child: Container(
-              height: getHeight(22),
-              width: getWidth(42),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                color: const Color.fromRGBO(255, 255, 255, 0.5),
+    return Obx(() => Container(
+          //height: 283,
+          width: double.infinity,
+          color: AppColors.mainGreen,
+          child: Column(
+            children: [
+              Container(
+                margin:
+                    EdgeInsets.only(top: getHeight(33), bottom: getHeight(10)),
+                child: controller.user.value.featureImage?.originalImage == null
+                    ? Image.asset(
+                        'assets/images/profile.png',
+                        height: getHeight(135),
+                        width: getWidth(135),
+                      )
+                    : Image.network(
+                        "${controller.user.value.featureImage?.originalImage}"),
               ),
-              child: Text(
-                'Edit',
+
+              Text(
+                "${controller.user.value.firstname} ${controller.user.value.lastname}",
                 style: TextStyle(
-                    fontSize: getFont(14),
-                    color: const Color.fromRGBO(2, 95, 51, 1)),
+                    fontSize: getFont(23),
+                    color: Colors.green[900],
+                    fontWeight: FontWeight.bold),
               ),
-            ),
+              Text(
+                "Mangalbazar, Lalitpur",
+                style: archivotitleStyle.copyWith(
+                    fontSize: getFont(14),
+                    color: Colors.green[900],
+                    fontWeight: FontWeight.normal),
+              ),
+              SizedBox(
+                height: getHeight(22),
+              ),
+
+              ///edit button
+              GestureDetector(
+                onTap: () {
+                  Get.to(const EditProfile());
+                  print(controller.user.value.email);
+                },
+                child: Container(
+                  height: getHeight(22),
+                  width: getWidth(42),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: const Color.fromRGBO(255, 255, 255, 0.5),
+                  ),
+                  child: Text(
+                    'Edit',
+                    style: TextStyle(
+                        fontSize: getFont(14),
+                        color: const Color.fromRGBO(2, 95, 51, 1)),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: getHeight(16),
+              )
+            ],
           ),
-          SizedBox(
-            height: getHeight(16),
-          )
-        ],
-      ),
-    );
+        ));
   }
 
   profileMenuCard() {
@@ -249,7 +243,7 @@ class _ProfileTabState extends State<ProfileTab> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Obx(
-        () => authcontroller.isloading.value
+        () => controller.isloading.value
             ? const SizedBox(
                 height: 200,
                 child: Center(
@@ -276,7 +270,7 @@ class _ProfileTabState extends State<ProfileTab> {
                     height: getHeight(10),
                   ),
                   buildPersonalInfo('Name',
-                      "${authcontroller.user.value.firstname} ${authcontroller.user.value.lastname}"),
+                      "${controller.user.value.firstname} ${controller.user.value.lastname}"),
                   SizedBox(
                     height: getHeight(29),
                   ),
@@ -285,12 +279,11 @@ class _ProfileTabState extends State<ProfileTab> {
                     height: getHeight(29),
                   ),
                   buildPersonalInfo(
-                      'Phone No.', "${authcontroller.user.value.phone}"),
+                      'Phone No.', "${controller.user.value.phone}"),
                   SizedBox(
                     height: getHeight(29),
                   ),
-                  buildPersonalInfo(
-                      'Email', "${authcontroller.user.value.email}"),
+                  buildPersonalInfo('Email', "${controller.user.value.email}"),
                   SizedBox(
                     height: getHeight(20),
                   ),
@@ -386,7 +379,7 @@ class _ProfileTabState extends State<ProfileTab> {
         children: [
           InkWell(
             onTap: () {
-              authcontroller.getuserdata();
+              // authcontroller.getuserdata();
             },
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -416,7 +409,7 @@ class _ProfileTabState extends State<ProfileTab> {
           SizedBox(height: getHeight(10)),
           InkWell(
             onTap: () {
-              Get.to(() => LoginPage());
+              Get.offAll(() => LoginPage());
             },
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,

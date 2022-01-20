@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khetipati/constant/colors.dart';
 import 'package:khetipati/constant/size_config.dart';
+import 'package:khetipati/controllers/auth_controller.dart';
 import 'package:khetipati/controllers/home_controller.dart';
 import 'package:khetipati/models/cagetories.dart';
 import 'package:khetipati/screens/home/offers.dart';
@@ -15,6 +16,7 @@ import 'package:khetipati/theme.dart';
 class HomeTab extends StatelessWidget {
   HomeTab({Key? key}) : super(key: key);
   final HomeController controller = Get.find();
+  final AuthController authcontroller = Get.find();
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
@@ -72,124 +74,127 @@ class HomeTab extends StatelessWidget {
           horizontal: 20,
         ),
         height: SizeConfigs.screenHeight * 0.2,
-        child: SafeArea(
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Image.asset(
-              'assets/images/pic.png',
-              height: getHeight(69),
-              width: getWidth(61),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  "Hello!",
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: AppColors.textGreen,
-                      fontWeight: FontWeight.w400),
-                ),
-                Text(
-                  "Howard ",
-                  style: TextStyle(
-                      fontSize: 22,
-                      color: AppColors.textGreen,
-                      fontWeight: FontWeight.w700),
-                )
-              ],
-            ),
-            const Spacer(),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.search,
-                size: 30,
-                color: Colors.green[900],
-              ),
-            ),
-          ]),
-        ));
+        child: Obx(() => SafeArea(
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    authcontroller.user.value.featureImage?.thumbnailImage ==
+                            null
+                        ? Image.asset(
+                            'assets/images/pic.png',
+                            height: getHeight(69),
+                            width: getWidth(61),
+                          )
+                        : Image.network(
+                            '${controller.user.value.featureImage?.thumbnailImage}',
+                            height: getHeight(69),
+                            width: getWidth(61),
+                          ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Hello!",
+                          style: robototitleStyle.copyWith(
+                              fontSize: 16,
+                              color: AppColors.textGreen,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        Text(
+                          "${controller.user.value.firstname} ",
+                          style: robototitleStyle.copyWith(
+                              fontSize: 22,
+                              color: AppColors.textGreen,
+                              fontWeight: FontWeight.w700),
+                        )
+                      ],
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.search,
+                        size: 30,
+                        color: Colors.green[900],
+                      ),
+                    ),
+                  ]),
+            )));
   }
 
   buildCategoriesCard() {
-    return Obx(() => !controller.isloading.value
-        ? const Center(
-            child: CircularProgressIndicator(
-            backgroundColor: AppColors.mainGreen,
-          ))
-        : controller.categories.isEmpty
-            ? SizedBox(
-                height: getHeight(62),
-                width: getWidth(149),
-                child: Padding(
-                  padding: EdgeInsets.only(left: getWidth(20)),
-                  child: Center(
-                    child: Text(
-                      "No data",
-                      style: archivosubtitleStyle,
-                    ),
-                  ),
-                ))
-            : SizedBox(
-                height: getHeight(62),
-                child: ListView.builder(
-                    padding: EdgeInsets.only(left: getWidth(10)),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: controller.categories.length,
-                    itemBuilder: (_, int i) {
-                      Category categories = controller.categories[i];
-                      return Container(
-                        height: getHeight(62),
-                        width: getWidth(149),
-                        margin: EdgeInsets.only(left: getWidth(10)),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: getWidth(8), right: getWidth(8)),
-                              child: Image.network(
-                                "http://192.168.10.67:8080" +
-                                    categories.logoUrl.toString(),
-                                height: getHeight(62),
-                                width: getHeight(62),
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    categories.title.toString(),
-                                    style: TextStyle(
-                                        fontSize: getFont(15),
-                                        fontWeight: FontWeight.w400,
-                                        color: AppColors.textGreen),
-                                  ),
-                                  Text(
-                                    "120 items",
-                                    style: TextStyle(
-                                        fontSize: getFont(10),
-                                        fontWeight: FontWeight.normal,
-                                        color: AppColors.textblack),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
+    return Obx(() => controller.categories.isEmpty
+        ? SizedBox(
+            height: getHeight(62),
+            width: getWidth(149),
+            child: Padding(
+              padding: EdgeInsets.only(left: getWidth(20)),
+              child: Center(
+                child: Text(
+                  "No data",
+                  style: archivosubtitleStyle,
+                ),
+              ),
+            ))
+        : SizedBox(
+            height: getHeight(62),
+            child: ListView.builder(
+                padding: EdgeInsets.only(left: getWidth(10)),
+                scrollDirection: Axis.horizontal,
+                itemCount: controller.categories.length,
+                itemBuilder: (_, int i) {
+                  Category categories = controller.categories[i];
+                  return Container(
+                    height: getHeight(62),
+                    width: getWidth(149),
+                    margin: EdgeInsets.only(left: getWidth(10)),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: getWidth(8), right: getWidth(8)),
+                          child: Image.network(
+                            "http://192.168.10.67:8080" +
+                                categories.logoUrl.toString(),
+                            height: getHeight(62),
+                            width: getHeight(62),
+                          ),
                         ),
-                      );
-                    }),
-              ));
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                categories.title.toString(),
+                                style: TextStyle(
+                                    fontSize: getFont(15),
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColors.textGreen),
+                              ),
+                              Text(
+                                "120 items",
+                                style: TextStyle(
+                                    fontSize: getFont(10),
+                                    fontWeight: FontWeight.normal,
+                                    color: AppColors.textblack),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                }),
+          ));
   }
 
   buildPopularItemsCard() {

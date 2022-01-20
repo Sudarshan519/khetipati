@@ -349,7 +349,7 @@ class BuildCheckoutItems extends StatelessWidget {
                             fontSize: getFont(15),
                             fontWeight: FontWeight.w500)),
                     TextSpan(
-                        text: controller.total,
+                        text: product.productPrice.toString(),
                         style: robototitleStyle.copyWith(
                             fontSize: getFont(20), fontWeight: FontWeight.w500))
                   ]))

@@ -14,7 +14,7 @@ import 'tabs/home_tab.dart';
 
 List<Widget> tabs = [
   HomeTab(),
-  const OrdersTab(),
+  OrdersTab(),
   const NotificationsTab(),
   ProfileTab(),
 ];

@@ -8,8 +8,8 @@ import 'package:khetipati/models/cart.dart';
 import 'package:khetipati/models/product.dart';
 import 'package:khetipati/models/user.dart';
 import 'package:khetipati/services/app_service.dart';
+import 'package:khetipati/services/user_services.dart';
 import 'package:khetipati/utils/snackbar.dart';
-import 'package:khetipati/utils/storage/app_storage.dart';
 
 class HomeController extends GetxController {
   static HomeController instance = Get.find();
@@ -35,11 +35,22 @@ class HomeController extends GetxController {
   }
 
   ///get user info
-  getuser() {
-    var user = AppStorage.getData("user");
+  getuserdata() async {
+    try {
+      isloading(true);
+      var data = await userrepo.getuserInfo(authController.token.value);
 
-    // print(user!.firstname.toString());
-    return User.fromJson(user);
+      if (data != null) {
+        user.value = data;
+        print(user.value.email);
+        isloading(false);
+      }
+    } catch (e) {
+      // TODO
+
+    }
+    // print(user.value);
+    // userInfo.value = userFromJson(data);
   }
 
   ///fetch and assign categories
@@ -51,6 +62,7 @@ class HomeController extends GetxController {
       var list =
           await AppServices().getAllCategories(authController.token.value);
       if (list.isNotEmpty) {
+        isloading.value = true;
         categories.addAll(list);
       }
     } catch (e) {
@@ -102,7 +114,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     fetchAll();
-
+    getuserdata();
     super.onInit();
   }
 
